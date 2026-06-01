@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "hrapp",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "clientFramework": "vue",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1780313868438,
+    "databaseType": "sql",
+    "defaultCommand": "app",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": false,
+    "enableTranslation": false,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "9.1.0",
+    "jwtSecretKey": "NGM5MmNkMjZiYThmOWFmZDVjNGQ5M2JhNjBhNTg1MDI1OWE5NzBjMzMyZTZiZmNmZmUzMzA4OTJlYmQ2N2UzZDE3MmYzNzE0MmYwMTliMTA2NjZkYjhjNTg4ZTc4MDc3YjJlNDJmYTVjMWQzZjdhNDM5ZTc3OGQ5NzdhMmE1YmQ=",
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "en",
+    "packageName": "top.btmdc.hr",
+    "prodDatabaseType": "mariadb",
+    "reactive": false,
+    "serverPort": null,
+    "serviceDiscoveryType": null,
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}

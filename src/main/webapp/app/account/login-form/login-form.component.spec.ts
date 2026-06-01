@@ -1,0 +1,125 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { type RouteLocation } from 'vue-router';
+
+import { createTestingPinia } from '@pinia/testing';
+import { type MountingOptions, shallowMount } from '@vue/test-utils';
+import axios from 'axios';
+
+import { AUTHENTICATION_TOKEN_KEY } from '@/shared/jhipster/constants';
+import { useStore } from '@/store';
+import AccountService from '../account.service';
+
+import LoginForm from './login-form.vue';
+
+type LoginFormComponentType = InstanceType<typeof LoginForm>;
+
+let route: Partial<RouteLocation>;
+const routerGoMock = vi.fn();
+vi.mock('vue-router', () => ({
+  useRoute: () => route,
+  useRouter: () => ({ go: routerGoMock }),
+}));
+
+const axiosStub = {
+  get: vi.spyOn(axios, 'get'),
+  post: vi.spyOn(axios, 'post'),
+};
+
+describe('LoginForm Component', () => {
+  let loginForm: LoginFormComponentType;
+
+  beforeEach(() => {
+    route = {};
+    axiosStub.get.mockResolvedValue({});
+    axiosStub.post.mockReset();
+
+    const pinia = createTestingPinia();
+    const store = useStore();
+
+    const globalOptions: MountingOptions<LoginFormComponentType>['global'] = {
+      stubs: {
+        'b-alert': true,
+        'b-button': true,
+        'b-form': true,
+        'b-form-input': true,
+        'b-form-group': true,
+        'b-form-checkbox': true,
+        'b-link': true,
+      },
+      plugins: [pinia],
+      provide: {
+        accountService: new AccountService(store),
+      },
+    };
+    const wrapper = shallowMount(LoginForm, { global: globalOptions });
+
+    loginForm = wrapper.vm;
+  });
+
+  it('should not store token if authentication is KO', async () => {
+    // GIVEN
+    loginForm.login = 'login';
+    loginForm.password = 'pwd';
+    loginForm.rememberMe = true;
+    axiosStub.post.mockRejectedValue(new Error());
+
+    // WHEN
+    loginForm.doLogin();
+    await loginForm.$nextTick();
+
+    // THEN
+    expect(axiosStub.post).toHaveBeenCalledWith('api/authenticate', {
+      username: 'login',
+      password: 'pwd',
+      rememberMe: true,
+    });
+    await loginForm.$nextTick();
+    expect(loginForm.authenticationError).toBeTruthy();
+  });
+
+  it('should store token if authentication is OK', async () => {
+    // GIVEN
+    loginForm.login = 'login';
+    loginForm.password = 'pwd';
+    loginForm.rememberMe = true;
+    const jwtSecret = 'jwt-secret';
+    axiosStub.post.mockResolvedValue({ headers: { authorization: `Bearer ${jwtSecret}` } });
+
+    // WHEN
+    loginForm.doLogin();
+    await loginForm.$nextTick();
+
+    // THEN
+    expect(axiosStub.post).toHaveBeenCalledWith('api/authenticate', {
+      username: 'login',
+      password: 'pwd',
+      rememberMe: true,
+    });
+
+    expect(loginForm.authenticationError).toBeFalsy();
+    expect(localStorage.getItem(AUTHENTICATION_TOKEN_KEY)).toEqual(jwtSecret);
+  });
+
+  it('should store token if authentication is OK in session', async () => {
+    // GIVEN
+    loginForm.login = 'login';
+    loginForm.password = 'pwd';
+    loginForm.rememberMe = false;
+    const jwtSecret = 'jwt-secret';
+    axiosStub.post.mockResolvedValue({ headers: { authorization: `Bearer ${jwtSecret}` } });
+
+    // WHEN
+    loginForm.doLogin();
+    await loginForm.$nextTick();
+
+    // THEN
+    expect(axiosStub.post).toHaveBeenCalledWith('api/authenticate', {
+      username: 'login',
+      password: 'pwd',
+      rememberMe: false,
+    });
+
+    expect(loginForm.authenticationError).toBeFalsy();
+    expect(sessionStorage.getItem(AUTHENTICATION_TOKEN_KEY)).toEqual(jwtSecret);
+  });
+});

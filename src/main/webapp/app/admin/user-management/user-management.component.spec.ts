@@ -1,0 +1,115 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { ref } from 'vue';
+
+import { shallowMount } from '@vue/test-utils';
+import axios from 'axios';
+
+import AlertService from '@/shared/alert/alert.service';
+import { MESSAGE_ALERT_HEADER_NAME, MESSAGE_PARAM_HEADER_NAME } from '@/shared/jhipster/constants';
+
+import UserManagement from './user-management.vue';
+
+type UserManagementComponentType = InstanceType<typeof UserManagement>;
+
+const axiosStub = {
+  delete: vi.spyOn(axios, 'delete'),
+  get: vi.spyOn(axios, 'get'),
+  put: vi.spyOn(axios, 'put'),
+};
+
+describe('UserManagement Component', () => {
+  let userManagement: UserManagementComponentType;
+  let alertService: AlertService;
+
+  beforeEach(() => {
+    axiosStub.put.mockReset();
+    axiosStub.get.mockReset();
+    axiosStub.get.mockResolvedValue({ headers: {} });
+
+    alertService = new AlertService({
+      toast: {
+        show: vi.fn(),
+      } as any,
+    });
+
+    const wrapper = shallowMount(UserManagement, {
+      global: {
+        stubs: {
+          bPagination: true,
+          jhiItemCount: true,
+          bModal: true,
+          'router-link': true,
+          'jhi-sort-indicator': true,
+          'font-awesome-icon': true,
+          'b-button': true,
+        },
+        directives: {
+          'b-modal': {},
+        },
+        provide: {
+          alertService,
+          currentUsername: ref(''),
+        },
+      },
+    });
+    userManagement = wrapper.vm;
+  });
+
+  describe('OnInit', () => {
+    it('Should call load all on init', async () => {
+      // WHEN
+      userManagement.loadAll();
+      await userManagement.$nextTick();
+
+      // THEN
+      expect(axiosStub.get).toHaveBeenCalledWith(`api/admin/users?sort=id,asc&page=0&size=20`);
+    });
+  });
+
+  describe('setActive', () => {
+    it('Should update user and call load all', async () => {
+      // GIVEN
+      axiosStub.put.mockResolvedValue({});
+
+      // WHEN
+      userManagement.setActive({ id: 123 }, true);
+      await userManagement.$nextTick();
+
+      // THEN
+      expect(axiosStub.put).toHaveBeenCalledWith(`api/admin/users`, { id: 123, activated: true });
+      expect(axiosStub.get).toHaveBeenCalledWith(`api/admin/users?sort=id,asc&page=0&size=20`);
+    });
+  });
+
+  describe('confirmDelete', () => {
+    it('Should call delete service on confirmDelete', async () => {
+      // GIVEN
+      axiosStub.delete.mockResolvedValue({
+        headers: {
+          [MESSAGE_ALERT_HEADER_NAME]: '',
+          [MESSAGE_PARAM_HEADER_NAME]: '',
+        },
+      });
+
+      // WHEN
+      userManagement.prepareRemove({ login: 123 });
+      userManagement.deleteUser();
+      await userManagement.$nextTick();
+
+      // THEN
+      expect(axiosStub.delete).toHaveBeenCalledWith(`api/admin/users/${123}`);
+      expect(axiosStub.get).toHaveBeenCalledWith(`api/admin/users?sort=id,asc&page=0&size=20`);
+    });
+  });
+
+  describe('change order', () => {
+    it('should change order and invert reverse', () => {
+      // WHEN
+      userManagement.changeOrder('dummy-order');
+
+      // THEN
+      expect(userManagement.propOrder).toEqual('dummy-order');
+      expect(userManagement.reverse).toBe(true);
+    });
+  });
+});
