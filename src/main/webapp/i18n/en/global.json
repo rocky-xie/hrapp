@@ -5,6 +5,7 @@
       "dashboard": "Dashboard",
       "skillGapReport": "Skill Gap Report",
       "dataQuality": "Data Quality",
+      "batch": "Batch Import/Export",
       "entities": "Entities",
       "administration": "Administration",
       "account": "Account",
@@ -751,6 +752,15 @@
     },
     "message": {
       "noIssues": "No data quality issues found."
+    }
+  },
+  "batch": {
+    "home": {
+      "title": "Batch Import/Export"
+    },
+    "action": {
+      "export": "Export",
+      "import": "Import"
     }
   },
   "error": {

@@ -5,6 +5,7 @@
       "dashboard": "ダッシュボード",
       "skillGapReport": "スキルギャップレポート",
       "dataQuality": "データ品質",
+      "batch": "一括インポート/エクスポート",
       "entities": "エンティティ",
       "administration": "管理",
       "account": "アカウント",
@@ -750,6 +751,15 @@
     },
     "message": {
       "noIssues": "データ品質の問題は見つかりませんでした。"
+    }
+  },
+  "batch": {
+    "home": {
+      "title": "一括インポート/エクスポート"
+    },
+    "action": {
+      "export": "エクスポート",
+      "import": "インポート"
     }
   },
   "error": {

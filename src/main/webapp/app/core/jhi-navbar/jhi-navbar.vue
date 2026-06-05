@@ -49,6 +49,12 @@
             <span>{{ $t('global.menu.dataQuality') }}</span>
           </span>
         </b-nav-item>
+        <b-nav-item to="/batch" v-if="authenticated">
+          <span>
+            <font-awesome-icon icon="file-import" />
+            <span>{{ $t('global.menu.batch') }}</span>
+          </span>
+        </b-nav-item>
         <b-nav-item-dropdown
           :no-size="true"
           end

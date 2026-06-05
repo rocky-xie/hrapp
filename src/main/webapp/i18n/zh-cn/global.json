@@ -5,6 +5,7 @@
       "dashboard": "仪表盘",
       "skillGapReport": "技能缺口报告",
       "dataQuality": "数据质量",
+      "batch": "批量导入/导出",
       "entities": "实体",
       "administration": "系统管理",
       "account": "账户",
@@ -750,6 +751,15 @@
     },
     "message": {
       "noIssues": "未发现数据质量问题。"
+    }
+  },
+  "batch": {
+    "home": {
+      "title": "批量导入/导出"
+    },
+    "action": {
+      "export": "导出",
+      "import": "导入"
     }
   },
   "error": {

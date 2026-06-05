@@ -1,7 +1,11 @@
 const Dashboard = () => import('@/core/dashboard/dashboard.vue');
 const SkillGapReport = () => import('@/core/reports/skill-gap-report.vue');
 const ActionItem = () => import('@/entities/action-item/action-item.vue');
+const Dashboard = () => import('@/core/dashboard/dashboard.vue');
+const SkillGapReport = () => import('@/core/reports/skill-gap-report.vue');
+const ActionItem = () => import('@/entities/action-item/action-item.vue');
 const DataQuality = () => import('@/core/data-quality/data-quality.vue');
+const BatchImportExport = () => import('@/core/batch/batch.vue');
 
 export default [
   {
@@ -23,5 +27,10 @@ export default [
     path: '/data-quality',
     name: 'DataQuality',
     component: DataQuality,
+  },
+  {
+    path: '/batch',
+    name: 'BatchImportExport',
+    component: BatchImportExport,
   },
 ];
