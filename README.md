@@ -1,241 +1,139 @@
-# hrapp
+# HR Capability Map (hrapp)
 
-This application was generated using JHipster 9.1.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v9.1.0](https://www.jhipster.tech/documentation-archive/v9.1.0).
+面向新人培养与人员能力管理的工作台工具。系统围绕**职位（Position）** 和**人员（Person）** 两大核心实体，管理技能定义、技能等级、职位所需技能、任职人员、人员技能、替代关系、继任计划、岗位/人员风险、培训目标/记录、技能评估、信任观察、评价考核等业务数据。
 
-## Project Structure
+> **当前阶段**：个人试行项目，用于辅助进行人员能力观察、岗位替代风险判断和培养方向整理。输出仅作为个人判断辅助，不作为正式人事裁决依据。
 
-Node is required for generation and recommended for development. `package.json` is always generated for a better development experience with prettier, commit hooks, scripts and so on.
+---
 
-In the project root, JHipster generates configuration files for tools like git, prettier, eslint, husky, and others that are well known and you can find references in the web.
+## 技术栈
 
-`/src/*` structure follows default Java structure.
+| 层次           | 技术                      |
+| -------------- | ------------------------- |
+| 前端框架       | Vue 3 + TypeScript        |
+| UI 组件        | BootstrapVue Next         |
+| 表单验证       | Vuelidate                 |
+| 国际化         | vue-i18n@9 (中/日/英)     |
+| 构建工具       | Vite + esbuild            |
+| 后端框架       | Spring Boot 3.4 / 4.0.6   |
+| Java           | JDK 21                    |
+| ORM            | Hibernate + JPA           |
+| DTO 映射       | MapStruct                 |
+| 数据库迁移     | Liquibase                 |
+| 数据库（开发） | H2 (LEGACY)               |
+| 数据库（生产） | MariaDB                   |
+| 代码生成基底   | JHipster 9.1 (JDL → 实体) |
 
-- `.yo-rc.json` - Yeoman configuration file
-  JHipster configuration is stored in this file at `generator-jhipster` key. You may find `generator-jhipster-*` for specific blueprints configuration.
-- `.yo-resolve` (optional) - Yeoman conflict resolver
-  Allows to use a specific action when conflicts are found skipping prompts for files that matches a pattern. Each line should match `[pattern] [action]` with pattern been a [Minimatch](https://github.com/isaacs/minimatch#minimatch) pattern and action been one of skip (default if omitted) or force. Lines starting with `#` are considered comments and are ignored.
-- `.jhipster/*.json` - JHipster entity configuration files
+---
 
-- `npmw` - wrapper to use locally installed npm.
-  JHipster installs Node and npm locally using the build tool by default. This wrapper makes sure npm is installed locally and uses it avoiding some differences different versions can cause. By using `./npmw` instead of the traditional `npm` you can configure a Node-less environment to develop or test your application.
-- `/src/main/docker` - Docker configurations for the application and services that the application depends on
+## 核心功能
 
-## Development
+- **职位与技能管理** — 定义职位、技能、技能等级；管理职位所需的技能要求及最低等级
+- **人员技能跟踪** — 录入人员技能与等级，记录技能升级/评定变更历史
+- **替代关系计算** — 根据职位技能要求与候选人员技能等级计算覆盖率（默认阈值 80%），判断替代是否成立
+- **岗位风险评价** — 综合关键属性、任职人数、替代数据、文档状态、依赖度、后继者准备度，输出风险等级（HIGH / MEDIUM / LOW / UNKNOWN）
+- **Dashboard** — 系统概览、高风险职位、覆盖缺口、技能复核提醒
+- **技能缺口报告** — 多职位技能差距分析，自动生成培训建议（P0-P3 优先级）
+- **继任地图** — 职位后继者候选列表与准备度
+- **培训闭环** — 培训目标创建、培训记录跟踪、技能评估
+- **信任观察与评价** — 记录对人员的信任观察和综合评价
 
-The build system will install automatically the recommended version of Node and npm.
+---
 
-We provide a wrapper to launch npm.
-You will only need to run this command when dependencies change in [package.json](package.json).
+## 快速开始
 
-```bash
-./npmw install
-```
+### 前提条件
 
-We use npm scripts and esbuild as our build system.
+- JDK 21
+- Node.js ≥ 20
+- Docker（可选，用于数据库服务）
 
-Run the following commands in two separate terminals to create a blissful development experience where your browser
-auto-refreshes when files change on your hard drive.
-
-```bash
-./npmw run backend:start
-./npmw run start
-```
-
-Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
-specifying a newer version in [package.json](package.json). You can also run `./npmw update` and `./npmw install` to manage dependencies.
-Add the `help` flag on any command to see how you can use it. For example, `./npmw help update`.
-
-The `./npmw run` command will list all the scripts available to run for this project.
-
-### PWA Support
-
-JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
-
-The service worker initialization code is commented out by default. To enable it, uncomment the following code in `src/main/webapp/index.html`:
-
-```html
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js').then(function () {
-      console.log('Service Worker Registered');
-    });
-  }
-</script>
-```
-
-Note: [Workbox](https://developer.chrome.com/docs/workbox) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
-
-### Managing dependencies
-
-For example, to add [Leaflet](https://leafletjs.com/) library as a runtime dependency of your application, you would run the following command:
+### 开发模式
 
 ```bash
-./npmw install --save --save-exact leaflet
+# 安装前端依赖
+npm install
+
+# 终端 1：启动后端
+./mvnw
+
+# 终端 2：启动前端开发服务器
+npm run start
 ```
 
-To benefit from TypeScript type definitions from [DefinitelyTyped](https://definitelytyped.org/) repository in development, you would run the following command:
+浏览器访问 `http://localhost:9000`，API 代理到 `http://localhost:8080`。
 
-```bash
-./npmw install --save-dev --save-exact @types/leaflet
-```
-
-Then you would import the JS and CSS files specified in library's installation instructions so that [esbuild][] knows about them:
-Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
-
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development](https://www.jhipster.tech/development/).
-
-## Building for production
-
-### Packaging as jar
-
-To build the final jar and optimize the hrapp application for production, run:
+### 生产构建
 
 ```bash
 ./mvnw -Pprod clean verify
-```
-
-This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
-To ensure everything worked, run:
-
-```bash
 java -jar target/*.jar
 ```
 
-Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
+---
 
-Refer to [Using JHipster in production][] for more details.
-
-### Packaging as war
-
-To package your application as a war in order to deploy it to an application server, run:
+## 测试
 
 ```bash
-./mvnw -Pprod,war clean verify
-```
-
-### JHipster Control Center
-
-JHipster Control Center can help you manage and control your application(s). You can start a local control center server (accessible on http://localhost:7419) with:
-
-```bash
-docker compose -f src/main/docker/jhipster-control-center.yml up
-```
-
-## Testing
-
-### Spring Boot tests
-
-To launch your application's tests, run:
-
-```bash
+# 后端测试
 ./mvnw verify
+
+# 前端测试
+npx vitest run
 ```
 
-### Client tests
+---
 
-Unit tests are run by Vitest. They're located near components and can be run with:
+## 项目结构
 
-```bash
-./npmw test
+```
+hrapp/
+├── src/main/java/top/btmdc/hr/     # 后端源码
+│   ├── domain/                      # JPA 实体 (19 个业务实体)
+│   ├── repository/                  # 数据访问层
+│   ├── service/                     # 业务逻辑（含替代计算、风险评价、缺口报告）
+│   ├── web/rest/                    # REST 控制器
+│   └── config/                      # 安全、应用配置
+├── src/main/webapp/app/             # 前端源码
+│   ├── core/                        # Dashboard、报告页面
+│   ├── entities/                    # 实体 CRUD 页面
+│   ├── shared/                      # 共享组件与工具
+│   └── i18n/                        # 国际化文件 (en/zh-cn/ja)
+├── hr-capability-map.jdl            # JHipster JDL 实体定义
+├── hr-capability-map-requirements.md # 需求分析文档
+└── hr-capability-map-design.md      # 设计与实现文档
 ```
 
-## Others
+---
 
-### Code quality using Sonar
+## 实体全景
 
-Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
+系统包含 **19 个业务实体**：
 
-```bash
-docker compose -f src/main/docker/sonar.yml up -d
-```
+| 分组       | 实体                                                                               | 说明             |
+| ---------- | ---------------------------------------------------------------------------------- | ---------------- |
+| 基础主数据 | Position, Person, Skill, SkillLevel                                                | 核心业务定义     |
+| 能力事实   | PersonSkill, PositionSkillRequirement, SkillAssessment, SkillUpgradeRecord         | 技能与评估       |
+| 岗位连续性 | PositionAssignment, StaffSubstitution, SuccessionCandidate, PositionRiskEvaluation | 替代、继任、风险 |
+| 培训闭环   | TrainingGoal, TrainingRecord, ImprovementPlan                                      | 培训管理         |
+| 敏感观察   | Evaluation, TrustObservation, CandidateProfile, PersonRisk, PositionMatch          | 观察与画像       |
 
-Note: we have turned off forced authentication redirect for UI in [src/main/docker/sonar.yml](src/main/docker/sonar.yml) for out of the box experience while trying out SonarQube, for real use cases turn it back on.
+---
 
-You can run a Sonar analysis with using the [sonar-scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner) or by using the maven plugin.
+## 关键业务规则
 
-Then, run a Sonar analysis:
+- **替代覆盖率**：`coveredSkillCount / totalSkillCount × 100%`。REQUIRED 技能任一缺失则覆盖率直接归零
+- **风险分级**：基于 7 个输入维度（任职人数、最小人数、关键标记、替代存在、文档状态、依赖度、后继准备度）的决策表
+- **训练建议优先级**：P0=缺失 REQUIRED 技能 → P1=REQUIRED 差距≥2级 → P2=IMPORTANT 差距≥1级 → P3=OPTIONAL
 
-```bash
-./mvnw -Pprod clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=admin
-```
+---
 
-If you need to re-run the Sonar phase, please be sure to specify at least the `initialize` phase since Sonar properties are loaded from the sonar-project.properties file.
+## 设计文档
 
-```bash
-./mvnw initialize sonar:sonar -Dsonar.login=admin -Dsonar.password=admin
-```
+参见 [`hr-capability-map-design.md`](./hr-capability-map-design.md) 和 [`hr-capability-map-requirements.md`](./hr-capability-map-requirements.md)。
 
-Additionally, Instead of passing `sonar.password` and `sonar.login` as CLI arguments, these parameters can be configured from [sonar-project.properties](sonar-project.properties) as shown below:
+---
 
-```bash
-sonar.login=admin
-sonar.password=admin
-```
+## 许可证
 
-For more information, refer to the [Code quality page][].
-
-### Docker Compose support
-
-JHipster generates a number of Docker Compose configuration files in the [src/main/docker/](src/main/docker/) folder to launch required third party services.
-
-For example, to start required services in Docker containers, run:
-
-```bash
-docker compose -f src/main/docker/services.yml up -d
-```
-
-To stop and remove the containers, run:
-
-```bash
-docker compose -f src/main/docker/services.yml down
-```
-
-[Spring Docker Compose Integration](https://docs.spring.io/spring-boot/reference/features/dev-services.html) is enabled by default. It's possible to disable it in `application.yml`:
-
-```yaml
-spring:
-  ...
-  docker:
-    compose:
-      enabled: false
-```
-
-You can also fully dockerize your application and all the services that it depends on.
-To achieve this, first build a Docker image of your app by running:
-
-```bash
-npm run java:docker
-```
-
-Or build an arm64 Docker image when using an arm64 processor OS, i.e., Apple Silicon chips (M\*), running:
-
-```bash
-npm run java:docker:arm64
-```
-
-Then run:
-
-```bash
-docker compose -f src/main/docker/app.yml up -d
-```
-
-For more information refer to [Docker and Docker-Compose](https://www.jhipster.tech/documentation-archive/v9.1.0/docker-compose/), this page also contains information on the Docker Compose sub-generator (`jhipster docker-compose`), which is able to generate Docker configurations for one or several JHipster applications.
-
-## Continuous Integration (optional)
-
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration](https://www.jhipster.tech/documentation-archive/v9.1.0/setting-up-ci/) page for more information.
-
-## References
-
-- [JHipster Homepage and latest documentation](https://www.jhipster.tech/)
-- [JHipster 9.1.0 archive](https://www.jhipster.tech/documentation-archive/v9.1.0)
-- [Using JHipster in development](https://www.jhipster.tech/documentation-archive/v9.1.0/development/)
-- [Using Docker and Docker-Compose](https://www.jhipster.tech/documentation-archive/v9.1.0/docker-compose)
-- [Using JHipster in production](https://www.jhipster.tech/documentation-archive/v9.1.0/production/)
-- [Running tests page](https://www.jhipster.tech/documentation-archive/v9.1.0/running-tests/)
-- [Code quality page](https://www.jhipster.tech/documentation-archive/v9.1.0/code-quality/)
-- [Setting up Continuous Integration](https://www.jhipster.tech/documentation-archive/v9.1.0/setting-up-ci/)
-- [Node.js](https://nodejs.org/)
-- [NPM](https://www.npmjs.com/)
-- [Leaflet](https://leafletjs.com/)
-- [DefinitelyTyped](https://definitelytyped.org/)
+本项目为内部工具，未指定开源许可证。
