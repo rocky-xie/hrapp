@@ -91,7 +91,7 @@
               <td>{{ rec.trainingDate }}</td>
               <td>{{ rec.trainingType }}</td>
               <td>{{ rec.topic }}</td>
-              <td>{{ rec.mentor?.personName || '—' }}</td>
+              <td>{{ rec.mentorName || '—' }}</td>
             </tr>
           </tbody>
         </table>

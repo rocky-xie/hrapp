@@ -132,8 +132,6 @@ public class StaffSubstitutionService {
         );
         int totalSkillCount = requirements.size();
         int coveredSkillCount = 0;
-        int requiredSkillCount = 0;
-        int coveredRequiredCount = 0;
         StringBuilder missingSkills = new StringBuilder();
         boolean anyRequiredMissing = false;
 
@@ -142,36 +140,25 @@ public class StaffSubstitutionService {
                 requirement.getSkill() == null ? null : candidateSkillsBySkillId.get(requirement.getSkill().getId());
             boolean isCovered = candidateSkill != null && levelValue(candidateSkill) >= requiredLevelValue(requirement);
 
-            if (requirement.getImportance() == RequirementImportance.REQUIRED) {
-                requiredSkillCount++;
-                if (isCovered) {
-                    coveredRequiredCount++;
-                } else {
-                    anyRequiredMissing = true;
-                    appendMissingSkill(missingSkills, requirement);
-                }
-            } else if (isCovered) {
+            if (isCovered) {
                 coveredSkillCount++;
             } else {
                 appendMissingSkill(missingSkills, requirement);
+                if (requirement.getImportance() == RequirementImportance.REQUIRED) {
+                    anyRequiredMissing = true;
+                }
             }
         }
 
-        BigDecimal coverageRate;
-        if (totalSkillCount == 0) {
-            coverageRate = BigDecimal.valueOf(100);
-        } else if (anyRequiredMissing) {
-            coverageRate = BigDecimal.valueOf(0);
-            coveredSkillCount = coveredRequiredCount;
-        } else {
-            coveredSkillCount += coveredRequiredCount;
-            coverageRate = BigDecimal.valueOf(coveredSkillCount)
-                .multiply(BigDecimal.valueOf(100))
-                .divide(BigDecimal.valueOf(totalSkillCount), 2, RoundingMode.HALF_UP);
-        }
+        BigDecimal coverageRate =
+            totalSkillCount == 0
+                ? BigDecimal.valueOf(100)
+                : BigDecimal.valueOf(coveredSkillCount)
+                      .multiply(BigDecimal.valueOf(100))
+                      .divide(BigDecimal.valueOf(totalSkillCount), 2, RoundingMode.HALF_UP);
 
         LocalDate evaluationDate = LocalDate.now();
-        boolean substitutable = coverageRate.compareTo(effectiveThreshold) >= 0;
+        boolean substitutable = !anyRequiredMissing && coverageRate.compareTo(effectiveThreshold) >= 0;
         String missingSkillsText = missingSkills.toString();
         StaffSubstitution staffSubstitution = staffSubstitutionRepository
             .findOneByPositionIdAndCandidatePersonId(positionId, candidatePersonId)
@@ -317,7 +304,7 @@ public class StaffSubstitutionService {
         if (noRequirements) {
             line += " Position has no skill requirements defined.";
         } else if (anyRequiredMissing) {
-            line += " REQUIRED skills not all met — coverage set to 0%.";
+            line += " REQUIRED skills not all met — substitution blocked regardless of coverage.";
         }
         if (existingReason == null || existingReason.isBlank()) {
             return line;

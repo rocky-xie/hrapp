@@ -210,9 +210,7 @@ public class SkillGapReportService {
 
     private RiskLevel findRiskLevel(Long positionId) {
         return positionRiskEvaluationRepository
-            .findTopByPositionIdOrderByEvaluationDateDesc(positionId)
-            .stream()
-            .findFirst()
+            .findFirstByPositionIdOrderByEvaluationDateDescIdDesc(positionId)
             .map(PositionRiskEvaluation::getRiskLevel)
             .orElse(null);
     }

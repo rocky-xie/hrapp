@@ -44,8 +44,5 @@ public interface PositionRiskEvaluationRepository
     )
     Optional<PositionRiskEvaluation> findOneWithToOneRelationships(@Param("id") Long id);
 
-    @Query(
-        "select positionRiskEvaluation from PositionRiskEvaluation positionRiskEvaluation left join fetch positionRiskEvaluation.position where positionRiskEvaluation.position.id =:positionId order by positionRiskEvaluation.evaluationDate desc"
-    )
-    List<PositionRiskEvaluation> findTopByPositionIdOrderByEvaluationDateDesc(@Param("positionId") Long positionId);
+    Optional<PositionRiskEvaluation> findFirstByPositionIdOrderByEvaluationDateDescIdDesc(Long positionId);
 }

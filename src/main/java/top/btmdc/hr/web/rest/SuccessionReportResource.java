@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import top.btmdc.hr.domain.SuccessionCandidate;
-import top.btmdc.hr.domain.TrainingRecord;
 import top.btmdc.hr.repository.PositionAssignmentRepository;
 import top.btmdc.hr.repository.SuccessionCandidateRepository;
 import top.btmdc.hr.repository.TrainingRecordRepository;
 import top.btmdc.hr.service.dto.report.SuccessionMapCandidateDTO;
 import top.btmdc.hr.service.dto.report.SuccessionMapDTO;
+import top.btmdc.hr.service.dto.report.TrainingRecordSummaryDTO;
 
 @RestController
 @RequestMapping("/api/reports")
@@ -77,9 +77,21 @@ public class SuccessionReportResource {
     }
 
     @GetMapping("/person-training-history/{personId}")
-    public ResponseEntity<List<TrainingRecord>> getPersonTrainingHistory(@PathVariable Long personId) {
+    public ResponseEntity<List<TrainingRecordSummaryDTO>> getPersonTrainingHistory(@PathVariable Long personId) {
         LOG.debug("REST request to get training history for person: {}", personId);
-        List<TrainingRecord> records = trainingRecordRepository.findByPersonIdWithEagerRelationships(personId);
+        List<TrainingRecordSummaryDTO> records = trainingRecordRepository
+            .findByPersonIdWithEagerRelationships(personId)
+            .stream()
+            .map(rec -> {
+                TrainingRecordSummaryDTO dto = new TrainingRecordSummaryDTO();
+                dto.setId(rec.getId());
+                dto.setTrainingDate(rec.getTrainingDate());
+                dto.setTrainingType(rec.getTrainingType());
+                dto.setTopic(rec.getTopic());
+                dto.setMentorName(rec.getMentor() != null ? rec.getMentor().getPersonName() : null);
+                return dto;
+            })
+            .toList();
         return ResponseEntity.ok(records);
     }
 
