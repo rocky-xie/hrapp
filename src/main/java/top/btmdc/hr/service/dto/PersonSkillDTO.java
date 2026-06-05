@@ -30,6 +30,10 @@ public class PersonSkillDTO implements Serializable {
     @Lob
     private String growthDirection;
 
+    private PersonDTO verifiedBy;
+
+    private LocalDate verifiedDate;
+
     @NotNull
     private PersonDTO person;
 
@@ -87,6 +91,22 @@ public class PersonSkillDTO implements Serializable {
 
     public void setGrowthDirection(String growthDirection) {
         this.growthDirection = growthDirection;
+    }
+
+    public PersonDTO getVerifiedBy() {
+        return verifiedBy;
+    }
+
+    public void setVerifiedBy(PersonDTO verifiedBy) {
+        this.verifiedBy = verifiedBy;
+    }
+
+    public LocalDate getVerifiedDate() {
+        return verifiedDate;
+    }
+
+    public void setVerifiedDate(LocalDate verifiedDate) {
+        this.verifiedDate = verifiedDate;
     }
 
     public PersonDTO getPerson() {
@@ -152,6 +172,7 @@ public class PersonSkillDTO implements Serializable {
             ", evidence='" + getEvidence() + "'" +
             ", confidence='" + getConfidence() + "'" +
             ", growthDirection='" + getGrowthDirection() + "'" +
+            ", verifiedDate='" + getVerifiedDate() + "'" +
             ", person=" + getPerson() +
             ", skill=" + getSkill() +
             ", currentLevel=" + getCurrentLevel() +

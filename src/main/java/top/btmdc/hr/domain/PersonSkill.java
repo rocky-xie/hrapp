@@ -58,6 +58,12 @@ public class PersonSkill implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private SkillLevel previousLevel;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Person verifiedBy;
+
+    @Column(name = "verified_date")
+    private LocalDate verifiedDate;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -190,6 +196,32 @@ public class PersonSkill implements Serializable {
         return this;
     }
 
+    public Person getVerifiedBy() {
+        return this.verifiedBy;
+    }
+
+    public void setVerifiedBy(Person person) {
+        this.verifiedBy = person;
+    }
+
+    public PersonSkill verifiedBy(Person person) {
+        this.setVerifiedBy(person);
+        return this;
+    }
+
+    public LocalDate getVerifiedDate() {
+        return this.verifiedDate;
+    }
+
+    public void setVerifiedDate(LocalDate verifiedDate) {
+        this.verifiedDate = verifiedDate;
+    }
+
+    public PersonSkill verifiedDate(LocalDate verifiedDate) {
+        this.setVerifiedDate(verifiedDate);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -219,6 +251,7 @@ public class PersonSkill implements Serializable {
             ", evidence='" + getEvidence() + "'" +
             ", confidence='" + getConfidence() + "'" +
             ", growthDirection='" + getGrowthDirection() + "'" +
+            ", verifiedDate='" + getVerifiedDate() + "'" +
             "}";
     }
 }

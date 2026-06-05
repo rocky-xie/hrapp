@@ -308,7 +308,9 @@
         "nextReviewDate": "次回レビュー日",
         "evidence": "エビデンス",
         "confidence": "習熟度",
-        "growthDirection": "成長方向"
+        "growthDirection": "成長方向",
+        "verifiedBy": "確認者",
+        "verifiedDate": "確認日"
       }
     },
     "positionSkillRequirement": {
@@ -320,7 +322,8 @@
       },
       "field": {
         "importance": "重要度",
-        "remark": "備考"
+        "remark": "備考",
+        "certificationRequired": "認定必須"
       }
     },
     "positionAssignment": {
@@ -527,7 +530,8 @@
         "assessmentDate": "評価日",
         "result": "結果",
         "evidence": "エビデンス",
-        "comment": "備考"
+        "comment": "備考",
+        "source": "ソース"
       }
     },
     "trustObservation": {

@@ -10,6 +10,8 @@ export interface IPersonSkill {
   evidence?: string | null;
   confidence?: keyof typeof ConfidenceLevel | null;
   growthDirection?: string | null;
+  verifiedBy?: IPerson | null;
+  verifiedDate?: Date | null;
   person?: IPerson;
   skill?: ISkill;
   currentLevel?: ISkillLevel;
@@ -24,6 +26,8 @@ export class PersonSkill implements IPersonSkill {
     public evidence?: string | null,
     public confidence?: keyof typeof ConfidenceLevel | null,
     public growthDirection?: string | null,
+    public verifiedBy?: IPerson | null,
+    public verifiedDate?: Date | null,
     public person?: IPerson,
     public skill?: ISkill,
     public currentLevel?: ISkillLevel,

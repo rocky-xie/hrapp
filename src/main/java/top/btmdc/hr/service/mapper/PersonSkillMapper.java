@@ -19,6 +19,7 @@ public interface PersonSkillMapper extends EntityMapper<PersonSkillDTO, PersonSk
     @Mapping(target = "skill", source = "skill", qualifiedByName = "skillSkillName")
     @Mapping(target = "currentLevel", source = "currentLevel", qualifiedByName = "skillLevelCode")
     @Mapping(target = "previousLevel", source = "previousLevel", qualifiedByName = "skillLevelCode")
+    @Mapping(target = "verifiedBy", source = "verifiedBy", qualifiedByName = "personPersonName")
     PersonSkillDTO toDto(PersonSkill s);
 
     @Named("personPersonName")

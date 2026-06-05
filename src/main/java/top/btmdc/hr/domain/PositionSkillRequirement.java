@@ -47,6 +47,9 @@ public class PositionSkillRequirement implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private SkillLevel preferredLevel;
 
+    @Column(name = "certification_required")
+    private Boolean certificationRequired;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -140,6 +143,19 @@ public class PositionSkillRequirement implements Serializable {
         return this;
     }
 
+    public Boolean getCertificationRequired() {
+        return this.certificationRequired;
+    }
+
+    public void setCertificationRequired(Boolean certificationRequired) {
+        this.certificationRequired = certificationRequired;
+    }
+
+    public PositionSkillRequirement certificationRequired(Boolean certificationRequired) {
+        this.setCertificationRequired(certificationRequired);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -166,6 +182,7 @@ public class PositionSkillRequirement implements Serializable {
             "id=" + getId() +
             ", importance='" + getImportance() + "'" +
             ", remark='" + getRemark() + "'" +
+            ", certificationRequired='" + getCertificationRequired() + "'" +
             "}";
     }
 }

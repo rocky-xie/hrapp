@@ -308,7 +308,9 @@
         "nextReviewDate": "下次审查日期",
         "evidence": "证据",
         "confidence": "熟练度",
-        "growthDirection": "成长方向"
+        "growthDirection": "成长方向",
+        "verifiedBy": "验证人",
+        "verifiedDate": "验证日期"
       }
     },
     "positionSkillRequirement": {
@@ -320,7 +322,8 @@
       },
       "field": {
         "importance": "重要性",
-        "remark": "备注"
+        "remark": "备注",
+        "certificationRequired": "需要认证"
       }
     },
     "positionAssignment": {
@@ -527,7 +530,8 @@
         "assessmentDate": "评估日期",
         "result": "结果",
         "evidence": "证据",
-        "comment": "备注"
+        "comment": "备注",
+        "source": "来源"
       }
     },
     "trustObservation": {

@@ -22,6 +22,8 @@ public class PositionSkillRequirementDTO implements Serializable {
     @Lob
     private String remark;
 
+    private Boolean certificationRequired;
+
     @NotNull
     private PositionDTO position;
 
@@ -55,6 +57,14 @@ public class PositionSkillRequirementDTO implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Boolean getCertificationRequired() {
+        return certificationRequired;
+    }
+
+    public void setCertificationRequired(Boolean certificationRequired) {
+        this.certificationRequired = certificationRequired;
     }
 
     public PositionDTO getPosition() {
@@ -117,6 +127,7 @@ public class PositionSkillRequirementDTO implements Serializable {
             "id=" + getId() +
             ", importance='" + getImportance() + "'" +
             ", remark='" + getRemark() + "'" +
+            ", certificationRequired='" + getCertificationRequired() + "'" +
             ", position=" + getPosition() +
             ", skill=" + getSkill() +
             ", requiredLevel=" + getRequiredLevel() +

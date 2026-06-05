@@ -7,6 +7,7 @@ export interface IPositionSkillRequirement {
   id?: number;
   importance?: keyof typeof RequirementImportance;
   remark?: string | null;
+  certificationRequired?: boolean | null;
   position?: IPosition;
   skill?: ISkill;
   requiredLevel?: ISkillLevel;
@@ -18,6 +19,7 @@ export class PositionSkillRequirement implements IPositionSkillRequirement {
     public id?: number,
     public importance?: keyof typeof RequirementImportance,
     public remark?: string | null,
+    public certificationRequired?: boolean | null,
     public position?: IPosition,
     public skill?: ISkill,
     public requiredLevel?: ISkillLevel,

@@ -309,7 +309,9 @@
         "nextReviewDate": "Next Review Date",
         "evidence": "Evidence",
         "confidence": "Confidence",
-        "growthDirection": "Growth Direction"
+        "growthDirection": "Growth Direction",
+        "verifiedBy": "Verified By",
+        "verifiedDate": "Verified Date"
       }
     },
     "positionSkillRequirement": {
@@ -321,7 +323,8 @@
       },
       "field": {
         "importance": "Importance",
-        "remark": "Remark"
+        "remark": "Remark",
+        "certificationRequired": "Certification Required"
       }
     },
     "positionAssignment": {
@@ -528,7 +531,8 @@
         "assessmentDate": "Assessment Date",
         "result": "Result",
         "evidence": "Evidence",
-        "comment": "Comment"
+        "comment": "Comment",
+        "source": "Source"
       }
     },
     "trustObservation": {

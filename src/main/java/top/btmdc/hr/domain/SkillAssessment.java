@@ -6,6 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import top.btmdc.hr.domain.enumeration.AssessmentResult;
+import top.btmdc.hr.domain.enumeration.AssessmentSource;
 
 /**
  * 技能评估。对某个人某项技能的阶段评估结果。
@@ -52,6 +53,10 @@ public class SkillAssessment implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private SkillLevel newLevel;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "source")
+    private AssessmentSource source;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -172,6 +177,19 @@ public class SkillAssessment implements Serializable {
         return this;
     }
 
+    public AssessmentSource getSource() {
+        return this.source;
+    }
+
+    public void setSource(AssessmentSource source) {
+        this.source = source;
+    }
+
+    public SkillAssessment source(AssessmentSource source) {
+        this.setSource(source);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -200,6 +218,7 @@ public class SkillAssessment implements Serializable {
             ", result='" + getResult() + "'" +
             ", evidence='" + getEvidence() + "'" +
             ", comment='" + getComment() + "'" +
+            ", source='" + getSource() + "'" +
             "}";
     }
 }

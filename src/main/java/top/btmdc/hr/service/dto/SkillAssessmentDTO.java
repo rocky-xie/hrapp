@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import top.btmdc.hr.domain.enumeration.AssessmentResult;
+import top.btmdc.hr.domain.enumeration.AssessmentSource;
 
 /**
  * A DTO for the {@link top.btmdc.hr.domain.SkillAssessment} entity.
@@ -28,6 +29,8 @@ public class SkillAssessmentDTO implements Serializable {
 
     @Lob
     private String comment;
+
+    private AssessmentSource source;
 
     private PersonDTO person;
 
@@ -75,6 +78,14 @@ public class SkillAssessmentDTO implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public AssessmentSource getSource() {
+        return source;
+    }
+
+    public void setSource(AssessmentSource source) {
+        this.source = source;
     }
 
     public PersonDTO getPerson() {
@@ -139,6 +150,7 @@ public class SkillAssessmentDTO implements Serializable {
             ", result='" + getResult() + "'" +
             ", evidence='" + getEvidence() + "'" +
             ", comment='" + getComment() + "'" +
+            ", source='" + getSource() + "'" +
             ", person=" + getPerson() +
             ", skill=" + getSkill() +
             ", assessor=" + getAssessor() +
