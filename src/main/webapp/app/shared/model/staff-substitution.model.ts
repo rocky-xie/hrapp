@@ -11,6 +11,8 @@ export interface IStaffSubstitution {
   substitutable?: boolean;
   evaluationDate?: Date;
   reason?: string | null;
+  reviewDate?: Date | null;
+  expiryDate?: Date | null;
   position?: IPosition;
   candidatePerson?: IPerson;
 }
@@ -26,6 +28,8 @@ export class StaffSubstitution implements IStaffSubstitution {
     public substitutable?: boolean,
     public evaluationDate?: Date,
     public reason?: string | null,
+    public reviewDate?: Date | null,
+    public expiryDate?: Date | null,
     public position?: IPosition,
     public candidatePerson?: IPerson,
   ) {

@@ -49,6 +49,18 @@
             <span>{{ staffSubstitution.evaluationDate }}</span>
           </dd>
           <dt>
+            <span>{{ $t('entity.staffSubstitution.field.reviewDate') }}</span>
+          </dt>
+          <dd>
+            <span>{{ staffSubstitution.reviewDate }}</span>
+          </dd>
+          <dt>
+            <span>{{ $t('entity.staffSubstitution.field.expiryDate') }}</span>
+          </dt>
+          <dd>
+            <span>{{ staffSubstitution.expiryDate }}</span>
+          </dd>
+          <dt>
             <span>{{ $t('entity.staffSubstitution.field.reason') }}</span>
           </dt>
           <dd>

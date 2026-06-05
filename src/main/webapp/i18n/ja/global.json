@@ -442,7 +442,9 @@
         "missingSkills": "不足スキル",
         "substitutable": "代替可能",
         "evaluationDate": "評価日",
-        "reason": "理由"
+        "reason": "理由",
+        "reviewDate": "レビュー日",
+        "expiryDate": "有効期限"
       },
       "section": {
         "evaluationResult": "評価結果"

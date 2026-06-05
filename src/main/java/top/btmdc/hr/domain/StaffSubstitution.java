@@ -60,6 +60,12 @@ public class StaffSubstitution implements Serializable {
     @Column(name = "reason")
     private String reason;
 
+    @Column(name = "review_date")
+    private LocalDate reviewDate;
+
+    @Column(name = "expiry_date")
+    private LocalDate expiryDate;
+
     @ManyToOne(optional = false)
     @NotNull
     private Position position;
@@ -200,6 +206,32 @@ public class StaffSubstitution implements Serializable {
         return this;
     }
 
+    public LocalDate getReviewDate() {
+        return this.reviewDate;
+    }
+
+    public StaffSubstitution reviewDate(LocalDate reviewDate) {
+        this.setReviewDate(reviewDate);
+        return this;
+    }
+
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public LocalDate getExpiryDate() {
+        return this.expiryDate;
+    }
+
+    public StaffSubstitution expiryDate(LocalDate expiryDate) {
+        this.setExpiryDate(expiryDate);
+        return this;
+    }
+
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
     public Person getCandidatePerson() {
         return this.candidatePerson;
     }
@@ -245,6 +277,8 @@ public class StaffSubstitution implements Serializable {
             ", substitutable='" + getSubstitutable() + "'" +
             ", evaluationDate='" + getEvaluationDate() + "'" +
             ", reason='" + getReason() + "'" +
+            ", reviewDate='" + getReviewDate() + "'" +
+            ", expiryDate='" + getExpiryDate() + "'" +
             "}";
     }
 }

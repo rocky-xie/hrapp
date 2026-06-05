@@ -203,6 +203,36 @@
                 error.$message
               }}</small>
             </div>
+            <div class="mb-3">
+              <label class="form-control-label" for="staff-substitution">{{ $t('entity.staffSubstitution.field.reviewDate') }}</label>
+              <b-form-input
+                id="staff-substitution-reviewDate"
+                data-cy="reviewDate"
+                type="date"
+                class="form-control"
+                name="reviewDate"
+                :class="{ 'is-valid': !v$.reviewDate.$invalid, 'is-invalid': v$.reviewDate.$invalid }"
+                v-model="v$.reviewDate.$model"
+              />
+              <div v-if="v$.reviewDate.$anyDirty && v$.reviewDate.$invalid">
+                <small class="form-text text-danger" v-for="error of v$.reviewDate.$errors" :key="error.$uid">{{ error.$message }}</small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-control-label" for="staff-substitution">{{ $t('entity.staffSubstitution.field.expiryDate') }}</label>
+              <b-form-input
+                id="staff-substitution-expiryDate"
+                data-cy="expiryDate"
+                type="date"
+                class="form-control"
+                name="expiryDate"
+                :class="{ 'is-valid': !v$.expiryDate.$invalid, 'is-invalid': v$.expiryDate.$invalid }"
+                v-model="v$.expiryDate.$model"
+              />
+              <div v-if="v$.expiryDate.$anyDirty && v$.expiryDate.$invalid">
+                <small class="form-text text-danger" v-for="error of v$.expiryDate.$errors" :key="error.$uid">{{ error.$message }}</small>
+              </div>
+            </div>
           </fieldset>
         </div>
         <div>

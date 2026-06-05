@@ -443,7 +443,9 @@
         "missingSkills": "Missing Skills",
         "substitutable": "Substitutable",
         "evaluationDate": "Evaluation Date",
-        "reason": "Reason"
+        "reason": "Reason",
+        "reviewDate": "Review Date",
+        "expiryDate": "Expiry Date"
       },
       "section": {
         "evaluationResult": "Evaluation Result"

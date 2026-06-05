@@ -59,6 +59,14 @@
               <span>{{ $t('entity.evaluation.field.evaluationDate') }}</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'evaluationDate'"></jhi-sort-indicator>
             </th>
+            <th scope="col" @click="changeOrder('reviewDate')">
+              <span>{{ $t('entity.staffSubstitution.field.reviewDate') }}</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'reviewDate'"></jhi-sort-indicator>
+            </th>
+            <th scope="col" @click="changeOrder('expiryDate')">
+              <span>{{ $t('entity.staffSubstitution.field.expiryDate') }}</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'expiryDate'"></jhi-sort-indicator>
+            </th>
             <th scope="col" @click="changeOrder('reason')">
               <span>{{ $t('entity.staffSubstitution.field.reason') }}</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'reason'"></jhi-sort-indicator>
@@ -92,6 +100,8 @@
             <td>{{ staffSubstitution.missingSkills }}</td>
             <td>{{ staffSubstitution.substitutable }}</td>
             <td>{{ staffSubstitution.evaluationDate }}</td>
+            <td>{{ staffSubstitution.reviewDate }}</td>
+            <td>{{ staffSubstitution.expiryDate }}</td>
             <td>{{ staffSubstitution.reason }}</td>
             <td>
               <div v-if="staffSubstitution.position">

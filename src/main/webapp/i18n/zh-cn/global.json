@@ -442,7 +442,9 @@
         "missingSkills": "缺失技能",
         "substitutable": "可替代",
         "evaluationDate": "评估日期",
-        "reason": "原因"
+        "reason": "原因",
+        "reviewDate": "审查日期",
+        "expiryDate": "过期日期"
       },
       "section": {
         "evaluationResult": "评估结果"

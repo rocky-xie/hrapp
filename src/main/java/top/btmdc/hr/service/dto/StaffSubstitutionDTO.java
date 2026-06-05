@@ -45,6 +45,10 @@ public class StaffSubstitutionDTO implements Serializable {
     @Lob
     private String reason;
 
+    private LocalDate reviewDate;
+
+    private LocalDate expiryDate;
+
     @NotNull
     private PositionDTO position;
 
@@ -123,6 +127,22 @@ public class StaffSubstitutionDTO implements Serializable {
         this.reason = reason;
     }
 
+    public LocalDate getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public LocalDate getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
     public PositionDTO getPosition() {
         return position;
     }
@@ -173,6 +193,8 @@ public class StaffSubstitutionDTO implements Serializable {
             ", substitutable='" + getSubstitutable() + "'" +
             ", evaluationDate='" + getEvaluationDate() + "'" +
             ", reason='" + getReason() + "'" +
+            ", reviewDate='" + getReviewDate() + "'" +
+            ", expiryDate='" + getExpiryDate() + "'" +
             ", position=" + getPosition() +
             ", candidatePerson=" + getCandidatePerson() +
             "}";

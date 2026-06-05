@@ -118,6 +118,8 @@ export default defineComponent({
       substitutable: {},
       evaluationDate: {},
       reason: {},
+      reviewDate: {},
+      expiryDate: {},
       position: {
         required: validations.required('This field is required.'),
       },
