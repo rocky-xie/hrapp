@@ -43,6 +43,12 @@
             <span>{{ $t('actionItem.title') }}</span>
           </span>
         </b-nav-item>
+        <b-nav-item to="/data-quality" v-if="authenticated">
+          <span>
+            <font-awesome-icon icon="check-double" />
+            <span>{{ $t('global.menu.dataQuality') }}</span>
+          </span>
+        </b-nav-item>
         <b-nav-item-dropdown
           :no-size="true"
           end

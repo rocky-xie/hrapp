@@ -4,6 +4,7 @@
       "home": "首页",
       "dashboard": "仪表盘",
       "skillGapReport": "技能缺口报告",
+      "dataQuality": "数据质量",
       "entities": "实体",
       "administration": "系统管理",
       "account": "账户",
@@ -721,6 +722,31 @@
     "complete": "完成",
     "cancel": "取消",
     "openCount": "待办数量"
+  },
+  "dataQuality": {
+    "home": {
+      "title": "数据质量"
+    },
+    "tab": {
+      "all": "全部"
+    },
+    "severity": {
+      "error": "错误",
+      "warning": "警告",
+      "info": "信息"
+    },
+    "field": {
+      "severity": "严重级别",
+      "entityType": "实体",
+      "entityLabel": "记录",
+      "message": "问题"
+    },
+    "action": {
+      "runChecks": "运行检查"
+    },
+    "message": {
+      "noIssues": "未发现数据质量问题。"
+    }
   },
   "error": {
     "sessions": "会话已过期，请重新登录。",

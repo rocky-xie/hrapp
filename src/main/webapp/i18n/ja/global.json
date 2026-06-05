@@ -4,6 +4,7 @@
       "home": "ホーム",
       "dashboard": "ダッシュボード",
       "skillGapReport": "スキルギャップレポート",
+      "dataQuality": "データ品質",
       "entities": "エンティティ",
       "administration": "管理",
       "account": "アカウント",
@@ -721,6 +722,31 @@
     "complete": "完了",
     "cancel": "キャンセル",
     "openCount": "未完了件数"
+  },
+  "dataQuality": {
+    "home": {
+      "title": "データ品質"
+    },
+    "tab": {
+      "all": "すべて"
+    },
+    "severity": {
+      "error": "エラー",
+      "warning": "警告",
+      "info": "情報"
+    },
+    "field": {
+      "severity": "深刻度",
+      "entityType": "エンティティ",
+      "entityLabel": "レコード",
+      "message": "問題"
+    },
+    "action": {
+      "runChecks": "チェック実行"
+    },
+    "message": {
+      "noIssues": "データ品質の問題は見つかりませんでした。"
+    }
   },
   "error": {
     "sessions": "セッションの有効期限が切れました。再ログインしてください。",

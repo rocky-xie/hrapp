@@ -4,6 +4,7 @@
       "home": "Home",
       "dashboard": "Dashboard",
       "skillGapReport": "Skill Gap Report",
+      "dataQuality": "Data Quality",
       "entities": "Entities",
       "administration": "Administration",
       "account": "Account",
@@ -722,6 +723,31 @@
     "complete": "Complete",
     "cancel": "Cancel",
     "openCount": "Open Items"
+  },
+  "dataQuality": {
+    "home": {
+      "title": "Data Quality"
+    },
+    "tab": {
+      "all": "All"
+    },
+    "severity": {
+      "error": "Errors",
+      "warning": "Warnings",
+      "info": "Info"
+    },
+    "field": {
+      "severity": "Severity",
+      "entityType": "Entity",
+      "entityLabel": "Record",
+      "message": "Issue"
+    },
+    "action": {
+      "runChecks": "Run Checks"
+    },
+    "message": {
+      "noIssues": "No data quality issues found."
+    }
   },
   "error": {
     "sessions": "Session expired. Please login again.",
