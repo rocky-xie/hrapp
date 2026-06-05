@@ -1,0 +1,80 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122830"
+  },
+  "applications": ["*"],
+  "documentation": "岗位风险。针对岗位维度的风险评估。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "riskType",
+      "fieldType": "RiskType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SINGLE_POINT,KNOWLEDGE_CONCENTRATION,CUSTOMER_RELATION_CONCENTRATION,PERMISSION_CONCENTRATION,SUCCESSOR_SHORTAGE,HEALTH_CONTINUITY,UNCLEAR_RESPONSIBILITY,TURNOVER,OTHER"
+    },
+    {
+      "fieldName": "riskLevel",
+      "fieldType": "RiskLevel",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LOW,MEDIUM,HIGH,UNKNOWN"
+    },
+    {
+      "fieldName": "documentStatus",
+      "fieldType": "DocumentStatus",
+      "fieldValues": "AVAILABLE,PARTIAL,MISSING,OUTDATED"
+    },
+    {
+      "fieldName": "backupStatus",
+      "fieldType": "BackupStatus",
+      "fieldValues": "AVAILABLE,PARTIAL,MISSING,NOT_APPLICABLE"
+    },
+    {
+      "fieldName": "customerOrSystemDependency",
+      "fieldType": "ImportanceLevel",
+      "fieldValues": "HIGH,MEDIUM,LOW"
+    },
+    {
+      "fieldName": "riskDescription",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "improvementAction",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "identifiedDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "targetDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "closedDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PositionRisk",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "categoryName",
+      "otherEntityName": "keyResponsibilityCategory",
+      "relationshipName": "category",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

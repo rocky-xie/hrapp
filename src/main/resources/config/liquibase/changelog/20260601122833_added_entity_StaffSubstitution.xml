@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity StaffSubstitution.
+    -->
+    <changeSet id="20260601122833-1" author="jhipster">
+        <createTable tableName="staff_substitution" remarks="职位替代关系。某个候选人员对指定职位的替代能力评定结果。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="coverage_rate" type="decimal(21,2)">
+                <constraints nullable="false" />
+            </column>
+            <column name="threshold_rate" type="decimal(21,2)">
+                <constraints nullable="false" />
+            </column>
+            <column name="total_skill_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="covered_skill_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="missing_skills" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="substitutable" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="evaluation_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="reason" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="position_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="candidate_person_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+    <changeSet id="20260601122833-2-unique-position-candidate" author="jhipster">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <uniqueConstraintExists constraintName="uq_staff_substitution_position_candidate" tableName="staff_substitution" />
+            </not>
+        </preConditions>
+        <sql dbms="h2" endDelimiter=";">
+            DELETE FROM staff_substitution WHERE id NOT IN (
+                SELECT MIN(s.id) FROM staff_substitution s GROUP BY s.position_id, s.candidate_person_id
+            )
+        </sql>
+        <sql dbms="mariadb,mysql" endDelimiter=";">
+            DELETE s1 FROM staff_substitution s1
+            INNER JOIN staff_substitution s2
+            WHERE s1.id > s2.id
+            AND s1.position_id = s2.position_id
+            AND s1.candidate_person_id = s2.candidate_person_id
+        </sql>
+        <addUniqueConstraint
+            columnNames="position_id, candidate_person_id"
+            constraintName="uq_staff_substitution_position_candidate"
+            tableName="staff_substitution" />
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

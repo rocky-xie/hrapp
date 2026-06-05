@@ -1,0 +1,5 @@
+id;risk_type;risk_level;risk_description;improvement_action;identified_date;target_date;closed_date;person_id;position_id
+1;TURNOVER;MEDIUM;有离职倾向;加强关怀与激励;2025-06-01;2025-09-01;;5;5
+2;SINGLE_POINT;HIGH;唯一掌握核心系统的人;培养替代人员;2025-06-01;2026-06-01;;6;6
+3;HEALTH_CONTINUITY;LOW;近期身体欠佳;关注健康状况;2025-06-01;2025-12-01;;3;3
+4;KNOWLEDGE_CONCENTRATION;MEDIUM;业务知识集中;推动知识分享;2025-06-01;2025-12-01;;4;4

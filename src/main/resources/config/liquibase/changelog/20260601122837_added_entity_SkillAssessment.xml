@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity SkillAssessment.
+    -->
+    <changeSet id="20260601122837-1" author="jhipster">
+        <createTable tableName="skill_assessment" remarks="技能评估。对某个人某项技能的阶段评估结果。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="assessment_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="result" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="evidence" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="comment" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="skill_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="assessor_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="new_level_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

@@ -1,8 +1,9 @@
 <template>
-  <b-navbar data-cy="navbar" toggleable="md" variant="dark" data-bs-theme="dark">
+  <b-navbar data-cy="navbar" toggleable="md" variant="dark" data-bs-theme="dark" class="shadow-sm">
     <b-navbar-brand class="logo" b-link to="/">
       <span class="logo-img"></span>
-      <span class="navbar-title">Hrapp</span> <span class="navbar-version">{{ version }}</span>
+      <span class="navbar-title">{{ $t('global.brand.title') }}</span>
+      <span class="navbar-subtitle d-none d-sm-inline">{{ $t('global.brand.subtitle') }}</span>
     </b-navbar-brand>
     <b-navbar-toggle
       right
@@ -21,7 +22,19 @@
         <b-nav-item to="/" exact>
           <span>
             <font-awesome-icon icon="fa-solid fa-home" />
-            <span>Home</span>
+            <span>{{ $t('global.menu.home') }}</span>
+          </span>
+        </b-nav-item>
+        <b-nav-item to="/dashboard" v-if="authenticated">
+          <span>
+            <font-awesome-icon icon="tachometer-alt" />
+            <span>{{ $t('global.menu.dashboard') }}</span>
+          </span>
+        </b-nav-item>
+        <b-nav-item to="/reports/skill-gaps" v-if="authenticated">
+          <span>
+            <font-awesome-icon icon="chart-bar" />
+            <span>{{ $t('global.menu.skillGapReport') }}</span>
           </span>
         </b-nav-item>
         <b-nav-item-dropdown
@@ -36,11 +49,10 @@
           <template #button-content>
             <span class="navbar-dropdown-menu">
               <font-awesome-icon icon="th-list" />
-              <span class="no-bold">Entities</span>
+              <span class="no-bold">{{ $t('global.menu.entities') }}</span>
             </span>
           </template>
           <entities-menu></entities-menu>
-          <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
         </b-nav-item-dropdown>
         <b-nav-item-dropdown
           right
@@ -54,36 +66,52 @@
           <template #button-content>
             <span class="navbar-dropdown-menu">
               <font-awesome-icon icon="users-cog" />
-              <span class="no-bold">Administration</span>
+              <span class="no-bold">{{ $t('global.menu.administration') }}</span>
             </span>
           </template>
           <b-dropdown-item to="/admin/user-management" active-class="active">
             <font-awesome-icon icon="users" />
-            <span>User management</span>
+            <span>{{ $t('global.menu.user-management') }}</span>
           </b-dropdown-item>
           <b-dropdown-item to="/admin/metrics" active-class="active">
             <font-awesome-icon icon="tachometer-alt" />
-            <span>Metrics</span>
+            <span>{{ $t('global.menu.metrics') }}</span>
           </b-dropdown-item>
           <b-dropdown-item to="/admin/health" active-class="active">
             <font-awesome-icon icon="heart" />
-            <span>Health</span>
+            <span>{{ $t('global.menu.health') }}</span>
           </b-dropdown-item>
           <b-dropdown-item to="/admin/configuration" active-class="active">
             <font-awesome-icon icon="cogs" />
-            <span>Configuration</span>
+            <span>{{ $t('global.menu.configuration') }}</span>
           </b-dropdown-item>
           <b-dropdown-item to="/admin/logs" active-class="active">
             <font-awesome-icon icon="tasks" />
-            <span>Logs</span>
+            <span>{{ $t('global.menu.logs') }}</span>
           </b-dropdown-item>
           <b-dropdown-item v-if="openAPIEnabled" to="/admin/docs" active-class="active">
             <font-awesome-icon icon="book" />
-            <span>API</span>
+            <span>{{ $t('global.menu.api') }}</span>
           </b-dropdown-item>
           <b-dropdown-item v-if="!inProduction" href="./h2-console/" target="_tab">
             <font-awesome-icon icon="database" />
-            <span>Database</span>
+            <span>{{ $t('global.menu.database') }}</span>
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown :no-size="true" end id="language-menu" active-class="active" class="pointer" data-cy="languageMenu">
+          <template #button-content>
+            <span class="navbar-dropdown-menu">
+              <font-awesome-icon icon="globe" />
+              <span class="no-bold">{{ $t('global.menu.language') }}</span>
+            </span>
+          </template>
+          <b-dropdown-item
+            v-for="lang in languages"
+            :key="lang.key"
+            @click="changeLanguage(lang.key)"
+            :active="currentLanguage === lang.key"
+          >
+            {{ lang.name }}
           </b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown
@@ -98,28 +126,28 @@
           <template #button-content>
             <span class="navbar-dropdown-menu">
               <font-awesome-icon icon="user" />
-              <span class="no-bold">Account</span>
+              <span class="no-bold">{{ $t('global.menu.account') }}</span>
             </span>
           </template>
           <b-dropdown-item data-cy="settings" to="/account/settings" v-if="authenticated" active-class="active">
             <font-awesome-icon icon="wrench" />
-            <span>Settings</span>
+            <span>{{ $t('global.menu.settings') }}</span>
           </b-dropdown-item>
           <b-dropdown-item data-cy="passwordItem" to="/account/password" v-if="authenticated" active-class="active">
             <font-awesome-icon icon="lock" />
-            <span>Password</span>
+            <span>{{ $t('global.menu.password') }}</span>
           </b-dropdown-item>
           <b-dropdown-item data-cy="logout" v-if="authenticated" @click="logout()" id="logout" active-class="active">
             <font-awesome-icon icon="sign-out-alt" />
-            <span>Sign out</span>
+            <span>{{ $t('global.menu.logout') }}</span>
           </b-dropdown-item>
           <b-dropdown-item data-cy="login" v-if="!authenticated" @click="showLogin()" id="login" active-class="active">
             <font-awesome-icon icon="sign-in-alt" />
-            <span>Sign in</span>
+            <span>{{ $t('global.menu.login') }}</span>
           </b-dropdown-item>
           <b-dropdown-item data-cy="register" to="/register" id="register" v-if="!authenticated" active-class="active">
             <font-awesome-icon icon="user-plus" />
-            <span>Register</span>
+            <span>{{ $t('global.menu.register') }}</span>
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -129,14 +157,19 @@
 
 <script lang="ts" src="./jhi-navbar.component.ts"></script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* ==========================================================================
-  Navbar
-  ========================================================================== */
-.navbar-version {
-  font-size: 0.65em;
-  color: #ccc;
+.navbar-title {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.navbar-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  margin-left: 8px;
+  font-weight: 400;
 }
 
 .navbar .navbar-nav .nav-item {
@@ -155,28 +188,20 @@
   }
 }
 
-.navbar-title {
-  display: inline-block;
-  color: white;
-}
-
-/* ==========================================================================
-  Logo styles
-  ========================================================================== */
 .navbar-brand.logo {
   padding: 0 7px;
 }
 
 .logo .logo-img {
-  height: 45px;
+  height: 40px;
   display: inline-block;
   vertical-align: middle;
-  width: 45px;
+  width: 40px;
 }
 
 .logo-img {
   height: 100%;
-  background: url('/content/images/logo-jhipster.png') no-repeat center center;
+  background: url('/content/images/logo-btmdc.svg') no-repeat center center;
   background-size: contain;
   width: 100%;
   filter: drop-shadow(0 0 0.05rem white);

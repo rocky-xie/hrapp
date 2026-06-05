@@ -1,0 +1,13 @@
+id;skill_code;skill_name;skill_type;measurable_flag;description;evidence_type
+1;SKL-001;Java编程;TECHNICAL;true;Java语言编程与开发能力;PROJECT_EXPERIENCE
+2;SKL-002;Spring框架;TECHNICAL;true;Spring生态框架使用能力;PROJECT_EXPERIENCE
+3;SKL-003;数据库设计;TECHNICAL;true;数据库建模与SQL优化能力;ASSESSMENT_RESULT
+4;SKL-004;项目管理;ABSTRACT;false;项目计划与资源协调能力;OBSERVATION
+5;SKL-005;客户沟通;BUSINESS;false;客户需求理解与沟通能力;OBSERVATION
+6;SKL-006;React前端开发;TECHNICAL;true;React框架前端开发能力;PROJECT_EXPERIENCE
+7;SKL-007;自动化测试;TECHNICAL;true;测试自动化工具与框架使用;ASSESSMENT_RESULT
+8;SKL-008;系统运维;TECHNICAL;true;Linux运维与监控能力;CERTIFICATE
+9;SKL-009;业务分析;BUSINESS;false;业务流程分析与需求梳理能力;OBSERVATION
+10;SKL-010;新人指导;MENTORING;false;新人培养与知识传授能力;OBSERVATION
+11;SKL-011;PMP认证;CERTIFICATE;true;PMP项目管理专业认证;CERTIFICATE
+12;SKL-012;产品设计;BUSINESS;false;产品规划与设计能力;OBSERVATION

@@ -1,0 +1,76 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122834"
+  },
+  "applications": ["*"],
+  "documentation": "职位风险评价。对职位整体风险的定期评价快照。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "evaluationDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ownerCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "substitutableOwnerCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "hasSubstitute",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "documentStatus",
+      "fieldType": "DocumentStatus",
+      "fieldValues": "AVAILABLE,PARTIAL,MISSING,OUTDATED"
+    },
+    {
+      "fieldName": "customerOrSystemDependency",
+      "fieldType": "ImportanceLevel",
+      "fieldValues": "HIGH,MEDIUM,LOW"
+    },
+    {
+      "fieldName": "successionReadiness",
+      "fieldType": "ReadinessLevel",
+      "fieldValues": "IMMEDIATE,THREE_MONTHS,SIX_TO_TWELVE_MONTHS,NONE"
+    },
+    {
+      "fieldName": "riskLevel",
+      "fieldType": "RiskLevel",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LOW,MEDIUM,HIGH,UNKNOWN"
+    },
+    {
+      "fieldName": "riskReason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "recommendedAction",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PositionRiskEvaluation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

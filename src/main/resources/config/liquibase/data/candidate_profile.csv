@@ -1,0 +1,8 @@
+id;candidate_date;cultivate_direction;stability;learning_ability;communication_coordination;business_understanding;responsibility;risk_awareness;judgement;evidence;person_id;position_id;observer_id
+1;2025-06-01;技术架构方向;HIGH;HIGH;MEDIUM;MEDIUM;HIGH;HIGH;CORE_CANDIDATE;技术能力突出，具备架构潜力;1;1;7
+2;2025-06-01;全栈开发方向;MEDIUM;HIGH;MEDIUM;LOW;MEDIUM;MEDIUM;OBSERVE;前端能力扎实，全栈潜力待观察;2;2;1
+3;2025-06-01;高级管理方向;HIGH;HIGH;HIGH;HIGH;HIGH;HIGH;CORE_CANDIDATE;管理能力全面;3;3;10
+4;2025-06-01;业务架构方向;MEDIUM;MEDIUM;HIGH;HIGH;MEDIUM;MEDIUM;OBSERVE;业务理解深，技术需加强;4;4;3
+5;2025-06-01;客户关系方向;MEDIUM;MEDIUM;HIGH;MEDIUM;MEDIUM;LOW;NOT_SUITABLE;沟通能力强，但风险意识不足;5;5;3
+6;2025-06-01;数据库专家方向;HIGH;HIGH;LOW;MEDIUM;HIGH;HIGH;CORE_CANDIDATE;数据库专家级;6;6;7
+7;2025-06-01;;LOW;LOW;LOW;LOW;LOW;LOW;NOT_SUITABLE;新人阶段，暂不适合重点培养;8;8;7

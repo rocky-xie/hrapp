@@ -1,0 +1,9 @@
+export enum ReadinessLevel {
+  IMMEDIATE = 'IMMEDIATE',
+
+  THREE_MONTHS = 'THREE_MONTHS',
+
+  SIX_TO_TWELVE_MONTHS = 'SIX_TO_TWELVE_MONTHS',
+
+  NONE = 'NONE',
+}

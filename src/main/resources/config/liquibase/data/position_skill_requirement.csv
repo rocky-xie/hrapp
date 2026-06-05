@@ -1,0 +1,16 @@
+id;importance;remark;position_id;skill_id;required_level_id;preferred_level_id
+1;REQUIRED;核心开发技能;1;1;4;5
+2;REQUIRED;框架使用能力;1;2;4;4
+3;IMPORTANT;数据库能力要求;1;3;3;4
+4;REQUIRED;项目管理核心能力;3;4;4;5
+5;REQUIRED;客户沟通必备;5;5;3;4
+6;REQUIRED;前端开发核心技能;2;6;3;4
+7;IMPORTANT;测试能力要求;8;7;3;4
+8;REQUIRED;运维核心技能;9;8;3;4
+9;IMPORTANT;业务分析核心;4;9;3;4
+10;IMPORTANT;导师核心能力;7;10;4;5
+11;OPTIONAL;PMP认证加分;3;11;3;4
+12;REQUIRED;产品规划能力;10;12;4;5
+13;IMPORTANT;数据库管理核心;6;3;4;5
+14;REQUIRED;前端框架能力;2;6;3;4
+15;OPTIONAL;沟通能力加分;4;5;2;3

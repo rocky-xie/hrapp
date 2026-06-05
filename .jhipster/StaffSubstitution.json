@@ -1,0 +1,77 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122833"
+  },
+  "applications": ["*"],
+  "documentation": "职位替代关系。某个候选人员对指定职位的替代能力评定结果。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "coverageRate",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "thresholdRate",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "totalSkillCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "coveredSkillCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "missingSkills",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "substitutable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "evaluationDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "StaffSubstitution",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "personName",
+      "otherEntityName": "person",
+      "relationshipName": "candidatePerson",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

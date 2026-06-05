@@ -95,6 +95,12 @@
               >
             </div>
           </div>
+          <div class="mb-3">
+            <label class="form-control-label" for="langKey">Language</label>
+            <select class="form-control" id="langKey" name="langKey" data-cy="langKey" v-model="settingsAccount.langKey">
+              <option v-for="language in languages" :key="language.key" :value="language.key">{{ language.name }}</option>
+            </select>
+          </div>
           <button type="submit" :disabled="v$.settingsAccount.$invalid" class="btn btn-primary" data-cy="submit">Save</button>
         </form>
       </div>

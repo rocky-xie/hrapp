@@ -1,0 +1,710 @@
+{
+  "global": {
+    "menu": {
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "skillGapReport": "Skill Gap Report",
+      "entities": "Entities",
+      "administration": "Administration",
+      "account": "Account",
+      "settings": "Settings",
+      "password": "Password",
+      "logout": "Sign out",
+      "login": "Sign in",
+      "register": "Register",
+      "user-management": "User management",
+      "metrics": "Metrics",
+      "health": "Health",
+      "configuration": "Configuration",
+      "logs": "Logs",
+      "api": "API",
+      "database": "Database",
+      "language": "Language",
+      "sub": {
+        "continuity": "Succession & Risk",
+        "training": "Skills & Training",
+        "observation": "Observations & Evaluations"
+      }
+    },
+    "brand": {
+      "title": "BTMDC",
+      "subtitle": "HR Capability Evaluation System"
+    },
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "form": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "back": "Back",
+      "add": "Add",
+      "view": "View",
+      "delete": "Delete",
+      "confirm": "Confirm",
+      "yes": "Yes",
+      "no": "No",
+      "search": "Search",
+      "filter": "Filter",
+      "clear": "Clear",
+      "create": "Create",
+      "update": "Update",
+      "refreshList": "Refresh list",
+      "remove": "Remove"
+    },
+    "entity": {
+      "table": {
+        "action": "Action"
+      },
+      "id": "ID",
+      "deleteTitle": "Confirm delete operation",
+      "deleteQuestion": "Are you sure you want to delete {entity} {id}?",
+      "noRecords": "No {entity} found",
+      "field": {
+        "person": "Person",
+        "position": "Position",
+        "skill": "Skill",
+        "skillLevel": "Skill Level",
+        "currentLevel": "Current Level",
+        "previousLevel": "Previous Level",
+        "oldLevel": "Old Level",
+        "newLevel": "New Level",
+        "targetLevel": "Target Level",
+        "requiredLevel": "Required Level",
+        "preferredLevel": "Preferred Level",
+        "trainingGoal": "Training Goal",
+        "mentor": "Mentor",
+        "assessor": "Assessor",
+        "observer": "Observer",
+        "evaluator": "Evaluator",
+        "candidate": "Candidate",
+        "candidatePerson": "Candidate Person",
+        "currentOwner": "Current Owner",
+        "category": "Category",
+        "primary": "Primary",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "nextReview": "Next Review",
+        "growthDirection": "Growth Direction",
+        "responsibilityScope": "Responsibility Scope",
+        "people": "People",
+        "currentRole": "Current Role"
+      },
+      "section": {
+        "personAndSkill": "Person and Skill",
+        "upgradeDetails": "Upgrade Details",
+        "skills": "Skills",
+        "requiredSkills": "Required Skills",
+        "positionOwners": "Position Owners",
+        "selectedPeople": "Selected People",
+        "participantDetails": "Participant Details",
+        "inputFields": "Input Fields"
+      },
+      "action": {
+        "addSkill": "Add Skill",
+        "addRequirement": "Add Requirement",
+        "addOwner": "Add Owner",
+        "addPerson": "Add Person"
+      },
+      "message": {
+        "noSkills": "No skills recorded.",
+        "noSkillRequirements": "No skill requirements recorded.",
+        "noPositionOwners": "No position owners recorded.",
+        "noPeopleSelected": "No people selected.",
+        "selectPeopleToCreateCopies": "Select multiple people to create one record per person.",
+        "positionAndSkillHint": "Position and skill are shown from the selected person when available.",
+        "noSuccessionCandidates": "No succession candidates"
+      }
+    },
+    "title": "BTMDC - 人力资源能力评价系统",
+    "login": {
+      "title": "Sign in"
+    },
+    "item-count": {
+      "showing": "Showing {{first}} - {{second}} of {{total}} items."
+    },
+    "validation": {
+      "required": "This field is required.",
+      "integer": "This field should be a number.",
+      "minValue": "This field should be at least {min}.",
+      "maxValue": "This field cannot be more than {max}.",
+      "maxLength": "This field cannot be longer than {max} characters.",
+      "sameOwnerCandidate": "Candidate cannot be the same person as current owner.",
+      "personRequired": "At least one person is required."
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  },
+  "settings": {
+    "title": "User settings for [<strong>{{ username }}</strong>]",
+    "saved": "<strong>Settings saved!</strong>",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Your first name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Your last name",
+    "email": "Email",
+    "emailPlaceholder": "Your email",
+    "language": "Language",
+    "firstNameRequired": "Your first name is required.",
+    "firstNameMinlength": "Your first name is required to be at least 1 character",
+    "firstNameMaxlength": "Your first name cannot be longer than 50 characters",
+    "lastNameRequired": "Your last name is required.",
+    "lastNameMinlength": "Your last name is required to be at least 1 character",
+    "lastNameMaxlength": "Your last name cannot be longer than 50 characters",
+    "emailRequired": "Your email is required.",
+    "emailInvalid": "Your email is invalid.",
+    "emailMinlength": "Your email is required to be at least 5 characters.",
+    "emailMaxlength": "Your email cannot be longer than 50 characters.",
+    "emailExists": "<strong>Email is already in use!</strong> Please choose another one.",
+    "save": "Save"
+  },
+  "home": {
+    "title": "BTMDC - 人力资源能力评价系统",
+    "logged": {
+      "message": "You are logged in as \"{username}\"."
+    },
+    "login": {
+      "prompt": "If you want to,",
+      "signIn": "sign in"
+    },
+    "register": {
+      "prompt": "You don't have an account yet?",
+      "link": "Register a new account"
+    },
+    "section": {
+      "people": {
+        "title": "People Management",
+        "description": "Manage employee profiles, positions, and career development paths"
+      },
+      "skills": {
+        "title": "Skill Matrix",
+        "description": "Track and evaluate employee skills, certifications, and competency levels"
+      },
+      "evaluation": {
+        "title": "Capability Evaluation",
+        "description": "Conduct position risk assessment, succession planning, and training management"
+      }
+    }
+  },
+  "entity": {
+    "position": {
+      "name": "Position",
+      "home": {
+        "title": "Positions",
+        "createLabel": "Create a new Position",
+        "createOrEditLabel": "Create or edit a Position"
+      },
+      "field": {
+        "positionCode": "Position Code",
+        "positionName": "Position Name",
+        "positionType": "Position Type",
+        "businessImportance": "Business Importance",
+        "keyPosition": "Key Position",
+        "description": "Description",
+        "plannedHeadcount": "Planned Headcount",
+        "currentOwnerCount": "Current Owner Count",
+        "minimumOwnerCount": "Minimum Owner Count",
+        "reviewCycle": "Review Cycle",
+        "active": "Active"
+      },
+      "detail": {
+        "title": "Position"
+      },
+      "related": {
+        "basicInfo": "Basic Info",
+        "skillRequirements": "Skill Requirements",
+        "addSkillRequirement": "Add Skill Requirement",
+        "noSkillRequirements": "No skill requirements defined",
+        "assignments": "Assignments",
+        "addAssignment": "Add Assignment",
+        "noAssignments": "No position assignments",
+        "riskEvaluation": "Risk Evaluation",
+        "succession": "Succession"
+      }
+    },
+    "person": {
+      "name": "Person",
+      "home": {
+        "title": "People",
+        "createLabel": "Create a new Person",
+        "createOrEditLabel": "Create or edit a Person"
+      },
+      "field": {
+        "employeeCode": "Employee Code",
+        "personName": "Person Name",
+        "age": "Age",
+        "gender": "Gender",
+        "department": "Department",
+        "currentRole": "Current Role",
+        "employmentStatus": "Employment Status",
+        "joinDate": "Join Date",
+        "mentorFlag": "Mentor Flag",
+        "coreCandidateFlag": "Core Candidate Flag",
+        "note": "Note"
+      },
+      "detail": {
+        "title": "Person"
+      },
+      "related": {
+        "skills": "Skills",
+        "addSkill": "Add Skill",
+        "noSkills": "No skills recorded",
+        "assignments": "Assignments",
+        "addAssignment": "Add Assignment",
+        "noAssignments": "No position assignments"
+      }
+    },
+    "skill": {
+      "name": "Skill",
+      "home": {
+        "title": "Skills",
+        "createLabel": "Create a new Skill",
+        "createOrEditLabel": "Create or edit a Skill"
+      },
+      "field": {
+        "skillCode": "Skill Code",
+        "skillName": "Skill Name",
+        "skillType": "Skill Type",
+        "measurableFlag": "Measurable Flag",
+        "description": "Description",
+        "evidenceType": "Evidence Type"
+      },
+      "detail": {
+        "title": "Skill"
+      },
+      "related": {
+        "personSkills": "Person Skills",
+        "noPersonSkills": "No person skills recorded",
+        "positionRequirements": "Position Skill Requirements",
+        "noPositionRequirements": "No position skill requirements"
+      }
+    },
+    "skillLevel": {
+      "name": "Skill Level",
+      "home": {
+        "title": "Skill Levels",
+        "createLabel": "Create a new Skill Level",
+        "createOrEditLabel": "Create or edit a Skill Level"
+      },
+      "field": {
+        "code": "Code",
+        "levelName": "Level Name",
+        "definition": "Definition",
+        "observableEvidence": "Observable Evidence",
+        "sortOrder": "Sort Order"
+      }
+    },
+    "personSkill": {
+      "name": "Person Skill",
+      "home": {
+        "title": "Person Skills",
+        "createLabel": "Create a new Person Skill",
+        "createOrEditLabel": "Create or edit a Person Skill"
+      },
+      "field": {
+        "assessmentDate": "Assessment Date",
+        "nextReviewDate": "Next Review Date",
+        "evidence": "Evidence",
+        "confidence": "Confidence",
+        "growthDirection": "Growth Direction"
+      }
+    },
+    "positionSkillRequirement": {
+      "name": "Position Skill Requirement",
+      "home": {
+        "title": "Position Skill Requirements",
+        "createLabel": "Create a new Position Skill Requirement",
+        "createOrEditLabel": "Create or edit a Position Skill Requirement"
+      },
+      "field": {
+        "importance": "Importance",
+        "remark": "Remark"
+      }
+    },
+    "positionAssignment": {
+      "name": "Position Assignment",
+      "home": {
+        "title": "Position Assignments",
+        "createLabel": "Create a new Position Assignment",
+        "createOrEditLabel": "Create or edit a Position Assignment"
+      },
+      "field": {
+        "primaryOwner": "Primary Owner",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "responsibilityScope": "Responsibility Scope",
+        "active": "Active"
+      }
+    },
+    "positionMatch": {
+      "name": "Position Match",
+      "home": {
+        "title": "Position Matches",
+        "createLabel": "Create a new Position Match",
+        "createOrEditLabel": "Create or edit a Position Match"
+      },
+      "field": {
+        "matchScore": "Match Score",
+        "matchedSkills": "Matched Skills",
+        "gapSkills": "Gap Skills",
+        "readiness": "Readiness",
+        "recommendation": "Recommendation",
+        "analysisDate": "Analysis Date",
+        "remark": "Remark"
+      }
+    },
+    "successionCandidate": {
+      "name": "Succession Candidate",
+      "home": {
+        "title": "Succession Candidates",
+        "createLabel": "Create a new Succession Candidate",
+        "createOrEditLabel": "Create or edit a Succession Candidate"
+      },
+      "field": {
+        "successionReadiness": "Succession Readiness",
+        "requiredTraining": "Required Training",
+        "estimatedTimeToReady": "Estimated Time To Ready",
+        "riskAfterTraining": "Risk After Training",
+        "reviewDate": "Review Date",
+        "priority": "Priority"
+      },
+      "section": {
+        "positionAndOwner": "Position & People"
+      }
+    },
+    "positionRisk": {
+      "name": "Position Risk",
+      "home": {
+        "title": "Position Risks",
+        "createLabel": "Create a new Position Risk",
+        "createOrEditLabel": "Create or edit a Position Risk"
+      },
+      "field": {
+        "riskType": "Risk Type",
+        "riskLevel": "Risk Level",
+        "documentStatus": "Document Status",
+        "backupStatus": "Backup Status",
+        "customerOrSystemDependency": "Customer/System Dependency",
+        "riskDescription": "Risk Description",
+        "improvementAction": "Improvement Action",
+        "identifiedDate": "Identified Date",
+        "targetDate": "Target Date",
+        "closedDate": "Closed Date"
+      }
+    },
+    "personRisk": {
+      "name": "Person Risk",
+      "home": {
+        "title": "Person Risks",
+        "createLabel": "Create a new Person Risk",
+        "createOrEditLabel": "Create or edit a Person Risk"
+      },
+      "field": {
+        "riskType": "Risk Type",
+        "riskLevel": "Risk Level",
+        "riskDescription": "Risk Description",
+        "improvementAction": "Improvement Action",
+        "identifiedDate": "Identified Date",
+        "targetDate": "Target Date",
+        "closedDate": "Closed Date"
+      }
+    },
+    "skillUpgradeRecord": {
+      "name": "Skill Upgrade Record",
+      "home": {
+        "title": "Skill Upgrade Records",
+        "createLabel": "Create a new Skill Upgrade Record",
+        "createOrEditLabel": "Create or edit a Skill Upgrade Record"
+      },
+      "field": {
+        "changeType": "Change Type",
+        "changeDate": "Change Date",
+        "reason": "Reason",
+        "beforeLevelLabel": "Before Level Label",
+        "afterLevelLabel": "After Level Label",
+        "evidence": "Evidence",
+        "comment": "Comment"
+      }
+    },
+    "staffSubstitution": {
+      "name": "Staff Substitution",
+      "home": {
+        "title": "Staff Substitutions",
+        "createLabel": "Create a new Staff Substitution",
+        "createOrEditLabel": "Create or edit a Staff Substitution"
+      },
+      "field": {
+        "coverageRate": "Coverage Rate",
+        "thresholdRate": "Threshold Rate",
+        "totalSkillCount": "Total Skill Count",
+        "coveredSkillCount": "Covered Skill Count",
+        "missingSkills": "Missing Skills",
+        "substitutable": "Substitutable",
+        "evaluationDate": "Evaluation Date",
+        "reason": "Reason"
+      },
+      "section": {
+        "evaluationResult": "Evaluation Result"
+      },
+      "action": {
+        "recalculate": "Recalculate"
+      }
+    },
+    "positionRiskEvaluation": {
+      "name": "Position Risk Evaluation",
+      "home": {
+        "title": "Position Risk Evaluations",
+        "createLabel": "Create a new Position Risk Evaluation",
+        "createOrEditLabel": "Create or edit a Position Risk Evaluation"
+      },
+      "field": {
+        "evaluationDate": "Evaluation Date",
+        "ownerCount": "Owner Count",
+        "substitutableOwnerCount": "Substitutable Owner Count",
+        "hasSubstitute": "Has Substitute",
+        "documentStatus": "Document Status",
+        "customerOrSystemDependency": "Customer/System Dependency",
+        "successionReadiness": "Succession Readiness",
+        "riskLevel": "Risk Level",
+        "riskReason": "Risk Reason",
+        "recommendedAction": "Recommended Action"
+      },
+      "section": {
+        "evaluationResult": "Evaluation Result"
+      },
+      "action": {
+        "evaluateAndSave": "Evaluate & Save"
+      }
+    },
+    "trainingGoal": {
+      "name": "Training Goal",
+      "home": {
+        "title": "Training Goals",
+        "createLabel": "Create a new Training Goal",
+        "createOrEditLabel": "Create or edit a Training Goal"
+      },
+      "field": {
+        "goalName": "Goal Name",
+        "goalDescription": "Goal Description",
+        "targetLevelDescription": "Target Level Description",
+        "startDate": "Start Date",
+        "targetDate": "Target Date",
+        "status": "Status"
+      }
+    },
+    "trainingRecord": {
+      "name": "Training Record",
+      "home": {
+        "title": "Training Records",
+        "createLabel": "Create a new Training Record",
+        "createOrEditLabel": "Create or edit a Training Record"
+      },
+      "field": {
+        "trainingDate": "Training Date",
+        "trainingType": "Training Type",
+        "topic": "Topic",
+        "taskDescription": "Task Description",
+        "resultDescription": "Result Description",
+        "evidence": "Evidence",
+        "nextAction": "Next Action"
+      }
+    },
+    "skillAssessment": {
+      "name": "Skill Assessment",
+      "home": {
+        "title": "Skill Assessments",
+        "createLabel": "Create a new Skill Assessment",
+        "createOrEditLabel": "Create or edit a Skill Assessment"
+      },
+      "field": {
+        "assessmentDate": "Assessment Date",
+        "result": "Result",
+        "evidence": "Evidence",
+        "comment": "Comment"
+      }
+    },
+    "trustObservation": {
+      "name": "Trust Observation",
+      "home": {
+        "title": "Trust Observations",
+        "createLabel": "Create a new Trust Observation",
+        "createOrEditLabel": "Create or edit a Trust Observation"
+      },
+      "field": {
+        "observationDate": "Observation Date",
+        "trustStage": "Trust Stage",
+        "observedBehavior": "Observed Behavior",
+        "positiveSignal": "Positive Signal",
+        "riskSignal": "Risk Signal",
+        "nextObservationPoint": "Next Observation Point"
+      }
+    },
+    "evaluation": {
+      "name": "Evaluation",
+      "home": {
+        "title": "Evaluations",
+        "createLabel": "Create a new Evaluation",
+        "createOrEditLabel": "Create or edit a Evaluation"
+      },
+      "field": {
+        "evaluationName": "Evaluation Name",
+        "evaluationDate": "Evaluation Date",
+        "periodLabel": "Period Label",
+        "progressStatus": "Progress Status",
+        "result": "Result",
+        "strengths": "Strengths",
+        "weaknesses": "Weaknesses",
+        "supportNeeded": "Support Needed",
+        "nextTrainingFocus": "Next Training Focus",
+        "positionAdjustmentNeeded": "Position Adjustment Needed"
+      }
+    },
+    "improvementPlan": {
+      "name": "Improvement Plan",
+      "home": {
+        "title": "Improvement Plans",
+        "createLabel": "Create a new Improvement Plan",
+        "createOrEditLabel": "Create or edit a Improvement Plan"
+      },
+      "field": {
+        "planName": "Plan Name",
+        "planStatus": "Plan Status",
+        "problemSummary": "Problem Summary",
+        "improvementAction": "Improvement Action",
+        "ownerName": "Owner Name",
+        "startDate": "Start Date",
+        "targetDate": "Target Date",
+        "completionDate": "Completion Date",
+        "reviewResult": "Review Result"
+      }
+    },
+    "keyResponsibilityCategory": {
+      "name": "Key Responsibility Category",
+      "home": {
+        "title": "Key Responsibility Categories",
+        "createLabel": "Create a new Key Responsibility Category",
+        "createOrEditLabel": "Create or edit a Key Responsibility Category"
+      },
+      "field": {
+        "categoryName": "Category Name",
+        "examples": "Examples",
+        "riskFocus": "Risk Focus"
+      }
+    },
+    "candidateProfile": {
+      "name": "Candidate Profile",
+      "home": {
+        "title": "Candidate Profiles",
+        "createLabel": "Create a new Candidate Profile",
+        "createOrEditLabel": "Create or edit a Candidate Profile"
+      },
+      "field": {
+        "candidateDate": "Candidate Date",
+        "cultivateDirection": "Cultivate Direction",
+        "stability": "Stability",
+        "learningAbility": "Learning Ability",
+        "communicationCoordination": "Communication & Coordination",
+        "businessUnderstanding": "Business Understanding",
+        "responsibility": "Responsibility",
+        "riskAwareness": "Risk Awareness",
+        "judgement": "Judgement",
+        "evidence": "Evidence"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "error": "Failed to load data. Please try again.",
+    "summary": {
+      "title": "System Summary",
+      "positions": "Positions",
+      "persons": "Persons",
+      "skills": "Skills",
+      "highRisk": "High Risk",
+      "trainings": "Trainings",
+      "substitutions": "Substitutions"
+    },
+    "risk": {
+      "title": "Risk Overview",
+      "count": "{n} High Risk Positions",
+      "empty": "No high-risk positions found"
+    },
+    "coverage": {
+      "title": "Insufficient Coverage",
+      "count": "{n} Records",
+      "empty": "No coverage gaps found"
+    },
+    "review": {
+      "title": "Skill Review Due",
+      "count": "{n} Items Due",
+      "empty": "No skills due for review",
+      "status": {
+        "label": "Status",
+        "overdue": "Overdue",
+        "daysRemaining": "{n} days"
+      }
+    },
+    "successionMap": {
+      "title": "Succession Map",
+      "count": "{n} Positions",
+      "empty": "No succession data found",
+      "candidates": "Candidates"
+    }
+  },
+  "skillGapReport": {
+    "title": "Position Skill Gap Report",
+    "filter": {
+      "position": "Position",
+      "importance": "Importance",
+      "includeOwners": "Include Owners",
+      "includeCandidates": "Include Candidates"
+    },
+    "generate": "Generate Report",
+    "summary": "{n} Positions",
+    "gapCount": "{n} Gaps",
+    "requiredSkills": "required skills",
+    "owners": "Owners",
+    "candidates": "Candidates",
+    "person": "Person",
+    "coverage": "Coverage",
+    "gapSkills": "Gap Skills",
+    "noGaps": "No gaps",
+    "noOwners": "No owners assigned",
+    "noCandidates": "No candidates",
+    "aggregatedGaps": "Aggregated Gap Ranking",
+    "noAggregatedGaps": "No skill gaps found",
+    "skill": "Skill",
+    "importance": "Importance",
+    "requiredLevel": "Required Level",
+    "deficientCount": "Deficient Count",
+    "maxDeficit": "Max Deficit",
+    "createTrainingGoal": "Create Training Goal"
+  },
+  "trainingSuggestion": {
+    "title": "Training Suggestions",
+    "count": "{n} Suggestions",
+    "current": "Current",
+    "target": "Target",
+    "priorityLabel": "Priority",
+    "action": "Action",
+    "priority": {
+      "P0_CRITICAL": "P0 - Critical",
+      "P1_HIGH": "P1 - High",
+      "P2_MEDIUM": "P2 - Medium",
+      "P3_LOW": "P3 - Low"
+    },
+    "createGoal": "Create Training Goal",
+    "created": "Goal Created",
+    "goalName": "Train {skillName} for {personName}",
+    "goalDescription": "Generated from skill gap report — {reason}",
+    "targetLevelDescription": "Target: {level}"
+  },
+  "error": {
+    "sessions": "Session expired. Please login again.",
+    "internalServerError": "Internal server error",
+    "serverNotReachable": "Server not reachable",
+    "timeout": "The server took too long to respond",
+    "size": "File too large"
+  }
+}

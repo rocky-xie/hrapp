@@ -1,0 +1,55 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122827"
+  },
+  "applications": ["*"],
+  "documentation": "职位任职。记录职员与职位的多段任职历史。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "primaryOwner",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "responsibilityScope",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PositionAssignment",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "personName",
+      "otherEntityName": "person",
+      "relationshipName": "person",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

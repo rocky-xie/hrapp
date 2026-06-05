@@ -122,7 +122,7 @@ describe('UserManagementEdit Component', () => {
       await userManagementEdit.$nextTick();
 
       // THEN
-      expect(axiosStub.put).toHaveBeenCalledWith('api/admin/users', { id: 123, authorities: [] });
+      expect(axiosStub.put).toHaveBeenCalledWith('api/admin/users', { id: 123, authorities: [], langKey: 'en' });
       expect(userManagementEdit.isSaving).toEqual(false);
     });
 

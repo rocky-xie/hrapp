@@ -1,0 +1,13 @@
+export enum SkillType {
+  CERTIFICATE = 'CERTIFICATE',
+
+  TECHNICAL = 'TECHNICAL',
+
+  BUSINESS = 'BUSINESS',
+
+  ABSTRACT = 'ABSTRACT',
+
+  MENTORING = 'MENTORING',
+
+  OTHER = 'OTHER',
+}

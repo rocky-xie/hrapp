@@ -109,6 +109,13 @@
           </div>
 
           <div class="mb-3">
+            <label class="form-control-label" for="langKey">Language</label>
+            <select class="form-control" id="langKey" name="langKey" data-cy="langKey" v-model="userAccount.langKey">
+              <option v-for="language in languages" :key="language.key" :value="language.key">{{ language.name }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
             <label>Profiles</label>
             <select class="form-control" multiple name="authority" data-cy="profiles" v-model="userAccount.authorities">
               <option v-for="authority of authorities" :value="authority" :key="authority">{{ authority }}</option>

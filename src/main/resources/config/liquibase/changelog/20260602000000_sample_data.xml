@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog-ext.xsd">
+
+    <changeSet id="20260602000000-sample-data-1" author="sample" context="faker">
+        <loadData file="config/liquibase/data/position.csv"
+                  separator=";"
+                  tableName="position"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="key_position" type="boolean"/>
+            <column name="planned_headcount" type="numeric"/>
+            <column name="minimum_owner_count" type="numeric"/>
+            <column name="active" type="boolean"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-2" author="sample" context="faker">
+        <loadData file="config/liquibase/data/person.csv"
+                  separator=";"
+                  tableName="person"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="age" type="numeric"/>
+            <column name="join_date" type="date"/>
+            <column name="mentor_flag" type="boolean"/>
+            <column name="core_candidate_flag" type="boolean"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-3" author="sample" context="faker">
+        <loadData file="config/liquibase/data/skill.csv"
+                  separator=";"
+                  tableName="skill"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="measurable_flag" type="boolean"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-4" author="sample" context="faker">
+        <loadData file="config/liquibase/data/skill_level.csv"
+                  separator=";"
+                  tableName="skill_level"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="sort_order" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-5" author="sample" context="faker">
+        <loadData file="config/liquibase/data/person_skill.csv"
+                  separator=";"
+                  tableName="person_skill"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="assessment_date" type="date"/>
+            <column name="next_review_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="skill_id" type="numeric"/>
+            <column name="current_level_id" type="numeric"/>
+            <column name="previous_level_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-6" author="sample" context="faker">
+        <loadData file="config/liquibase/data/position_skill_requirement.csv"
+                  separator=";"
+                  tableName="position_skill_requirement"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+            <column name="skill_id" type="numeric"/>
+            <column name="required_level_id" type="numeric"/>
+            <column name="preferred_level_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-7" author="sample" context="faker">
+        <loadData file="config/liquibase/data/position_assignment.csv"
+                  separator=";"
+                  tableName="position_assignment"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="primary_owner" type="boolean"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="active" type="boolean"/>
+            <column name="person_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-8" author="sample" context="faker">
+        <loadData file="config/liquibase/data/position_match.csv"
+                  separator=";"
+                  tableName="position_match"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="match_score" type="numeric"/>
+            <column name="analysis_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-9" author="sample" context="faker">
+        <loadData file="config/liquibase/data/succession_candidate.csv"
+                  separator=";"
+                  tableName="succession_candidate"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="review_date" type="date"/>
+            <column name="priority" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+            <column name="current_owner_id" type="numeric"/>
+            <column name="candidate_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-10" author="sample" context="faker">
+        <loadData file="config/liquibase/data/key_responsibility_category.csv"
+                  separator=";"
+                  tableName="key_responsibility_category"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-11" author="sample" context="faker">
+        <loadData file="config/liquibase/data/position_risk.csv"
+                  separator=";"
+                  tableName="position_risk"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="identified_date" type="date"/>
+            <column name="target_date" type="date"/>
+            <column name="closed_date" type="date"/>
+            <column name="position_id" type="numeric"/>
+            <column name="category_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-12" author="sample" context="faker">
+        <loadData file="config/liquibase/data/person_risk.csv"
+                  separator=";"
+                  tableName="person_risk"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="identified_date" type="date"/>
+            <column name="target_date" type="date"/>
+            <column name="closed_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-13" author="sample" context="faker">
+        <loadData file="config/liquibase/data/skill_upgrade_record.csv"
+                  separator=";"
+                  tableName="skill_upgrade_record"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="change_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="skill_id" type="numeric"/>
+            <column name="old_level_id" type="numeric"/>
+            <column name="new_level_id" type="numeric"/>
+            <column name="assessor_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-14" author="sample" context="faker">
+        <loadData file="config/liquibase/data/staff_substitution.csv"
+                  separator=";"
+                  tableName="staff_substitution"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="coverage_rate" type="numeric"/>
+            <column name="threshold_rate" type="numeric"/>
+            <column name="total_skill_count" type="numeric"/>
+            <column name="covered_skill_count" type="numeric"/>
+            <column name="substitutable" type="boolean"/>
+            <column name="evaluation_date" type="date"/>
+            <column name="position_id" type="numeric"/>
+            <column name="candidate_person_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-15" author="sample" context="faker">
+        <loadData file="config/liquibase/data/position_risk_evaluation.csv"
+                  separator=";"
+                  tableName="position_risk_evaluation"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="evaluation_date" type="date"/>
+            <column name="owner_count" type="numeric"/>
+            <column name="substitutable_owner_count" type="numeric"/>
+            <column name="has_substitute" type="boolean"/>
+            <column name="position_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-16" author="sample" context="faker">
+        <loadData file="config/liquibase/data/training_goal.csv"
+                  separator=";"
+                  tableName="training_goal"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="start_date" type="date"/>
+            <column name="target_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+            <column name="skill_id" type="numeric"/>
+            <column name="target_level_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-17" author="sample" context="faker">
+        <loadData file="config/liquibase/data/training_record.csv"
+                  separator=";"
+                  tableName="training_record"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="training_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="training_goal_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+            <column name="mentor_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-18" author="sample" context="faker">
+        <loadData file="config/liquibase/data/skill_assessment.csv"
+                  separator=";"
+                  tableName="skill_assessment"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="assessment_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="skill_id" type="numeric"/>
+            <column name="assessor_id" type="numeric"/>
+            <column name="new_level_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-19" author="sample" context="faker">
+        <loadData file="config/liquibase/data/trust_observation.csv"
+                  separator=";"
+                  tableName="trust_observation"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="observation_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="observer_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-20" author="sample" context="faker">
+        <loadData file="config/liquibase/data/evaluation.csv"
+                  separator=";"
+                  tableName="evaluation"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="evaluation_date" type="date"/>
+            <column name="position_adjustment_needed" type="boolean"/>
+            <column name="person_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+            <column name="training_goal_id" type="numeric"/>
+            <column name="evaluator_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-21" author="sample" context="faker">
+        <loadData file="config/liquibase/data/improvement_plan.csv"
+                  separator=";"
+                  tableName="improvement_plan"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="start_date" type="date"/>
+            <column name="target_date" type="date"/>
+            <column name="completion_date" type="date"/>
+            <column name="position_id" type="numeric"/>
+            <column name="skill_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20260602000000-sample-data-22" author="sample" context="faker">
+        <loadData file="config/liquibase/data/candidate_profile.csv"
+                  separator=";"
+                  tableName="candidate_profile"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="candidate_date" type="date"/>
+            <column name="person_id" type="numeric"/>
+            <column name="position_id" type="numeric"/>
+            <column name="observer_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

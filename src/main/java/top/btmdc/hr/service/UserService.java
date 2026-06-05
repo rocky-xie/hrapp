@@ -115,7 +115,7 @@ public class UserService {
             newUser.setEmail(userDTO.getEmail().toLowerCase());
         }
         newUser.setImageUrl(userDTO.getImageUrl());
-        newUser.setLangKey(userDTO.getLangKey());
+        newUser.setLangKey(normalizeLanguage(userDTO.getLangKey()));
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key
@@ -148,11 +148,7 @@ public class UserService {
             user.setEmail(userDTO.getEmail().toLowerCase());
         }
         user.setImageUrl(userDTO.getImageUrl());
-        if (userDTO.getLangKey() == null) {
-            user.setLangKey(Constants.DEFAULT_LANGUAGE); // default language
-        } else {
-            user.setLangKey(userDTO.getLangKey());
-        }
+        user.setLangKey(normalizeLanguage(userDTO.getLangKey()));
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
@@ -194,7 +190,7 @@ public class UserService {
                 }
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
-                user.setLangKey(userDTO.getLangKey());
+                user.setLangKey(normalizeLanguage(userDTO.getLangKey()));
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO
@@ -238,12 +234,27 @@ public class UserService {
                 if (email != null) {
                     user.setEmail(email.toLowerCase());
                 }
-                user.setLangKey(langKey);
+                user.setLangKey(normalizeLanguage(langKey));
                 user.setImageUrl(imageUrl);
                 userRepository.save(user);
                 this.clearUserCaches(user);
                 LOG.debug("Changed Information for User: {}", user);
             });
+    }
+
+    private String normalizeLanguage(String langKey) {
+        if (langKey == null || langKey.isBlank()) {
+            return Constants.DEFAULT_LANGUAGE;
+        }
+
+        String normalizedLangKey = langKey.toLowerCase(Locale.ROOT).replace('_', '-');
+        if (normalizedLangKey.startsWith("zh")) {
+            return "zh-cn";
+        }
+        if (normalizedLangKey.startsWith("ja")) {
+            return "ja";
+        }
+        return Set.of("en", "fr").contains(normalizedLangKey) ? normalizedLangKey : Constants.DEFAULT_LANGUAGE;
     }
 
     @Transactional

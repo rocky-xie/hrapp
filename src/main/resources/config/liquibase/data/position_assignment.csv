@@ -1,0 +1,13 @@
+id;primary_owner;start_date;end_date;responsibility_scope;active;person_id;position_id
+1;true;2018-03-15;;负责核心后端模块开发;true;1;1
+2;true;2020-07-01;;负责前端组件开发;true;2;2
+3;true;2015-01-10;;负责项目整体管理;true;3;3
+4;true;2019-06-20;;负责业务需求分析;true;4;4
+5;true;2022-03-01;;负责客户服务;true;5;5
+6;true;2016-08-15;;负责数据库运维;true;6;6
+7;true;2012-05-01;;负责技术导师工作;true;7;7
+8;true;2024-01-15;;负责软件测试;true;8;8
+9;true;2019-11-01;;负责系统运维;true;9;9
+10;true;2017-09-01;;负责产品规划;true;10;10
+11;false;2021-04-01;;协助后端开发;true;11;1
+12;true;2023-10-01;;业务助理实习;true;12;4

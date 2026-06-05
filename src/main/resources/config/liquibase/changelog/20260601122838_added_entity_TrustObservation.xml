@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity TrustObservation.
+    -->
+    <changeSet id="20260601122838-1" author="jhipster">
+        <createTable tableName="trust_observation" remarks="信任观察。对人员信任阶段的阶段性评估。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="observation_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="trust_stage" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="observed_behavior" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="positive_signal" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="risk_signal" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="next_observation_point" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="observer_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

@@ -1,0 +1,9 @@
+export enum BackupStatus {
+  AVAILABLE = 'AVAILABLE',
+
+  PARTIAL = 'PARTIAL',
+
+  MISSING = 'MISSING',
+
+  NOT_APPLICABLE = 'NOT_APPLICABLE',
+}

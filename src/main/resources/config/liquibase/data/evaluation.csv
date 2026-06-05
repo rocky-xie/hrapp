@@ -1,0 +1,8 @@
+id;evaluation_name;evaluation_date;period_label;progress_status;result;strengths;weaknesses;support_needed;next_training_focus;position_adjustment_needed;person_id;position_id;training_goal_id;evaluator_id
+1;2025上半年绩效考核;2025-06-30;2025-H1;NORMAL;PASS;技术能力突出，项目贡献大;沟通能力可提升;沟通培训;架构设计;false;1;1;1;7
+2;2025上半年绩效考核;2025-06-30;2025-H1;NORMAL;PASS;前端开发稳定;全栈能力不足;全栈培训;全栈技术;false;2;2;3;1
+3;2025上半年绩效考核;2025-06-30;2025-H1;FAST;PASS;项目管理优秀;技术深度待提升;技术学习;技术趋势;false;3;3;4;10
+4;2025上半年绩效考核;2025-06-30;2025-H1;NORMAL;WARNING;业务理解深入;技术背景薄弱;技术培训;基础技术;false;4;4;7;3
+5;2025上半年绩效考核;2025-06-30;2025-H1;SLOW;OBSERVE;学习态度积极;技能水平不足;加强指导;基础技能;false;8;8;5;7
+6;2025上半年绩效考核;2025-06-30;2025-H1;NORMAL;PASS;运维能力扎实;云原生不足;云原生培训;云原生技术;false;9;9;6;7
+7;2025上半年绩效考核;2025-06-30;2025-H1;NORMAL;PASS;产品视野开阔;技术理解待加强;技术交流;技术趋势;false;10;10;8;3

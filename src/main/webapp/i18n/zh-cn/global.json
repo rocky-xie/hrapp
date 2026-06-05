@@ -1,0 +1,709 @@
+{
+  "global": {
+    "menu": {
+      "home": "首页",
+      "dashboard": "仪表盘",
+      "skillGapReport": "技能缺口报告",
+      "entities": "实体",
+      "administration": "系统管理",
+      "account": "账户",
+      "settings": "设置",
+      "password": "密码",
+      "logout": "退出",
+      "login": "登录",
+      "register": "注册",
+      "user-management": "用户管理",
+      "metrics": "指标",
+      "health": "健康检查",
+      "configuration": "配置",
+      "logs": "日志",
+      "api": "API",
+      "database": "数据库",
+      "language": "语言",
+      "sub": {
+        "continuity": "继任与风险",
+        "training": "技能与培训",
+        "observation": "观察与评估"
+      }
+    },
+    "brand": {
+      "title": "BTMDC",
+      "subtitle": "人力资源能力评价系统"
+    },
+    "yes": "是",
+    "no": "否",
+    "all": "全部",
+    "form": {
+      "save": "保存",
+      "cancel": "取消",
+      "edit": "编辑",
+      "back": "返回",
+      "add": "新增",
+      "view": "查看",
+      "delete": "删除",
+      "confirm": "确认",
+      "yes": "是",
+      "no": "否",
+      "search": "搜索",
+      "filter": "筛选",
+      "clear": "清除",
+      "create": "创建",
+      "update": "更新",
+      "refreshList": "刷新列表",
+      "remove": "移除"
+    },
+    "entity": {
+      "table": {
+        "action": "操作"
+      },
+      "id": "ID",
+      "deleteTitle": "确认删除操作",
+      "deleteQuestion": "确定要删除 {entity} {id} 吗？",
+      "noRecords": "未找到{entity}",
+      "field": {
+        "person": "人员",
+        "position": "职位",
+        "skill": "技能",
+        "skillLevel": "技能等级",
+        "currentLevel": "当前等级",
+        "previousLevel": "上次等级",
+        "oldLevel": "旧等级",
+        "newLevel": "新等级",
+        "targetLevel": "目标等级",
+        "requiredLevel": "要求等级",
+        "preferredLevel": "理想等级",
+        "trainingGoal": "培训目标",
+        "mentor": "导师",
+        "assessor": "评估人",
+        "observer": "观察者",
+        "evaluator": "评价人",
+        "candidate": "候选人",
+        "candidatePerson": "候选人员",
+        "currentOwner": "当前负责人",
+        "category": "类别",
+        "primary": "主要",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "nextReview": "下次复核",
+        "growthDirection": "成长方向",
+        "responsibilityScope": "职责范围",
+        "people": "人员",
+        "currentRole": "当前职位"
+      },
+      "section": {
+        "personAndSkill": "人员与技能",
+        "upgradeDetails": "升级明细",
+        "skills": "技能",
+        "requiredSkills": "所需技能",
+        "positionOwners": "任职人员",
+        "selectedPeople": "已选人员",
+        "participantDetails": "参与人员信息",
+        "inputFields": "输入字段"
+      },
+      "action": {
+        "addSkill": "添加技能",
+        "addRequirement": "添加要求",
+        "addOwner": "添加任职人员",
+        "addPerson": "添加人员"
+      },
+      "message": {
+        "noSkills": "暂无技能记录。",
+        "noSkillRequirements": "暂无技能要求记录。",
+        "noPositionOwners": "暂无任职人员记录。",
+        "noPeopleSelected": "暂未选择人员。",
+        "selectPeopleToCreateCopies": "可选择多名人员，保存时为每个人创建一条记录。",
+        "positionAndSkillHint": "选择人员后会尽量显示该人员的当前职位和技能信息。"
+      }
+    },
+    "login": {
+      "title": "登录"
+    },
+    "item-count": {
+      "showing": "显示第 {{first}} 至 {{second}} 项，共 {{total}} 项。"
+    },
+    "validation": {
+      "required": "此字段为必填项。",
+      "integer": "此字段应为数字。",
+      "minValue": "此字段不能小于 {min}。",
+      "maxValue": "此字段不能大于 {max}。",
+      "maxLength": "此字段不能超过 {max} 个字符。",
+      "sameOwnerCandidate": "候选人不能与当前负责人相同。",
+      "personRequired": "至少需要选择一名人员。"
+    },
+    "title": "BTMDC - 人力资源能力评价系统",
+    "footer": {
+      "rights": "保留所有权利。"
+    }
+  },
+  "settings": {
+    "title": "[<strong>{{ username }}</strong>]的用户设置",
+    "saved": "<strong>设置已保存!</strong>",
+    "firstName": "名",
+    "firstNamePlaceholder": "您的名",
+    "lastName": "姓",
+    "lastNamePlaceholder": "您的姓",
+    "email": "邮箱",
+    "emailPlaceholder": "您的邮箱",
+    "language": "语言",
+    "firstNameRequired": "您的名不能为空。",
+    "firstNameMinlength": "您的名至少需要1个字符",
+    "firstNameMaxlength": "您的名不能超过50个字符",
+    "lastNameRequired": "您的姓不能为空。",
+    "lastNameMinlength": "您的姓至少需要1个字符",
+    "lastNameMaxlength": "您的姓不能超过50个字符",
+    "emailRequired": "您的邮箱不能为空。",
+    "emailInvalid": "您的邮箱格式不正确。",
+    "emailMinlength": "您的邮箱至少需要5个字符。",
+    "emailMaxlength": "您的邮箱不能超过50个字符。",
+    "emailExists": "<strong>邮箱已被使用!</strong> 请换一个。",
+    "save": "保存"
+  },
+  "home": {
+    "title": "BTMDC - 人力资源能力评价系统",
+    "logged": {
+      "message": "您已登录为 \"{username}\"。"
+    },
+    "login": {
+      "prompt": "如果您想要",
+      "signIn": "登录"
+    },
+    "register": {
+      "prompt": "您还没有注册帐户？",
+      "link": "注册一个新帐户"
+    },
+    "section": {
+      "people": {
+        "title": "人员管理",
+        "description": "管理员工档案、岗位信息和职业发展路径"
+      },
+      "skills": {
+        "title": "技能矩阵",
+        "description": "跟踪和评估员工技能、资质认证和能力等级"
+      },
+      "evaluation": {
+        "title": "能力评价",
+        "description": "进行岗位风险评估、继任规划和培训管理"
+      }
+    }
+  },
+  "entity": {
+    "position": {
+      "name": "职位",
+      "home": {
+        "title": "职位",
+        "createLabel": "创建新职位",
+        "createOrEditLabel": "创建或编辑职位"
+      },
+      "field": {
+        "positionCode": "职位编码",
+        "positionName": "职位名称",
+        "positionType": "职位类型",
+        "businessImportance": "业务重要性",
+        "keyPosition": "关键职位",
+        "description": "描述",
+        "plannedHeadcount": "计划编制",
+        "currentOwnerCount": "当前人数",
+        "minimumOwnerCount": "最少人数",
+        "reviewCycle": "评估周期",
+        "active": "启用"
+      },
+      "detail": {
+        "title": "职位"
+      },
+      "related": {
+        "basicInfo": "基本信息",
+        "skillRequirements": "技能要求",
+        "addSkillRequirement": "添加技能要求",
+        "noSkillRequirements": "未定义技能要求",
+        "assignments": "任职记录",
+        "addAssignment": "添加任职",
+        "noAssignments": "暂无任职记录",
+        "riskEvaluation": "风险评估",
+        "succession": "后继者"
+      }
+    },
+    "person": {
+      "name": "人员",
+      "home": {
+        "title": "人员",
+        "createLabel": "创建新人员",
+        "createOrEditLabel": "创建或编辑人员"
+      },
+      "field": {
+        "employeeCode": "员工编码",
+        "personName": "姓名",
+        "age": "年龄",
+        "gender": "性别",
+        "department": "部门",
+        "currentRole": "当前角色",
+        "employmentStatus": "在职状态",
+        "joinDate": "入职日期",
+        "mentorFlag": "导师标志",
+        "coreCandidateFlag": "核心候选人标志",
+        "note": "备注"
+      },
+      "detail": {
+        "title": "人员"
+      },
+      "related": {
+        "skills": "技能",
+        "addSkill": "添加技能",
+        "noSkills": "暂无技能记录",
+        "assignments": "任职记录",
+        "addAssignment": "添加任职",
+        "noAssignments": "暂无任职记录"
+      }
+    },
+    "skill": {
+      "name": "技能",
+      "home": {
+        "title": "技能",
+        "createLabel": "创建新技能",
+        "createOrEditLabel": "创建或编辑技能"
+      },
+      "field": {
+        "skillCode": "技能编码",
+        "skillName": "技能名称",
+        "skillType": "技能类型",
+        "measurableFlag": "可衡量标志",
+        "description": "描述",
+        "evidenceType": "证据类型"
+      },
+      "detail": {
+        "title": "技能"
+      },
+      "related": {
+        "personSkills": "人员技能",
+        "noPersonSkills": "暂无人员技能记录",
+        "positionRequirements": "职位技能要求",
+        "noPositionRequirements": "暂无职位技能要求"
+      }
+    },
+    "skillLevel": {
+      "name": "技能等级",
+      "home": {
+        "title": "技能等级",
+        "createLabel": "创建新技能等级",
+        "createOrEditLabel": "创建或编辑技能等级"
+      },
+      "field": {
+        "code": "编码",
+        "levelName": "等级名称",
+        "definition": "定义",
+        "observableEvidence": "可观察证据",
+        "sortOrder": "排序"
+      }
+    },
+    "personSkill": {
+      "name": "人员技能",
+      "home": {
+        "title": "人员技能",
+        "createLabel": "创建新人员技能",
+        "createOrEditLabel": "创建或编辑人员技能"
+      },
+      "field": {
+        "assessmentDate": "评估日期",
+        "nextReviewDate": "下次审查日期",
+        "evidence": "证据",
+        "confidence": "熟练度",
+        "growthDirection": "成长方向"
+      }
+    },
+    "positionSkillRequirement": {
+      "name": "职位技能要求",
+      "home": {
+        "title": "职位技能要求",
+        "createLabel": "创建新职位技能要求",
+        "createOrEditLabel": "创建或编辑职位技能要求"
+      },
+      "field": {
+        "importance": "重要性",
+        "remark": "备注"
+      }
+    },
+    "positionAssignment": {
+      "name": "职位任职",
+      "home": {
+        "title": "职位任职",
+        "createLabel": "创建新职位任职",
+        "createOrEditLabel": "创建或编辑职位任职"
+      },
+      "field": {
+        "primaryOwner": "主要负责人",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "responsibilityScope": "职责范围",
+        "active": "启用"
+      }
+    },
+    "positionMatch": {
+      "name": "职位匹配",
+      "home": {
+        "title": "职位匹配",
+        "createLabel": "创建新职位匹配",
+        "createOrEditLabel": "创建或编辑职位匹配"
+      },
+      "field": {
+        "matchScore": "匹配分数",
+        "matchedSkills": "匹配技能",
+        "gapSkills": "差距技能",
+        "readiness": "准备度",
+        "recommendation": "建议",
+        "analysisDate": "分析日期",
+        "remark": "备注"
+      }
+    },
+    "successionCandidate": {
+      "name": "继任候选人",
+      "home": {
+        "title": "继任候选人",
+        "createLabel": "创建新继任候选人",
+        "createOrEditLabel": "创建或编辑继任候选人"
+      },
+      "field": {
+        "successionReadiness": "继任准备度",
+        "requiredTraining": "所需培训",
+        "estimatedTimeToReady": "预计准备时间",
+        "riskAfterTraining": "培训后风险",
+        "reviewDate": "审查日期",
+        "priority": "优先级"
+      },
+      "section": {
+        "positionAndOwner": "岗位与人员"
+      }
+    },
+    "positionRisk": {
+      "name": "职位风险",
+      "home": {
+        "title": "职位风险",
+        "createLabel": "创建新职位风险",
+        "createOrEditLabel": "创建或编辑职位风险"
+      },
+      "field": {
+        "riskType": "风险类型",
+        "riskLevel": "风险等级",
+        "documentStatus": "文档状态",
+        "backupStatus": "备份状态",
+        "customerOrSystemDependency": "客户/系统依赖",
+        "riskDescription": "风险描述",
+        "improvementAction": "改进措施",
+        "identifiedDate": "识别日期",
+        "targetDate": "目标日期",
+        "closedDate": "关闭日期"
+      }
+    },
+    "personRisk": {
+      "name": "人员风险",
+      "home": {
+        "title": "人员风险",
+        "createLabel": "创建新人员风险",
+        "createOrEditLabel": "创建或编辑人员风险"
+      },
+      "field": {
+        "riskType": "风险类型",
+        "riskLevel": "风险等级",
+        "riskDescription": "风险描述",
+        "improvementAction": "改进措施",
+        "identifiedDate": "识别日期",
+        "targetDate": "目标日期",
+        "closedDate": "关闭日期"
+      }
+    },
+    "skillUpgradeRecord": {
+      "name": "技能升级记录",
+      "home": {
+        "title": "技能升级记录",
+        "createLabel": "创建新技能升级记录",
+        "createOrEditLabel": "创建或编辑技能升级记录"
+      },
+      "field": {
+        "changeType": "变更类型",
+        "changeDate": "变更日期",
+        "reason": "原因",
+        "beforeLevelLabel": "变更前等级",
+        "afterLevelLabel": "变更后等级",
+        "evidence": "证据",
+        "comment": "备注"
+      }
+    },
+    "staffSubstitution": {
+      "name": "人员替代",
+      "home": {
+        "title": "人员替代",
+        "createLabel": "创建新人员替代",
+        "createOrEditLabel": "创建或编辑人员替代"
+      },
+      "field": {
+        "coverageRate": "覆盖率",
+        "thresholdRate": "阈值",
+        "totalSkillCount": "技能总数",
+        "coveredSkillCount": "已覆盖技能数",
+        "missingSkills": "缺失技能",
+        "substitutable": "可替代",
+        "evaluationDate": "评估日期",
+        "reason": "原因"
+      },
+      "section": {
+        "evaluationResult": "评估结果"
+      },
+      "action": {
+        "recalculate": "重新计算"
+      }
+    },
+    "positionRiskEvaluation": {
+      "name": "职位风险评估",
+      "home": {
+        "title": "职位风险评估",
+        "createLabel": "创建新职位风险评估",
+        "createOrEditLabel": "创建或编辑职位风险评估"
+      },
+      "field": {
+        "evaluationDate": "评估日期",
+        "ownerCount": "人数",
+        "substitutableOwnerCount": "可替代人数",
+        "hasSubstitute": "有替代",
+        "documentStatus": "文档状态",
+        "customerOrSystemDependency": "客户/系统依赖度",
+        "successionReadiness": "后继者准备度",
+        "riskLevel": "风险等级",
+        "riskReason": "风险原因",
+        "recommendedAction": "建议措施"
+      },
+      "section": {
+        "evaluationResult": "评估结果"
+      },
+      "action": {
+        "evaluateAndSave": "评估并保存"
+      }
+    },
+    "trainingGoal": {
+      "name": "培训目标",
+      "home": {
+        "title": "培训目标",
+        "createLabel": "创建新培训目标",
+        "createOrEditLabel": "创建或编辑培训目标"
+      },
+      "field": {
+        "goalName": "目标名称",
+        "goalDescription": "目标描述",
+        "targetLevelDescription": "目标等级描述",
+        "startDate": "开始日期",
+        "targetDate": "目标日期",
+        "status": "状态"
+      }
+    },
+    "trainingRecord": {
+      "name": "培训记录",
+      "home": {
+        "title": "培训记录",
+        "createLabel": "创建新培训记录",
+        "createOrEditLabel": "创建或编辑培训记录"
+      },
+      "field": {
+        "trainingDate": "培训日期",
+        "trainingType": "培训类型",
+        "topic": "主题",
+        "taskDescription": "任务描述",
+        "resultDescription": "结果描述",
+        "evidence": "证据",
+        "nextAction": "下一步行动"
+      }
+    },
+    "skillAssessment": {
+      "name": "技能评估",
+      "home": {
+        "title": "技能评估",
+        "createLabel": "创建新技能评估",
+        "createOrEditLabel": "创建或编辑技能评估"
+      },
+      "field": {
+        "assessmentDate": "评估日期",
+        "result": "结果",
+        "evidence": "证据",
+        "comment": "备注"
+      }
+    },
+    "trustObservation": {
+      "name": "信任观察",
+      "home": {
+        "title": "信任观察",
+        "createLabel": "创建新信任观察",
+        "createOrEditLabel": "创建或编辑信任观察"
+      },
+      "field": {
+        "observationDate": "观察日期",
+        "trustStage": "信任阶段",
+        "observedBehavior": "观察到的行为",
+        "positiveSignal": "积极信号",
+        "riskSignal": "风险信号",
+        "nextObservationPoint": "下次观察点"
+      }
+    },
+    "evaluation": {
+      "name": "评估",
+      "home": {
+        "title": "评估",
+        "createLabel": "创建新评估",
+        "createOrEditLabel": "创建或编辑评估"
+      },
+      "field": {
+        "evaluationName": "评估名称",
+        "evaluationDate": "评估日期",
+        "periodLabel": "周期标签",
+        "progressStatus": "进度状态",
+        "result": "结果",
+        "strengths": "优势",
+        "weaknesses": "不足",
+        "supportNeeded": "所需支持",
+        "nextTrainingFocus": "下一步培训重点",
+        "positionAdjustmentNeeded": "是否需要调整职位"
+      }
+    },
+    "improvementPlan": {
+      "name": "改进计划",
+      "home": {
+        "title": "改进计划",
+        "createLabel": "创建新改进计划",
+        "createOrEditLabel": "创建或编辑改进计划"
+      },
+      "field": {
+        "planName": "计划名称",
+        "planStatus": "计划状态",
+        "problemSummary": "问题总结",
+        "improvementAction": "改进措施",
+        "ownerName": "负责人",
+        "startDate": "开始日期",
+        "targetDate": "目标日期",
+        "completionDate": "完成日期",
+        "reviewResult": "审查结果"
+      }
+    },
+    "keyResponsibilityCategory": {
+      "name": "关键职责类别",
+      "home": {
+        "title": "关键职责类别",
+        "createLabel": "创建新关键职责类别",
+        "createOrEditLabel": "创建或编辑关键职责类别"
+      },
+      "field": {
+        "categoryName": "类别名称",
+        "examples": "示例",
+        "riskFocus": "风险关注点"
+      }
+    },
+    "candidateProfile": {
+      "name": "候选人档案",
+      "home": {
+        "title": "候选人档案",
+        "createLabel": "创建新候选人档案",
+        "createOrEditLabel": "创建或编辑候选人档案"
+      },
+      "field": {
+        "candidateDate": "候选日期",
+        "cultivateDirection": "培养方向",
+        "stability": "稳定性",
+        "learningAbility": "学习能力",
+        "communicationCoordination": "沟通协调",
+        "businessUnderstanding": "业务理解",
+        "responsibility": "责任感",
+        "riskAwareness": "风险意识",
+        "judgement": "判断力",
+        "evidence": "证据"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "控制台",
+    "error": "数据加载失败，请重试。",
+    "summary": {
+      "title": "系统统计",
+      "positions": "职位",
+      "persons": "人员",
+      "skills": "技能",
+      "highRisk": "高风险",
+      "trainings": "培训",
+      "substitutions": "替代"
+    },
+    "risk": {
+      "title": "风险概览",
+      "count": "共 {n} 个高风险",
+      "empty": "暂无高风险职位"
+    },
+    "coverage": {
+      "title": "替代覆盖率不足",
+      "count": "共 {n} 条记录",
+      "empty": "暂无覆盖率不足的记录"
+    },
+    "review": {
+      "title": "技能复核提醒",
+      "count": "{n} 项待处理",
+      "empty": "暂无待复核技能",
+      "status": {
+        "label": "状态",
+        "overdue": "已到期",
+        "daysRemaining": "还剩 {n} 天"
+      }
+    },
+    "successionMap": {
+      "title": "后继者地图",
+      "count": "{n} 个职位",
+      "empty": "暂无后继者数据",
+      "candidates": "候选人员"
+    }
+  },
+  "skillGapReport": {
+    "title": "岗位技能缺口报告",
+    "filter": {
+      "position": "职位",
+      "importance": "重要度",
+      "includeOwners": "包含在职人员",
+      "includeCandidates": "包含候选人员"
+    },
+    "generate": "生成报告",
+    "summary": "共 {n} 个职位",
+    "gapCount": "{n} 项缺口",
+    "requiredSkills": "项技能要求",
+    "owners": "在职人员",
+    "candidates": "候选人员",
+    "person": "人员",
+    "coverage": "覆盖率",
+    "gapSkills": "缺口技能",
+    "noGaps": "无缺口",
+    "noOwners": "暂无在职人员",
+    "noCandidates": "暂无候选人员",
+    "aggregatedGaps": "汇集缺口排名",
+    "noAggregatedGaps": "未发现技能缺口",
+    "skill": "技能",
+    "importance": "重要度",
+    "requiredLevel": "要求等级",
+    "deficientCount": "缺口人数",
+    "maxDeficit": "最大差距",
+    "createTrainingGoal": "创建培训目标"
+  },
+  "trainingSuggestion": {
+    "title": "培训建议",
+    "count": "共 {n} 条",
+    "current": "当前",
+    "target": "目标",
+    "priorityLabel": "优先级",
+    "action": "操作",
+    "priority": {
+      "P0_CRITICAL": "P0 - 紧急",
+      "P1_HIGH": "P1 - 高",
+      "P2_MEDIUM": "P2 - 中",
+      "P3_LOW": "P3 - 低"
+    },
+    "createGoal": "创建培训目标",
+    "created": "已创建",
+    "goalName": "为 {personName} 培训 {skillName}",
+    "goalDescription": "基于技能缺口报告生成 — {reason}",
+    "targetLevelDescription": "目标: {level}"
+  },
+  "error": {
+    "sessions": "会话已过期，请重新登录。",
+    "internalServerError": "服务器内部错误",
+    "serverNotReachable": "服务器不可达",
+    "timeout": "服务器响应超时",
+    "size": "文件太大"
+  }
+}

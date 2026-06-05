@@ -11,7 +11,7 @@
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/testdb/hrapp;DB_CLOSE_DELAY=-1;MODE=LEGACY
+    url: jdbc:h2:file:./target/h2db/testdb/hrapp;DB_CLOSE_DELAY=-1;MODE=LEGACY;NON_KEYWORDS=CURRENT_ROLE
     username: hrapp
     password:
     hikari:

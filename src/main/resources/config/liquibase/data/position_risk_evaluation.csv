@@ -1,0 +1,6 @@
+id;evaluation_date;owner_count;substitutable_owner_count;has_substitute;document_status;customer_or_system_dependency;succession_readiness;risk_level;risk_reason;recommended_action;position_id
+1;2025-06-01;2;1;true;PARTIAL;LOW;THREE_MONTHS;MEDIUM;备选人员经验不足;加强培养备选人员;1
+2;2025-06-01;1;1;true;AVAILABLE;LOW;IMMEDIATE;LOW;继任者已就绪;定期回顾;3
+3;2025-06-01;1;0;false;MISSING;MEDIUM;NONE;HIGH;无替代人员;紧急培养继任者;6
+4;2025-06-01;2;1;true;PARTIAL;HIGH;THREE_MONTHS;MEDIUM;客户关系集中;建立备份机制;5
+5;2025-06-01;2;1;true;AVAILABLE;LOW;IMMEDIATE;LOW;风险可控;持续监控;10

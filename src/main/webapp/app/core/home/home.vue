@@ -1,55 +1,77 @@
 <template>
-  <div class="home row">
-    <div class="col-md-3">
-      <span class="hipster img-fluid rounded"></span>
+  <div class="home-wrapper">
+    <div class="row mb-4">
+      <div class="col-12 text-center py-4">
+        <div class="mb-3">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="20" fill="#1a5276" />
+            <text x="50" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="white">B</text>
+          </svg>
+        </div>
+        <h1 class="display-4 fw-bold" style="color: #1a5276">BTMDC</h1>
+        <p class="lead text-muted">人力资源能力评价系统</p>
+        <p class="text-muted">Human Resource Capability Evaluation Platform</p>
+      </div>
     </div>
-    <div class="col-md-9">
-      <h1 class="display-4">Welcome, Java Hipster!</h1>
-      <p class="lead">This is your homepage</p>
 
-      <div>
-        <div class="alert alert-success" v-if="authenticated">
-          <span v-if="username">You are logged in as user "{{ username }}".</span>
-        </div>
-
-        <div class="alert alert-warning" v-if="!authenticated">
-          <span>If you want to </span>
-          <a class="alert-link" @click="showLogin()">sign in</a
-          ><span
-            >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-            password="user").</span
-          >
-        </div>
-        <div class="alert alert-warning" v-if="!authenticated">
-          <span>You don't have an account yet?</span>&nbsp;
-          <router-link class="alert-link" to="/register">Register a new account</router-link>
+    <div v-if="authenticated" class="row mb-4">
+      <div class="col-12">
+        <div class="alert alert-success d-flex align-items-center gap-2">
+          <font-awesome-icon icon="user" class="fs-5" />
+          <span v-if="username">{{ $t('home.logged.message', { username }) }}</span>
         </div>
       </div>
+    </div>
 
-      <p>If you have any questions on JHipster:</p>
+    <div v-if="!authenticated" class="row mb-4">
+      <div class="col-12">
+        <div class="alert alert-warning d-flex align-items-center gap-2">
+          <font-awesome-icon icon="sign-in-alt" class="fs-5" />
+          <span>{{ $t('home.login.prompt') }}</span>
+          <a class="alert-link ms-1" @click="showLogin()">{{ $t('home.login.signIn') }}</a>
+        </div>
+        <div class="alert alert-info d-flex align-items-center gap-2">
+          <font-awesome-icon icon="user-plus" class="fs-5" />
+          <span>{{ $t('home.register.prompt') }}</span>
+          <router-link class="alert-link ms-1" to="/register">{{ $t('home.register.link') }}</router-link>
+        </div>
+      </div>
+    </div>
 
-      <ul>
-        <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">JHipster homepage</a></li>
-        <li>
-          <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">JHipster on Stack Overflow</a>
-        </li>
-        <li>
-          <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer"
-            >JHipster bug tracker</a
-          >
-        </li>
-        <li>
-          <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">JHipster public chat room</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">follow @jhipster on Twitter</a>
-        </li>
-      </ul>
-
-      <p>
-        <span>If you like JHipster, don't forget to give us a star on</span>
-        <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">GitHub</a>!
-      </p>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card home-card h-100">
+          <div class="card-body text-center">
+            <div class="home-section-icon mb-3">
+              <font-awesome-icon icon="users" style="color: #1a5276" />
+            </div>
+            <h5 class="card-title">{{ $t('home.section.people.title') }}</h5>
+            <p class="card-text text-muted">{{ $t('home.section.people.description') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card home-card h-100">
+          <div class="card-body text-center">
+            <div class="home-section-icon mb-3">
+              <font-awesome-icon icon="tasks" style="color: #2e86c1" />
+            </div>
+            <h5 class="card-title">{{ $t('home.section.skills.title') }}</h5>
+            <p class="card-text text-muted">{{ $t('home.section.skills.description') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card home-card h-100">
+          <div class="card-body text-center">
+            <div class="home-section-icon mb-3">
+              <font-awesome-icon icon="chart-line" style="color: #28b463" />
+            </div>
+            <h5 class="card-title">{{ $t('home.section.evaluation.title') }}</h5>
+            <p class="card-text text-muted">{{ $t('home.section.evaluation.description') }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

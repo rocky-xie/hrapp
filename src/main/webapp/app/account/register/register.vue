@@ -134,15 +134,6 @@
 
           <button type="submit" :disabled="v$.$invalid" class="btn btn-primary" data-cy="submit">Register</button>
         </form>
-        <p></p>
-        <div class="alert alert-warning">
-          <span>If you want to </span>
-          <a class="alert-link" @click="showLogin()">sign in</a
-          ><span
-            >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-            password="user").</span
-          >
-        </div>
       </div>
     </div>
   </div>

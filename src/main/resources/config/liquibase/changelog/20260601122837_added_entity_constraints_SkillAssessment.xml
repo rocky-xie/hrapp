@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity SkillAssessment.
+    -->
+    <changeSet id="20260601122837-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="skill_assessment"
+                                 constraintName="fk_skill_assessment__person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="skill_id"
+                                 baseTableName="skill_assessment"
+                                 constraintName="fk_skill_assessment__skill_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="assessor_id"
+                                 baseTableName="skill_assessment"
+                                 constraintName="fk_skill_assessment__assessor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="new_level_id"
+                                 baseTableName="skill_assessment"
+                                 constraintName="fk_skill_assessment__new_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill_level"
+                                 />
+    </changeSet>
+</databaseChangeLog>

@@ -1,4 +1,4 @@
-import { type Component, defineComponent, provide } from 'vue';
+import { type Component, type Ref, defineComponent, inject, provide } from 'vue';
 
 import { BApp } from 'bootstrap-vue-next';
 import { storeToRefs } from 'pinia';
@@ -23,9 +23,11 @@ export default defineComponent({
   setup() {
     provide('alertService', useAlertService());
     const { loginModalOpen } = storeToRefs(useLoginModal());
+    const currentLanguage = inject<Ref<string>>('currentLanguage');
 
     return {
       loginModalOpen,
+      currentLanguage,
     };
   },
 });

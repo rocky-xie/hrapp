@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity SuccessionCandidate.
+    -->
+    <changeSet id="20260601122829-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="position_id"
+                                 baseTableName="succession_candidate"
+                                 constraintName="fk_succession_candidate__position_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="current_owner_id"
+                                 baseTableName="succession_candidate"
+                                 constraintName="fk_succession_candidate__current_owner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="candidate_id"
+                                 baseTableName="succession_candidate"
+                                 constraintName="fk_succession_candidate__candidate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"
+                                 />
+    </changeSet>
+</databaseChangeLog>

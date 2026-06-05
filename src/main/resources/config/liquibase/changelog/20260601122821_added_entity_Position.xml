@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Position.
+    -->
+    <changeSet id="20260601122821-1" author="jhipster">
+        <createTable tableName="position" remarks="职位 / 关键职责。组织架构中的基本单元。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="position_code" type="varchar(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_position__position_code" />
+            </column>
+            <column name="position_name" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="position_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="business_importance" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="key_position" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="planned_headcount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="minimum_owner_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="review_cycle" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

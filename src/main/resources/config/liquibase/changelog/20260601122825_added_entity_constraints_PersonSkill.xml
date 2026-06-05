@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity PersonSkill.
+    -->
+    <changeSet id="20260601122825-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="person_skill"
+                                 constraintName="fk_person_skill__person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="skill_id"
+                                 baseTableName="person_skill"
+                                 constraintName="fk_person_skill__skill_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="current_level_id"
+                                 baseTableName="person_skill"
+                                 constraintName="fk_person_skill__current_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill_level"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="previous_level_id"
+                                 baseTableName="person_skill"
+                                 constraintName="fk_person_skill__previous_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill_level"
+                                 />
+    </changeSet>
+</databaseChangeLog>

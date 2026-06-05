@@ -1,0 +1,11 @@
+id;match_score;matched_skills;gap_skills;readiness;recommendation;analysis_date;remark;person_id;position_id
+1;85;Java编程;数据库设计需加强;IMMEDIATE;FIT;2025-06-01;匹配度高;1;1
+2;70;Spring框架;微服务经验不足;THREE_MONTHS;TRAINABLE;2025-06-01;需要培训;11;1
+3;75;前端开发;性能优化经验不足;THREE_MONTHS;TRAINABLE;2025-06-01;基本胜任;2;2
+4;90;项目管理;无;IMMEDIATE;FIT;2025-06-01;完全匹配;3;3
+5;60;业务分析;技术背景不足;SIX_TO_TWELVE_MONTHS;OBSERVE;2025-06-01;需观察;12;4
+6;65;客户沟通;业务知识不足;THREE_MONTHS;TRAINABLE;2025-06-01;需要培养;5;5
+7;95;数据库管理;无;IMMEDIATE;FIT;2025-06-01;专家级别;6;6
+8;55;测试基础;自动化经验不足;SIX_TO_TWELVE_MONTHS;TRAINABLE;2025-06-01;需大量培训;8;8
+9;80;运维技能;云原生经验不足;THREE_MONTHS;FIT;2025-06-01;基本胜任;9;9
+10;85;产品设计;技术深度不够;IMMEDIATE;FIT;2025-06-01;匹配度高;10;10

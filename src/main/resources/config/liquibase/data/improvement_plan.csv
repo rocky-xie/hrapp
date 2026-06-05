@@ -1,0 +1,6 @@
+id;plan_name;plan_status;problem_summary;improvement_action;owner_name;start_date;target_date;completion_date;review_result;position_id;skill_id
+1;核心岗位继任者培养;ACTIVE;Java高级开发岗位无合格替代人员;培养2名候选人员;王磊;2025-06-01;2025-12-01;;;1;1
+2;客户关系备份机制;ACTIVE;客户关系集中在个别人;建立客户关系备份机制;赵敏;2025-06-01;2025-12-01;;;5;5
+3;数据库管理员继任;ACTIVE;数据库管理员为单点风险;培养DBA备选人员;陈静;2025-06-01;2026-06-01;;;6;3
+4;新人技能提升;COMPLETED;新人自动化测试能力不足;完成自动化测试培训;周强;2025-01-15;2025-07-15;2025-07-20;培训完成;8;7
+5;业务分析能力建设;DRAFT;业务分析深度不足;建立业务分析培训体系;郑芳;2025-07-01;2025-12-01;;;4;9

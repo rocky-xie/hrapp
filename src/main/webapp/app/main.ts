@@ -9,6 +9,9 @@ import { useLoginModal } from '@/account/login-modal';
 import { setupAxiosInterceptors } from '@/shared/config/axios-interceptor';
 import { initFortAwesome } from '@/shared/config/config';
 import { initBootstrapVue } from '@/shared/config/config-bootstrap-vue';
+import i18n from '@/shared/config/i18n';
+import { normalizeLanguage } from '@/shared/config/languages';
+import { loadLocale, useLocale } from '@/shared/config/locale.service';
 import JhiItemCount from '@/shared/jhi-item-count.vue';
 import { AUTHENTICATION_TOKEN_KEY } from '@/shared/jhipster/constants';
 import JhiSortIndicator from '@/shared/sort/jhi-sort-indicator.vue';
@@ -30,10 +33,16 @@ const app = createApp({
     const { hideLogin, showLogin } = useLoginModal();
     const store = useStore();
     const accountService = new AccountService(store);
-    provide(
-      'currentLanguage',
-      computed(() => store.account?.langKey ?? navigator.language ?? 'en'),
-    );
+    const { currentLanguage, changeLanguage } = useLocale();
+
+    provide('changeLanguage', changeLanguage);
+    provide('currentLanguage', currentLanguage);
+
+    // Load initial language from account or browser
+    const initialLang = normalizeLanguage(store.account?.langKey ?? navigator.language);
+    if (initialLang) {
+      loadLocale(i18n, initialLang);
+    }
 
     router.beforeResolve(async (to, from, next) => {
       // Make sure login modal is closed
@@ -93,4 +102,5 @@ initFortAwesome(app);
 
 initBootstrapVue(app);
 
+app.use(i18n);
 app.component('JhiItemCount', JhiItemCount).component('JhiSortIndicator', JhiSortIndicator).use(router).use(pinia).mount('#app');

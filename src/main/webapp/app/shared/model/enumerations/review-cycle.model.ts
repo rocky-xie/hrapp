@@ -1,0 +1,11 @@
+export enum ReviewCycle {
+  MONTHLY = 'MONTHLY',
+
+  QUARTERLY = 'QUARTERLY',
+
+  SEMIANNUAL = 'SEMIANNUAL',
+
+  ANNUAL = 'ANNUAL',
+
+  ON_CHANGE = 'ON_CHANGE',
+}

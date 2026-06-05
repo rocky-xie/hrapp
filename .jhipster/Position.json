@@ -1,0 +1,71 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122821"
+  },
+  "applications": ["*"],
+  "documentation": "职位 / 关键职责。组织架构中的基本单元。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "positionCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "positionName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "positionType",
+      "fieldType": "PositionType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "TECHNICAL,BUSINESS_SUPPORT,CUSTOMER_INTERFACE,MANAGEMENT_SUPPORT,MENTOR,OTHER"
+    },
+    {
+      "fieldName": "businessImportance",
+      "fieldType": "ImportanceLevel",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "HIGH,MEDIUM,LOW"
+    },
+    {
+      "fieldName": "keyPosition",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "plannedHeadcount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "minimumOwnerCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "reviewCycle",
+      "fieldType": "ReviewCycle",
+      "fieldValues": "MONTHLY,QUARTERLY,SEMIANNUAL,ANNUAL,ON_CHANGE"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Position",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

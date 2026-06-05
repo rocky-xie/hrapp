@@ -43,14 +43,14 @@
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <jhipster-framework.version>9.1.0</jhipster-framework.version>
         <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
-        <jib-maven-plugin.image>eclipse-temurin:25-jre-noble</jib-maven-plugin.image>
+        <jib-maven-plugin.image>eclipse-temurin:21-jre-noble</jib-maven-plugin.image>
         <jib-maven-plugin.version>3.5.1</jib-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
         <liquibase-plugin.driver/>
         <liquibase-plugin.hibernate-dialect/>
-        <liquibase-plugin.password/>
+	<liquibase-plugin.password>password</liquibase-plugin.password>
         <liquibase-plugin.url/>
-        <liquibase-plugin.username/>
+	<liquibase-plugin.username>root</liquibase-plugin.username>
         <mapstruct.version>1.6.3</mapstruct.version>
         <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
@@ -238,7 +238,8 @@
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
+	    <artifactId>jaxb-runtime</artifactId>
+	    <version>4.0.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -463,8 +464,8 @@
                                 <version>[${maven.version},)</version>
                             </requireMavenVersion>
                             <requireJavaVersion>
-                                <message>You are running an incompatible version of Java. JHipster supports JDK 21 to 25.</message>
-                                <version>[21,22),[25,26)</version>
+                                <message>You are running an incompatible version of Java. This project requires JDK 21.</message>
+                                <version>[21,22)</version>
                             </requireJavaVersion>
                         </rules>
                     </configuration>
@@ -1194,4 +1195,14 @@
             </build>
         </profile>
     </profiles>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.15.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

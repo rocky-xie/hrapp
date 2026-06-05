@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122826"
+  },
+  "applications": ["*"],
+  "documentation": "职位技能要求。描述某职位要求哪些技能及等级门槛。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "importance",
+      "fieldType": "RequirementImportance",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "REQUIRED,IMPORTANT,OPTIONAL"
+    },
+    {
+      "fieldName": "remark",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PositionSkillRequirement",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "skillName",
+      "otherEntityName": "skill",
+      "relationshipName": "skill",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "skillLevel",
+      "relationshipName": "requiredLevel",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "skillLevel",
+      "relationshipName": "preferredLevel",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

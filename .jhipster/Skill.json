@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122823"
+  },
+  "applications": ["*"],
+  "documentation": "技能定义。可包含证书、技术、业务等类型。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "skillCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "skillName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "skillType",
+      "fieldType": "SkillType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CERTIFICATE,TECHNICAL,BUSINESS,ABSTRACT,MENTORING,OTHER"
+    },
+    {
+      "fieldName": "measurableFlag",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "evidenceType",
+      "fieldType": "EvidenceType",
+      "fieldValues": "CERTIFICATE,PROJECT_EXPERIENCE,OBSERVATION,ASSESSMENT_RESULT,OTHER"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Skill",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

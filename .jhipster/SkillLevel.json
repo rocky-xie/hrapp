@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122824"
+  },
+  "applications": ["*"],
+  "documentation": "技能等级。统一使用 L0–L4 五级体系。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "LevelCode",
+      "fieldValidateRules": ["required", "unique"],
+      "fieldValues": "L0,L1,L2,L3,L4"
+    },
+    {
+      "fieldName": "levelName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "definition",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "observableEvidence",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "sortOrder",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SkillLevel",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

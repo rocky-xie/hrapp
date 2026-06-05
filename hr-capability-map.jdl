@@ -1,0 +1,579 @@
+/**
+ * 新人培养与人员能力地图工具包
+ * JHipster JDL — 同步于 Java 实体源码，反映当前数据库与前端实际状态。
+ *
+ * 使用方法：
+ *   jhipster jdl hr-capability-map.jdl
+ *
+ * 注意：
+ * - Authority / User 为 JHipster 内置实体，不在本 JDL 中重复定义。
+ * - 所有业务实体统一使用 pagination / serviceClass / mapstruct / filter。
+ */
+
+// =============================================================================
+// 枚举
+// =============================================================================
+
+enum Gender {
+  MALE,
+  FEMALE,
+  UNSPECIFIED
+}
+
+enum PositionType {
+  TECHNICAL,
+  BUSINESS_SUPPORT,
+  CUSTOMER_INTERFACE,
+  MANAGEMENT_SUPPORT,
+  MENTOR,
+  OTHER
+}
+
+enum ImportanceLevel {
+  HIGH,
+  MEDIUM,
+  LOW
+}
+
+enum ReviewCycle {
+  MONTHLY,
+  QUARTERLY,
+  SEMIANNUAL,
+  ANNUAL,
+  ON_CHANGE
+}
+
+enum EmploymentStatus {
+  NEWCOMER,
+  INDEPENDENT_STAFF,
+  CORE_STAFF,
+  MANAGEMENT_CANDIDATE,
+  OBSERVE
+}
+
+enum SkillType {
+  CERTIFICATE,
+  TECHNICAL,
+  BUSINESS,
+  ABSTRACT,
+  MENTORING,
+  OTHER
+}
+
+enum EvidenceType {
+  CERTIFICATE,
+  PROJECT_EXPERIENCE,
+  OBSERVATION,
+  ASSESSMENT_RESULT,
+  OTHER
+}
+
+enum LevelCode {
+  L0,
+  L1,
+  L2,
+  L3,
+  L4
+}
+
+enum ConfidenceLevel {
+  HIGH,
+  MEDIUM,
+  LOW
+}
+
+enum RequirementImportance {
+  REQUIRED,
+  IMPORTANT,
+  OPTIONAL
+}
+
+enum ReadinessLevel {
+  IMMEDIATE,
+  THREE_MONTHS,
+  SIX_TO_TWELVE_MONTHS,
+  NONE
+}
+
+enum Recommendation {
+  FIT,
+  TRAINABLE,
+  NOT_FIT,
+  OBSERVE
+}
+
+enum RiskLevel {
+  LOW,
+  MEDIUM,
+  HIGH,
+  UNKNOWN
+}
+
+enum RiskType {
+  SINGLE_POINT,
+  KNOWLEDGE_CONCENTRATION,
+  CUSTOMER_RELATION_CONCENTRATION,
+  PERMISSION_CONCENTRATION,
+  SUCCESSOR_SHORTAGE,
+  HEALTH_CONTINUITY,
+  UNCLEAR_RESPONSIBILITY,
+  TURNOVER,
+  OTHER
+}
+
+enum DocumentStatus {
+  AVAILABLE,
+  PARTIAL,
+  MISSING,
+  OUTDATED
+}
+
+enum BackupStatus {
+  AVAILABLE,
+  PARTIAL,
+  MISSING,
+  NOT_APPLICABLE
+}
+
+enum CandidateJudgement {
+  CORE_CANDIDATE,
+  OBSERVE,
+  NOT_SUITABLE
+}
+
+enum TrustStage {
+  S0_UNOBSERVED,
+  S1_BASIC_TRUST,
+  S2_TASK_TRUST,
+  S3_RESPONSIBILITY_TRUST,
+  S4_KEY_TRUST
+}
+
+enum AssessmentResult {
+  PASS,
+  WARNING,
+  FAIL,
+  OBSERVE
+}
+
+enum ProgressStatus {
+  NORMAL,
+  SLOW,
+  FAST,
+  RISK
+}
+
+enum PlanStatus {
+  DRAFT,
+  ACTIVE,
+  COMPLETED,
+  CANCELLED
+}
+
+enum SkillChangeType {
+  NEW_SKILL,
+  LEVEL_UP,
+  LEVEL_DOWN,
+  REASSESSMENT,
+  CORRECTION
+}
+
+enum TrainingType {
+  ONBOARDING,
+  SHADOWING,
+  CASE_REVIEW,
+  PRACTICE,
+  MEETING,
+  DOCUMENTATION,
+  OTHER
+}
+
+// =============================================================================
+// 实体
+// =============================================================================
+
+/**
+ * 职位 / 关键职责。组织架构中的基本单元。
+ */
+entity Position {
+  positionCode          String        required unique maxlength(50)
+  positionName          String        required maxlength(100)
+  positionType          PositionType  required
+  businessImportance    ImportanceLevel required
+  keyPosition           Boolean       required
+  description           TextBlob
+  plannedHeadcount      Integer       min(0)
+  minimumOwnerCount     Integer       min(0)
+  reviewCycle           ReviewCycle
+  active                Boolean       required
+}
+
+/**
+ * 职员。核心主体，关联技能、任职、替代等业务数据。
+ */
+entity Person {
+  employeeCode          String              unique maxlength(50)
+  personName            String              required maxlength(100)
+  age                   Integer             min(0) max(120)
+  gender                Gender
+  department            String              maxlength(100)
+  currentRole           String              maxlength(100)
+  employmentStatus      EmploymentStatus    required
+  joinDate              LocalDate
+  mentorFlag            Boolean             required
+  coreCandidateFlag     Boolean             required
+  note                  TextBlob
+}
+
+/**
+ * 技能定义。可包含证书、技术、业务等类型。
+ */
+entity Skill {
+  skillCode             String        required unique maxlength(50)
+  skillName             String        required maxlength(100)
+  skillType             SkillType     required
+  measurableFlag        Boolean       required
+  description           TextBlob
+  evidenceType          EvidenceType
+}
+
+/**
+ * 技能等级。统一使用 L0–L4 五级体系。
+ */
+entity SkillLevel {
+  code                  LevelCode     required unique
+  levelName             String        required maxlength(100)
+  definition            TextBlob
+  observableEvidence    TextBlob
+  sortOrder             Integer       required min(0)
+}
+
+/**
+ * 人员技能关联。记录某人掌握某项技能及当前等级。
+ */
+entity PersonSkill {
+  assessmentDate        LocalDate       required
+  nextReviewDate        LocalDate
+  evidence              TextBlob
+  confidence            ConfidenceLevel
+  growthDirection       TextBlob
+}
+
+/**
+ * 职位技能要求。描述某职位要求哪些技能及等级门槛。
+ */
+entity PositionSkillRequirement {
+  importance            RequirementImportance   required
+  remark                TextBlob
+}
+
+/**
+ * 职位任职。记录职员与职位的多段任职历史。
+ */
+entity PositionAssignment {
+  primaryOwner          Boolean     required
+  startDate             LocalDate
+  endDate               LocalDate
+  responsibilityScope   TextBlob
+  active                Boolean     required
+}
+
+/**
+ * 人岗匹配。分析某人是否适任某个职位的评估记录。
+ */
+entity PositionMatch {
+  matchScore            Integer           min(0) max(100)
+  matchedSkills         TextBlob
+  gapSkills             TextBlob
+  readiness             ReadinessLevel    required
+  recommendation        Recommendation    required
+  analysisDate          LocalDate         required
+  remark                TextBlob
+}
+
+/**
+ * 继任候选人。记录某职位候选人的接替评估。
+ */
+entity SuccessionCandidate {
+  successionReadiness   ReadinessLevel    required
+  requiredTraining      TextBlob
+  estimatedTimeToReady  String            maxlength(100)
+  riskAfterTraining     RiskLevel
+  reviewDate            LocalDate
+  priority              Integer           min(1)
+}
+
+/**
+ * 岗位风险。针对岗位维度的风险评估。
+ */
+entity PositionRisk {
+  riskType                        RiskType        required
+  riskLevel                       RiskLevel       required
+  documentStatus                  DocumentStatus
+  backupStatus                    BackupStatus
+  customerOrSystemDependency      ImportanceLevel
+  riskDescription                 TextBlob
+  improvementAction               TextBlob
+  identifiedDate                  LocalDate       required
+  targetDate                      LocalDate
+  closedDate                      LocalDate
+}
+
+/**
+ * 人员风险。针对人员维度的流失/单点等风险评估。
+ */
+entity PersonRisk {
+  riskType              RiskType        required
+  riskLevel             RiskLevel       required
+  riskDescription       TextBlob
+  improvementAction     TextBlob
+  identifiedDate        LocalDate       required
+  targetDate            LocalDate
+  closedDate            LocalDate
+}
+
+/**
+ * 技能升级记录。追踪某人某项技能的变动历史（新增、升级、降级等）。
+ */
+entity SkillUpgradeRecord {
+  changeType            SkillChangeType   required
+  changeDate            LocalDate         required
+  reason                String            required maxlength(200)
+  beforeLevelLabel      String            maxlength(50)
+  afterLevelLabel       String            maxlength(50)
+  evidence              TextBlob
+  comment               TextBlob
+}
+
+/**
+ * 职位替代关系。某个候选人员对指定职位的替代能力评定结果。
+ */
+entity StaffSubstitution {
+  coverageRate          BigDecimal      required min(0) max(100)
+  thresholdRate         BigDecimal      required min(0) max(100)
+  totalSkillCount       Integer         min(0)
+  coveredSkillCount     Integer         min(0)
+  missingSkills         TextBlob
+  substitutable         Boolean         required
+  evaluationDate        LocalDate       required
+  reason                TextBlob
+}
+
+/**
+ * 职位风险评价。对职位整体风险的定期评价快照。
+ */
+entity PositionRiskEvaluation {
+  evaluationDate              LocalDate     required
+  ownerCount                  Integer       min(0)
+  substitutableOwnerCount     Integer       min(0)
+  hasSubstitute               Boolean       required
+  documentStatus              DocumentStatus
+  customerOrSystemDependency  ImportanceLevel
+  successionReadiness         ReadinessLevel
+  riskLevel                   RiskLevel     required
+  riskReason                  TextBlob
+  recommendedAction           TextBlob
+}
+
+/**
+ * 培训目标。为人员或群体设定的技能提升计划。
+ */
+entity TrainingGoal {
+  goalName                String      required maxlength(150)
+  goalDescription         TextBlob
+  targetLevelDescription  TextBlob
+  startDate               LocalDate
+  targetDate              LocalDate
+  status                  PlanStatus  required
+}
+
+/**
+ * 培训记录。实际发生的培训活动记录。
+ */
+entity TrainingRecord {
+  trainingDate          LocalDate       required
+  trainingType          TrainingType    required
+  topic                 String          required maxlength(150)
+  taskDescription       TextBlob
+  resultDescription     TextBlob
+  evidence              TextBlob
+  nextAction            TextBlob
+}
+
+/**
+ * 技能评估。对某个人某项技能的阶段评估结果。
+ */
+entity SkillAssessment {
+  assessmentDate        LocalDate           required
+  result                AssessmentResult    required
+  evidence              TextBlob
+  comment               TextBlob
+}
+
+/**
+ * 信任观察。对人员信任阶段的阶段性评估。
+ */
+entity TrustObservation {
+  observationDate       LocalDate     required
+  trustStage            TrustStage    required
+  observedBehavior      TextBlob
+  positiveSignal        TextBlob
+  riskSignal            TextBlob
+  nextObservationPoint  TextBlob
+}
+
+/**
+ * 评价考核。周期性的综合评价。
+ */
+entity Evaluation {
+  evaluationName                String            required maxlength(150)
+  evaluationDate                LocalDate         required
+  periodLabel                   String            maxlength(100)
+  progressStatus                ProgressStatus
+  result                        AssessmentResult
+  strengths                     TextBlob
+  weaknesses                    TextBlob
+  supportNeeded                 TextBlob
+  nextTrainingFocus             TextBlob
+  positionAdjustmentNeeded      Boolean
+}
+
+/**
+ * 改善计划。针对问题制定的改善行动计划。
+ */
+entity ImprovementPlan {
+  planName              String      required maxlength(150)
+  planStatus            PlanStatus  required
+  problemSummary        TextBlob
+  improvementAction     TextBlob
+  ownerName             String      maxlength(100)
+  startDate             LocalDate
+  targetDate            LocalDate
+  completionDate        LocalDate
+  reviewResult          TextBlob
+}
+
+/**
+ * 关键职责分类。岗位风险中按类型归类的职责类别。
+ */
+entity KeyResponsibilityCategory {
+  categoryName          String      required unique maxlength(100)
+  examples              TextBlob
+  riskFocus             TextBlob
+}
+
+/**
+ * 候选人画像。对候选人多维度的评估记录。
+ */
+entity CandidateProfile {
+  candidateDate                 LocalDate             required
+  cultivateDirection            String                maxlength(150)
+  stability                     ImportanceLevel
+  learningAbility               ImportanceLevel
+  communicationCoordination     ImportanceLevel
+  businessUnderstanding         ImportanceLevel
+  responsibility                ImportanceLevel
+  riskAwareness                 ImportanceLevel
+  judgement                     CandidateJudgement    required
+  evidence                      TextBlob
+}
+
+// =============================================================================
+// 关系
+// =============================================================================
+
+relationship ManyToOne {
+
+  // ── PersonSkill ──────────────────────────────────────────────────────────
+  PersonSkill{person(personName) required}                  to Person
+  PersonSkill{skill(skillName) required}                    to Skill
+  PersonSkill{currentLevel(code) required}                  to SkillLevel
+  PersonSkill{previousLevel(code)}                          to SkillLevel
+
+  // ── PositionSkillRequirement ─────────────────────────────────────────────
+  PositionSkillRequirement{position(positionName) required} to Position
+  PositionSkillRequirement{skill(skillName) required}       to Skill
+  PositionSkillRequirement{requiredLevel(code) required}    to SkillLevel
+  PositionSkillRequirement{preferredLevel(code)}            to SkillLevel
+
+  // ── PositionAssignment ──────────────────────────────────────────────────
+  PositionAssignment{person(personName) required}           to Person
+  PositionAssignment{position(positionName) required}       to Position
+
+  // ── PositionMatch ───────────────────────────────────────────────────────
+  PositionMatch{person(personName) required}                to Person
+  PositionMatch{position(positionName) required}            to Position
+
+  // ── SuccessionCandidate ─────────────────────────────────────────────────
+  SuccessionCandidate{position(positionName) required}      to Position
+  SuccessionCandidate{currentOwner(personName)}             to Person
+  SuccessionCandidate{candidate(personName) required}       to Person
+
+  // ── PositionRisk ────────────────────────────────────────────────────────
+  PositionRisk{position(positionName) required}             to Position
+  PositionRisk{category(categoryName)}                     to KeyResponsibilityCategory
+
+  // ── PersonRisk ──────────────────────────────────────────────────────────
+  PersonRisk{person(personName) required}                   to Person
+  PersonRisk{position(positionName)}                        to Position
+
+  // ── SkillUpgradeRecord ──────────────────────────────────────────────────
+  SkillUpgradeRecord{person(personName) required}           to Person
+  SkillUpgradeRecord{skill(skillName) required}             to Skill
+  SkillUpgradeRecord{oldLevel(code)}                        to SkillLevel
+  SkillUpgradeRecord{newLevel(code) required}               to SkillLevel
+  SkillUpgradeRecord{assessor(personName)}                  to Person
+
+  // ── StaffSubstitution ───────────────────────────────────────────────────
+  StaffSubstitution{position(positionName) required}        to Position
+  StaffSubstitution{candidatePerson(personName) required}   to Person
+
+  // ── PositionRiskEvaluation ─────────────────────────────────────────────
+  PositionRiskEvaluation{position(positionName) required}   to Position
+
+  // ── TrainingGoal ────────────────────────────────────────────────────────
+  TrainingGoal{person(personName)}                           to Person
+  TrainingGoal{position(positionName)}                       to Position
+  TrainingGoal{skill(skillName)}                             to Skill
+  TrainingGoal{targetLevel(code)}                            to SkillLevel
+
+  // ── TrainingRecord ──────────────────────────────────────────────────────
+  TrainingRecord{person(personName) required}                to Person
+  TrainingRecord{trainingGoal(goalName)}                     to TrainingGoal
+  TrainingRecord{position(positionName)}                     to Position
+  TrainingRecord{mentor(personName)}                         to Person
+
+  // ── SkillAssessment ─────────────────────────────────────────────────────
+  SkillAssessment{person(personName)}                         to Person
+  SkillAssessment{skill(skillName)}                           to Skill
+  SkillAssessment{assessor(personName)}                      to Person
+  SkillAssessment{newLevel(code)}                            to SkillLevel
+
+  // ── TrustObservation ────────────────────────────────────────────────────
+  TrustObservation{person(personName) required}              to Person
+  TrustObservation{observer(personName)}                     to Person
+
+  // ── Evaluation ──────────────────────────────────────────────────────────
+  Evaluation{person(personName) required}                    to Person
+  Evaluation{position(positionName)}                         to Position
+  Evaluation{trainingGoal(goalName)}                         to TrainingGoal
+  Evaluation{evaluator(personName)}                          to Person
+
+  // ── ImprovementPlan ─────────────────────────────────────────────────────
+  ImprovementPlan{position(positionName)}                    to Position
+  ImprovementPlan{skill(skillName)}                          to Skill
+
+  // ── CandidateProfile ────────────────────────────────────────────────────
+  CandidateProfile{person(personName) required}              to Person
+  CandidateProfile{position(positionName)}                   to Position
+  CandidateProfile{observer(personName)}                     to Person
+}
+
+// =============================================================================
+// 全局选项
+// =============================================================================
+
+paginate * with pagination
+service  * with serviceClass
+dto      * with mapstruct
+filter   *

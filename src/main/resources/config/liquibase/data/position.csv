@@ -1,0 +1,11 @@
+id;position_code;position_name;position_type;business_importance;key_position;description;planned_headcount;minimum_owner_count;review_cycle;active
+1;POS-001;Java高级开发工程师;TECHNICAL;HIGH;true;负责核心业务系统后端开发与架构设计;3;2;QUARTERLY;true
+2;POS-002;前端开发工程师;TECHNICAL;MEDIUM;false;负责前端页面开发与交互优化;2;1;SEMIANNUAL;true
+3;POS-003;项目经理;MANAGEMENT_SUPPORT;HIGH;true;负责项目整体管理与资源协调;2;1;QUARTERLY;true
+4;POS-004;业务分析师;BUSINESS_SUPPORT;MEDIUM;false;负责业务需求分析与流程梳理;2;1;SEMIANNUAL;true
+5;POS-005;客户服务专员;CUSTOMER_INTERFACE;HIGH;true;负责客户沟通与问题处理;4;2;MONTHLY;true
+6;POS-006;数据库管理员;TECHNICAL;HIGH;true;负责数据库运维与性能调优;2;1;QUARTERLY;true
+7;POS-007;导师;MENTOR;MEDIUM;false;负责新人培养与技能传授;2;1;ANNUAL;true
+8;POS-008;测试工程师;TECHNICAL;LOW;false;负责软件测试与质量保障;2;1;SEMIANNUAL;true
+9;POS-009;运维工程师;TECHNICAL;MEDIUM;false;负责系统部署与运维监控;2;1;QUARTERLY;true
+10;POS-010;产品经理;MANAGEMENT_SUPPORT;HIGH;true;负责产品规划与需求管理;2;1;QUARTERLY;true

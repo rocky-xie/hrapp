@@ -1,5 +1,15 @@
-// jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
+const Dashboard = () => import('@/core/dashboard/dashboard.vue');
+const SkillGapReport = () => import('@/core/reports/skill-gap-report.vue');
 
 export default [
-  // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  {
+    path: '/reports/skill-gaps',
+    name: 'SkillGapReport',
+    component: SkillGapReport,
+  },
 ];

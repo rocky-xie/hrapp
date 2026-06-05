@@ -1,0 +1,11 @@
+export enum SkillChangeType {
+  NEW_SKILL = 'NEW_SKILL',
+
+  LEVEL_UP = 'LEVEL_UP',
+
+  LEVEL_DOWN = 'LEVEL_DOWN',
+
+  REASSESSMENT = 'REASSESSMENT',
+
+  CORRECTION = 'CORRECTION',
+}

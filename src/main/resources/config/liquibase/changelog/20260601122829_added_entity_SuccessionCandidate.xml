@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity SuccessionCandidate.
+    -->
+    <changeSet id="20260601122829-1" author="jhipster">
+        <createTable tableName="succession_candidate" remarks="继任候选人。记录某职位候选人的接替评估。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="succession_readiness" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="required_training" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="estimated_time_to_ready" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="risk_after_training" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="review_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="priority" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="position_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="current_owner_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="candidate_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

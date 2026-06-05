@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import type AccountService from '@/account/account.service';
 import { useLoginModal } from '@/account/login-modal';
 import EntitiesMenu from '@/entities/entities-menu.vue';
+import { SUPPORTED_LANGUAGES } from '@/shared/config/languages';
 import { AUTHENTICATION_TOKEN_KEY } from '@/shared/jhipster/constants';
 import { useStore } from '@/store';
 
@@ -15,13 +16,15 @@ export default defineComponent({
   setup() {
     const { showLogin } = useLoginModal();
     const accountService = inject<AccountService>('accountService');
-    const currentLanguage = inject('currentLanguage', () => computed(() => navigator.language ?? 'en'), true);
+    const currentLanguage = inject<Ref<string>>('currentLanguage');
+    const changeLanguage = inject<(lang: string) => void>('changeLanguage');
 
     const router = useRouter();
     const store = useStore();
 
     const version = `v${APP_VERSION}`;
     const hasAnyAuthorityValues: Ref<any> = ref({});
+    const languages = SUPPORTED_LANGUAGES;
 
     const openAPIEnabled = computed(() => store.activeProfiles.includes('api-docs'));
     const inProduction = computed(() => store.activeProfiles.includes('prod'));
@@ -50,6 +53,8 @@ export default defineComponent({
       showLogin,
       version,
       currentLanguage,
+      changeLanguage,
+      languages,
       hasAnyAuthorityValues,
       openAPIEnabled,
       inProduction,

@@ -4,6 +4,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { email, maxLength, minLength, required } from '@vuelidate/validators';
 import axios from 'axios';
 
+import { SUPPORTED_LANGUAGES, normalizeLanguage } from '@/shared/config/languages';
 import { EMAIL_ALREADY_USED_TYPE } from '@/shared/jhipster/error.constants';
 import { useStore } from '@/store';
 
@@ -40,6 +41,7 @@ export default defineComponent({
 
     const settingsAccount = computed(() => store.account);
     const username = inject<ComputedRef<string>>('currentUsername', () => computed(() => store.account?.login), true);
+    const languages = SUPPORTED_LANGUAGES;
 
     return {
       success,
@@ -47,6 +49,7 @@ export default defineComponent({
       errorEmailExists,
       settingsAccount,
       username,
+      languages,
       v$: useVuelidate(),
     };
   },
@@ -54,6 +57,7 @@ export default defineComponent({
     save() {
       this.error = null;
       this.errorEmailExists = null;
+      this.settingsAccount.langKey = normalizeLanguage(this.settingsAccount.langKey);
       return axios
         .post('api/account', this.settingsAccount)
         .then(() => {

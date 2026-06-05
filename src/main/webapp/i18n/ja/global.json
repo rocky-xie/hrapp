@@ -1,0 +1,709 @@
+{
+  "global": {
+    "menu": {
+      "home": "ホーム",
+      "dashboard": "ダッシュボード",
+      "skillGapReport": "スキルギャップレポート",
+      "entities": "エンティティ",
+      "administration": "管理",
+      "account": "アカウント",
+      "settings": "設定",
+      "password": "パスワード",
+      "logout": "ログアウト",
+      "login": "ログイン",
+      "register": "登録",
+      "user-management": "ユーザ管理",
+      "metrics": "メトリクス",
+      "health": "ヘルスチェック",
+      "configuration": "設定",
+      "logs": "ログ",
+      "api": "API",
+      "database": "データベース",
+      "language": "言語",
+      "sub": {
+        "continuity": "継承とリスク",
+        "training": "スキルとトレーニング",
+        "observation": "観察と評価"
+      }
+    },
+    "brand": {
+      "title": "BTMDC",
+      "subtitle": "人材能力評価システム"
+    },
+    "yes": "はい",
+    "no": "いいえ",
+    "all": "すべて",
+    "form": {
+      "save": "保存",
+      "cancel": "キャンセル",
+      "edit": "編集",
+      "back": "戻る",
+      "add": "追加",
+      "view": "表示",
+      "delete": "削除",
+      "confirm": "確認",
+      "yes": "はい",
+      "no": "いいえ",
+      "search": "検索",
+      "filter": "フィルタ",
+      "clear": "クリア",
+      "create": "作成",
+      "update": "更新",
+      "refreshList": "一覧を更新",
+      "remove": "削除"
+    },
+    "entity": {
+      "table": {
+        "action": "操作"
+      },
+      "id": "ID",
+      "deleteTitle": "削除操作の確認",
+      "deleteQuestion": "{entity} {id} を削除してもよろしいですか？",
+      "noRecords": "{entity}が見つかりません",
+      "field": {
+        "person": "社員",
+        "position": "ポジション",
+        "skill": "スキル",
+        "skillLevel": "スキルレベル",
+        "currentLevel": "現在レベル",
+        "previousLevel": "前回レベル",
+        "oldLevel": "旧レベル",
+        "newLevel": "新レベル",
+        "targetLevel": "目標レベル",
+        "requiredLevel": "必須レベル",
+        "preferredLevel": "推奨レベル",
+        "trainingGoal": "トレーニング目標",
+        "mentor": "メンター",
+        "assessor": "評価者",
+        "observer": "観察者",
+        "evaluator": "評価者",
+        "candidate": "候補者",
+        "candidatePerson": "候補社員",
+        "currentOwner": "現担当者",
+        "category": "カテゴリ",
+        "primary": "主担当",
+        "startDate": "開始日",
+        "endDate": "終了日",
+        "nextReview": "次回レビュー",
+        "growthDirection": "成長方向",
+        "responsibilityScope": "責任範囲",
+        "people": "社員",
+        "currentRole": "現在の役割"
+      },
+      "section": {
+        "personAndSkill": "社員とスキル",
+        "upgradeDetails": "アップグレード詳細",
+        "skills": "スキル",
+        "requiredSkills": "必要スキル",
+        "positionOwners": "担当者",
+        "selectedPeople": "選択済み社員",
+        "participantDetails": "参加者情報",
+        "inputFields": "入力項目"
+      },
+      "action": {
+        "addSkill": "スキルを追加",
+        "addRequirement": "要件を追加",
+        "addOwner": "担当者を追加",
+        "addPerson": "社員を追加"
+      },
+      "message": {
+        "noSkills": "スキル記録がありません。",
+        "noSkillRequirements": "スキル要件記録がありません。",
+        "noPositionOwners": "担当者記録がありません。",
+        "noPeopleSelected": "社員が選択されていません。",
+        "selectPeopleToCreateCopies": "複数社員を選択すると、保存時に社員ごとに1件の記録を作成します。",
+        "positionAndSkillHint": "社員を選択すると、可能な範囲で現在のポジションとスキル情報を表示します。"
+      }
+    },
+    "login": {
+      "title": "ログイン"
+    },
+    "item-count": {
+      "showing": "{{first}}件～{{second}}件を表示（全{{total}}件）"
+    },
+    "validation": {
+      "required": "この項目は必須です。",
+      "integer": "この項目は数値で入力してください。",
+      "minValue": "この項目は {min} 以上である必要があります。",
+      "maxValue": "この項目は {max} 以下である必要があります。",
+      "maxLength": "この項目は {max} 文字以内で入力してください。",
+      "sameOwnerCandidate": "候補者は現担当者と同一人物にできません。",
+      "personRequired": "少なくとも1名の社員を選択してください。"
+    },
+    "title": "BTMDC - 人材能力評価システム",
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  },
+  "settings": {
+    "title": "[<strong>{{ username }}</strong>]のユーザ設定",
+    "saved": "<strong>設定を保存しました!</strong>",
+    "firstName": "名",
+    "firstNamePlaceholder": "あなたの名",
+    "lastName": "姓",
+    "lastNamePlaceholder": "あなたの姓",
+    "email": "メールアドレス",
+    "emailPlaceholder": "あなたのメールアドレス",
+    "language": "言語",
+    "firstNameRequired": "名は必須です。",
+    "firstNameMinlength": "名は1文字以上である必要があります",
+    "firstNameMaxlength": "名は50文字以内である必要があります",
+    "lastNameRequired": "姓は必須です。",
+    "lastNameMinlength": "姓は1文字以上である必要があります",
+    "lastNameMaxlength": "姓は50文字以内である必要があります",
+    "emailRequired": "メールアドレスは必須です。",
+    "emailInvalid": "メールアドレスが無効です。",
+    "emailMinlength": "メールアドレスは5文字以上である必要があります。",
+    "emailMaxlength": "メールアドレスは50文字以内である必要があります。",
+    "emailExists": "<strong>メールアドレスは既に使用されています!</strong> 別のものを選択してください。",
+    "save": "保存"
+  },
+  "home": {
+    "title": "BTMDC - 人材能力評価システム",
+    "logged": {
+      "message": "ユーザー \"{username}\" としてログインしています。"
+    },
+    "login": {
+      "prompt": "ログインするには、",
+      "signIn": "サインイン"
+    },
+    "register": {
+      "prompt": "アカウントをお持ちでないですか？",
+      "link": "新規アカウント登録"
+    },
+    "section": {
+      "people": {
+        "title": "人材管理",
+        "description": "従業員プロファイル、役職、キャリア開発パスの管理"
+      },
+      "skills": {
+        "title": "スキルマトリックス",
+        "description": "従業員のスキル、資格、コンピテンシーレベルの追跡と評価"
+      },
+      "evaluation": {
+        "title": "能力評価",
+        "description": "役職リスク評価、後継者計画、トレーニング管理の実施"
+      }
+    }
+  },
+  "entity": {
+    "position": {
+      "name": "ポジション",
+      "home": {
+        "title": "ポジション",
+        "createLabel": "新規ポジションを作成",
+        "createOrEditLabel": "ポジションを作成または編集"
+      },
+      "field": {
+        "positionCode": "ポジションコード",
+        "positionName": "ポジション名",
+        "positionType": "ポジション種別",
+        "businessImportance": "ビジネス重要度",
+        "keyPosition": "キーポジション",
+        "description": "説明",
+        "plannedHeadcount": "計画人数",
+        "currentOwnerCount": "現在の人数",
+        "minimumOwnerCount": "最少人数",
+        "reviewCycle": "評価サイクル",
+        "active": "有効"
+      },
+      "detail": {
+        "title": "ポジション"
+      },
+      "related": {
+        "basicInfo": "基本情報",
+        "skillRequirements": "スキル要件",
+        "addSkillRequirement": "スキル要件を追加",
+        "noSkillRequirements": "スキル要件が定義されていません",
+        "assignments": "アサイン",
+        "addAssignment": "アサインを追加",
+        "noAssignments": "アサインがありません",
+        "riskEvaluation": "リスク評価",
+        "succession": "後継者"
+      }
+    },
+    "person": {
+      "name": "社員",
+      "home": {
+        "title": "社員",
+        "createLabel": "新規社員を作成",
+        "createOrEditLabel": "社員を作成または編集"
+      },
+      "field": {
+        "employeeCode": "社員コード",
+        "personName": "氏名",
+        "age": "年齢",
+        "gender": "性別",
+        "department": "部門",
+        "currentRole": "現在の役割",
+        "employmentStatus": "雇用ステータス",
+        "joinDate": "入社日",
+        "mentorFlag": "メンターフラグ",
+        "coreCandidateFlag": "コア候補フラグ",
+        "note": "備考"
+      },
+      "detail": {
+        "title": "社員"
+      },
+      "related": {
+        "skills": "スキル",
+        "addSkill": "スキルを追加",
+        "noSkills": "スキルが記録されていません",
+        "assignments": "アサイン",
+        "addAssignment": "アサインを追加",
+        "noAssignments": "アサインがありません"
+      }
+    },
+    "skill": {
+      "name": "スキル",
+      "home": {
+        "title": "スキル",
+        "createLabel": "新規スキルを作成",
+        "createOrEditLabel": "スキルを作成または編集"
+      },
+      "field": {
+        "skillCode": "スキルコード",
+        "skillName": "スキル名",
+        "skillType": "スキル種別",
+        "measurableFlag": "測定可能フラグ",
+        "description": "説明",
+        "evidenceType": "エビデンス種別"
+      },
+      "detail": {
+        "title": "スキル"
+      },
+      "related": {
+        "personSkills": "社員スキル",
+        "noPersonSkills": "社員スキルが記録されていません",
+        "positionRequirements": "ポジションスキル要件",
+        "noPositionRequirements": "ポジションスキル要件がありません"
+      }
+    },
+    "skillLevel": {
+      "name": "スキルレベル",
+      "home": {
+        "title": "スキルレベル",
+        "createLabel": "新規スキルレベルを作成",
+        "createOrEditLabel": "スキルレベルを作成または編集"
+      },
+      "field": {
+        "code": "コード",
+        "levelName": "レベル名",
+        "definition": "定義",
+        "observableEvidence": "観察可能なエビデンス",
+        "sortOrder": "並び順"
+      }
+    },
+    "personSkill": {
+      "name": "社員スキル",
+      "home": {
+        "title": "社員スキル",
+        "createLabel": "新規社員スキルを作成",
+        "createOrEditLabel": "社員スキルを作成または編集"
+      },
+      "field": {
+        "assessmentDate": "評価日",
+        "nextReviewDate": "次回レビュー日",
+        "evidence": "エビデンス",
+        "confidence": "習熟度",
+        "growthDirection": "成長方向"
+      }
+    },
+    "positionSkillRequirement": {
+      "name": "ポジションスキル要件",
+      "home": {
+        "title": "ポジションスキル要件",
+        "createLabel": "新規ポジションスキル要件を作成",
+        "createOrEditLabel": "ポジションスキル要件を作成または編集"
+      },
+      "field": {
+        "importance": "重要度",
+        "remark": "備考"
+      }
+    },
+    "positionAssignment": {
+      "name": "ポジションアサイン",
+      "home": {
+        "title": "ポジションアサイン",
+        "createLabel": "新規ポジションアサインを作成",
+        "createOrEditLabel": "ポジションアサインを作成または編集"
+      },
+      "field": {
+        "primaryOwner": "主担当",
+        "startDate": "開始日",
+        "endDate": "終了日",
+        "responsibilityScope": "責任範囲",
+        "active": "有効"
+      }
+    },
+    "positionMatch": {
+      "name": "ポジションマッチ",
+      "home": {
+        "title": "ポジションマッチ",
+        "createLabel": "新規ポジションマッチを作成",
+        "createOrEditLabel": "ポジションマッチを作成または編集"
+      },
+      "field": {
+        "matchScore": "マッチスコア",
+        "matchedSkills": "一致スキル",
+        "gapSkills": "ギャップスキル",
+        "readiness": "準備度",
+        "recommendation": "推奨",
+        "analysisDate": "分析日",
+        "remark": "備考"
+      }
+    },
+    "successionCandidate": {
+      "name": "後継候補",
+      "home": {
+        "title": "後継候補",
+        "createLabel": "新規後継候補を作成",
+        "createOrEditLabel": "後継候補を作成または編集"
+      },
+      "field": {
+        "successionReadiness": "後継準備度",
+        "requiredTraining": "必要なトレーニング",
+        "estimatedTimeToReady": "準備完了までの予定期間",
+        "riskAfterTraining": "トレーニング後のリスク",
+        "reviewDate": "レビュー日",
+        "priority": "優先度"
+      },
+      "section": {
+        "positionAndOwner": "ポジションと担当者"
+      }
+    },
+    "positionRisk": {
+      "name": "ポジションリスク",
+      "home": {
+        "title": "ポジションリスク",
+        "createLabel": "新規ポジションリスクを作成",
+        "createOrEditLabel": "ポジションリスクを作成または編集"
+      },
+      "field": {
+        "riskType": "リスク種別",
+        "riskLevel": "リスクレベル",
+        "documentStatus": "ドキュメント状況",
+        "backupStatus": "バックアップ状況",
+        "customerOrSystemDependency": "顧客/システム依存",
+        "riskDescription": "リスク説明",
+        "improvementAction": "改善施策",
+        "identifiedDate": "特定日",
+        "targetDate": "目標日",
+        "closedDate": "完了日"
+      }
+    },
+    "personRisk": {
+      "name": "社員リスク",
+      "home": {
+        "title": "社員リスク",
+        "createLabel": "新規社員リスクを作成",
+        "createOrEditLabel": "社員リスクを作成または編集"
+      },
+      "field": {
+        "riskType": "リスク種別",
+        "riskLevel": "リスクレベル",
+        "riskDescription": "リスク説明",
+        "improvementAction": "改善施策",
+        "identifiedDate": "特定日",
+        "targetDate": "目標日",
+        "closedDate": "完了日"
+      }
+    },
+    "skillUpgradeRecord": {
+      "name": "スキルアップグレード記録",
+      "home": {
+        "title": "スキルアップグレード記録",
+        "createLabel": "新規スキルアップグレード記録を作成",
+        "createOrEditLabel": "スキルアップグレード記録を作成または編集"
+      },
+      "field": {
+        "changeType": "変更種別",
+        "changeDate": "変更日",
+        "reason": "理由",
+        "beforeLevelLabel": "変更前レベル",
+        "afterLevelLabel": "変更後レベル",
+        "evidence": "エビデンス",
+        "comment": "備考"
+      }
+    },
+    "staffSubstitution": {
+      "name": "スタッフ代替",
+      "home": {
+        "title": "スタッフ代替",
+        "createLabel": "新規スタッフ代替を作成",
+        "createOrEditLabel": "スタッフ代替を作成または編集"
+      },
+      "field": {
+        "coverageRate": "カバレッジ率",
+        "thresholdRate": "しきい値",
+        "totalSkillCount": "総スキル数",
+        "coveredSkillCount": "カバー済スキル数",
+        "missingSkills": "不足スキル",
+        "substitutable": "代替可能",
+        "evaluationDate": "評価日",
+        "reason": "理由"
+      },
+      "section": {
+        "evaluationResult": "評価結果"
+      },
+      "action": {
+        "recalculate": "再計算"
+      }
+    },
+    "positionRiskEvaluation": {
+      "name": "ポジションリスク評価",
+      "home": {
+        "title": "ポジションリスク評価",
+        "createLabel": "新規ポジションリスク評価を作成",
+        "createOrEditLabel": "ポジションリスク評価を作成または編集"
+      },
+      "field": {
+        "evaluationDate": "評価日",
+        "ownerCount": "人数",
+        "substitutableOwnerCount": "代替可能人数",
+        "hasSubstitute": "代替者有無",
+        "documentStatus": "ドキュメント状態",
+        "customerOrSystemDependency": "顧客/システム依存度",
+        "successionReadiness": "後継者準備度",
+        "riskLevel": "リスクレベル",
+        "riskReason": "リスク理由",
+        "recommendedAction": "推奨施策"
+      },
+      "section": {
+        "evaluationResult": "評価結果"
+      },
+      "action": {
+        "evaluateAndSave": "評価して保存"
+      }
+    },
+    "trainingGoal": {
+      "name": "トレーニング目標",
+      "home": {
+        "title": "トレーニング目標",
+        "createLabel": "新規トレーニング目標を作成",
+        "createOrEditLabel": "トレーニング目標を作成または編集"
+      },
+      "field": {
+        "goalName": "目標名",
+        "goalDescription": "目標説明",
+        "targetLevelDescription": "目標レベル説明",
+        "startDate": "開始日",
+        "targetDate": "目標日",
+        "status": "ステータス"
+      }
+    },
+    "trainingRecord": {
+      "name": "トレーニング記録",
+      "home": {
+        "title": "トレーニング記録",
+        "createLabel": "新規トレーニング記録を作成",
+        "createOrEditLabel": "トレーニング記録を作成または編集"
+      },
+      "field": {
+        "trainingDate": "トレーニング日",
+        "trainingType": "トレーニング種別",
+        "topic": "トピック",
+        "taskDescription": "タスク説明",
+        "resultDescription": "結果説明",
+        "evidence": "エビデンス",
+        "nextAction": "次のアクション"
+      }
+    },
+    "skillAssessment": {
+      "name": "スキル評価",
+      "home": {
+        "title": "スキル評価",
+        "createLabel": "新規スキル評価を作成",
+        "createOrEditLabel": "スキル評価を作成または編集"
+      },
+      "field": {
+        "assessmentDate": "評価日",
+        "result": "結果",
+        "evidence": "エビデンス",
+        "comment": "備考"
+      }
+    },
+    "trustObservation": {
+      "name": "信頼観察",
+      "home": {
+        "title": "信頼観察",
+        "createLabel": "新規信頼観察を作成",
+        "createOrEditLabel": "信頼観察を作成または編集"
+      },
+      "field": {
+        "observationDate": "観察日",
+        "trustStage": "信頼段階",
+        "observedBehavior": "観察された行動",
+        "positiveSignal": "ポジティブシグナル",
+        "riskSignal": "リスクシグナル",
+        "nextObservationPoint": "次回観察ポイント"
+      }
+    },
+    "evaluation": {
+      "name": "評価",
+      "home": {
+        "title": "評価",
+        "createLabel": "新規評価を作成",
+        "createOrEditLabel": "評価を作成または編集"
+      },
+      "field": {
+        "evaluationName": "評価名",
+        "evaluationDate": "評価日",
+        "periodLabel": "期間ラベル",
+        "progressStatus": "進捗ステータス",
+        "result": "結果",
+        "strengths": "強み",
+        "weaknesses": "弱み",
+        "supportNeeded": "必要なサポート",
+        "nextTrainingFocus": "今後のトレーニング焦点",
+        "positionAdjustmentNeeded": "ポジション調整の必要性"
+      }
+    },
+    "improvementPlan": {
+      "name": "改善計画",
+      "home": {
+        "title": "改善計画",
+        "createLabel": "新規改善計画を作成",
+        "createOrEditLabel": "改善計画を作成または編集"
+      },
+      "field": {
+        "planName": "計画名",
+        "planStatus": "計画ステータス",
+        "problemSummary": "問題概要",
+        "improvementAction": "改善施策",
+        "ownerName": "責任者",
+        "startDate": "開始日",
+        "targetDate": "目標日",
+        "completionDate": "完了日",
+        "reviewResult": "レビュー結果"
+      }
+    },
+    "keyResponsibilityCategory": {
+      "name": "主要責任カテゴリ",
+      "home": {
+        "title": "主要責任カテゴリ",
+        "createLabel": "新規主要責任カテゴリを作成",
+        "createOrEditLabel": "主要責任カテゴリを作成または編集"
+      },
+      "field": {
+        "categoryName": "カテゴリ名",
+        "examples": "例",
+        "riskFocus": "リスク焦点"
+      }
+    },
+    "candidateProfile": {
+      "name": "候補者プロファイル",
+      "home": {
+        "title": "候補者プロファイル",
+        "createLabel": "新規候補者プロファイルを作成",
+        "createOrEditLabel": "候補者プロファイルを作成または編集"
+      },
+      "field": {
+        "candidateDate": "候補日",
+        "cultivateDirection": "育成方向",
+        "stability": "安定性",
+        "learningAbility": "学習能力",
+        "communicationCoordination": "コミュニケーション・調整力",
+        "businessUnderstanding": "ビジネス理解",
+        "responsibility": "責任感",
+        "riskAwareness": "リスク認識",
+        "judgement": "判断力",
+        "evidence": "エビデンス"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "error": "データの読み込みに失敗しました。再試行してください。",
+    "summary": {
+      "title": "システム概要",
+      "positions": "職位",
+      "persons": "社員",
+      "skills": "スキル",
+      "highRisk": "高リスク",
+      "trainings": "研修",
+      "substitutions": "代替"
+    },
+    "risk": {
+      "title": "リスク概要",
+      "count": "高リスク {n} 件",
+      "empty": "高リスク職位はありません"
+    },
+    "coverage": {
+      "title": "代替カバレッジ不足",
+      "count": "全 {n} 件",
+      "empty": "カバレッジ不足の記録はありません"
+    },
+    "review": {
+      "title": "スキルレビュー期限",
+      "count": "{n} 件の期限切れ/期限間近",
+      "empty": "レビュー期限のスキルはありません",
+      "status": {
+        "label": "状態",
+        "overdue": "期限切れ",
+        "daysRemaining": "残り{n}日"
+      }
+    },
+    "successionMap": {
+      "title": "後継者マップ",
+      "count": "{n} ポジション",
+      "empty": "後継者データはありません",
+      "candidates": "候補者"
+    }
+  },
+  "skillGapReport": {
+    "title": "スキルギャップ報告",
+    "filter": {
+      "position": "ポジション",
+      "importance": "重要度",
+      "includeOwners": "現任者を含む",
+      "includeCandidates": "候補者を含む"
+    },
+    "generate": "報告を生成",
+    "summary": "合計 {n} ポジション",
+    "gapCount": "{n} ギャップ",
+    "requiredSkills": "必要スキル数",
+    "owners": "現任者",
+    "candidates": "候補者",
+    "person": "担当者",
+    "coverage": "カバレッジ",
+    "gapSkills": "不足スキル",
+    "noGaps": "ギャップなし",
+    "noOwners": "現任者なし",
+    "noCandidates": "候補者なし",
+    "aggregatedGaps": "ギャップ集計",
+    "noAggregatedGaps": "スキルギャップは見つかりませんでした",
+    "skill": "スキル",
+    "importance": "重要度",
+    "requiredLevel": "必要レベル",
+    "deficientCount": "不足人数",
+    "maxDeficit": "最大差",
+    "createTrainingGoal": "トレーニング目標を作成"
+  },
+  "trainingSuggestion": {
+    "title": "トレーニング提案",
+    "count": "合計 {n} 件",
+    "current": "現在",
+    "target": "目標",
+    "priorityLabel": "優先度",
+    "action": "操作",
+    "priority": {
+      "P0_CRITICAL": "P0 - 緊急",
+      "P1_HIGH": "P1 - 高",
+      "P2_MEDIUM": "P2 - 中",
+      "P3_LOW": "P3 - 低"
+    },
+    "createGoal": "トレーニング目標を作成",
+    "created": "作成済み",
+    "goalName": "{personName} 向け {skillName} トレーニング",
+    "goalDescription": "スキルギャップレポートから生成 — {reason}",
+    "targetLevelDescription": "目標: {level}"
+  },
+  "error": {
+    "sessions": "セッションの有効期限が切れました。再ログインしてください。",
+    "internalServerError": "内部サーバエラー",
+    "serverNotReachable": "サーバに接続できません",
+    "timeout": "サーバの応答がタイムアウトしました",
+    "size": "ファイルが大きすぎます"
+  }
+}

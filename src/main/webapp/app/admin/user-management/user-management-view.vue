@@ -10,9 +10,9 @@
           <dt><span>Login</span></dt>
           <dd>
             <span>{{ user.login }}</span>
-            <b-badge style="margin-left: 10px" :variant="user.activated ? 'success' : 'danger'"
-              >Translation missing for ser.activated ? 'userManagement.activated' : 'userManagement.deactivated</b-badge
-            >
+            <b-badge style="margin-left: 10px" :variant="user.activated ? 'success' : 'danger'">{{
+              user.activated ? $t('userManagement.activated') : $t('userManagement.deactivated')
+            }}</b-badge>
           </dd>
           <dt><span>First name</span></dt>
           <dd>{{ user.firstName }}</dd>

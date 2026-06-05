@@ -32,6 +32,8 @@
 set -euf
 [ "${MVNW_VERBOSE-}" != debug ] || set -x
 
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+
 # OS specific support.
 native_path() { printf %s\\n "$1"; }
 case "$(uname)" in

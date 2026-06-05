@@ -1,0 +1,7 @@
+id;succession_readiness;required_training;estimated_time_to_ready;risk_after_training;review_date;priority;position_id;current_owner_id;candidate_id
+1;IMMEDIATE;;0个月;LOW;2025-06-01;1;1;1;11
+2;THREE_MONTHS;微服务架构培训;3个月;MEDIUM;2025-06-01;2;1;1;2
+3;IMMEDIATE;;0个月;LOW;2025-06-01;1;3;3;10
+4;SIX_TO_TWELVE_MONTHS;项目管理方法论;6个月;MEDIUM;2025-06-01;3;3;3;4
+5;THREE_MONTHS;客户业务知识;3个月;LOW;2025-06-01;1;5;5;12
+6;NONE;数据库管理全面培训;12个月;HIGH;2025-06-01;1;6;6;9

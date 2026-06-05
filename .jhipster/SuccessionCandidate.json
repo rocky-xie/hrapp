@@ -1,0 +1,71 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122829"
+  },
+  "applications": ["*"],
+  "documentation": "继任候选人。记录某职位候选人的接替评估。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "successionReadiness",
+      "fieldType": "ReadinessLevel",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "IMMEDIATE,THREE_MONTHS,SIX_TO_TWELVE_MONTHS,NONE"
+    },
+    {
+      "fieldName": "requiredTraining",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "estimatedTimeToReady",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "riskAfterTraining",
+      "fieldType": "RiskLevel",
+      "fieldValues": "LOW,MEDIUM,HIGH,UNKNOWN"
+    },
+    {
+      "fieldName": "reviewDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "1"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SuccessionCandidate",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "personName",
+      "otherEntityName": "person",
+      "relationshipName": "currentOwner",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "personName",
+      "otherEntityName": "person",
+      "relationshipName": "candidate",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

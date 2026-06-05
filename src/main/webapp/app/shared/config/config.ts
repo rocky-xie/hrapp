@@ -12,6 +12,7 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
 import { faDatabase } from '@fortawesome/free-solid-svg-icons/faDatabase';
 import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
 import { faFlag } from '@fortawesome/free-solid-svg-icons/faFlag';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faHome } from '@fortawesome/free-solid-svg-icons/faHome';
 import { faList } from '@fortawesome/free-solid-svg-icons/faList';
@@ -28,6 +29,12 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons/faSortDown';
 import { faSortUp } from '@fortawesome/free-solid-svg-icons/faSortUp';
 import { faSync } from '@fortawesome/free-solid-svg-icons/faSync';
 import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons/faTachometerAlt';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons/faCalendarAlt';
+import { faChartBar } from '@fortawesome/free-solid-svg-icons/faChartBar';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons/faCheckCircle';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons/faExclamationTriangle';
+import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons/faExchangeAlt';
 import { faTasks } from '@fortawesome/free-solid-svg-icons/faTasks';
 import { faThList } from '@fortawesome/free-solid-svg-icons/faThList';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
@@ -55,6 +62,7 @@ export function initFortAwesome(vue: App) {
     faDatabase,
     faEye,
     faFlag,
+    faGlobe,
     faHeart,
     faHome,
     faList,
@@ -70,6 +78,12 @@ export function initFortAwesome(vue: App) {
     faSortDown,
     faSortUp,
     faSync,
+    faCalendarAlt,
+    faChartBar,
+    faChartLine,
+    faCheckCircle,
+    faExclamationTriangle,
+    faExchangeAlt,
     faTachometerAlt,
     faTasks,
     faThList,

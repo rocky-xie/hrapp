@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity PositionRiskEvaluation.
+    -->
+    <changeSet id="20260601122834-1" author="jhipster">
+        <createTable tableName="position_risk_evaluation" remarks="职位风险评价。对职位整体风险的定期评价快照。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="evaluation_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="owner_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="substitutable_owner_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="has_substitute" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="document_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="customer_or_system_dependency" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="succession_readiness" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="risk_level" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="risk_reason" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="recommended_action" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="position_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity TrainingRecord.
+    -->
+    <changeSet id="20260601122836-1" author="jhipster">
+        <createTable tableName="training_record" remarks="培训记录。实际发生的培训活动记录。">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="training_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="training_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="topic" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="task_description" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="result_description" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="evidence" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="next_action" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="training_goal_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="position_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="mentor_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

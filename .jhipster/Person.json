@@ -1,0 +1,77 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122822"
+  },
+  "applications": ["*"],
+  "documentation": "职员。核心主体，关联技能、任职、替代等业务数据。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "employeeCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "personName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "120",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldTypeDocumentation": "新人培养与人员能力地图工具包\\nJHipster JDL — 同步于 Java 实体源码，反映当前数据库与前端实际状态。\\n\\n使用方法：\\njhipster jdl hr-capability-map.jdl\\n\\n注意：\\n- Authority / User 为 JHipster 内置实体，不在本 JDL 中重复定义。\\n- 所有业务实体统一使用 pagination / serviceClass / mapstruct / filter。",
+      "fieldValues": "MALE,FEMALE,UNSPECIFIED"
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "currentRole",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "employmentStatus",
+      "fieldType": "EmploymentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "NEWCOMER,INDEPENDENT_STAFF,CORE_STAFF,MANAGEMENT_CANDIDATE,OBSERVE"
+    },
+    {
+      "fieldName": "joinDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "mentorFlag",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "coreCandidateFlag",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Person",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

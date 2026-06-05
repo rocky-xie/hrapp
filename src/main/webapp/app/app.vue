@@ -11,7 +11,7 @@
         </div>
         <b-modal id="login-page" focus="username" v-model="loginModalOpen" :no-footer="true" lazy>
           <template #title>
-            <span data-cy="loginTitle" id="login-title">Sign in</span>
+            <span data-cy="loginTitle" id="login-title">{{ $t('global.menu.login') }}</span>
           </template>
           <login-form v-if="loginModalOpen"></login-form>
         </b-modal>

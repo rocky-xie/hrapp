@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity PositionSkillRequirement.
+    -->
+    <changeSet id="20260601122826-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="position_id"
+                                 baseTableName="position_skill_requirement"
+                                 constraintName="fk_position_skill_requirement__position_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="skill_id"
+                                 baseTableName="position_skill_requirement"
+                                 constraintName="fk_position_skill_requirement__skill_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="required_level_id"
+                                 baseTableName="position_skill_requirement"
+                                 constraintName="fk_position_skill_requirement__required_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill_level"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="preferred_level_id"
+                                 baseTableName="position_skill_requirement"
+                                 constraintName="fk_position_skill_requirement__preferred_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill_level"
+                                 />
+    </changeSet>
+</databaseChangeLog>

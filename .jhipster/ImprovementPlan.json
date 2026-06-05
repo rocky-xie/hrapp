@@ -1,0 +1,73 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122840"
+  },
+  "applications": ["*"],
+  "documentation": "改善计划。针对问题制定的改善行动计划。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "planName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "planStatus",
+      "fieldType": "PlanStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DRAFT,ACTIVE,COMPLETED,CANCELLED"
+    },
+    {
+      "fieldName": "problemSummary",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "improvementAction",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "ownerName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "targetDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "completionDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "reviewResult",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ImprovementPlan",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "skillName",
+      "otherEntityName": "skill",
+      "relationshipName": "skill",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

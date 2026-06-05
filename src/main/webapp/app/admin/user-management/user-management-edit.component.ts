@@ -5,6 +5,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { email, maxLength, minLength, required } from '@vuelidate/validators';
 
 import { useAlertService } from '@/shared/alert/alert.service';
+import { SUPPORTED_LANGUAGES, normalizeLanguage } from '@/shared/config/languages';
 import { getMessageFromHeaders } from '@/shared/jhipster/headers';
 import { type IUser, User } from '@/shared/model/user.model';
 
@@ -53,6 +54,7 @@ export default defineComponent({
     const userAccount: Ref<IUser> = ref({ ...new User(), authorities: [] });
     const isSaving: Ref<boolean> = ref(false);
     const authorities: Ref<string[]> = ref([]);
+    const languages = SUPPORTED_LANGUAGES;
 
     const initAuthorities = async () => {
       const response = await userManagementService.retrieveAuthorities();
@@ -75,6 +77,7 @@ export default defineComponent({
       userAccount,
       isSaving,
       authorities,
+      languages,
       userManagementService,
       previousState,
       v$: useVuelidate(),
@@ -83,6 +86,7 @@ export default defineComponent({
   methods: {
     save(): void {
       this.isSaving = true;
+      this.userAccount.langKey = normalizeLanguage(this.userAccount.langKey);
       if (this.userAccount.id) {
         this.userManagementService
           .update(this.userAccount)
@@ -95,7 +99,6 @@ export default defineComponent({
             this.alertService.showHttpError(error.response);
           });
       } else {
-        this.userAccount.langKey = this.userAccount.langKey ?? 'en';
         this.userManagementService
           .create(this.userAccount)
           .then(res => {

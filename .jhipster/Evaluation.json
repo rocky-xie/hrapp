@@ -1,0 +1,93 @@
+{
+  "annotations": {
+    "changelogDate": "20260601122839"
+  },
+  "applications": ["*"],
+  "documentation": "评价考核。周期性的综合评价。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "evaluationName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "evaluationDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "periodLabel",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "progressStatus",
+      "fieldType": "ProgressStatus",
+      "fieldValues": "NORMAL,SLOW,FAST,RISK"
+    },
+    {
+      "fieldName": "result",
+      "fieldType": "AssessmentResult",
+      "fieldValues": "PASS,WARNING,FAIL,OBSERVE"
+    },
+    {
+      "fieldName": "strengths",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "weaknesses",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "supportNeeded",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "nextTrainingFocus",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "positionAdjustmentNeeded",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Evaluation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "personName",
+      "otherEntityName": "person",
+      "relationshipName": "person",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "positionName",
+      "otherEntityName": "position",
+      "relationshipName": "position",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "goalName",
+      "otherEntityName": "trainingGoal",
+      "relationshipName": "trainingGoal",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "personName",
+      "otherEntityName": "person",
+      "relationshipName": "evaluator",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

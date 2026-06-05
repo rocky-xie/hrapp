@@ -1,0 +1,6 @@
+id;risk_type;risk_level;document_status;backup_status;customer_or_system_dependency;risk_description;improvement_action;identified_date;target_date;closed_date;position_id;category_id
+1;SINGLE_POINT;HIGH;PARTIAL;MISSING;LOW;唯一开发者，无替代人员;培养备选人员;2025-06-01;2025-12-01;;1;1
+2;KNOWLEDGE_CONCENTRATION;MEDIUM;AVAILABLE;PARTIAL;LOW;核心知识集中在少数人;推动知识文档化;2025-06-01;2025-09-01;;3;1
+3;SUCCESSOR_SHORTAGE;HIGH;MISSING;MISSING;MEDIUM;无合格继任者;启动继任者培养计划;2025-06-01;2026-06-01;;6;1
+4;CUSTOMER_RELATION_CONCENTRATION;MEDIUM;PARTIAL;AVAILABLE;HIGH;客户关系集中在个别人;建立客户关系备份机制;2025-06-01;2025-12-01;;5;2
+5;UNCLEAR_RESPONSIBILITY;LOW;OUTDATED;AVAILABLE;LOW;职责边界模糊;重新梳理职责说明;2025-06-01;2025-09-01;;4;3

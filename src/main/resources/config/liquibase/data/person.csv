@@ -1,0 +1,13 @@
+id;employee_code;person_name;age;gender;department;current_role;employment_status;join_date;mentor_flag;core_candidate_flag;note
+1;EMP001;张伟;32;MALE;技术部;Java高级开发工程师;CORE_STAFF;2018-03-15;true;true;技术骨干，具备系统架构能力
+2;EMP002;李娜;28;FEMALE;技术部;前端开发工程师;INDEPENDENT_STAFF;2020-07-01;false;false;前端技术扎实
+3;EMP003;王磊;38;MALE;管理部;项目经理;CORE_STAFF;2015-01-10;true;true;丰富的项目管理经验
+4;EMP004;赵敏;30;FEMALE;业务部;业务分析师;INDEPENDENT_STAFF;2019-06-20;false;true;业务理解深入
+5;EMP005;刘洋;26;MALE;客服部;客户服务专员;INDEPENDENT_STAFF;2022-03-01;false;false;沟通能力强
+6;EMP006;陈静;35;FEMALE;技术部;数据库管理员;CORE_STAFF;2016-08-15;true;true;数据库专家
+7;EMP007;周强;40;MALE;技术部;技术导师;CORE_STAFF;2012-05-01;true;false;资深导师
+8;EMP008;孙丽;25;FEMALE;技术部;测试工程师;NEWCOMER;2024-01-15;false;false;新人，学习中
+9;EMP009;吴鹏;31;MALE;技术部;运维工程师;INDEPENDENT_STAFF;2019-11-01;false;true;运维经验丰富
+10;EMP010;郑芳;33;FEMALE;管理部;产品经理;MANAGEMENT_CANDIDATE;2017-09-01;false;true;产品视野开阔
+11;EMP011;黄超;29;MALE;技术部;Java开发工程师;INDEPENDENT_STAFF;2021-04-01;false;false;开发能力良好
+12;EMP012;林萍;27;FEMALE;业务部;业务助理;NEWCOMER;2023-10-01;false;false;新人，适应中

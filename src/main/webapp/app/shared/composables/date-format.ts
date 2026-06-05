@@ -4,11 +4,10 @@ import dayjs from 'dayjs';
 
 export const DATE_FORMAT = 'YYYY-MM-DD';
 export const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm';
-
 export const DATE_TIME_LONG_FORMAT = 'YYYY-MM-DDTHH:mm';
 
 export const useDateFormat = ({ entityRef }: { entityRef?: Ref<Record<string, any>> } = {}) => {
-  const formatDate = value => (value ? dayjs(value).format(DATE_TIME_FORMAT) : '');
+  const formatDate = value => (value ? dayjs(value).format(DATE_FORMAT) : '');
   const dateFormatUtils = {
     convertDateTimeFromServer: (date: Date): string => (date && dayjs(date).isValid() ? dayjs(date).format(DATE_TIME_LONG_FORMAT) : null),
     formatDate,
