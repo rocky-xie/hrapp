@@ -83,4 +83,17 @@ export default class TrainingGoalService {
         });
     });
   }
+
+  complete(id: number): Promise<ITrainingGoal> {
+    return new Promise<ITrainingGoal>((resolve, reject) => {
+      axios
+        .post(`${baseApiUrl}/${id}/complete`)
+        .then(res => {
+          resolve(res.data);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
 }

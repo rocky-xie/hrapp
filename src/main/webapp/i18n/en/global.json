@@ -21,6 +21,7 @@
       "database": "Database",
       "language": "Language",
       "sub": {
+        "coreData": "Core Data",
         "continuity": "Succession & Risk",
         "training": "Skills & Training",
         "observation": "Observations & Evaluations"
@@ -491,6 +492,9 @@
         "startDate": "Start Date",
         "targetDate": "Target Date",
         "status": "Status"
+      },
+      "action": {
+        "complete": "Complete"
       }
     },
     "trainingRecord": {
@@ -650,6 +654,10 @@
       "count": "{n} Positions",
       "empty": "No succession data found",
       "candidates": "Candidates"
+    },
+    "actionItems": {
+      "empty": "No open items",
+      "viewAll": "View All"
     }
   },
   "skillGapReport": {
@@ -699,6 +707,19 @@
     "goalName": "Train {skillName} for {personName}",
     "goalDescription": "Generated from skill gap report — {reason}",
     "targetLevelDescription": "Target: {level}"
+  },
+  "actionItem": {
+    "title": "Action Items",
+    "description": "Description",
+    "assignee": "Assignee",
+    "dueDate": "Due Date",
+    "priority": "Priority",
+    "status": "Status",
+    "sourceType": "Source",
+    "start": "Start",
+    "complete": "Complete",
+    "cancel": "Cancel",
+    "openCount": "Open Items"
   },
   "error": {
     "sessions": "Session expired. Please login again.",

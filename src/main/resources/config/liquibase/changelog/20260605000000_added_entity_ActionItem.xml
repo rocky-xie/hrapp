@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="20260605000000" author="jhipster">
+        <createTable tableName="action_item">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="source_type" type="varchar(50)"/>
+            <column name="source_id" type="bigint"/>
+            <column name="description" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assignee" type="varchar(100)"/>
+            <column name="due_date" type="date"/>
+            <column name="status" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="varchar(50)"/>
+            <column name="created_at" type="date"/>
+            <column name="completed_at" type="date"/>
+            <column name="note" type="clob"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

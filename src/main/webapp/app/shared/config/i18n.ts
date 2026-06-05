@@ -4,6 +4,7 @@ import zhCn from '../../../i18n/zh-cn/global.json';
 import ja from '../../../i18n/ja/global.json';
 
 export default createI18n<false>({
+  legacy: false,
   locale: 'en',
   fallbackLocale: 'en',
   messages: {

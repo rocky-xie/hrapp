@@ -37,6 +37,12 @@
             <span>{{ $t('global.menu.skillGapReport') }}</span>
           </span>
         </b-nav-item>
+        <b-nav-item to="/action-items" v-if="authenticated">
+          <span>
+            <font-awesome-icon icon="tasks" />
+            <span>{{ $t('actionItem.title') }}</span>
+          </span>
+        </b-nav-item>
         <b-nav-item-dropdown
           :no-size="true"
           end

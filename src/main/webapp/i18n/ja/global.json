@@ -21,6 +21,7 @@
       "database": "データベース",
       "language": "言語",
       "sub": {
+        "coreData": "マスタデータ",
         "continuity": "継承とリスク",
         "training": "スキルとトレーニング",
         "observation": "観察と評価"
@@ -490,6 +491,9 @@
         "startDate": "開始日",
         "targetDate": "目標日",
         "status": "ステータス"
+      },
+      "action": {
+        "complete": "完了"
       }
     },
     "trainingRecord": {
@@ -649,6 +653,10 @@
       "count": "{n} ポジション",
       "empty": "後継者データはありません",
       "candidates": "候補者"
+    },
+    "actionItems": {
+      "empty": "未完了なし",
+      "viewAll": "すべて表示"
     }
   },
   "skillGapReport": {
@@ -698,6 +706,19 @@
     "goalName": "{personName} 向け {skillName} トレーニング",
     "goalDescription": "スキルギャップレポートから生成 — {reason}",
     "targetLevelDescription": "目標: {level}"
+  },
+  "actionItem": {
+    "title": "アクションアイテム",
+    "description": "説明",
+    "assignee": "担当者",
+    "dueDate": "期限",
+    "priority": "優先度",
+    "status": "ステータス",
+    "sourceType": "ソース",
+    "start": "開始",
+    "complete": "完了",
+    "cancel": "キャンセル",
+    "openCount": "未完了件数"
   },
   "error": {
     "sessions": "セッションの有効期限が切れました。再ログインしてください。",

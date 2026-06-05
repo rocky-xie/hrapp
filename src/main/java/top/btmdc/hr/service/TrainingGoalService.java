@@ -12,11 +12,16 @@ import top.btmdc.hr.domain.Person;
 import top.btmdc.hr.domain.Position;
 import top.btmdc.hr.domain.Skill;
 import top.btmdc.hr.domain.TrainingGoal;
+import top.btmdc.hr.domain.enumeration.AssessmentResult;
 import top.btmdc.hr.domain.enumeration.PlanStatus;
 import top.btmdc.hr.repository.PersonRepository;
 import top.btmdc.hr.repository.PositionRepository;
 import top.btmdc.hr.repository.SkillRepository;
 import top.btmdc.hr.repository.TrainingGoalRepository;
+import top.btmdc.hr.service.dto.PersonDTO;
+import top.btmdc.hr.service.dto.SkillAssessmentDTO;
+import top.btmdc.hr.service.dto.SkillDTO;
+import top.btmdc.hr.service.dto.SkillLevelDTO;
 import top.btmdc.hr.service.dto.TrainingGoalDTO;
 import top.btmdc.hr.service.dto.report.TrainingSuggestionDTO;
 import top.btmdc.hr.service.mapper.TrainingGoalMapper;
@@ -40,18 +45,22 @@ public class TrainingGoalService {
 
     private final PositionRepository positionRepository;
 
+    private final SkillAssessmentService skillAssessmentService;
+
     public TrainingGoalService(
         TrainingGoalRepository trainingGoalRepository,
         TrainingGoalMapper trainingGoalMapper,
         PersonRepository personRepository,
         SkillRepository skillRepository,
-        PositionRepository positionRepository
+        PositionRepository positionRepository,
+        SkillAssessmentService skillAssessmentService
     ) {
         this.trainingGoalRepository = trainingGoalRepository;
         this.trainingGoalMapper = trainingGoalMapper;
         this.personRepository = personRepository;
         this.skillRepository = skillRepository;
         this.positionRepository = positionRepository;
+        this.skillAssessmentService = skillAssessmentService;
     }
 
     public TrainingGoalDTO createFromSuggestion(TrainingSuggestionDTO suggestion) {
@@ -103,6 +112,41 @@ public class TrainingGoalService {
         goal.setPosition(position);
 
         return trainingGoalMapper.toDto(trainingGoalRepository.save(goal));
+    }
+
+    public TrainingGoalDTO completeGoal(Long id) {
+        LOG.debug("Request to complete TrainingGoal : {}", id);
+        TrainingGoal goal = trainingGoalRepository
+            .findOneWithEagerRelationships(id)
+            .orElseThrow(() -> new IllegalArgumentException("TrainingGoal not found: " + id));
+
+        if (goal.getPerson() == null || goal.getSkill() == null || goal.getTargetLevel() == null) {
+            throw new IllegalArgumentException("Cannot complete TrainingGoal " + id + ": person, skill, and targetLevel must be set");
+        }
+
+        goal.setStatus(PlanStatus.COMPLETED);
+        goal = trainingGoalRepository.save(goal);
+
+        SkillAssessmentDTO assessment = new SkillAssessmentDTO();
+        assessment.setAssessmentDate(LocalDate.now());
+        assessment.setResult(AssessmentResult.PASS);
+
+        PersonDTO personDTO = new PersonDTO();
+        personDTO.setId(goal.getPerson().getId());
+        assessment.setPerson(personDTO);
+
+        SkillDTO skillDTO = new SkillDTO();
+        skillDTO.setId(goal.getSkill().getId());
+        assessment.setSkill(skillDTO);
+
+        SkillLevelDTO levelDTO = new SkillLevelDTO();
+        levelDTO.setId(goal.getTargetLevel().getId());
+        assessment.setNewLevel(levelDTO);
+
+        assessment.setComment("Completed from training goal: " + goal.getGoalName());
+        skillAssessmentService.save(assessment);
+
+        return trainingGoalMapper.toDto(goal);
     }
 
     /**

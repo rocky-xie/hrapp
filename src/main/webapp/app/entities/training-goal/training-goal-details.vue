@@ -96,6 +96,20 @@
             <font-awesome-icon icon="pencil-alt"></font-awesome-icon>&nbsp;<span>{{ $t('global.form.edit') }}</span>
           </button>
         </router-link>
+        <button
+          v-if="
+            trainingGoal.person &&
+            trainingGoal.skill &&
+            trainingGoal.targetLevel &&
+            trainingGoal.status !== 'COMPLETED' &&
+            trainingGoal.status !== 'CANCELLED'
+          "
+          @click="completeTrainingGoal"
+          class="btn btn-success"
+          data-cy="entityDetailsCompleteButton"
+        >
+          <font-awesome-icon icon="check"></font-awesome-icon>&nbsp;<span>{{ $t('entity.trainingGoal.action.complete') }}</span>
+        </button>
       </div>
     </div>
   </div>

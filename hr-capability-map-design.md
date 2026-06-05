@@ -712,6 +712,8 @@ SkillAssessment 定期评估
 | SuccessionCandidate         | candidate 下拉排除 currentOwner，保存前校验                                                                                                                                 |
 | SkillAssessment             | Person → Skill 逐步选择；newLevel 变更自动同步 Person 当前技能等级                                                                                                          |
 | Skill `measurableFlag`      | 改用 `<b-form-checkbox>`，移除 `required` 验证器                                                                                                                            |
+| Skill Gap Report 筛选区     | 右侧采用两行布局：Importance 下拉框单独一行；Include Owners / Include Candidates 与 Generate Report 按钮在下一行，按钮 `ms-auto` 右对齐并通过 `pe-2` 与边框保持间距         |
+| Entities 菜单               | 按业务域分组（主数据 / 继任与风险 / 技能与培训 / 观察与评估），每组带不可点击的组标题                                                                                       |
 
 ---
 
@@ -1160,6 +1162,35 @@ positionRiskEvaluationService()
 - Dashboard 的 `evaluationDate`/`nextReviewDate`（均为 `LocalDate` 类型）
 - `<input type="date">` 控件（`v-model` 值始终为 `yyyy-MM-dd`，浏览器显示格式不可控）
 
+### 13.10 Review 修复与 ActionItem 实体（2026-06-05）
+
+| 变更                          | 文件                                                                                                                                                                                                                                                                                     | 说明                                                                                                                                                   |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **i18n JSON 结构修复**        | `en/global.json`                                                                                                                                                                                                                                                                         | 补回缺失的 `"skillGapReport": {` 包装和末尾根 `}`，修复 JSON 语法错误导致 25 个测试文件失败的 bug                                                      |
+| **Vue I18n 模式修复**         | `shared/config/i18n.ts`                                                                                                                                                                                                                                                                  | 添加 `legacy: false` 运行时选项（原仅设了 TypeScript 类型参数 `<false>`），修复 `useI18n()` 在 composition API 中抛出 `SyntaxError` 的 bug             |
+| **全局数组参数序列化**        | `shared/config/axios-interceptor.ts`                                                                                                                                                                                                                                                     | 添加自定义 `paramsSerializer`，将数组序列化为 `key=a&key=b`（repeat 格式）而非 Axios 默认的 `key[]=a&key[]=b`，兼容 Spring Boot `@RequestParam List<>` |
+| **Skill Gap Report 查询参数** | `core/reports/skill-gap-report.service.ts`                                                                                                                                                                                                                                               | 恢复直接传递数组，配合全局 serializer 正确生成 repeat 格式 query params                                                                                |
+| **Skill Gap Report 页面布局** | `core/reports/skill-gap-report.vue`                                                                                                                                                                                                                                                      | 右侧筛选区改为两行布局：Importance 下拉框单独一行；Include 复选框与 Generate Report 按钮在下一行，按钮 `ms-auto` 右对齐并通过 `pe-2` 保持边距          |
+| **Entities 菜单分组**         | `entities/entities-menu.vue`                                                                                                                                                                                                                                                             | 第一组（Position, Person, Skill 等主数据）添加 "Core Data" / "主数据" / "マスタデータ" 组标题，与后面各组保持一致                                      |
+| **i18n 组标题键**             | `global.json` (en/zh-cn/ja)                                                                                                                                                                                                                                                              | 新增 `global.menu.sub.coreData`                                                                                                                        |
+| **ActionItem 实体**（P0-1）   | `domain/ActionItem.java`, `domain/enumeration/ActionSourceType.java`, `ActionPriority.java`, `ActionStatus.java`, `dto/ActionItemDTO.java`, `mapper/ActionItemMapper.java`, `repository/ActionItemRepository.java`, `service/ActionItemService.java`, `web/rest/ActionItemResource.java` | 新增完整 ActionItem 实体：CRUD REST 端点、`GET /action-items/open`（按优先级排序的未完成列表）、`GET /action-items/open/count`                         |
+| **ActionItem Liquibase**      | `20260605000000_added_entity_ActionItem.xml`                                                                                                                                                                                                                                             | 自动建表                                                                                                                                               |
+| **ActionItem 前端**           | `entities/action-item/action-item.vue`, `.component.ts`, `.service.ts`, `router/pages.ts`                                                                                                                                                                                                | 标准 CRUD 页（描述/负责人/截止日期/优先级/状态/来源），支持 Complete / Cancel 操作                                                                     |
+| **Dashboard 待办事项**        | `core/dashboard/dashboard.vue`, `.component.ts`                                                                                                                                                                                                                                          | 添加 ActionItem 卡片：显示未完成项数量 badge + 按优先级排序的待办列表 + "查看全部"链接                                                                 |
+| **导航栏 ActionItem**         | `core/jhi-navbar/jhi-navbar.vue`                                                                                                                                                                                                                                                         | 添加 Action Items 导航入口                                                                                                                             |
+
+### 13.11 第四轮 Review 修复（ActionItem 状态语义与后端保护，2026-06-05）
+
+| 变更                      | 文件                                                                    | 说明                                                                                                                             |
+| ------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **未完成状态语义统一**    | `ActionItemRepository.java`, `ActionItemService.java`                   | 将"未完成待办"定义为 `OPEN + IN_PROGRESS`；Repository 使用 `findByStatusInOrderByPriorityAscDueDateAsc()` 和 `countByStatusIn()` |
+| **后端状态动作端点**      | `ActionItemResource.java`, `ActionItemService.java`                     | 新增 `POST /api/action-items/{id}/start`、`/complete`、`/cancel`，由 Service 统一控制状态流转和 `completedAt`                    |
+| **创建默认值**            | `ActionItemService.java`, `ActionItemDTO.java`                          | 创建时默认 `status=OPEN`、`priority=P2_MEDIUM`、`createdAt=today`；DTO 不再要求客户端必传 `status`                               |
+| **PUT/PATCH 状态保护**    | `ActionItemService.java`                                                | 普通 update/partialUpdate 保留已有 `status`、`createdAt`、`completedAt`，避免前端直接拼 DTO 造成状态不一致                       |
+| **前端动作调用**          | `action-item.service.ts`, `action-item.component.ts`, `action-item.vue` | 页面改为调用 `/start`、`/complete`、`/cancel` 动作端点；增加 Start 按钮，Complete/Cancel 支持 `OPEN + IN_PROGRESS`               |
+| **Liquibase ID 策略对齐** | `20260605000000_added_entity_ActionItem.xml`                            | 移除 `autoIncrement=true`，与实体 `GenerationType.SEQUENCE` 和项目统一 `sequence_generator` 保持一致                             |
+| **i18n**                  | `global.json` (en/zh-cn/ja)                                             | 新增 `actionItem.start`                                                                                                          |
+
 ---
 
 ## 14. 岗位技能缺口报告 (Phase 4 — Skills Gap Report)
@@ -1183,13 +1214,13 @@ positionRiskEvaluationService()
 
 #### 14.2.1 报告输入
 
-| 参数                | 类型                  | 必需          | 说明                                    |
-| ------------------- | --------------------- | ------------- | --------------------------------------- |
-| `positionIds`       | List<Long>            | 是            | 目标职位 ID 列表（支持多选）            |
-| `includeCandidates` | Boolean               | 否，默认 true | 是否包含替补候选人的缺口分析            |
-| `includeOwners`     | Boolean               | 否，默认 true | 是否包含在职人员的缺口分析              |
-| `minImportance`     | RequirementImportance | 否            | 最低技能重要度过滤（如只显示 REQUIRED） |
-| `sortBy`            | enum                  | 否            | 排序方式：风险优先 / 缺口数量 / 职位名  |
+| 参数                | 类型                  | 必需          | 说明                                                                                                            |
+| ------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
+| `positionIds`       | List<Long>            | 是            | 目标职位 ID 列表（支持多选）；前端通过全局 `paramsSerializer` 以 `?positionIds=1&positionIds=2` repeat 格式发送 |
+| `includeCandidates` | Boolean               | 否，默认 true | 是否包含替补候选人的缺口分析                                                                                    |
+| `includeOwners`     | Boolean               | 否，默认 true | 是否包含在职人员的缺口分析                                                                                      |
+| `minImportance`     | RequirementImportance | 否            | 最低技能重要度过滤（如只显示 REQUIRED）                                                                         |
+| `sortBy`            | enum                  | 否            | 排序方式：风险优先 / 缺口数量 / 职位名                                                                          |
 
 #### 14.2.2 报告输出（ReportDTO）
 
@@ -1662,3 +1693,40 @@ SuccessionMapDTO
 | 4D.3 | 前端构建     | `npm run webapp:build:dev` 确保无编译错误 |
 | 4D.4 | 手动验证     | 各新页面/功能点手动验证                   |
 | 4D.5 | 设计文档同步 | 按实际实现更新 Section 13                 |
+
+### 阶段 5A: ActionItem 实体 (P0-1, 已完成)
+
+| 步骤  | 任务                      | 文件                                                                                   | 说明                                                                                  |
+| ----- | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------- | ------- |
+| 5A.1  | 创建枚举                  | `domain/enumeration/ActionSourceType.java`, `ActionPriority.java`, `ActionStatus.java` | 3 个枚举类                                                                            |
+| 5A.2  | 创建实体 + DTO + Mapper   | `domain/ActionItem.java`, `dto/ActionItemDTO.java`, `mapper/ActionItemMapper.java`     | `ActionItem` 含 description/assignee/dueDate/status/priority/sourceType/sourceId/note |
+| 5A.3  | 创建 Repository           | `repository/ActionItemRepository.java`                                                 | `findByStatusInOrderByPriorityAscDueDateAsc()`, `countByStatusIn()`                   |
+| 5A.4  | 创建 Service              | `service/ActionItemService.java`                                                       | `findOpenItems()`, `countOpen()`, 标准 CRUD + start/complete/cancel 状态动作          |
+| 5A.5  | 创建 Resource             | `web/rest/ActionItemResource.java`                                                     | 全 CRUD + `GET /open` + `GET /open/count` + `POST /{id}/start                         | complete | cancel` |
+| 5A.6  | Liquibase                 | `20260605000000_added_entity_ActionItem.xml`                                           | 建表 SQL                                                                              |
+| 5A.7  | 前端 Service              | `entities/action-item/action-item.service.ts`                                          | HTTP 调用                                                                             |
+| 5A.8  | 前端 Component + Template | `entities/action-item/action-item.component.ts`, `.vue`                                | CRUD 页面, Complete/Cancel 操作                                                       |
+| 5A.9  | 路由 + 导航               | `router/pages.ts`, `core/jhi-navbar/jhi-navbar.vue`                                    | 注册路由和导航入口                                                                    |
+| 5A.10 | Dashboard 卡片            | `core/dashboard/dashboard.vue`, `.component.ts`                                        | 显示待办数量 badge + 优先级排序列表                                                   |
+| 5A.11 | i18n 键                   | `global.json` (en/zh-cn/ja)                                                            | 所有 ActionItem 相关翻译键                                                            |
+
+### 阶段 5B: Review 修复 (已完成)
+
+| 步骤 | 任务                        | 文件                                 | 说明                                                               |
+| ---- | --------------------------- | ------------------------------------ | ------------------------------------------------------------------ |
+| 5B.1 | i18n JSON 修复              | `en/global.json`                     | 补回缺失的 `"skillGapReport": {` 和末尾根 `}`，JSON 结构恢复       |
+| 5B.2 | Vue I18n 配置修复           | `shared/config/i18n.ts`              | 添加 `legacy: false`，使 `useI18n()` 在 composition API 中正常工作 |
+| 5B.3 | 全局 Axios paramsSerializer | `shared/config/axios-interceptor.ts` | 自定义 serializer，数组 → repeat 格式 query params                 |
+| 5B.4 | Entities 菜单分组           | `entities/entities-menu.vue`         | 第一组添加"Core Data"组标题，统一菜单分组样式                      |
+| 5B.5 | Skill Gap Report 页面布局   | `core/reports/skill-gap-report.vue`  | 筛选区右侧改为两行布局，Generate Report 右对齐并保留右侧边距       |
+
+### 阶段 5C: 第四轮 Review 修复 (已完成)
+
+| 步骤 | 任务           | 文件                                                                    | 说明                                                            |
+| ---- | -------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------- |
+| 5C.1 | 未完成状态语义 | `ActionItemRepository.java`, `ActionItemService.java`                   | 未完成待办 = `OPEN + IN_PROGRESS`                               |
+| 5C.2 | 状态动作端点   | `ActionItemResource.java`, `ActionItemService.java`                     | 增加 `/start`、`/complete`、`/cancel`，服务端统一设置状态和日期 |
+| 5C.3 | 创建默认值     | `ActionItemService.java`, `ActionItemDTO.java`                          | 默认 `OPEN` / `P2_MEDIUM` / today，客户端不必传状态             |
+| 5C.4 | 状态保护       | `ActionItemService.java`                                                | 普通 update/partialUpdate 不允许直接覆盖状态日期字段            |
+| 5C.5 | 前端动作调用   | `action-item.service.ts`, `action-item.component.ts`, `action-item.vue` | 改为调用动作端点，增加 Start 按钮                               |
+| 5C.6 | ID 策略对齐    | `20260605000000_added_entity_ActionItem.xml`                            | 移除 autoIncrement，使用项目统一 sequence 策略                  |

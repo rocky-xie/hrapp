@@ -190,6 +190,21 @@ public class TrainingGoalResource {
     }
 
     /**
+     * {@code POST  /training-goals/{id}/complete} : complete a training goal, creating a SkillAssessment.
+     *
+     * @param id the id of the trainingGoal to complete.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated trainingGoalDTO.
+     */
+    @PostMapping("/{id}/complete")
+    public ResponseEntity<TrainingGoalDTO> completeTrainingGoal(@PathVariable("id") Long id) {
+        LOG.debug("REST request to complete TrainingGoal : {}", id);
+        TrainingGoalDTO result = trainingGoalService.completeGoal(id);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, id.toString()))
+            .body(result);
+    }
+
+    /**
      * {@code DELETE  /training-goals/:id} : delete the "id" trainingGoal.
      *
      * @param id the id of the trainingGoalDTO to delete.

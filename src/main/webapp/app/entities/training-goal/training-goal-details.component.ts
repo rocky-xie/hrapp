@@ -30,6 +30,17 @@ export default defineComponent({
       }
     };
 
+    const completeTrainingGoal = async () => {
+      if (!trainingGoal.value.id) return;
+      try {
+        const res = await trainingGoalService().complete(trainingGoal.value.id);
+        trainingGoal.value = res;
+        alertService.showInfo('A TrainingGoal is completed with identifier ' + res.id, { variant: 'success' });
+      } catch (error) {
+        alertService.showHttpError(error.response);
+      }
+    };
+
     if (route.params?.trainingGoalId) {
       retrieveTrainingGoal(route.params.trainingGoalId);
     }
@@ -37,6 +48,7 @@ export default defineComponent({
     return {
       alertService,
       trainingGoal,
+      completeTrainingGoal,
 
       ...dataUtils,
 

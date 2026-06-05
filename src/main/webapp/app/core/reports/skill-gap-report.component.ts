@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import axios from 'axios';
 import SkillGapReportService from './skill-gap-report.service';
@@ -17,6 +17,7 @@ export default defineComponent({
     const suggestions = ref<any[]>([]);
     const suggestionLoading = ref(false);
     const error = ref(false);
+    const positionRequired = ref(false);
     const includeOwners = ref(true);
     const includeCandidates = ref(true);
     const minImportance = ref('');
@@ -31,7 +32,8 @@ export default defineComponent({
     };
 
     const generateReport = async () => {
-      if (selectedPositionIds.value.length === 0) return;
+      positionRequired.value = selectedPositionIds.value.length === 0;
+      if (positionRequired.value) return;
       loading.value = true;
       error.value = false;
       report.value = null;
@@ -119,6 +121,12 @@ export default defineComponent({
       return 'bg-secondary';
     };
 
+    watch(selectedPositionIds, () => {
+      if (selectedPositionIds.value.length > 0) {
+        positionRequired.value = false;
+      }
+    });
+
     loadPositions();
 
     return {
@@ -130,6 +138,7 @@ export default defineComponent({
       suggestions,
       suggestionLoading,
       error,
+      positionRequired,
       includeOwners,
       includeCandidates,
       minImportance,

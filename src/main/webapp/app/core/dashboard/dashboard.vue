@@ -46,7 +46,55 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-3">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center gap-2">
+            <font-awesome-icon icon="tasks" style="color: #e67e22" />
+            <strong>{{ $t('actionItem.title') }}</strong>
+            <span class="ms-auto badge bg-warning">{{ openActionCount }}</span>
+          </div>
+          <div class="card-body p-0">
+            <div v-if="actionItemsLoading" class="text-center py-3">
+              <b-spinner small></b-spinner>
+            </div>
+            <div v-else-if="openActionItems.length === 0" class="text-center py-4 text-muted">
+              <font-awesome-icon icon="check-circle" class="fs-3 mb-2" style="color: #28b463" />
+              <div>{{ $t('dashboard.actionItems.empty') }}</div>
+            </div>
+            <table v-else class="table table-hover table-sm mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>{{ $t('actionItem.description') }}</th>
+                  <th>{{ $t('actionItem.priority') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="item in (openActionItems || []).slice(0, 8)"
+                  :key="item.id"
+                  style="cursor: pointer"
+                  @click="navigateTo('/action-items')"
+                >
+                  <td class="text-truncate" style="max-width: 200px">{{ item.description }}</td>
+                  <td>
+                    <span
+                      v-if="item.priority"
+                      class="badge"
+                      :class="item.priority === 'P0_CRITICAL' ? 'bg-danger' : item.priority === 'P1_HIGH' ? 'bg-warning' : 'bg-info'"
+                      >{{ item.priority }}</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer text-end p-2">
+            <router-link to="/action-items" class="btn btn-sm btn-outline-primary">{{ $t('dashboard.actionItems.viewAll') }}</router-link>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
         <div class="card h-100">
           <div class="card-header d-flex align-items-center gap-2">
             <font-awesome-icon icon="exclamation-triangle" style="color: #e74c3c" />

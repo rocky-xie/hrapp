@@ -175,6 +175,8 @@ export default defineComponent({
         const common = { ...this.trainingRecord, person };
         if (existing?.id) {
           common.id = existing.id;
+        } else if (this.trainingRecord.id && this.selectedPeople.length === 1) {
+          common.id = this.trainingRecord.id;
         } else {
           delete common.id;
         }

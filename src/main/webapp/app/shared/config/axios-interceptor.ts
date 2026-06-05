@@ -15,6 +15,20 @@ const onRequestSuccess = config => {
   config.url = `${SERVER_API_URL}${config.url}`;
   return config;
 };
+
+axios.defaults.paramsSerializer = params => {
+  const parts: string[] = [];
+  for (const [key, value] of Object.entries(params)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(item)}`);
+      }
+    } else {
+      parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+    }
+  }
+  return parts.join('&');
+};
 const setupAxiosInterceptors = (onUnauthenticated, onServerError) => {
   const onResponseError = err => {
     const status = err.status || err.response?.status;

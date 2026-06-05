@@ -1,5 +1,8 @@
 <template>
   <div>
+    <b-dropdown-item disabled
+      ><strong>{{ $t('global.menu.sub.coreData') }}</strong></b-dropdown-item
+    >
     <b-dropdown-item to="/position">
       <font-awesome-icon icon="asterisk" />
       <span>{{ $t('entity.position.detail.title') }}</span>

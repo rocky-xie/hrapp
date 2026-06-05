@@ -8,7 +8,7 @@
       <div class="card mb-3">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
               <label class="form-label">{{ $t('skillGapReport.filter.position') }}</label>
               <select v-model="selectedPositionIds" multiple class="form-select" size="4">
                 <option v-for="pos in allPositions" :key="pos.id" :value="pos.id">
@@ -16,32 +16,38 @@
                 </option>
               </select>
             </div>
-            <div class="col-md-3">
-              <label class="form-label">{{ $t('skillGapReport.filter.importance') }}</label>
-              <select v-model="minImportance" class="form-select">
-                <option value="">{{ $t('global.all') }}</option>
-                <option value="REQUIRED">REQUIRED</option>
-                <option value="IMPORTANT">IMPORTANT</option>
-                <option value="OPTIONAL">OPTIONAL</option>
-              </select>
-            </div>
-            <div class="col-md-2 d-flex align-items-end">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="includeOwners" v-model="includeOwners" />
-                <label class="form-check-label" for="includeOwners">{{ $t('skillGapReport.filter.includeOwners') }}</label>
+            <div class="col-md-7 col-lg-8">
+              <div class="d-flex flex-column h-100">
+                <div>
+                  <label class="form-label">{{ $t('skillGapReport.filter.importance') }}</label>
+                  <select v-model="minImportance" class="form-select" style="max-width: 180px">
+                    <option value="">{{ $t('global.all') }}</option>
+                    <option value="REQUIRED">REQUIRED</option>
+                    <option value="IMPORTANT">IMPORTANT</option>
+                    <option value="OPTIONAL">OPTIONAL</option>
+                  </select>
+                </div>
+                <div class="d-flex flex-wrap gap-3 align-items-end justify-content-between mt-3 pe-2">
+                  <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" id="includeOwners" v-model="includeOwners" />
+                      <label class="form-check-label" for="includeOwners">{{ $t('skillGapReport.filter.includeOwners') }}</label>
+                    </div>
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" id="includeCandidates" v-model="includeCandidates" />
+                      <label class="form-check-label" for="includeCandidates">{{ $t('skillGapReport.filter.includeCandidates') }}</label>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-primary flex-shrink-0 ms-auto"
+                    @click="generateReport"
+                    :disabled="loading || selectedPositionIds.length === 0"
+                  >
+                    <b-spinner v-if="loading" small></b-spinner>
+                    <span v-else>{{ $t('skillGapReport.generate') }}</span>
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="col-md-2 d-flex align-items-end">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="includeCandidates" v-model="includeCandidates" />
-                <label class="form-check-label" for="includeCandidates">{{ $t('skillGapReport.filter.includeCandidates') }}</label>
-              </div>
-            </div>
-            <div class="col-md-1 d-flex align-items-end">
-              <button class="btn btn-primary" @click="generateReport" :disabled="loading || selectedPositionIds.length === 0">
-                <b-spinner v-if="loading" small></b-spinner>
-                <span v-else>{{ $t('skillGapReport.generate') }}</span>
-              </button>
             </div>
           </div>
         </div>

@@ -130,6 +130,22 @@
                   </button>
                 </router-link>
                 <b-button
+                  v-if="
+                    trainingGoal.person &&
+                    trainingGoal.skill &&
+                    trainingGoal.targetLevel &&
+                    trainingGoal.status !== 'COMPLETED' &&
+                    trainingGoal.status !== 'CANCELLED'
+                  "
+                  @click="completeTrainingGoal(trainingGoal.id)"
+                  variant="success"
+                  class="btn btn-sm"
+                  data-cy="entityCompleteButton"
+                >
+                  <font-awesome-icon icon="check"></font-awesome-icon>
+                  <span class="d-none d-md-inline">{{ $t('entity.trainingGoal.action.complete') }}</span>
+                </b-button>
+                <b-button
                   @click="prepareRemove(trainingGoal)"
                   variant="danger"
                   class="btn btn-sm"

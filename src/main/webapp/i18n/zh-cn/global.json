@@ -21,6 +21,7 @@
       "database": "数据库",
       "language": "语言",
       "sub": {
+        "coreData": "主数据",
         "continuity": "继任与风险",
         "training": "技能与培训",
         "observation": "观察与评估"
@@ -490,6 +491,9 @@
         "startDate": "开始日期",
         "targetDate": "目标日期",
         "status": "状态"
+      },
+      "action": {
+        "complete": "完成"
       }
     },
     "trainingRecord": {
@@ -649,6 +653,10 @@
       "count": "{n} 个职位",
       "empty": "暂无后继者数据",
       "candidates": "候选人员"
+    },
+    "actionItems": {
+      "empty": "暂无待办",
+      "viewAll": "查看全部"
     }
   },
   "skillGapReport": {
@@ -698,6 +706,19 @@
     "goalName": "为 {personName} 培训 {skillName}",
     "goalDescription": "基于技能缺口报告生成 — {reason}",
     "targetLevelDescription": "目标: {level}"
+  },
+  "actionItem": {
+    "title": "待办事项",
+    "description": "描述",
+    "assignee": "负责人",
+    "dueDate": "截止日期",
+    "priority": "优先级",
+    "status": "状态",
+    "sourceType": "来源",
+    "start": "开始",
+    "complete": "完成",
+    "cancel": "取消",
+    "openCount": "待办数量"
   },
   "error": {
     "sessions": "会话已过期，请重新登录。",

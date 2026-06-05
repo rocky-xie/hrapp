@@ -34,6 +34,10 @@ export default defineComponent({
     const successionError = ref(false);
     const successionMap = ref<any[]>([]);
 
+    const actionItemsLoading = ref(true);
+    const openActionItems = ref<any[]>([]);
+    const openActionCount = ref(0);
+
     const positionRiskEvaluationService = new PositionRiskEvaluationService();
     const staffSubstitutionService = new StaffSubstitutionService();
     const personSkillService = new PersonSkillService();
@@ -162,12 +166,26 @@ export default defineComponent({
       }
     };
 
+    const loadActionItems = async () => {
+      actionItemsLoading.value = true;
+      try {
+        const [items, count] = await Promise.all([axios.get('api/action-items/open'), axios.get('api/action-items/open/count')]);
+        openActionItems.value = items.data;
+        openActionCount.value = count.data;
+      } catch {
+        // fail silently
+      } finally {
+        actionItemsLoading.value = false;
+      }
+    };
+
     onMounted(() => {
       loadSummary();
       loadHighRiskPositions();
       loadCoverageGaps();
       loadDueSkills();
       loadSuccessionMap();
+      loadActionItems();
     });
 
     const readinessBadge = (level: string): string => {
@@ -201,6 +219,9 @@ export default defineComponent({
       getReviewStatus,
       navigateTo,
       readinessBadge,
+      actionItemsLoading,
+      openActionItems,
+      openActionCount,
     };
   },
 });

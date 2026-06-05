@@ -85,6 +85,17 @@ export default defineComponent({
       }
     };
 
+    const completeTrainingGoal = async (id: number) => {
+      try {
+        await trainingGoalService().complete(id);
+        const message = `A TrainingGoal is completed with identifier ${id}`;
+        alertService.showInfo(message, { variant: 'success' });
+        retrieveTrainingGoals();
+      } catch (error) {
+        alertService.showHttpError(error.response);
+      }
+    };
+
     const changeOrder = (newOrder: string) => {
       if (propOrder.value === newOrder) {
         reverse.value = !reverse.value;
@@ -121,6 +132,7 @@ export default defineComponent({
       prepareRemove,
       closeDialog,
       removeTrainingGoal,
+      completeTrainingGoal,
       itemsPerPage,
       queryCount,
       page,
