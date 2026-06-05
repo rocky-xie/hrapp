@@ -4,6 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet id="20260605000000" author="jhipster">
+        <validCheckSum>9:7c07e75a5bf1214c0313b55f1ea42ed9</validCheckSum>
+        <validCheckSum>9:7e6b56a0f8b72ec7bc5a44791f7d0ac8</validCheckSum>
         <createTable tableName="action_item">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
