@@ -727,7 +727,10 @@
     "start": "Start",
     "complete": "Complete",
     "cancel": "Cancel",
-    "openCount": "Open Items"
+    "openCount": "Open Items",
+    "create": "New Action Item",
+    "edit": "Edit Action Item",
+    "note": "Note"
   },
   "dataQuality": {
     "home": {

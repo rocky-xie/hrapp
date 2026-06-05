@@ -19,10 +19,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import top.btmdc.hr.domain.enumeration.ActionPriority;
+import top.btmdc.hr.domain.enumeration.ActionSourceType;
 import top.btmdc.hr.domain.enumeration.DocumentStatus;
 import top.btmdc.hr.domain.enumeration.ImportanceLevel;
 import top.btmdc.hr.domain.enumeration.ReadinessLevel;
 import top.btmdc.hr.repository.PositionRiskEvaluationRepository;
+import top.btmdc.hr.service.ActionItemService;
 import top.btmdc.hr.service.PositionRiskEvaluationQueryService;
 import top.btmdc.hr.service.PositionRiskEvaluationService;
 import top.btmdc.hr.service.criteria.PositionRiskEvaluationCriteria;
@@ -49,14 +52,18 @@ public class PositionRiskEvaluationResource {
 
     private final PositionRiskEvaluationQueryService positionRiskEvaluationQueryService;
 
+    private final ActionItemService actionItemService;
+
     public PositionRiskEvaluationResource(
         PositionRiskEvaluationService positionRiskEvaluationService,
         PositionRiskEvaluationRepository positionRiskEvaluationRepository,
-        PositionRiskEvaluationQueryService positionRiskEvaluationQueryService
+        PositionRiskEvaluationQueryService positionRiskEvaluationQueryService,
+        ActionItemService actionItemService
     ) {
         this.positionRiskEvaluationService = positionRiskEvaluationService;
         this.positionRiskEvaluationRepository = positionRiskEvaluationRepository;
         this.positionRiskEvaluationQueryService = positionRiskEvaluationQueryService;
+        this.actionItemService = actionItemService;
     }
 
     /**
@@ -115,6 +122,16 @@ public class PositionRiskEvaluationResource {
             successionReadiness,
             preview
         );
+        if (!preview && positionRiskEvaluationDTO.getRiskLevel() == top.btmdc.hr.domain.enumeration.RiskLevel.HIGH) {
+            String posName =
+                positionRiskEvaluationDTO.getPosition() != null ? positionRiskEvaluationDTO.getPosition().getPositionName() : "unknown";
+            actionItemService.createFromSource(
+                ActionSourceType.HIGH_RISK_POSITION,
+                "High risk position evaluated: " + posName,
+                null,
+                ActionPriority.P1_HIGH
+            );
+        }
         if (preview) {
             return ResponseEntity.ok().body(positionRiskEvaluationDTO);
         }

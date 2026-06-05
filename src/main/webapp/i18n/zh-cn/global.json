@@ -726,7 +726,10 @@
     "start": "开始",
     "complete": "完成",
     "cancel": "取消",
-    "openCount": "待办数量"
+    "openCount": "待办数量",
+    "create": "新建待办事项",
+    "edit": "编辑待办事项",
+    "note": "备注"
   },
   "dataQuality": {
     "home": {

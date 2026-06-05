@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.btmdc.hr.domain.ActionItem;
 import top.btmdc.hr.domain.enumeration.ActionPriority;
+import top.btmdc.hr.domain.enumeration.ActionSourceType;
 import top.btmdc.hr.domain.enumeration.ActionStatus;
 import top.btmdc.hr.repository.ActionItemRepository;
 import top.btmdc.hr.service.dto.ActionItemDTO;
@@ -104,10 +105,13 @@ public class ActionItemService {
         return actionItemRepository
             .findById(id)
             .map(item -> {
-                if (item.getStatus() == ActionStatus.OPEN) {
-                    item.setStatus(ActionStatus.IN_PROGRESS);
-                    item.setCompletedAt(null);
+                if (item.getStatus() != ActionStatus.OPEN) {
+                    throw new InvalidActionItemTransitionException(
+                        "Cannot start actionItem with status " + item.getStatus() + "; only OPEN can be started"
+                    );
                 }
+                item.setStatus(ActionStatus.IN_PROGRESS);
+                item.setCompletedAt(null);
                 return item;
             })
             .map(actionItemRepository::save)
@@ -118,10 +122,13 @@ public class ActionItemService {
         return actionItemRepository
             .findById(id)
             .map(item -> {
-                if (item.getStatus() == ActionStatus.OPEN || item.getStatus() == ActionStatus.IN_PROGRESS) {
-                    item.setStatus(ActionStatus.COMPLETED);
-                    item.setCompletedAt(LocalDate.now());
+                if (item.getStatus() != ActionStatus.OPEN && item.getStatus() != ActionStatus.IN_PROGRESS) {
+                    throw new InvalidActionItemTransitionException(
+                        "Cannot complete actionItem with status " + item.getStatus() + "; only OPEN or IN_PROGRESS can be completed"
+                    );
                 }
+                item.setStatus(ActionStatus.COMPLETED);
+                item.setCompletedAt(LocalDate.now());
                 return item;
             })
             .map(actionItemRepository::save)
@@ -132,14 +139,28 @@ public class ActionItemService {
         return actionItemRepository
             .findById(id)
             .map(item -> {
-                if (item.getStatus() == ActionStatus.OPEN || item.getStatus() == ActionStatus.IN_PROGRESS) {
-                    item.setStatus(ActionStatus.CANCELLED);
-                    item.setCompletedAt(null);
+                if (item.getStatus() != ActionStatus.OPEN && item.getStatus() != ActionStatus.IN_PROGRESS) {
+                    throw new InvalidActionItemTransitionException(
+                        "Cannot cancel actionItem with status " + item.getStatus() + "; only OPEN or IN_PROGRESS can be cancelled"
+                    );
                 }
+                item.setStatus(ActionStatus.CANCELLED);
+                item.setCompletedAt(null);
                 return item;
             })
             .map(actionItemRepository::save)
             .map(actionItemMapper::toDto);
+    }
+
+    public ActionItemDTO createFromSource(ActionSourceType sourceType, String description, String assignee, ActionPriority priority) {
+        ActionItem entity = new ActionItem()
+            .description(description)
+            .assignee(assignee)
+            .sourceType(sourceType)
+            .priority(priority != null ? priority : ActionPriority.P2_MEDIUM)
+            .status(ActionStatus.OPEN)
+            .createdAt(LocalDate.now());
+        return actionItemMapper.toDto(actionItemRepository.save(entity));
     }
 
     public void delete(Long id) {

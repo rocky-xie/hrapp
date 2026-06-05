@@ -20,7 +20,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import top.btmdc.hr.domain.enumeration.ActionPriority;
+import top.btmdc.hr.domain.enumeration.ActionSourceType;
 import top.btmdc.hr.repository.StaffSubstitutionRepository;
+import top.btmdc.hr.service.ActionItemService;
 import top.btmdc.hr.service.StaffSubstitutionQueryService;
 import top.btmdc.hr.service.StaffSubstitutionService;
 import top.btmdc.hr.service.criteria.StaffSubstitutionCriteria;
@@ -47,14 +50,18 @@ public class StaffSubstitutionResource {
 
     private final StaffSubstitutionQueryService staffSubstitutionQueryService;
 
+    private final ActionItemService actionItemService;
+
     public StaffSubstitutionResource(
         StaffSubstitutionService staffSubstitutionService,
         StaffSubstitutionRepository staffSubstitutionRepository,
-        StaffSubstitutionQueryService staffSubstitutionQueryService
+        StaffSubstitutionQueryService staffSubstitutionQueryService,
+        ActionItemService actionItemService
     ) {
         this.staffSubstitutionService = staffSubstitutionService;
         this.staffSubstitutionRepository = staffSubstitutionRepository;
         this.staffSubstitutionQueryService = staffSubstitutionQueryService;
+        this.actionItemService = actionItemService;
     }
 
     /**
@@ -117,6 +124,15 @@ public class StaffSubstitutionResource {
             thresholdRate
         );
         StaffSubstitutionDTO staffSubstitutionDTO = staffSubstitutionService.calculate(positionId, candidatePersonId, thresholdRate);
+        if (Boolean.FALSE.equals(staffSubstitutionDTO.getSubstitutable())) {
+            String posName = staffSubstitutionDTO.getPosition() != null ? staffSubstitutionDTO.getPosition().getPositionName() : "unknown";
+            actionItemService.createFromSource(
+                ActionSourceType.SUBSTITUTION_GAP,
+                "Insufficient substitution coverage for position '" + posName + "' by candidate",
+                null,
+                ActionPriority.P1_HIGH
+            );
+        }
         return ResponseEntity.created(new URI("/api/staff-substitutions/" + staffSubstitutionDTO.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, staffSubstitutionDTO.getId().toString()))
             .body(staffSubstitutionDTO);

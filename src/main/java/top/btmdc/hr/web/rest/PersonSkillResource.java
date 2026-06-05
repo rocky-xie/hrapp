@@ -19,7 +19,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import top.btmdc.hr.domain.enumeration.ActionPriority;
+import top.btmdc.hr.domain.enumeration.ActionSourceType;
 import top.btmdc.hr.repository.PersonSkillRepository;
+import top.btmdc.hr.service.ActionItemService;
 import top.btmdc.hr.service.PersonSkillQueryService;
 import top.btmdc.hr.service.PersonSkillService;
 import top.btmdc.hr.service.criteria.PersonSkillCriteria;
@@ -46,14 +49,18 @@ public class PersonSkillResource {
 
     private final PersonSkillQueryService personSkillQueryService;
 
+    private final ActionItemService actionItemService;
+
     public PersonSkillResource(
         PersonSkillService personSkillService,
         PersonSkillRepository personSkillRepository,
-        PersonSkillQueryService personSkillQueryService
+        PersonSkillQueryService personSkillQueryService,
+        ActionItemService actionItemService
     ) {
         this.personSkillService = personSkillService;
         this.personSkillRepository = personSkillRepository;
         this.personSkillQueryService = personSkillQueryService;
+        this.actionItemService = actionItemService;
     }
 
     /**
@@ -70,6 +77,13 @@ public class PersonSkillResource {
             throw new BadRequestAlertException("A new personSkill cannot already have an ID", ENTITY_NAME, "idexists");
         }
         personSkillDTO = personSkillService.save(personSkillDTO);
+        String skillName = personSkillDTO.getSkill() != null ? personSkillDTO.getSkill().getSkillName() : "unknown";
+        actionItemService.createFromSource(
+            ActionSourceType.SKILL_REVIEW,
+            "Skill '" + skillName + "' recorded for person; review may be needed",
+            null,
+            ActionPriority.P2_MEDIUM
+        );
         return ResponseEntity.created(new URI("/api/person-skills/" + personSkillDTO.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, personSkillDTO.getId().toString()))
             .body(personSkillDTO);
@@ -103,6 +117,13 @@ public class PersonSkillResource {
         }
 
         personSkillDTO = personSkillService.update(personSkillDTO);
+        String skillName = personSkillDTO.getSkill() != null ? personSkillDTO.getSkill().getSkillName() : "unknown";
+        actionItemService.createFromSource(
+            ActionSourceType.SKILL_REVIEW,
+            "Skill '" + skillName + "' updated for person; review may be needed",
+            null,
+            ActionPriority.P2_MEDIUM
+        );
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, personSkillDTO.getId().toString()))
             .body(personSkillDTO);

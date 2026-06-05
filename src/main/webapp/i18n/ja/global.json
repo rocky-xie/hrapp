@@ -726,7 +726,10 @@
     "start": "開始",
     "complete": "完了",
     "cancel": "キャンセル",
-    "openCount": "未完了件数"
+    "openCount": "未完了件数",
+    "create": "新規アクションアイテム",
+    "edit": "アクションアイテム編集",
+    "note": "メモ"
   },
   "dataQuality": {
     "home": {

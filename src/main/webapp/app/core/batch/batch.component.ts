@@ -1,5 +1,5 @@
 import { type Ref, defineComponent, inject, ref } from 'vue';
-import { useI18n } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import { useAlertService } from '@/shared/alert/alert.service';
 import BatchService from './batch.service';

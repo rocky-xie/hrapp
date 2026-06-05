@@ -98,6 +98,14 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
         ) return (ProblemDetailWithCause) new InvalidPasswordException().getBody();
 
         if (
+            ex instanceof top.btmdc.hr.service.InvalidActionItemTransitionException
+        ) return (ProblemDetailWithCause) ProblemDetailWithCauseBuilder.instance()
+            .withStatus(HttpStatus.BAD_REQUEST.value())
+            .withTitle("Invalid action item transition")
+            .withDetail(ex.getMessage())
+            .build();
+
+        if (
             ex instanceof ErrorResponseException exp && exp.getBody() instanceof ProblemDetailWithCause problemDetailWithCause
         ) return problemDetailWithCause;
         return ProblemDetailWithCauseBuilder.instance().withStatus(toStatus(ex).value()).build();

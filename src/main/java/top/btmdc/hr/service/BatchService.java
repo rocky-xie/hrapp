@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.btmdc.hr.domain.Person;
 import top.btmdc.hr.domain.Position;
 import top.btmdc.hr.domain.Skill;
+import top.btmdc.hr.domain.enumeration.SkillType;
 import top.btmdc.hr.repository.PersonRepository;
 import top.btmdc.hr.repository.PositionRepository;
 import top.btmdc.hr.repository.SkillRepository;
@@ -93,13 +94,13 @@ public class BatchService {
         List<Skill> skills = skillRepository.findAll();
         try (Workbook wb = new XSSFWorkbook()) {
             Sheet sheet = wb.createSheet("Skills");
-            createHeaderRow(sheet, "ID", "Skill Name", "Category", "Description");
+            createHeaderRow(sheet, "ID", "Skill Name", "Skill Type", "Description");
             for (int i = 0; i < skills.size(); i++) {
                 Row row = sheet.createRow(i + 1);
                 Skill s = skills.get(i);
                 row.createCell(0).setCellValue(s.getId() != null ? s.getId() : 0);
                 row.createCell(1).setCellValue(s.getSkillName() != null ? s.getSkillName() : "");
-                row.createCell(2).setCellValue(s.getCategory() != null ? s.getCategory() : "");
+                row.createCell(2).setCellValue(s.getSkillType() != null ? s.getSkillType().name() : "");
                 row.createCell(3).setCellValue(s.getDescription() != null ? s.getDescription() : "");
             }
             autoSizeColumns(sheet, 4);
@@ -199,7 +200,14 @@ public class BatchService {
                         continue;
                     }
                     s.setSkillName(getString(nameCell));
-                    s.setCategory(getString(row.getCell(2)));
+                    String typeStr = getString(row.getCell(2));
+                    if (typeStr != null && !typeStr.isBlank()) {
+                        try {
+                            s.setSkillType(SkillType.valueOf(typeStr));
+                        } catch (IllegalArgumentException e) {
+                            errors.add("Row " + (row.getRowNum() + 1) + ": invalid SkillType '" + typeStr + "'");
+                        }
+                    }
                     s.setDescription(getString(row.getCell(3)));
                     skillRepository.save(s);
                     imported++;

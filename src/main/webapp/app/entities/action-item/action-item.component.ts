@@ -7,6 +7,11 @@ export default defineComponent({
     const service = new ActionItemService();
     const items = ref<any[]>([]);
     const loading = ref(false);
+    const showForm = ref(false);
+    const editingItem = ref<any>(null);
+    const form = ref<any>({});
+    const saving = ref(false);
+    const error = ref<string | null>(null);
 
     const loadAll = async () => {
       loading.value = true;
@@ -17,19 +22,79 @@ export default defineComponent({
       }
     };
 
+    const openCreate = () => {
+      editingItem.value = null;
+      form.value = { sourceType: 'MANUAL', priority: 'P2_MEDIUM' };
+      error.value = null;
+      showForm.value = true;
+    };
+
+    const openEdit = (item: any) => {
+      editingItem.value = item;
+      form.value = { ...item };
+      error.value = null;
+      showForm.value = true;
+    };
+
+    const closeForm = () => {
+      showForm.value = false;
+      editingItem.value = null;
+      form.value = {};
+      error.value = null;
+    };
+
+    const save = async () => {
+      saving.value = true;
+      error.value = null;
+      try {
+        if (editingItem.value) {
+          await service.update(editingItem.value.id, form.value);
+        } else {
+          await service.create(form.value);
+        }
+        closeForm();
+        await loadAll();
+      } catch (e: any) {
+        error.value = e.response?.data?.title || e.message || 'Save failed';
+      } finally {
+        saving.value = false;
+      }
+    };
+
     const start = async (item: any) => {
-      await service.start(item.id);
-      await loadAll();
+      try {
+        await service.start(item.id);
+        await loadAll();
+      } catch (e: any) {
+        error.value = e.response?.data?.title || e.message || 'Start failed';
+      }
     };
 
     const complete = async (item: any) => {
-      await service.complete(item.id);
-      await loadAll();
+      try {
+        await service.complete(item.id);
+        await loadAll();
+      } catch (e: any) {
+        error.value = e.response?.data?.title || e.message || 'Complete failed';
+      }
     };
 
     const cancel = async (item: any) => {
-      await service.cancel(item.id);
-      await loadAll();
+      try {
+        await service.cancel(item.id);
+        await loadAll();
+      } catch (e: any) {
+        error.value = e.response?.data?.title || e.message || 'Cancel failed';
+      }
+    };
+
+    const remove = async (item: any) => {
+      try {
+        await service.delete(item.id);
+        await loadAll();
+      } catch (e: any) {
+        error.value = e.response?.data?.title || e.message || 'Delete failed';
+      }
     };
 
     const priorityBadge = (p: string) => {
@@ -48,6 +113,24 @@ export default defineComponent({
 
     onMounted(loadAll);
 
-    return { items, loading, start, complete, cancel, priorityBadge, statusBadge };
+    return {
+      items,
+      loading,
+      showForm,
+      editingItem,
+      form,
+      saving,
+      error,
+      openCreate,
+      openEdit,
+      closeForm,
+      save,
+      start,
+      complete,
+      cancel,
+      remove,
+      priorityBadge,
+      statusBadge,
+    };
   },
 });
