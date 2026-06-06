@@ -1,11 +1,11 @@
 <template>
   <div>
     <h2 id="page-heading">
-      <span v-text="$t('entity.dataQuality.home.title')"></span>
+      <span v-text="$t('dataQuality.home.title')"></span>
       <div class="d-flex justify-content-end">
         <button class="btn btn-info" @click="runChecks" :disabled="isFetching">
           <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon>
-          <span v-text="$t('entity.dataQuality.action.runChecks')"></span>
+          <span v-text="$t('dataQuality.action.runChecks')"></span>
         </button>
       </div>
     </h2>
@@ -14,42 +14,42 @@
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" :class="{ active: activeTab === 'all' }" @click="activeTab = 'all'" href="#">
-            {{ $t('entity.dataQuality.tab.all') }} ({{ issues.length }})
+            {{ $t('dataQuality.tab.all') }} ({{ issues.length }})
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" :class="{ active: activeTab === 'ERROR' }" @click="activeTab = 'ERROR'" href="#">
             <span class="badge bg-danger me-1">{{ errorCount() }}</span
-            >{{ $t('entity.dataQuality.severity.error') }}
+            >{{ $t('dataQuality.severity.error') }}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" :class="{ active: activeTab === 'WARNING' }" @click="activeTab = 'WARNING'" href="#">
             <span class="badge bg-warning text-dark me-1">{{ warningCount() }}</span
-            >{{ $t('entity.dataQuality.severity.warning') }}
+            >{{ $t('dataQuality.severity.warning') }}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" :class="{ active: activeTab === 'INFO' }" @click="activeTab = 'INFO'" href="#">
             <span class="badge bg-info me-1">{{ infoCount() }}</span
-            >{{ $t('entity.dataQuality.severity.info') }}
+            >{{ $t('dataQuality.severity.info') }}
           </a>
         </li>
       </ul>
     </div>
 
     <div class="alert alert-warning" v-if="!isFetching && issues.length === 0">
-      <span v-text="$t('entity.dataQuality.message.noIssues')"></span>
+      <span v-text="$t('dataQuality.message.noIssues')"></span>
     </div>
 
     <div class="table-responsive" v-if="filteredIssues().length > 0">
       <table class="table table-striped" aria-describedby="data-quality-issues">
         <thead>
           <tr>
-            <th scope="col" v-text="$t('entity.dataQuality.field.severity')"></th>
-            <th scope="col" v-text="$t('entity.dataQuality.field.entityType')"></th>
-            <th scope="col" v-text="$t('entity.dataQuality.field.entityLabel')"></th>
-            <th scope="col" v-text="$t('entity.dataQuality.field.message')"></th>
+            <th scope="col" v-text="$t('dataQuality.field.severity')"></th>
+            <th scope="col" v-text="$t('dataQuality.field.entityType')"></th>
+            <th scope="col" v-text="$t('dataQuality.field.entityLabel')"></th>
+            <th scope="col" v-text="$t('dataQuality.field.message')"></th>
           </tr>
         </thead>
         <tbody>

@@ -127,6 +127,8 @@ public class PositionRiskEvaluationResource {
                 positionRiskEvaluationDTO.getPosition() != null ? positionRiskEvaluationDTO.getPosition().getPositionName() : "unknown";
             actionItemService.createFromSource(
                 ActionSourceType.HIGH_RISK_POSITION,
+                positionRiskEvaluationDTO.getId(),
+                "POSITION_RISK_EVALUATION",
                 "High risk position evaluated: " + posName,
                 null,
                 ActionPriority.P1_HIGH

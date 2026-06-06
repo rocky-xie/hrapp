@@ -30,11 +30,6 @@
           <span>{{ $t('home.login.prompt') }}</span>
           <a class="alert-link ms-1" @click="showLogin()">{{ $t('home.login.signIn') }}</a>
         </div>
-        <div class="alert alert-info d-flex align-items-center gap-2">
-          <font-awesome-icon icon="user-plus" class="fs-5" />
-          <span>{{ $t('home.register.prompt') }}</span>
-          <router-link class="alert-link ms-1" to="/register">{{ $t('home.register.link') }}</router-link>
-        </div>
       </div>
     </div>
 

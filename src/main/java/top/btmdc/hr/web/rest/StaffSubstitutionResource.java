@@ -128,6 +128,8 @@ public class StaffSubstitutionResource {
             String posName = staffSubstitutionDTO.getPosition() != null ? staffSubstitutionDTO.getPosition().getPositionName() : "unknown";
             actionItemService.createFromSource(
                 ActionSourceType.SUBSTITUTION_GAP,
+                staffSubstitutionDTO.getId(),
+                "STAFF_SUBSTITUTION",
                 "Insufficient substitution coverage for position '" + posName + "' by candidate",
                 null,
                 ActionPriority.P1_HIGH

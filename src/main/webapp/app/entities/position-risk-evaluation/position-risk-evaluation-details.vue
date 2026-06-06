@@ -58,7 +58,7 @@
             <span>{{ $t('entity.positionRiskEvaluation.field.riskReason') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRiskEvaluation.riskReason }}</span>
+            <pre class="bg-light p-3">{{ positionRiskEvaluation.riskReason }}</pre>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRiskEvaluation.field.recommendedAction') }}</span>

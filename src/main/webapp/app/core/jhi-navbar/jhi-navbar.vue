@@ -43,18 +43,22 @@
             <span>{{ $t('actionItem.title') }}</span>
           </span>
         </b-nav-item>
-        <b-nav-item to="/data-quality" v-if="authenticated">
-          <span>
+        <b-nav-item-dropdown :no-size="true" end id="tools-menu" v-if="authenticated" active-class="active" class="pointer">
+          <template #button-content>
+            <span class="navbar-dropdown-menu">
+              <font-awesome-icon icon="tools" />
+              <span class="no-bold">{{ $t('global.menu.maintenance') }}</span>
+            </span>
+          </template>
+          <b-dropdown-item to="/data-quality" active-class="active">
             <font-awesome-icon icon="check-double" />
             <span>{{ $t('global.menu.dataQuality') }}</span>
-          </span>
-        </b-nav-item>
-        <b-nav-item to="/batch" v-if="authenticated">
-          <span>
+          </b-dropdown-item>
+          <b-dropdown-item to="/batch" active-class="active">
             <font-awesome-icon icon="file-import" />
             <span>{{ $t('global.menu.batch') }}</span>
-          </span>
-        </b-nav-item>
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
         <b-nav-item-dropdown
           :no-size="true"
           end
@@ -162,10 +166,6 @@
           <b-dropdown-item data-cy="login" v-if="!authenticated" @click="showLogin()" id="login" active-class="active">
             <font-awesome-icon icon="sign-in-alt" />
             <span>{{ $t('global.menu.login') }}</span>
-          </b-dropdown-item>
-          <b-dropdown-item data-cy="register" to="/register" id="register" v-if="!authenticated" active-class="active">
-            <font-awesome-icon icon="user-plus" />
-            <span>{{ $t('global.menu.register') }}</span>
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>

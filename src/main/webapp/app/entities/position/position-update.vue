@@ -195,6 +195,9 @@
           </div>
         </div>
         <div v-show="activeTab === 'skills'">
+          <div v-if="position.positionCode" class="alert alert-info py-2 mb-3">
+            <strong>{{ position.positionCode }}</strong> — {{ position.positionName }}
+          </div>
           <div class="mb-4 pt-3 border-top">
             <div class="d-flex align-items-center justify-content-between mb-2">
               <h3 class="h5 mb-0">{{ $t('global.entity.section.requiredSkills') }}</h3>
@@ -312,6 +315,9 @@
           </div>
         </div>
         <div v-show="activeTab === 'owners'">
+          <div v-if="position.positionCode" class="alert alert-info py-2 mb-3">
+            <strong>{{ position.positionCode }}</strong> — {{ position.positionName }}
+          </div>
           <div class="mb-4 pt-3 border-top">
             <div class="d-flex align-items-center justify-content-between mb-2">
               <h3 class="h5 mb-0">{{ $t('global.entity.section.positionOwners') }}</h3>
@@ -396,6 +402,9 @@
           </div>
         </div>
         <div v-show="activeTab === 'risk'">
+          <div v-if="position.positionCode" class="alert alert-info py-2 mb-3">
+            <strong>{{ position.positionCode }}</strong> — {{ position.positionName }}
+          </div>
           <fieldset class="border rounded p-3 mb-4">
             <legend class="h5 w-auto px-2 mb-0">{{ $t('entity.positionRiskEvaluation.section.evaluationResult') }}</legend>
             <div class="mb-3">
@@ -501,6 +510,9 @@
           </fieldset>
         </div>
         <div v-show="activeTab === 'succession'">
+          <div v-if="position.positionCode" class="alert alert-info py-2 mb-3">
+            <strong>{{ position.positionCode }}</strong> — {{ position.positionName }}
+          </div>
           <div class="mb-4 pt-3 border-top">
             <h3 class="h5 mb-2">{{ $t('entity.position.related.succession') }}</h3>
             <div v-if="successionLoading"><b-spinner small></b-spinner></div>

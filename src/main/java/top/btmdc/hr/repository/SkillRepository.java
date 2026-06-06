@@ -1,5 +1,6 @@
 package top.btmdc.hr.repository;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 import top.btmdc.hr.domain.Skill;
@@ -9,4 +10,6 @@ import top.btmdc.hr.domain.Skill;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SkillRepository extends JpaRepository<Skill, Long>, JpaSpecificationExecutor<Skill> {}
+public interface SkillRepository extends JpaRepository<Skill, Long>, JpaSpecificationExecutor<Skill> {
+    Optional<Skill> findBySkillCode(String skillCode);
+}

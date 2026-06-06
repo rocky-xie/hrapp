@@ -386,30 +386,22 @@ graph TD
 | customerOrSystemDependency | ImportanceLevel |          | 客户 / 系统依赖度      |
 | successionReadiness        | ReadinessLevel  |          | 后继者准备度           |
 | riskLevel                  | RiskLevel       | NOT NULL | 风险等级               |
-| riskReason                 | Text            |          | 风险理由               |
+| riskReason                 | Text            |          | 风险理由（结构化解释） |
 | recommendedAction          | Text            |          | 推荐措施               |
 
 **前端 UX：**
 
 - Position 作为主键置顶显示。
 - ownerCount / substitutableOwnerCount 为自动计算只读字段，选择 Position 后通过读取 Position 页面维护的当前任职人员和 StaffSubstitution 实时填充。
-- documentStatus、customerOrSystemDependency、successionReadiness 由使用者在评价时录入，用于简单规则判定。
+- documentStatus、customerOrSystemDependency、successionReadiness 由使用者在评价时录入，用于规则判定。
+- riskReason 以 `<pre>` 格式化展示，包含：命中规则编号、判定结果、主要贡献因素、缺失数据说明、原因解释。
 
-**风险判定规则：**
+**风险判定规则（配置驱动）：**
 
-本期使用简单决策表，不引入复杂评分模型。
+2026-06-06 重构：规则从 `application.yml` → `hrapp.position-risk.rules` 读取，由 `PositionRiskRuleEngine` 执行。
+修改风险判断逻辑只需改 YAML，不涉及 Service 代码变更。
 
-| 条件                                                                                    | 风险   |
-| --------------------------------------------------------------------------------------- | ------ |
-| ownerCount = 0                                                                          | HIGH   |
-| keyPosition = true，且 ownerCount < minimumOwnerCount                                   | HIGH   |
-| keyPosition = true，且 hasSubstitute = false                                            | HIGH   |
-| documentStatus = MISSING / OUTDATED，且 customerOrSystemDependency = HIGH               | HIGH   |
-| successionReadiness = NONE，且 customerOrSystemDependency = HIGH                        | HIGH   |
-| keyPosition = false，且 ownerCount < minimumOwnerCount                                  | MEDIUM |
-| 有部分替代或后继者培养中，但尚不能立即接替                                              | MEDIUM |
-| documentStatus = PARTIAL，或 customerOrSystemDependency = MEDIUM                        | MEDIUM |
-| ownerCount >= minimumOwnerCount，且 hasSubstitute = true，且 documentStatus = AVAILABLE | LOW    |
+规则结构、Condition 字段说明、执行流程、默认规则一览详见 [11.2 风险评价规则配置](#112-风险评价规则配置)。
 
 ### 4.15 TrainingGoal（培训目标）
 
@@ -664,9 +656,18 @@ SkillAssessment 定期评估
   substitutableOwnerCount = 可替代该职位的有效候选人数
   并读取 / 录入 documentStatus、customerOrSystemDependency、successionReadiness
   ↓
-根据统一决策表判定风险等级
+构建 PositionRiskInput → 传入 PositionRiskRuleEngine
   ↓
-保存 PositionRiskEvaluation
+规则引擎按 priority 遍历已启用规则，第一条命中即返回
+  → riskLevel + 命中规则编号 + 原因 + 主要因素 + 缺失数据 + 建议动作
+  ↓
+未命中任何规则且数据缺失 → UNKNOWN + 缺失字段清单
+未命中任何规则且数据完整 → UNKNOWN + "未匹配已知规则"
+  ↓
+预览模式（preview=true）：返回 DTO，不持久化
+保存模式（preview=false）：持久化 PositionRiskEvaluation
+  ↓
+若 riskLevel = HIGH → 自动创建 ActionItem（HIGH_RISK_POSITION, P1_HIGH）
 ```
 
 ### 7.5 培训管理流程
@@ -753,7 +754,9 @@ SkillAssessment 定期评估
 
 ---
 
-## 11. 数据源配置
+## 11. 配置参考
+
+### 11.1 数据源配置
 
 | 环境         | 数据库         | URL                                                             |
 | ------------ | -------------- | --------------------------------------------------------------- |
@@ -761,6 +764,156 @@ SkillAssessment 定期评估
 | 生产（prod） | MariaDB        | 通过 Spring Profile 切换                                        |
 
 `NON_KEYWORDS=CURRENT_ROLE` 用于解决 H2 2.x 将 `current_role` 识别为保留关键字的问题。
+
+---
+
+### 11.2 风险评价规则配置
+
+#### 11.2.1 配置位置
+
+文件：`src/main/resources/config/application.yml` → `hrapp.position-risk.rules`
+
+`PositionRiskRuleProperties`（`@ConfigurationProperties(prefix = "hrapp.position-risk")`）在启动时加载，由 `PositionRiskRuleEngine` 在每次评价时读取。
+
+#### 11.2.2 规则结构
+
+每条规则包含以下字段：
+
+| 字段                  | 类型           | 必需 | 默认值     | 说明                                                   |
+| --------------------- | -------------- | ---- | ---------- | ------------------------------------------------------ |
+| `code`                | String         | 是   | —          | 规则唯一编号，写入 riskReason 作为标识                 |
+| `enabled`             | boolean        | 否   | `true`     | 设为 `false` 可临时关闭规则，无需删除                  |
+| `priority`            | int            | 是   | —          | 优先级，数值越小越优先；引擎按升序遍历                 |
+| `riskLevel`           | RiskLevel 枚举 | 是   | —          | 命中后返回的风险等级（HIGH / MEDIUM / LOW）            |
+| `when`                | Condition      | 是   | —          | 匹配条件，所有子条件 AND 关系                          |
+| `reason`              | String         | 是   | —          | 命中后写入 riskReason 的原因文字（中文）               |
+| `contributingFactors` | List\<String\> | 否   | `[]`       | 命中后写入 riskReason 的主要因素列表，每项一行         |
+| `recommendedAction`   | String         | 否   | 按等级默认 | 命中后写入 recommendedAction；留空则使用引擎内置默认值 |
+
+#### 11.2.3 Condition 匹配条件
+
+`when` 块内的所有字段均为可选，只有显式设置的字段参与匹配。所有字段 AND 关系（全部满足才算命中）。
+
+| 字段                        | 类型    | 说明                                                                                                 |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| `ownerCountEquals`          | Integer | `ownerCount == 值` 时匹配                                                                            |
+| `ownerCountLessThanMinimum` | Boolean | `true` = `ownerCount < minimumOwnerCount` 时匹配；`false` = `ownerCount >= minimumOwnerCount` 时匹配 |
+| `keyPosition`               | Boolean | 匹配 `position.keyPosition` 字段值                                                                   |
+| `hasSubstitute`             | Boolean | 匹配 `substitutableOwnerCount > 0` 的计算结果                                                        |
+| `documentStatusIn`          | String  | 逗号分隔的 DocumentStatus 枚举值列表；输入 `documentStatus` 在其中之一时匹配                         |
+| `dependencyIn`              | String  | 逗号分隔的 ImportanceLevel 枚举值列表；输入 `customerOrSystemDependency` 在其中之一时匹配            |
+| `readinessIn`               | String  | 逗号分隔的 ReadinessLevel 枚举值列表；输入 `successionReadiness` 在其中之一时匹配                    |
+
+**枚举值参考：**
+
+| 条件字段           | 可用枚举值                                                  |
+| ------------------ | ----------------------------------------------------------- |
+| `documentStatusIn` | `AVAILABLE`, `PARTIAL`, `MISSING`, `OUTDATED`               |
+| `dependencyIn`     | `HIGH`, `MEDIUM`, `LOW`                                     |
+| `readinessIn`      | `IMMEDIATE`, `THREE_MONTHS`, `SIX_TO_TWELVE_MONTHS`, `NONE` |
+
+#### 11.2.4 完整配置示例
+
+```yaml
+hrapp:
+  position-risk:
+    rules:
+      - code: NO_ACTIVE_OWNER
+        enabled: true
+        priority: 10
+        riskLevel: HIGH
+        when:
+          ownerCountEquals: 0
+        reason: '当前职位没有有效任职人员。'
+        contributingFactors:
+          - 'ownerCount=0'
+        recommendedAction: '立即指定负责人，并补充岗位交接文档。'
+```
+
+#### 11.2.5 引擎执行逻辑
+
+```
+输入：PositionRiskInput
+  ↓
+1. 检查缺失数据
+   - documentStatus == null → 加入缺失清单
+   - customerOrSystemDependency == null → 加入缺失清单
+   - successionReadiness == null → 加入缺失清单
+  ↓
+2. 从 PositionRiskRuleProperties 读取 rules 列表
+3. 过滤 enabled == true
+4. 按 priority 升序排序
+  ↓
+5. 遍历规则，逐条匹配 when 条件：
+   - 所有 when 字段均为 AND 逻辑
+   - 任一条件不满足 → 跳过该规则
+   - 所有条件满足 → 命中，进入步骤 6
+  ↓
+6. 命中规则 → 构建 PositionRiskDecision：
+   - riskLevel = 规则定义的等级
+   - matchedRuleCode = 规则 code
+   - riskReason = 格式化解释（见 11.2.6）
+   - recommendedAction = 规则设定值（或默认值）
+   - contributingFactors = 规则定义列表
+   - missingData = 步骤 1 的缺失清单
+  ↓
+7. 未命中任何规则：
+   - 缺失数据不为空 → UNKNOWN + 缺失字段清单
+   - 缺失数据为空 → UNKNOWN + "未匹配任何风险规则"
+```
+
+#### 11.2.6 riskReason 输出格式
+
+命中规则时的输出格式：
+
+```
+命中规则：{code}
+判定结果：{riskLevel}
+主要因素：
+- {contributingFactor1}
+- {contributingFactor2}
+缺失数据：无
+原因：{reason}
+```
+
+未命中且数据缺失时的输出格式：
+
+```
+未匹配任何风险规则，原因：缺少关键数据 [documentStatus, customerOrSystemDependency]，无法完整评估。请补充后再评价。
+```
+
+#### 11.2.7 默认规则一览
+
+系统启动时自带 11 条规则，定义在 `application.yml`。修改这些规则或新增规则无需改动 Java 代码。
+
+| Priority | 规则 code                               | 条件                                                                | 风险   |
+| -------- | --------------------------------------- | ------------------------------------------------------------------- | ------ |
+| 10       | `NO_ACTIVE_OWNER`                       | `ownerCount = 0`                                                    | HIGH   |
+| 20       | `KEY_POSITION_UNDERSTAFFED`             | `keyPosition = true` 且 `ownerCount < minimumOwnerCount`            | HIGH   |
+| 30       | `KEY_POSITION_WITHOUT_SUBSTITUTE`       | `keyPosition = true` 且 `hasSubstitute = false`                     | HIGH   |
+| 40       | `DOCUMENT_MISSING_WITH_HIGH_DEPENDENCY` | `documentStatus in (MISSING, OUTDATED)` 且 `dependency = HIGH`      | HIGH   |
+| 50       | `NO_READINESS_WITH_HIGH_DEPENDENCY`     | `readiness = NONE` 且 `dependency = HIGH`                           | HIGH   |
+| 60       | `NON_KEY_UNDERSTAFFED`                  | `keyPosition = false` 且 `ownerCount < minimumOwnerCount`           | MEDIUM |
+| 70       | `WITHOUT_SUBSTITUTE`                    | `hasSubstitute = false`                                             | MEDIUM |
+| 80       | `READINESS_NOT_IMMEDIATE`               | `readiness in (THREE_MONTHS, SIX_TO_TWELVE_MONTHS)`                 | MEDIUM |
+| 89       | `PARTIAL_DOCUMENT`                      | `documentStatus = PARTIAL`（与 #90 为 OR 关系，拆为两条独立规则）   | MEDIUM |
+| 90       | `MEDIUM_DEPENDENCY`                     | `dependency = MEDIUM`                                               | MEDIUM |
+| 100      | `STABLE_CONDITIONS`                     | `ownerCount >= minimumOwnerCount` 且 `hasSubstitute` 且 `AVAILABLE` | LOW    |
+
+> 注：原决策表中 `documentStatus = PARTIAL 或 dependency = MEDIUM` 的 OR 条件无法用 AND-only 的 Condition 模型表达，拆为两条规则（#89 `PARTIAL_DOCUMENT` 和 #90 `MEDIUM_DEPENDENCY`），任一命中均返回 MEDIUM。
+
+#### 11.2.8 修改规则指引
+
+| 场景                           | 操作                                               | 是否需要重启 |
+| ------------------------------ | -------------------------------------------------- | ------------ |
+| 新增一条风险规则               | 在 `rules` 列表末尾追加新条目，分配唯一 `priority` | 是           |
+| 调整某条规则的判定等级         | 修改该规则的 `riskLevel` 字段                      | 是           |
+| 临时关闭某条规则（不停用其他） | 将该规则的 `enabled` 设为 `false`                  | 是           |
+| 修改风险原因描述               | 修改该规则的 `reason` 字段                         | 是           |
+| 调整规则优先级                 | 修改相关规则的 `priority` 值                       | 是           |
+| 删除规则                       | 从 `rules` 列表中移除该条目                        | 是           |
+
+> 当前阶段不实现运行时热加载。配置修改后需重启应用。后续可考虑 Spring Cloud Config 或 Actuator `/actuator/refresh` 实现热更新。
 
 ---
 
@@ -776,7 +929,7 @@ SkillAssessment 定期评估
 
 - StaffSubstitution 从人员对人员比较调整为职位替代评价
 - StaffSubstitution 覆盖率自动计算 Service：基于职位内嵌技能要求和候选人员技能，并将结果追加到备注历史
-- PositionRiskEvaluation 风险判定 Service：基于统一决策表
+- PositionRiskEvaluation 风险判定 Service：基于配置驱动的规则引擎（`PositionRiskRuleEngine`），规则从 `application.yml` 读取
 - Position / Person 前端表单内嵌子表单，替代独立的 PositionSkillRequirement、PositionAssignment、PersonSkill 页面
 - 自动填充 / 联动过滤 / 只读字段
 
@@ -1190,6 +1343,69 @@ positionRiskEvaluationService()
 | **前端动作调用**          | `action-item.service.ts`, `action-item.component.ts`, `action-item.vue` | 页面改为调用 `/start`、`/complete`、`/cancel` 动作端点；增加 Start 按钮，Complete/Cancel 支持 `OPEN + IN_PROGRESS`               |
 | **Liquibase ID 策略对齐** | `20260605000000_added_entity_ActionItem.xml`                            | 移除 `autoIncrement=true`，与实体 `GenerationType.SEQUENCE` 和项目统一 `sequence_generator` 保持一致                             |
 | **i18n**                  | `global.json` (en/zh-cn/ja)                                             | 新增 `actionItem.start`                                                                                                          |
+
+### 13.12 风险评价规则可配置化（2026-06-06）
+
+**背景**：风险评价规则原硬编码在 `PositionRiskEvaluationService.decideRiskLevel()` 的 if/else 链中，修改规则需改代码重编译。
+本期改为配置文件驱动规则引擎，规则存储在 `application.yml`，运行时按 priority 匹配。
+
+**新增文件**：
+
+| 文件                                                             | 说明                                                       |
+| ---------------------------------------------------------------- | ---------------------------------------------------------- |
+| `service/positionrisk/PositionRiskInput.java`                    | 规则引擎输入模型（收集全部评价数据）                       |
+| `service/positionrisk/PositionRiskDecision.java`                 | 规则引擎输出模型（风险等级+解释信息）                      |
+| `service/positionrisk/PositionRiskRuleProperties.java`           | `@ConfigurationProperties(prefix = "hrapp.position-risk")` |
+| `service/positionrisk/PositionRiskRuleProperties.java`（内嵌类） | `PositionRiskRuleDefinition` / `PositionRiskRuleCondition` |
+| `service/positionrisk/PositionRiskRuleEngine.java`               | 规则引擎：按 priority 遍历 → 第一条命中即返回              |
+
+**变更文件**：
+
+| 文件                                           | 变更                                                                                                |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `service/PositionRiskEvaluationService.java`   | 移除 `decideRiskLevel()`、`buildRiskReason()`、`recommendedAction()`；注入 `PositionRiskRuleEngine` |
+| `web/rest/PositionRiskEvaluationResource.java` | 无变更（接口和调用方式不变）                                                                        |
+| `resources/config/application.yml`             | 新增 `hrapp.position-risk.rules` 段，含 11 条默认规则                                               |
+| `position-risk-evaluation-update.vue`          | `riskReason` 从 `<textarea readonly>` 改为 `<pre>` 格式化展示，保留换行结构                         |
+| `position-risk-evaluation-details.vue`         | `riskReason` 从 `<span>` 改为 `<pre>` 格式化展示                                                    |
+
+**新增测试**：
+
+| 文件                                                     | 用例数 | 说明                                |
+| -------------------------------------------------------- | ------ | ----------------------------------- |
+| `service/positionrisk/PositionRiskRuleEngineTest.java`   | 18     | 覆盖全部场景 + disabled/priority 等 |
+| `service/PositionRiskEvaluationServiceTest.java`（更新） | 2      | mock 引擎，验证服务层编排           |
+
+**规则配置格式**（`application.yml` `hrapp.position-risk.rules`）：
+
+```yaml
+hrapp:
+  position-risk:
+    rules:
+      - code: NO_ACTIVE_OWNER
+        enabled: true
+        priority: 10
+        riskLevel: HIGH
+        when:
+          ownerCountEquals: 0
+        reason: '当前职位没有有效任职人员。'
+        contributingFactors:
+          - 'ownerCount=0'
+        recommendedAction: '立即指定负责人，并补充岗位交接文档。'
+```
+
+**引擎执行逻辑**：见 [11.2.5](#1125-引擎执行逻辑)。
+
+**风险原因格式**（写入 `riskReason`，详见 [11.2.6](#1126-riskreason-输出格式)）：
+
+```
+命中规则：NO_ACTIVE_OWNER
+判定结果：HIGH
+主要因素：
+- ownerCount=0
+缺失数据：无
+原因：当前职位没有有效任职人员。
+```
 
 ---
 

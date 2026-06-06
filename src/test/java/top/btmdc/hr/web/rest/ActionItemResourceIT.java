@@ -23,8 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 import top.btmdc.hr.IntegrationTest;
 import top.btmdc.hr.domain.ActionItem;
 import top.btmdc.hr.domain.enumeration.ActionPriority;
+import top.btmdc.hr.domain.enumeration.ActionSourceType;
 import top.btmdc.hr.domain.enumeration.ActionStatus;
 import top.btmdc.hr.repository.ActionItemRepository;
+import top.btmdc.hr.service.ActionItemService;
 
 @IntegrationTest
 @AutoConfigureMockMvc
@@ -47,6 +49,9 @@ class ActionItemResourceIT {
 
     @Autowired
     private ActionItemRepository actionItemRepository;
+
+    @Autowired
+    private ActionItemService actionItemService;
 
     @Autowired
     private EntityManager em;
@@ -268,5 +273,64 @@ class ActionItemResourceIT {
 
         assertThat(actionItemRepository.findById(actionItem.getId())).isEmpty();
         insertedActionItem = null;
+    }
+
+    @Test
+    @Transactional
+    void createFromSourceWithSameSourceTypeAndIdDoesNotDuplicate() {
+        ActionItem first = actionItemMapper(
+            actionItemService.createFromSource(
+                ActionSourceType.SKILL_REVIEW,
+                1001L,
+                "PERSON_SKILL",
+                "First description",
+                "user-1",
+                ActionPriority.P2_MEDIUM
+            )
+        );
+        insertedActionItem = actionItemRepository.findById(first.getId()).orElse(null);
+
+        ActionItem second = actionItemMapper(
+            actionItemService.createFromSource(ActionSourceType.SKILL_REVIEW, 1001L, "PERSON_SKILL", "Updated description", null, null)
+        );
+
+        assertThat(second.getId()).isEqualTo(first.getId());
+        assertThat(second.getDescription()).isEqualTo("Updated description");
+        assertThat(actionItemRepository.count()).isEqualTo(1);
+    }
+
+    @Test
+    @Transactional
+    void createFromSourceWithCompletedStatusAllowsNew() {
+        ActionItem first = actionItemMapper(
+            actionItemService.createFromSource(
+                ActionSourceType.SKILL_REVIEW,
+                2001L,
+                "PERSON_SKILL",
+                "Old description",
+                "user-1",
+                ActionPriority.P2_MEDIUM
+            )
+        );
+        actionItemService.complete(first.getId());
+
+        ActionItem second = actionItemMapper(
+            actionItemService.createFromSource(
+                ActionSourceType.SKILL_REVIEW,
+                2001L,
+                "PERSON_SKILL",
+                "New description after completion",
+                null,
+                ActionPriority.P1_HIGH
+            )
+        );
+
+        assertThat(second.getId()).isNotEqualTo(first.getId());
+        assertThat(second.getDescription()).isEqualTo("New description after completion");
+        assertThat(actionItemRepository.count()).isEqualTo(2);
+    }
+
+    private ActionItem actionItemMapper(top.btmdc.hr.service.dto.ActionItemDTO dto) {
+        return actionItemRepository.findById(dto.getId()).orElse(null);
     }
 }

@@ -64,10 +64,10 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" @click="closeForm">{{ $t('entity.action.cancel') }}</button>
+              <button class="btn btn-secondary" @click="closeForm">{{ $t('global.form.cancel') }}</button>
               <button class="btn btn-primary" @click="save" :disabled="saving || !form.description">
                 <b-spinner v-if="saving" small></b-spinner>
-                {{ $t('entity.action.save') }}
+                {{ $t('global.form.save') }}
               </button>
             </div>
           </div>

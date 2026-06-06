@@ -31,12 +31,6 @@
             >
           </b-alert>
         </div>
-        <div>
-          <b-alert :model-value="true" variant="warning">
-            <span>You don't have an account yet?</span>
-            <b-link :to="'/register'" class="alert-link">Register a new account</b-link>
-          </b-alert>
-        </div>
       </div>
     </div>
   </div>

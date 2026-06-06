@@ -25,6 +25,9 @@ import top.btmdc.hr.repository.PositionRiskEvaluationRepository;
 import top.btmdc.hr.repository.StaffSubstitutionRepository;
 import top.btmdc.hr.service.dto.PositionRiskEvaluationDTO;
 import top.btmdc.hr.service.mapper.PositionRiskEvaluationMapper;
+import top.btmdc.hr.service.positionrisk.PositionRiskDecision;
+import top.btmdc.hr.service.positionrisk.PositionRiskInput;
+import top.btmdc.hr.service.positionrisk.PositionRiskRuleEngine;
 
 @ExtendWith(MockitoExtension.class)
 class PositionRiskEvaluationServiceTest {
@@ -44,6 +47,9 @@ class PositionRiskEvaluationServiceTest {
     @Mock
     private PositionRiskEvaluationMapper positionRiskEvaluationMapper;
 
+    @Mock
+    private PositionRiskRuleEngine ruleEngine;
+
     private PositionRiskEvaluationService positionRiskEvaluationService;
 
     @BeforeEach
@@ -53,7 +59,8 @@ class PositionRiskEvaluationServiceTest {
             positionRepository,
             positionAssignmentRepository,
             staffSubstitutionRepository,
-            positionRiskEvaluationMapper
+            positionRiskEvaluationMapper,
+            ruleEngine
         );
     }
 
@@ -63,6 +70,16 @@ class PositionRiskEvaluationServiceTest {
 
         when(positionRepository.findById(1L)).thenReturn(Optional.of(position));
         when(positionAssignmentRepository.findActiveByPositionIdWithPerson(1L)).thenReturn(List.of());
+        when(ruleEngine.evaluate(any(PositionRiskInput.class))).thenReturn(
+            new PositionRiskDecision(
+                RiskLevel.HIGH,
+                "NO_ACTIVE_OWNER",
+                "当前职位没有有效任职人员。",
+                "Immediately establish a second owner, minimum handover documentation, and a cultivation plan.",
+                List.of("ownerCount=0"),
+                List.of()
+            )
+        );
         when(positionRiskEvaluationRepository.save(any())).thenAnswer(invocation -> invocation.getArgument(0));
         when(positionRiskEvaluationMapper.toDto(any(PositionRiskEvaluation.class))).thenAnswer(invocation ->
             toDto(invocation.getArgument(0))
@@ -92,6 +109,16 @@ class PositionRiskEvaluationServiceTest {
             List.of(assignment(firstOwner, position), assignment(secondOwner, position))
         );
         when(staffSubstitutionRepository.countByPositionIdAndSubstitutableTrue(1L)).thenReturn(1L);
+        when(ruleEngine.evaluate(any(PositionRiskInput.class))).thenReturn(
+            new PositionRiskDecision(
+                RiskLevel.LOW,
+                "STABLE_CONDITIONS",
+                "负责人充足、有替代人员、文档齐全。",
+                "Review periodically to avoid stale skill, document, and substitution data.",
+                List.of("ownerCount >= minimumOwnerCount", "hasSubstitute=true", "documentStatus=AVAILABLE"),
+                List.of()
+            )
+        );
         when(positionRiskEvaluationRepository.save(any())).thenAnswer(invocation -> invocation.getArgument(0));
         when(positionRiskEvaluationMapper.toDto(any(PositionRiskEvaluation.class))).thenAnswer(invocation ->
             toDto(invocation.getArgument(0))

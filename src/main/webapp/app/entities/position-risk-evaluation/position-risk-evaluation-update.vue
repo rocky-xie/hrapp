@@ -107,15 +107,13 @@
               <label class="form-control-label" for="position-risk-evaluation">{{
                 $t('entity.positionRiskEvaluation.field.riskReason')
               }}</label>
-              <textarea
-                class="form-control"
+              <pre
+                class="form-control bg-light p-3"
                 name="riskReason"
                 id="position-risk-evaluation-riskReason"
                 data-cy="riskReason"
-                :class="{ valid: !v$.riskReason.$invalid, invalid: v$.riskReason.$invalid }"
-                v-model="v$.riskReason.$model"
-                readonly
-              ></textarea>
+                v-text="positionRiskEvaluation.riskReason"
+              ></pre>
             </div>
             <div class="mb-3">
               <label class="form-control-label" for="position-risk-evaluation">{{

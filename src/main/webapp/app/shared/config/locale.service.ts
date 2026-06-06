@@ -13,7 +13,7 @@ export function useLocale(): { currentLanguage: Ref<string>; changeLanguage: (la
     const normalizedLang = normalizeLanguage(lang);
     if (currentLanguage.value === normalizedLang) return;
     currentLanguage.value = normalizedLang;
-    i18n.global.locale = normalizedLang;
+    i18n.global.locale.value = normalizedLang;
     dayjs.locale(normalizedLang);
   }
 
@@ -25,7 +25,7 @@ export function useLocale(): { currentLanguage: Ref<string>; changeLanguage: (la
 
 export function loadLocale(i18n: I18n, locale: string): void {
   const normalized = normalizeLanguage(locale);
-  i18n.global.locale = normalized;
+  i18n.global.locale.value = normalized;
   currentLanguage.value = normalized;
   dayjs.locale(normalized);
 }

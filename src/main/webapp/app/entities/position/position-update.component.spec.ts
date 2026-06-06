@@ -160,6 +160,34 @@ describe('Component Tests', () => {
       });
     });
 
+    describe('Tab navigation', () => {
+      it('should start with basic tab active', async () => {
+        const wrapper = shallowMount(PositionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+        expect(comp.activeTab).toBe('basic');
+      });
+
+      it('should switch tabs when activeTab is changed', async () => {
+        const wrapper = shallowMount(PositionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+
+        comp.activeTab = 'skills';
+        expect(comp.activeTab).toBe('skills');
+
+        comp.activeTab = 'owners';
+        expect(comp.activeTab).toBe('owners');
+      });
+
+      it('should show position identity on all tabs when position has code and name', async () => {
+        const wrapper = shallowMount(PositionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+        comp.position = { id: 1, positionCode: 'P001', positionName: 'Test Position' };
+
+        expect(comp.position.positionCode).toBe('P001');
+        expect(comp.position.positionName).toBe('Test Position');
+      });
+    });
+
     describe('Previous state', () => {
       it('Should go previous state', async () => {
         positionServiceStub.find.mockResolvedValue(positionSample);

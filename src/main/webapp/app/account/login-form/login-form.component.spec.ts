@@ -100,6 +100,18 @@ describe('LoginForm Component', () => {
     expect(localStorage.getItem(AUTHENTICATION_TOKEN_KEY)).toEqual(jwtSecret);
   });
 
+  it('should not render register link in template', () => {
+    const wrapper = shallowMount(LoginForm, {
+      global: {
+        stubs: { 'b-alert': true, 'b-button': true, 'b-form': true, 'b-form-input': true, 'b-form-group': true, 'b-form-checkbox': true },
+        plugins: [createTestingPinia()],
+        provide: { accountService: new AccountService(useStore()) },
+      },
+    });
+    expect(wrapper.html()).not.toContain('Register a new account');
+    expect(wrapper.html()).not.toContain('/register');
+  });
+
   it('should store token if authentication is OK in session', async () => {
     // GIVEN
     loginForm.login = 'login';

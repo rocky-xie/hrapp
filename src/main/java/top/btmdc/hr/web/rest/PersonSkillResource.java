@@ -80,6 +80,8 @@ public class PersonSkillResource {
         String skillName = personSkillDTO.getSkill() != null ? personSkillDTO.getSkill().getSkillName() : "unknown";
         actionItemService.createFromSource(
             ActionSourceType.SKILL_REVIEW,
+            personSkillDTO.getId(),
+            "PERSON_SKILL",
             "Skill '" + skillName + "' recorded for person; review may be needed",
             null,
             ActionPriority.P2_MEDIUM
@@ -120,6 +122,8 @@ public class PersonSkillResource {
         String skillName = personSkillDTO.getSkill() != null ? personSkillDTO.getSkill().getSkillName() : "unknown";
         actionItemService.createFromSource(
             ActionSourceType.SKILL_REVIEW,
+            personSkillDTO.getId(),
+            "PERSON_SKILL",
             "Skill '" + skillName + "' updated for person; review may be needed",
             null,
             ActionPriority.P2_MEDIUM

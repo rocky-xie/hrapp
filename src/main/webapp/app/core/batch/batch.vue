@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 id="page-heading" data-cy="batchHeading">
-      <span v-text="$t('entity.batch.home.title')"></span>
+      <span v-text="$t('batch.home.title')"></span>
     </h2>
 
     <div class="row">
@@ -14,13 +14,13 @@
             <div class="d-flex gap-2 mb-3">
               <button class="btn btn-success" @click="exportEntity(entity.key)" :disabled="isExporting">
                 <font-awesome-icon icon="file-export"></font-awesome-icon>
-                <span class="ms-1" v-text="$t('entity.batch.action.export')"></span>
+                <span class="ms-1" v-text="$t('batch.action.export')"></span>
               </button>
             </div>
             <div class="d-flex gap-2 align-items-center">
               <label class="btn btn-primary mb-0" :class="{ disabled: isImporting }">
                 <font-awesome-icon icon="file-import"></font-awesome-icon>
-                <span class="ms-1" v-text="$t('entity.batch.action.import')"></span>
+                <span class="ms-1" v-text="$t('batch.action.import')"></span>
                 <input
                   type="file"
                   class="d-none"

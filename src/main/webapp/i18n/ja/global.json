@@ -22,6 +22,7 @@
       "api": "API",
       "database": "データベース",
       "language": "言語",
+      "maintenance": "メンテナンス",
       "sub": {
         "coreData": "マスタデータ",
         "continuity": "継承とリスク",
@@ -170,10 +171,7 @@
       "prompt": "ログインするには、",
       "signIn": "サインイン"
     },
-    "register": {
-      "prompt": "アカウントをお持ちでないですか？",
-      "link": "新規アカウント登録"
-    },
+
     "section": {
       "people": {
         "title": "人材管理",

@@ -52,4 +52,21 @@ describe('Home', () => {
     home.showLogin();
     expect(login.showLogin).toHaveBeenCalled();
   });
+
+  it('should not render register link in template', () => {
+    const wrapper = shallowMount(Home, {
+      global: {
+        plugins: [createTestingPinia()],
+        stubs: {
+          'router-link': true,
+        },
+        provide: {
+          authenticated: ref(false),
+          currentUsername: ref(''),
+        },
+      },
+    });
+    expect(wrapper.html()).not.toContain('register');
+    expect(wrapper.html()).not.toContain('/register');
+  });
 });

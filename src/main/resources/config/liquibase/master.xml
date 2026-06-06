@@ -44,6 +44,7 @@
     <include file="config/liquibase/changelog/20260605000000_added_entity_ActionItem.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260605000001_added_review_expiry_to_StaffSubstitution.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260605000002_added_governance_fields.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20260605000003_added_source_entity_type_to_ActionItem.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20260601122825_added_entity_constraints_PersonSkill.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260601122826_added_entity_constraints_PositionSkillRequirement.xml" relativeToChangelogFile="false"/>

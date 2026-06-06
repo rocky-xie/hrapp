@@ -5,7 +5,6 @@ import { createTestingPinia } from '@pinia/testing';
 import { shallowMount } from '@vue/test-utils';
 import axios from 'axios';
 
-import { useLoginModal } from '@/account/login-modal';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from '@/shared/jhipster/error.constants';
 
 import Register from './register.vue';
@@ -17,7 +16,7 @@ const axiosStub = {
   post: vi.spyOn(axios, 'post'),
 };
 
-describe('Register Component', () => {
+describe('Register Component (disabled)', () => {
   let register: RegisterComponentType;
   const filledRegisterAccount = {
     email: 'jhi@pster.net',
@@ -47,42 +46,15 @@ describe('Register Component', () => {
     expect(register.errorEmailExists).toBe('');
     expect(register.errorUserExists).toBe('');
     expect(register.confirmPassword).toBe(null);
-    expect(register.registerAccount.login).toBe(undefined);
-    expect(register.registerAccount.password).toBe(undefined);
-    expect(register.registerAccount.email).toBe(undefined);
   });
 
-  it('should open login modal when asked to', () => {
-    const login = useLoginModal();
-    register.showLogin();
-    expect(login.showLogin).toHaveBeenCalledOnce();
-  });
-
-  it('should register when password match', async () => {
-    axiosStub.post.mockResolvedValue(undefined);
-    register.registerAccount = filledRegisterAccount;
-    register.confirmPassword = filledRegisterAccount.password;
-    register.register();
-    await register.$nextTick();
-
-    expect(axiosStub.post).toHaveBeenCalledWith('api/register', {
-      email: 'jhi@pster.net',
-      langKey: 'en',
-      login: 'jhi',
-      password: 'jhipster',
-    });
-    expect(register.success).toBe(true);
-    expect(register.error).toBe(null);
-    expect(register.errorEmailExists).toBe(null);
-    expect(register.errorUserExists).toBe(null);
-  });
-
-  it('should register when password match but throw error when login already exist', async () => {
-    const error = { response: { status: 400, data: { type: LOGIN_ALREADY_USED_TYPE } } };
+  it('should fail register when backend returns 400 (self-registration disabled)', async () => {
+    const error = { response: { status: 400, data: { type: 'about:blank' } } };
     axiosStub.post.mockRejectedValue(error);
     register.registerAccount = filledRegisterAccount;
     register.confirmPassword = filledRegisterAccount.password;
     register.register();
+    await new Promise(resolve => setTimeout(resolve, 0));
     await register.$nextTick();
 
     expect(axiosStub.post).toHaveBeenCalledWith('api/register', {
@@ -91,52 +63,7 @@ describe('Register Component', () => {
       login: 'jhi',
       password: 'jhipster',
     });
-    await register.$nextTick();
-    expect(register.success).toBe(null);
-    expect(register.error).toBe(null);
-    expect(register.errorEmailExists).toBe(null);
-    expect(register.errorUserExists).toBe('ERROR');
-  });
-
-  it('should register when password match but throw error when email already used', async () => {
-    const error = { response: { status: 400, data: { type: EMAIL_ALREADY_USED_TYPE } } };
-    axiosStub.post.mockRejectedValue(error);
-    register.registerAccount = filledRegisterAccount;
-    register.confirmPassword = filledRegisterAccount.password;
-    register.register();
-    await register.$nextTick();
-
-    expect(axiosStub.post).toHaveBeenCalledWith('api/register', {
-      email: 'jhi@pster.net',
-      langKey: 'en',
-      login: 'jhi',
-      password: 'jhipster',
-    });
-    await register.$nextTick();
-    expect(register.success).toBe(null);
-    expect(register.error).toBe(null);
-    expect(register.errorEmailExists).toBe('ERROR');
-    expect(register.errorUserExists).toBe(null);
-  });
-
-  it('should register when password match but throw error', async () => {
-    const error = { response: { status: 400, data: { type: 'unknown' } } };
-    axiosStub.post.mockRejectedValue(error);
-    register.registerAccount = filledRegisterAccount;
-    register.confirmPassword = filledRegisterAccount.password;
-    register.register();
-    await register.$nextTick();
-
-    expect(axiosStub.post).toHaveBeenCalledWith('api/register', {
-      email: 'jhi@pster.net',
-      langKey: 'en',
-      login: 'jhi',
-      password: 'jhipster',
-    });
-    await register.$nextTick();
-    expect(register.success).toBe(null);
-    expect(register.errorEmailExists).toBe(null);
-    expect(register.errorUserExists).toBe(null);
+    expect(register.success).toBeNull();
     expect(register.error).toBe('ERROR');
   });
 });

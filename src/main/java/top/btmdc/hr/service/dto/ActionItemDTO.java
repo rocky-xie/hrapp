@@ -18,6 +18,8 @@ public class ActionItemDTO implements Serializable {
 
     private Long sourceId;
 
+    private String sourceEntityType;
+
     @NotNull
     @Size(max = 200)
     private String description;
@@ -60,6 +62,14 @@ public class ActionItemDTO implements Serializable {
 
     public void setSourceId(Long sourceId) {
         this.sourceId = sourceId;
+    }
+
+    public String getSourceEntityType() {
+        return sourceEntityType;
+    }
+
+    public void setSourceEntityType(String sourceEntityType) {
+        this.sourceEntityType = sourceEntityType;
     }
 
     public String getDescription() {

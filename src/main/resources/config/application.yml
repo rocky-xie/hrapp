@@ -228,3 +228,141 @@ jhipster:
 # ===================================================================
 
 # application:
+
+hrapp:
+  position-risk:
+    rules:
+      - code: NO_ACTIVE_OWNER
+        enabled: true
+        priority: 10
+        riskLevel: HIGH
+        when:
+          ownerCountEquals: 0
+        reason: '当前职位没有有效任职人员。'
+        contributingFactors:
+          - 'ownerCount=0'
+        recommendedAction: '立即指定负责人，并补充岗位交接文档。'
+
+      - code: KEY_POSITION_UNDERSTAFFED
+        enabled: true
+        priority: 20
+        riskLevel: HIGH
+        when:
+          keyPosition: true
+          ownerCountLessThanMinimum: true
+        reason: '关键职位的实际负责人数量未达到最低要求。'
+        contributingFactors:
+          - 'keyPosition=true'
+          - 'ownerCount < minimumOwnerCount'
+        recommendedAction: '尽快增配负责人，确保关键岗位人力充沛。'
+
+      - code: KEY_POSITION_WITHOUT_SUBSTITUTE
+        enabled: true
+        priority: 30
+        riskLevel: HIGH
+        when:
+          keyPosition: true
+          hasSubstitute: false
+        reason: '关键职位缺少有效替代人员。'
+        contributingFactors:
+          - 'keyPosition=true'
+          - 'hasSubstitute=false'
+        recommendedAction: '安排候选替代人，制定影子学习和交接计划。'
+
+      - code: DOCUMENT_MISSING_WITH_HIGH_DEPENDENCY
+        enabled: true
+        priority: 40
+        riskLevel: HIGH
+        when:
+          documentStatusIn: 'MISSING,OUTDATED'
+          dependencyIn: 'HIGH'
+        reason: '文档缺失或过期，且业务依赖度高。'
+        contributingFactors:
+          - 'documentStatus in (MISSING,OUTDATED)'
+          - 'customerOrSystemDependency=HIGH'
+        recommendedAction: '更新文档，降低系统依赖度。'
+
+      - code: NO_READINESS_WITH_HIGH_DEPENDENCY
+        enabled: true
+        priority: 50
+        riskLevel: HIGH
+        when:
+          readinessIn: 'NONE'
+          dependencyIn: 'HIGH'
+        reason: '无继任准备度，且业务依赖度高。'
+        contributingFactors:
+          - 'successionReadiness=NONE'
+          - 'customerOrSystemDependency=HIGH'
+        recommendedAction: '制定继任者培养计划，降低依赖风险。'
+
+      - code: NON_KEY_UNDERSTAFFED
+        enabled: true
+        priority: 60
+        riskLevel: MEDIUM
+        when:
+          keyPosition: false
+          ownerCountLessThanMinimum: true
+        reason: '非关键职位负责人数量低于最低要求。'
+        contributingFactors:
+          - 'keyPosition=false'
+          - 'ownerCount < minimumOwnerCount'
+        recommendedAction: '评估是否需要增配负责人。'
+
+      - code: WITHOUT_SUBSTITUTE
+        enabled: true
+        priority: 70
+        riskLevel: MEDIUM
+        when:
+          hasSubstitute: false
+        reason: '职位缺少有效替代人员。'
+        contributingFactors:
+          - 'hasSubstitute=false'
+        recommendedAction: '安排候选替代人，降低岗位风险。'
+
+      - code: READINESS_NOT_IMMEDIATE
+        enabled: true
+        priority: 80
+        riskLevel: MEDIUM
+        when:
+          readinessIn: 'THREE_MONTHS,SIX_TO_TWELVE_MONTHS'
+        reason: '继任准备度不足（需3-12个月）。'
+        contributingFactors:
+          - 'successionReadiness in (THREE_MONTHS,SIX_TO_TWELVE_MONTHS)'
+        recommendedAction: '加速继任者培养计划。'
+
+      - code: PARTIAL_DOCUMENT
+        enabled: true
+        priority: 89
+        riskLevel: MEDIUM
+        when:
+          documentStatusIn: 'PARTIAL'
+        reason: '文档部分可用。'
+        contributingFactors:
+          - 'documentStatus=PARTIAL'
+        recommendedAction: '完善文档，确保关键流程有据可查。'
+
+      - code: MEDIUM_DEPENDENCY
+        enabled: true
+        priority: 90
+        riskLevel: MEDIUM
+        when:
+          dependencyIn: 'MEDIUM'
+        reason: '业务依赖度为中等。'
+        contributingFactors:
+          - 'customerOrSystemDependency=MEDIUM'
+        recommendedAction: '持续跟踪依赖变化，降低系统耦合。'
+
+      - code: STABLE_CONDITIONS
+        enabled: true
+        priority: 100
+        riskLevel: LOW
+        when:
+          ownerCountLessThanMinimum: false
+          hasSubstitute: true
+          documentStatusIn: 'AVAILABLE'
+        reason: '负责人充足、有替代人员、文档齐全。'
+        contributingFactors:
+          - 'ownerCount >= minimumOwnerCount'
+          - 'hasSubstitute=true'
+          - 'documentStatus=AVAILABLE'
+        recommendedAction: '定期复查，防止数据过期。'

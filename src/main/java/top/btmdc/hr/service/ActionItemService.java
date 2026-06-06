@@ -152,11 +152,32 @@ public class ActionItemService {
             .map(actionItemMapper::toDto);
     }
 
-    public ActionItemDTO createFromSource(ActionSourceType sourceType, String description, String assignee, ActionPriority priority) {
+    public ActionItemDTO createFromSource(
+        ActionSourceType sourceType,
+        Long sourceId,
+        String sourceEntityType,
+        String description,
+        String assignee,
+        ActionPriority priority
+    ) {
+        Optional<ActionItem> existing = actionItemRepository.findFirstBySourceTypeAndSourceIdAndStatusIn(
+            sourceType,
+            sourceId,
+            EnumSet.of(ActionStatus.OPEN, ActionStatus.IN_PROGRESS)
+        );
+        if (existing.isPresent()) {
+            ActionItem item = existing.get();
+            item.setDescription(description);
+            if (assignee != null) item.setAssignee(assignee);
+            if (priority != null) item.setPriority(priority);
+            return actionItemMapper.toDto(actionItemRepository.save(item));
+        }
         ActionItem entity = new ActionItem()
+            .sourceType(sourceType)
+            .sourceId(sourceId)
+            .sourceEntityType(sourceEntityType)
             .description(description)
             .assignee(assignee)
-            .sourceType(sourceType)
             .priority(priority != null ? priority : ActionPriority.P2_MEDIUM)
             .status(ActionStatus.OPEN)
             .createdAt(LocalDate.now());

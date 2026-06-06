@@ -30,6 +30,9 @@ public class ActionItem implements Serializable {
     @Column(name = "source_id")
     private Long sourceId;
 
+    @Column(name = "source_entity_type")
+    private String sourceEntityType;
+
     @NotNull
     @Size(max = 200)
     @Column(name = "description", length = 200, nullable = false)
@@ -98,6 +101,19 @@ public class ActionItem implements Serializable {
 
     public void setSourceId(Long sourceId) {
         this.sourceId = sourceId;
+    }
+
+    public String getSourceEntityType() {
+        return this.sourceEntityType;
+    }
+
+    public ActionItem sourceEntityType(String sourceEntityType) {
+        this.setSourceEntityType(sourceEntityType);
+        return this;
+    }
+
+    public void setSourceEntityType(String sourceEntityType) {
+        this.sourceEntityType = sourceEntityType;
     }
 
     public String getDescription() {

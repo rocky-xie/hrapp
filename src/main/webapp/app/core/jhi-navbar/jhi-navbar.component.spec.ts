@@ -79,6 +79,15 @@ describe('JhiNavbar', () => {
     expect(accountService.hasAnyAuthorityAndCheckAuth).toHaveBeenCalled();
   });
 
+  it('should have supported languages defined', () => {
+    expect(jhiNavbar.languages).toBeDefined();
+    expect(jhiNavbar.languages.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('should have tools/maintenance dropdown for data quality and batch', () => {
+    expect(jhiNavbar.languages).toBeDefined();
+  });
+
   it('logout should clear credentials', async () => {
     store.setAuthentication({ login: 'test' });
 

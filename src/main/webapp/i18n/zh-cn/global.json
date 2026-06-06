@@ -22,6 +22,7 @@
       "api": "API",
       "database": "数据库",
       "language": "语言",
+      "maintenance": "数据维护",
       "sub": {
         "coreData": "主数据",
         "continuity": "继任与风险",
@@ -170,10 +171,7 @@
       "prompt": "如果您想要",
       "signIn": "登录"
     },
-    "register": {
-      "prompt": "您还没有注册帐户？",
-      "link": "注册一个新帐户"
-    },
+
     "section": {
       "people": {
         "title": "人员管理",

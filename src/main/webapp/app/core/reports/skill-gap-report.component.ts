@@ -26,6 +26,7 @@ export default defineComponent({
       try {
         const res = await axios.get('api/positions', { params: { size: 200 } });
         allPositions.value = res.data;
+        selectedPositionIds.value = allPositions.value.map(p => p.id);
       } catch {
         // fail silently
       }
