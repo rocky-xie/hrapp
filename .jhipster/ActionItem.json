@@ -1,0 +1,67 @@
+{
+  "annotations": {
+    "changelogDate": "20260605000000"
+  },
+  "applications": ["*"],
+  "documentation": "行动项。承接风险、缺口、技能复核和培训等系统判断产生的后续处理事项。",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "sourceType",
+      "fieldType": "ActionSourceType"
+    },
+    {
+      "fieldName": "sourceId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "sourceEntityType",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": 100
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": 200
+    },
+    {
+      "fieldName": "assignee",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": 100
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ActionStatus",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "ActionPriority"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "completedAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ActionItem",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

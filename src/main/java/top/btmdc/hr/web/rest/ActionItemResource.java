@@ -18,7 +18,9 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import top.btmdc.hr.repository.ActionItemRepository;
+import top.btmdc.hr.service.ActionItemQueryService;
 import top.btmdc.hr.service.ActionItemService;
+import top.btmdc.hr.service.criteria.ActionItemCriteria;
 import top.btmdc.hr.service.dto.ActionItemDTO;
 import top.btmdc.hr.web.rest.errors.BadRequestAlertException;
 
@@ -34,10 +36,16 @@ public class ActionItemResource {
 
     private final ActionItemService actionItemService;
     private final ActionItemRepository actionItemRepository;
+    private final ActionItemQueryService actionItemQueryService;
 
-    public ActionItemResource(ActionItemService actionItemService, ActionItemRepository actionItemRepository) {
+    public ActionItemResource(
+        ActionItemService actionItemService,
+        ActionItemRepository actionItemRepository,
+        ActionItemQueryService actionItemQueryService
+    ) {
         this.actionItemService = actionItemService;
         this.actionItemRepository = actionItemRepository;
+        this.actionItemQueryService = actionItemQueryService;
     }
 
     @PostMapping("")
@@ -64,9 +72,12 @@ public class ActionItemResource {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<ActionItemDTO>> getAll(@org.springdoc.core.annotations.ParameterObject Pageable pageable) {
-        LOG.debug("REST request to get ActionItems");
-        Page<ActionItemDTO> page = actionItemService.findAll(pageable);
+    public ResponseEntity<List<ActionItemDTO>> getAll(
+        ActionItemCriteria criteria,
+        @org.springdoc.core.annotations.ParameterObject Pageable pageable
+    ) {
+        LOG.debug("REST request to get ActionItems by criteria: {}", criteria);
+        Page<ActionItemDTO> page = actionItemQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

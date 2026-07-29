@@ -145,6 +145,23 @@ class ActionItemResourceIT {
 
     @Test
     @Transactional
+    void getAllActionItemsByStatusFilter() throws Exception {
+        actionItemRepository.saveAndFlush(actionItem);
+        insertedActionItem = actionItem;
+
+        restActionItemMockMvc
+            .perform(get(ENTITY_API_URL + "?status.equals=OPEN"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
+
+        restActionItemMockMvc
+            .perform(get(ENTITY_API_URL + "?status.equals=COMPLETED"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$").isEmpty());
+    }
+
+    @Test
+    @Transactional
     void getActionItem() throws Exception {
         actionItemRepository.saveAndFlush(actionItem);
         insertedActionItem = actionItem;

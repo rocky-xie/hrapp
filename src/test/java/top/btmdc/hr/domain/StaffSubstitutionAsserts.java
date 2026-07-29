@@ -65,6 +65,8 @@ public class StaffSubstitutionAsserts {
             .satisfies(a -> assertThat(a.getMissingSkills()).as("check missingSkills").isEqualTo(expected.getMissingSkills()))
             .satisfies(a -> assertThat(a.getSubstitutable()).as("check substitutable").isEqualTo(expected.getSubstitutable()))
             .satisfies(a -> assertThat(a.getEvaluationDate()).as("check evaluationDate").isEqualTo(expected.getEvaluationDate()))
+            .satisfies(a -> assertThat(a.getReviewDate()).as("check reviewDate").isEqualTo(expected.getReviewDate()))
+            .satisfies(a -> assertThat(a.getExpiryDate()).as("check expiryDate").isEqualTo(expected.getExpiryDate()))
             .satisfies(a -> assertThat(a.getReason()).as("check reason").isEqualTo(expected.getReason()));
     }
 

@@ -75,6 +75,14 @@ class StaffSubstitutionResourceIT {
     private static final LocalDate UPDATED_EVALUATION_DATE = LocalDate.now(ZoneId.systemDefault());
     private static final LocalDate SMALLER_EVALUATION_DATE = LocalDate.ofEpochDay(-1L);
 
+    private static final LocalDate DEFAULT_REVIEW_DATE = LocalDate.ofEpochDay(1L);
+    private static final LocalDate UPDATED_REVIEW_DATE = LocalDate.now(ZoneId.systemDefault()).plusDays(1);
+    private static final LocalDate SMALLER_REVIEW_DATE = LocalDate.ofEpochDay(0L);
+
+    private static final LocalDate DEFAULT_EXPIRY_DATE = LocalDate.ofEpochDay(2L);
+    private static final LocalDate UPDATED_EXPIRY_DATE = LocalDate.now(ZoneId.systemDefault()).plusDays(2);
+    private static final LocalDate SMALLER_EXPIRY_DATE = LocalDate.ofEpochDay(1L);
+
     private static final String DEFAULT_REASON = "AAAAAAAAAA";
     private static final String UPDATED_REASON = "BBBBBBBBBB";
 
@@ -124,6 +132,8 @@ class StaffSubstitutionResourceIT {
             .missingSkills(DEFAULT_MISSING_SKILLS)
             .substitutable(DEFAULT_SUBSTITUTABLE)
             .evaluationDate(DEFAULT_EVALUATION_DATE)
+            .reviewDate(DEFAULT_REVIEW_DATE)
+            .expiryDate(DEFAULT_EXPIRY_DATE)
             .reason(DEFAULT_REASON);
         // Add required entity
         Position position;
@@ -163,6 +173,8 @@ class StaffSubstitutionResourceIT {
             .missingSkills(UPDATED_MISSING_SKILLS)
             .substitutable(UPDATED_SUBSTITUTABLE)
             .evaluationDate(UPDATED_EVALUATION_DATE)
+            .reviewDate(UPDATED_REVIEW_DATE)
+            .expiryDate(UPDATED_EXPIRY_DATE)
             .reason(UPDATED_REASON);
         // Add required entity
         Position position;
@@ -329,6 +341,8 @@ class StaffSubstitutionResourceIT {
             .andExpect(jsonPath("$.[*].missingSkills").value(hasItem(DEFAULT_MISSING_SKILLS)))
             .andExpect(jsonPath("$.[*].substitutable").value(hasItem(DEFAULT_SUBSTITUTABLE)))
             .andExpect(jsonPath("$.[*].evaluationDate").value(hasItem(DEFAULT_EVALUATION_DATE.toString())))
+            .andExpect(jsonPath("$.[*].reviewDate").value(hasItem(DEFAULT_REVIEW_DATE.toString())))
+            .andExpect(jsonPath("$.[*].expiryDate").value(hasItem(DEFAULT_EXPIRY_DATE.toString())))
             .andExpect(jsonPath("$.[*].reason").value(hasItem(DEFAULT_REASON)));
     }
 
@@ -368,6 +382,8 @@ class StaffSubstitutionResourceIT {
             .andExpect(jsonPath("$.missingSkills").value(DEFAULT_MISSING_SKILLS))
             .andExpect(jsonPath("$.substitutable").value(DEFAULT_SUBSTITUTABLE))
             .andExpect(jsonPath("$.evaluationDate").value(DEFAULT_EVALUATION_DATE.toString()))
+            .andExpect(jsonPath("$.reviewDate").value(DEFAULT_REVIEW_DATE.toString()))
+            .andExpect(jsonPath("$.expiryDate").value(DEFAULT_EXPIRY_DATE.toString()))
             .andExpect(jsonPath("$.reason").value(DEFAULT_REASON));
     }
 
@@ -858,6 +874,164 @@ class StaffSubstitutionResourceIT {
 
     @Test
     @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate equals to
+        defaultStaffSubstitutionFiltering("reviewDate.equals=" + DEFAULT_REVIEW_DATE, "reviewDate.equals=" + UPDATED_REVIEW_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate in
+        defaultStaffSubstitutionFiltering(
+            "reviewDate.in=" + DEFAULT_REVIEW_DATE + "," + UPDATED_REVIEW_DATE,
+            "reviewDate.in=" + UPDATED_REVIEW_DATE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate is not null
+        defaultStaffSubstitutionFiltering("reviewDate.specified=true", "reviewDate.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate is greater than or equal to
+        defaultStaffSubstitutionFiltering(
+            "reviewDate.greaterThanOrEqual=" + DEFAULT_REVIEW_DATE,
+            "reviewDate.greaterThanOrEqual=" + UPDATED_REVIEW_DATE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate is less than or equal to
+        defaultStaffSubstitutionFiltering(
+            "reviewDate.lessThanOrEqual=" + DEFAULT_REVIEW_DATE,
+            "reviewDate.lessThanOrEqual=" + SMALLER_REVIEW_DATE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate is less than
+        defaultStaffSubstitutionFiltering("reviewDate.lessThan=" + UPDATED_REVIEW_DATE, "reviewDate.lessThan=" + DEFAULT_REVIEW_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByReviewDateIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where reviewDate is greater than
+        defaultStaffSubstitutionFiltering("reviewDate.greaterThan=" + SMALLER_REVIEW_DATE, "reviewDate.greaterThan=" + DEFAULT_REVIEW_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate equals to
+        defaultStaffSubstitutionFiltering("expiryDate.equals=" + DEFAULT_EXPIRY_DATE, "expiryDate.equals=" + UPDATED_EXPIRY_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate in
+        defaultStaffSubstitutionFiltering(
+            "expiryDate.in=" + DEFAULT_EXPIRY_DATE + "," + UPDATED_EXPIRY_DATE,
+            "expiryDate.in=" + UPDATED_EXPIRY_DATE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate is not null
+        defaultStaffSubstitutionFiltering("expiryDate.specified=true", "expiryDate.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate is greater than or equal to
+        defaultStaffSubstitutionFiltering(
+            "expiryDate.greaterThanOrEqual=" + DEFAULT_EXPIRY_DATE,
+            "expiryDate.greaterThanOrEqual=" + UPDATED_EXPIRY_DATE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate is less than or equal to
+        defaultStaffSubstitutionFiltering(
+            "expiryDate.lessThanOrEqual=" + DEFAULT_EXPIRY_DATE,
+            "expiryDate.lessThanOrEqual=" + SMALLER_EXPIRY_DATE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate is less than
+        defaultStaffSubstitutionFiltering("expiryDate.lessThan=" + UPDATED_EXPIRY_DATE, "expiryDate.lessThan=" + DEFAULT_EXPIRY_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStaffSubstitutionsByExpiryDateIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedStaffSubstitution = staffSubstitutionRepository.saveAndFlush(staffSubstitution);
+
+        // Get all the staffSubstitutionList where expiryDate is greater than
+        defaultStaffSubstitutionFiltering("expiryDate.greaterThan=" + SMALLER_EXPIRY_DATE, "expiryDate.greaterThan=" + DEFAULT_EXPIRY_DATE);
+    }
+
+    @Test
+    @Transactional
     void getAllStaffSubstitutionsByPositionIsEqualToSomething() throws Exception {
         Position position;
         if (TestUtil.findAll(em, Position.class).isEmpty()) {
@@ -977,6 +1151,8 @@ class StaffSubstitutionResourceIT {
             .missingSkills(UPDATED_MISSING_SKILLS)
             .substitutable(UPDATED_SUBSTITUTABLE)
             .evaluationDate(UPDATED_EVALUATION_DATE)
+            .reviewDate(UPDATED_REVIEW_DATE)
+            .expiryDate(UPDATED_EXPIRY_DATE)
             .reason(UPDATED_REASON);
         StaffSubstitutionDTO staffSubstitutionDTO = staffSubstitutionMapper.toDto(updatedStaffSubstitution);
 
@@ -1110,6 +1286,8 @@ class StaffSubstitutionResourceIT {
             .missingSkills(UPDATED_MISSING_SKILLS)
             .substitutable(UPDATED_SUBSTITUTABLE)
             .evaluationDate(UPDATED_EVALUATION_DATE)
+            .reviewDate(UPDATED_REVIEW_DATE)
+            .expiryDate(UPDATED_EXPIRY_DATE)
             .reason(UPDATED_REASON);
 
         restStaffSubstitutionMockMvc

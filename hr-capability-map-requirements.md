@@ -273,3 +273,30 @@
 - 未完成待办包含 `OPEN` 和 `IN_PROGRESS` 两类状态。
 - 用户可将待办标记为开始处理、完成或取消。
 - 系统在创建待办时自动补充默认状态、优先级和创建日期，减少用户录入负担。
+
+## 11. 与第二大脑闭环模型的对应关系
+
+本系统对应第二大脑中的“数据—逻辑模型—决策—行动—复盘”闭环。
+
+| 第二大脑层级 | 系统实现                                                                                       |
+| ------------ | ---------------------------------------------------------------------------------------------- |
+| 数据         | Position、Person、Skill、SkillLevel、PersonSkill、PositionSkillRequirement、PositionAssignment |
+| 逻辑模型     | PositionMatch、StaffSubstitution、PositionRiskEvaluation、SkillGapReport、TrainingSuggestion   |
+| 决策         | 高风险岗位、技能缺口、可替代人员、后继者候选、培训建议、数据质量问题                           |
+| 行动         | ActionItem、TrainingGoal、TrainingRecord、ImprovementPlan                                      |
+| 复盘         | SkillAssessment、SkillUpgradeRecord、TrustObservation、Evaluation、DataQualityService          |
+
+系统的核心价值不是录入数据本身，而是通过数据不断压缩判断的不确定性，并将判断转化为可执行、可复盘的行动。
+
+### 11.1 与 Obsidian 样板的交叉验证结论
+
+- Obsidian 样板中的 `PositionRequirement` 已在系统中细化为 `PositionSkillRequirement`。
+- Obsidian 样板中的 `Assignment` 已在系统中细化为 `PositionAssignment`。
+- Obsidian 样板中的 `Successor` 已拆分为 `StaffSubstitution` 与 `SuccessionCandidate`。
+- Obsidian 样板中的 `Risk` 已拆分为 `PositionRisk`、`PersonRisk` 与 `PositionRiskEvaluation`。
+- 系统额外补强了 `ActionItem` 与 `DataQualityService`，用于承接“决策—行动—复盘”的闭环。
+
+### 11.2 当前模型一致性注意点
+
+- `ActionItem` 已在代码中实现，原 JDL 未体现；本次已补入 JDL，并标注为 JDL 生成后手工追加过的系统对象。
+- `StaffSubstitution` 的核心语义是“某人对某职位的替代能力”。本次已在 JDL 补入 `reviewDate` 作为定期复核点，并保留代码中已有的 `expiryDate` 字段；不建议强化固定失效日，避免与“不设置固定有效期限”的业务规则冲突。

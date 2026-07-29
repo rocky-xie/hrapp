@@ -47,6 +47,14 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "reviewDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "expiryDate",
+      "fieldType": "LocalDate"
+    },
+    {
       "fieldName": "reason",
       "fieldType": "TextBlob"
     }

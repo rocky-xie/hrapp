@@ -347,6 +347,8 @@ graph TD
 | thresholdRate  | BigDecimal | NOT NULL, 0–100 | 阈值                                                       |
 | substitutable  | Boolean    | NOT NULL        | 是否可替代                                                 |
 | evaluationDate | LocalDate  | NOT NULL        | 评定日期                                                   |
+| reviewDate     | LocalDate  |                 | 复核日期，用于提示重新评价                                 |
+| expiryDate     | LocalDate  |                 | 保留字段，不作为固定失效规则                               |
 | reason         | Text       |                 | 备注字段，追加保存每次评价时间、覆盖率、缺失技能和判断说明 |
 
 **目标关系：**
@@ -1946,3 +1948,45 @@ SuccessionMapDTO
 | 5C.4 | 状态保护       | `ActionItemService.java`                                                | 普通 update/partialUpdate 不允许直接覆盖状态日期字段            |
 | 5C.5 | 前端动作调用   | `action-item.service.ts`, `action-item.component.ts`, `action-item.vue` | 改为调用动作端点，增加 Start 按钮                               |
 | 5C.6 | ID 策略对齐    | `20260605000000_added_entity_ActionItem.xml`                            | 移除 autoIncrement，使用项目统一 sequence 策略                  |
+
+## 14. 第二大脑闭环设计补充
+
+### 14.1 闭环链路
+
+```text
+Position / Person / Skill 数据
+  ↓
+人岗匹配、职位替代、技能缺口、岗位风险评价
+  ↓
+高风险岗位、培养优先级、后继者准备度、文档化优先级
+  ↓
+ActionItem / TrainingGoal / TrainingRecord / ImprovementPlan
+  ↓
+SkillAssessment / SkillUpgradeRecord / Evaluation / DataQualityService
+  ↓
+修正岗位技能要求、人员技能等级、风险规则和培养路径
+```
+
+### 14.2 数据对象与逻辑层级
+
+| 层级       | 主要对象                                                                              | 说明                           |
+| ---------- | ------------------------------------------------------------------------------------- | ------------------------------ |
+| 主数据     | Position、Person、Skill、SkillLevel                                                   | 系统最基础的数据对象           |
+| 关系数据   | PersonSkill、PositionSkillRequirement、PositionAssignment                             | 人、岗位、技能之间的结构化关系 |
+| 分析模型   | PositionMatch、StaffSubstitution、PositionRiskEvaluation、SkillGapReport              | 用于生成判断和风险识别         |
+| 培养与行动 | ActionItem、TrainingGoal、TrainingRecord、ImprovementPlan                             | 把判断转化为可跟踪行动         |
+| 复盘与校正 | SkillAssessment、SkillUpgradeRecord、TrustObservation、Evaluation、DataQualityService | 让模型根据事实持续修正         |
+
+### 14.3 本次交叉验证发现
+
+- `ActionItem` 已成为闭环行动层核心对象，原 JDL 中未体现；本次已补齐 JDL，并标注为手工追加实体。
+- `StaffSubstitution` 在代码中存在 `reviewDate / expiryDate`，但 JDL 和设计文档未完全对齐；本次已在 JDL 补入 `reviewDate / expiryDate`，其中 `expiryDate` 只作为保留字段，不强化固定失效语义。
+- Obsidian 样板中的 `Successor`、`Risk` 等概念已经在系统中拆分为更细实体，应以系统实体为后续建模基准。
+- 当前系统已经具备从风险评价自动生成 `ActionItem`、从技能缺口生成培训建议、从数据质量检查发现模型缺口的闭环基础。
+
+### 14.4 后续设计原则
+
+- 不把系统扩展为正式绩效裁决工具，继续定位为能力观察、风险识别和培养支持系统。
+- 保持规则透明：风险等级、替代覆盖率、技能缺口都必须能解释来源。
+- 行动项只承接“如何做”，理论讨论和模型解释保留在 Obsidian 或设计文档中。
+- 每季度以实际数据复核一次字段有效性、风险规则和培训建议质量。

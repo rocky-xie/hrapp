@@ -30,7 +30,8 @@ public class ActionItem implements Serializable {
     @Column(name = "source_id")
     private Long sourceId;
 
-    @Column(name = "source_entity_type")
+    @Size(max = 100)
+    @Column(name = "source_entity_type", length = 100)
     private String sourceEntityType;
 
     @NotNull

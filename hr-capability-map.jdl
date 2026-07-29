@@ -188,6 +188,31 @@ enum TrainingType {
   OTHER
 }
 
+enum ActionSourceType {
+  SKILL_REVIEW,
+  HIGH_RISK_POSITION,
+  SUBSTITUTION_GAP,
+  TRAINING_GOAL_EXPIRY,
+  SUCCESSION_REVIEW,
+  SKILL_ASSESSMENT,
+  DATA_QUALITY,
+  MANUAL
+}
+
+enum ActionPriority {
+  P0_CRITICAL,
+  P1_HIGH,
+  P2_MEDIUM,
+  P3_LOW
+}
+
+enum ActionStatus {
+  OPEN,
+  IN_PROGRESS,
+  COMPLETED,
+  CANCELLED
+}
+
 // =============================================================================
 // 实体
 // =============================================================================
@@ -356,6 +381,8 @@ entity StaffSubstitution {
   missingSkills         TextBlob
   substitutable         Boolean         required
   evaluationDate        LocalDate       required
+  reviewDate            LocalDate
+  expiryDate            LocalDate
   reason                TextBlob
 }
 
@@ -476,6 +503,24 @@ entity CandidateProfile {
   riskAwareness                 ImportanceLevel
   judgement                     CandidateJudgement    required
   evidence                      TextBlob
+}
+
+/**
+ * 行动项。承接风险、缺口、技能复核和培训等系统判断产生的后续处理事项。
+ * 注意：该实体为 JDL 生成后手工追加过的系统对象，本段用于让 JDL 重新成为完整模型说明。
+ */
+entity ActionItem {
+  sourceType        ActionSourceType
+  sourceId          Long
+  sourceEntityType  String          maxlength(100)
+  description       String          required maxlength(200)
+  assignee          String          maxlength(100)
+  dueDate           LocalDate
+  status            ActionStatus    required
+  priority          ActionPriority
+  createdAt         LocalDate
+  completedAt       LocalDate
+  note              TextBlob
 }
 
 // =============================================================================

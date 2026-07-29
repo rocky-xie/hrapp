@@ -91,6 +91,8 @@ public class StaffSubstitutionQueryService extends QueryService<StaffSubstitutio
                     buildRangeSpecification(criteria.getCoveredSkillCount(), StaffSubstitution_.coveredSkillCount),
                     buildSpecification(criteria.getSubstitutable(), StaffSubstitution_.substitutable),
                     buildRangeSpecification(criteria.getEvaluationDate(), StaffSubstitution_.evaluationDate),
+                    buildRangeSpecification(criteria.getReviewDate(), StaffSubstitution_.reviewDate),
+                    buildRangeSpecification(criteria.getExpiryDate(), StaffSubstitution_.expiryDate),
                     buildSpecification(criteria.getPositionId(), root ->
                         root.join(StaffSubstitution_.position, JoinType.LEFT).get(Position_.id)
                     ),

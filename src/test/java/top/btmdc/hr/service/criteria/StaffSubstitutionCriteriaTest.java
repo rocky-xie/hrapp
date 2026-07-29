@@ -82,6 +82,8 @@ class StaffSubstitutionCriteriaTest {
         staffSubstitutionCriteria.coveredSkillCount();
         staffSubstitutionCriteria.substitutable();
         staffSubstitutionCriteria.evaluationDate();
+        staffSubstitutionCriteria.reviewDate();
+        staffSubstitutionCriteria.expiryDate();
         staffSubstitutionCriteria.positionId();
         staffSubstitutionCriteria.candidatePersonId();
         staffSubstitutionCriteria.distinct();
@@ -97,6 +99,8 @@ class StaffSubstitutionCriteriaTest {
                 condition.apply(criteria.getCoveredSkillCount()) &&
                 condition.apply(criteria.getSubstitutable()) &&
                 condition.apply(criteria.getEvaluationDate()) &&
+                condition.apply(criteria.getReviewDate()) &&
+                condition.apply(criteria.getExpiryDate()) &&
                 condition.apply(criteria.getPositionId()) &&
                 condition.apply(criteria.getCandidatePersonId()) &&
                 condition.apply(criteria.getDistinct()),
@@ -117,6 +121,8 @@ class StaffSubstitutionCriteriaTest {
                 condition.apply(criteria.getCoveredSkillCount(), copy.getCoveredSkillCount()) &&
                 condition.apply(criteria.getSubstitutable(), copy.getSubstitutable()) &&
                 condition.apply(criteria.getEvaluationDate(), copy.getEvaluationDate()) &&
+                condition.apply(criteria.getReviewDate(), copy.getReviewDate()) &&
+                condition.apply(criteria.getExpiryDate(), copy.getExpiryDate()) &&
                 condition.apply(criteria.getPositionId(), copy.getPositionId()) &&
                 condition.apply(criteria.getCandidatePersonId(), copy.getCandidatePersonId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),

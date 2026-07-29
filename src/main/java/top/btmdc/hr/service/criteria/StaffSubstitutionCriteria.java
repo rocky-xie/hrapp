@@ -38,6 +38,10 @@ public class StaffSubstitutionCriteria implements Serializable, Criteria {
 
     private LocalDateFilter evaluationDate;
 
+    private LocalDateFilter reviewDate;
+
+    private LocalDateFilter expiryDate;
+
     private LongFilter positionId;
 
     private LongFilter candidatePersonId;
@@ -54,6 +58,8 @@ public class StaffSubstitutionCriteria implements Serializable, Criteria {
         this.coveredSkillCount = other.optionalCoveredSkillCount().map(IntegerFilter::copy).orElse(null);
         this.substitutable = other.optionalSubstitutable().map(BooleanFilter::copy).orElse(null);
         this.evaluationDate = other.optionalEvaluationDate().map(LocalDateFilter::copy).orElse(null);
+        this.reviewDate = other.optionalReviewDate().map(LocalDateFilter::copy).orElse(null);
+        this.expiryDate = other.optionalExpiryDate().map(LocalDateFilter::copy).orElse(null);
         this.positionId = other.optionalPositionId().map(LongFilter::copy).orElse(null);
         this.candidatePersonId = other.optionalCandidatePersonId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
@@ -197,6 +203,44 @@ public class StaffSubstitutionCriteria implements Serializable, Criteria {
         this.evaluationDate = evaluationDate;
     }
 
+    public LocalDateFilter getReviewDate() {
+        return reviewDate;
+    }
+
+    public Optional<LocalDateFilter> optionalReviewDate() {
+        return Optional.ofNullable(reviewDate);
+    }
+
+    public LocalDateFilter reviewDate() {
+        if (reviewDate == null) {
+            setReviewDate(new LocalDateFilter());
+        }
+        return reviewDate;
+    }
+
+    public void setReviewDate(LocalDateFilter reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public LocalDateFilter getExpiryDate() {
+        return expiryDate;
+    }
+
+    public Optional<LocalDateFilter> optionalExpiryDate() {
+        return Optional.ofNullable(expiryDate);
+    }
+
+    public LocalDateFilter expiryDate() {
+        if (expiryDate == null) {
+            setExpiryDate(new LocalDateFilter());
+        }
+        return expiryDate;
+    }
+
+    public void setExpiryDate(LocalDateFilter expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
     public LongFilter getPositionId() {
         return positionId;
     }
@@ -271,6 +315,8 @@ public class StaffSubstitutionCriteria implements Serializable, Criteria {
             Objects.equals(coveredSkillCount, that.coveredSkillCount) &&
             Objects.equals(substitutable, that.substitutable) &&
             Objects.equals(evaluationDate, that.evaluationDate) &&
+            Objects.equals(reviewDate, that.reviewDate) &&
+            Objects.equals(expiryDate, that.expiryDate) &&
             Objects.equals(positionId, that.positionId) &&
             Objects.equals(candidatePersonId, that.candidatePersonId) &&
             Objects.equals(distinct, that.distinct)
@@ -287,6 +333,8 @@ public class StaffSubstitutionCriteria implements Serializable, Criteria {
             coveredSkillCount,
             substitutable,
             evaluationDate,
+            reviewDate,
+            expiryDate,
             positionId,
             candidatePersonId,
             distinct
@@ -304,6 +352,8 @@ public class StaffSubstitutionCriteria implements Serializable, Criteria {
             optionalCoveredSkillCount().map(f -> "coveredSkillCount=" + f + ", ").orElse("") +
             optionalSubstitutable().map(f -> "substitutable=" + f + ", ").orElse("") +
             optionalEvaluationDate().map(f -> "evaluationDate=" + f + ", ").orElse("") +
+            optionalReviewDate().map(f -> "reviewDate=" + f + ", ").orElse("") +
+            optionalExpiryDate().map(f -> "expiryDate=" + f + ", ").orElse("") +
             optionalPositionId().map(f -> "positionId=" + f + ", ").orElse("") +
             optionalCandidatePersonId().map(f -> "candidatePersonId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +

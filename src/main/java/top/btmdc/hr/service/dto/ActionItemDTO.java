@@ -18,6 +18,7 @@ public class ActionItemDTO implements Serializable {
 
     private Long sourceId;
 
+    @Size(max = 100)
     private String sourceEntityType;
 
     @NotNull
