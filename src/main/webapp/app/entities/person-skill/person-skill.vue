@@ -78,7 +78,7 @@
             <td>{{ personSkill.assessmentDate }}</td>
             <td>{{ personSkill.nextReviewDate }}</td>
             <td>{{ personSkill.evidence }}</td>
-            <td>{{ personSkill.confidence }}</td>
+            <td>{{ $t('recruitment.enums.' + personSkill.confidence) }}</td>
             <td>{{ personSkill.growthDirection }}</td>
             <td>
               <div v-if="personSkill.person">

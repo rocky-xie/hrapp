@@ -1,0 +1,76 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052916"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "candidateId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "personId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "plannedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "contactedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ownerUsername",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "contactMethod",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "result",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "candidateIntent",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "riskLevel",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "nextAction",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "nextContactAt",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PreboardingFollowUp",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "followUps",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

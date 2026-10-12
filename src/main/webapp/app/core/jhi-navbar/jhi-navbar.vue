@@ -43,6 +43,39 @@
             <span>{{ $t('actionItem.title') }}</span>
           </span>
         </b-nav-item>
+        <b-nav-item-dropdown
+          :no-size="true"
+          end
+          id="recruitment-menu"
+          v-if="authenticated && hasAnyAuthority(['ROLE_HR_RECRUITER', 'ROLE_ADMIN'])"
+          :class="{
+            'router-link-active': subIsActive([
+              '/recruitment-',
+              '/recruitment-workflow',
+              '/candidate-resume',
+              '/external-candidate',
+              '/selection-activity',
+              '/application-event',
+              '/application-stage',
+              '/hiring-decision',
+              '/dispatch-',
+              '/preboarding-follow-up',
+              '/notification-',
+              '/partner-organization',
+            ]),
+          }"
+          active-class="active"
+          class="pointer"
+          data-cy="recruitment"
+        >
+          <template #button-content>
+            <span class="navbar-dropdown-menu">
+              <font-awesome-icon icon="user-plus" />
+              <span class="no-bold">{{ $t('global.menu.recruitment') }}</span>
+            </span>
+          </template>
+          <recruitment-menu></recruitment-menu>
+        </b-nav-item-dropdown>
         <b-nav-item-dropdown :no-size="true" end id="tools-menu" v-if="authenticated" active-class="active" class="pointer">
           <template #button-content>
             <span class="navbar-dropdown-menu">

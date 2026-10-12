@@ -9,6 +9,7 @@ export interface IPerson {
   department?: string | null;
   currentRole?: string | null;
   employmentStatus?: keyof typeof EmploymentStatus;
+  employmentType?: 'REGULAR' | 'DISPATCHED';
   joinDate?: Date | null;
   mentorFlag?: boolean;
   coreCandidateFlag?: boolean;
@@ -29,6 +30,7 @@ export class Person implements IPerson {
     public mentorFlag?: boolean,
     public coreCandidateFlag?: boolean,
     public note?: string | null,
+    public employmentType: 'REGULAR' | 'DISPATCHED' = 'REGULAR',
   ) {
     this.mentorFlag = this.mentorFlag ?? false;
     this.coreCandidateFlag = this.coreCandidateFlag ?? false;

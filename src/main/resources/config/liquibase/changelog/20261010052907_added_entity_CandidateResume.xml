@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity CandidateResume.
+    -->
+    <changeSet id="20261010052907-1" author="jhipster">
+        <createTable tableName="candidate_resume">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version_number" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="received_at" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="original_file_name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="media_type" type="varchar(150)">
+                <constraints nullable="true" />
+            </column>
+            <column name="file_size" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="sha_256" type="varchar(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="storage_key" type="varchar(120)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_candidate_resume__storage_key" />
+            </column>
+            <column name="structured_summary" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="active_version" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="uploaded_by" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="candidate_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="candidate_resume" columnName="received_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

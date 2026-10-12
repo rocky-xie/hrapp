@@ -28,13 +28,13 @@
             <span>{{ $t('entity.positionMatch.field.readiness') }}</span>
           </dt>
           <dd>
-            <span>{{ positionMatch.readiness }}</span>
+            <span>{{ $t('recruitment.enums.' + positionMatch.readiness) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionMatch.field.recommendation') }}</span>
           </dt>
           <dd>
-            <span>{{ positionMatch.recommendation }}</span>
+            <span>{{ $t('recruitment.enums.' + positionMatch.recommendation) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionMatch.field.analysisDate') }}</span>

@@ -81,13 +81,13 @@
             </td>
             <td>{{ position.positionCode }}</td>
             <td>{{ position.positionName }}</td>
-            <td>{{ position.positionType }}</td>
-            <td>{{ position.businessImportance }}</td>
+            <td>{{ $t('recruitment.enums.' + position.positionType) }}</td>
+            <td>{{ $t('recruitment.enums.' + position.businessImportance) }}</td>
             <td>{{ position.keyPosition }}</td>
             <td>{{ position.description }}</td>
             <td>{{ position.plannedHeadcount }}</td>
             <td>{{ position.minimumOwnerCount }}</td>
-            <td>{{ position.reviewCycle }}</td>
+            <td>{{ $t('recruitment.enums.' + position.reviewCycle) }}</td>
             <td>{{ position.active }}</td>
             <td class="text-end">
               <div class="btn-group">

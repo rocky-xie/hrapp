@@ -16,7 +16,7 @@
             <span>{{ $t('entity.trustObservation.field.trustStage') }}</span>
           </dt>
           <dd>
-            <span>{{ trustObservation.trustStage }}</span>
+            <span>{{ $t('recruitment.enums.' + trustObservation.trustStage) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.trustObservation.field.observedBehavior') }}</span>

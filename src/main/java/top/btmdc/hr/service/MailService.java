@@ -56,7 +56,7 @@ public class MailService {
         sendEmailSync(to, subject, content, isMultipart, isHtml);
     }
 
-    private void sendEmailSync(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
+    private boolean sendEmailSync(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         LOG.debug(
             "Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart,
@@ -76,9 +76,16 @@ public class MailService {
             message.setText(content, isHtml);
             javaMailSender.send(mimeMessage);
             LOG.debug("Sent email to User '{}'", to);
+            return true;
         } catch (MailException | MessagingException e) {
             LOG.warn("Email could not be sent to user '{}'", to, e);
+            return false;
         }
+    }
+
+    /** Send an HR recruitment notice as plain text and report delivery success to the audit workflow. */
+    public boolean sendRecruitmentEmail(String to, String subject, String content) {
+        return sendEmailSync(to, subject, content, false, false);
     }
 
     @Async

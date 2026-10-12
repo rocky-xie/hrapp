@@ -80,8 +80,8 @@
             <td>{{ positionMatch.matchScore }}</td>
             <td>{{ positionMatch.matchedSkills }}</td>
             <td>{{ positionMatch.gapSkills }}</td>
-            <td>{{ positionMatch.readiness }}</td>
-            <td>{{ positionMatch.recommendation }}</td>
+            <td>{{ $t('recruitment.enums.' + positionMatch.readiness) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionMatch.recommendation) }}</td>
             <td>{{ positionMatch.analysisDate }}</td>
             <td>{{ positionMatch.remark }}</td>
             <td>

@@ -10,7 +10,7 @@
             <span>{{ $t('entity.skillLevel.field.code') }}</span>
           </dt>
           <dd>
-            <span>{{ skillLevel.code }}</span>
+            <span>{{ $t('recruitment.enums.' + skillLevel.code) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.skillLevel.field.levelName') }}</span>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity ExternalCandidate.
+    -->
+    <changeSet id="20261010052906-1" author="jhipster">
+        <createTable tableName="external_candidate">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name_reading" type="varchar(150)">
+                <constraints nullable="true" />
+            </column>
+            <column name="english_name" type="varchar(150)">
+                <constraints nullable="true" />
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="gender" type="varchar(30)">
+                <constraints nullable="true" />
+            </column>
+            <column name="phone" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(254)">
+                <constraints nullable="true" />
+            </column>
+            <column name="address" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="education_summary" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="work_summary" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="converted_person_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_at" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="external_candidate" columnName="created_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="external_candidate" columnName="updated_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

@@ -86,7 +86,7 @@
             <td>{{ trainingGoal.targetLevelDescription }}</td>
             <td>{{ trainingGoal.startDate }}</td>
             <td>{{ trainingGoal.targetDate }}</td>
-            <td>{{ trainingGoal.status }}</td>
+            <td>{{ $t('recruitment.enums.' + trainingGoal.status) }}</td>
             <td>
               <div v-if="trainingGoal.person">
                 <router-link :to="{ name: 'PersonView', params: { personId: trainingGoal.person.id } }">{{

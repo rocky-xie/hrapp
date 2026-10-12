@@ -28,13 +28,13 @@
             <span>{{ $t('entity.evaluation.field.progressStatus') }}</span>
           </dt>
           <dd>
-            <span>{{ evaluation.progressStatus }}</span>
+            <span>{{ $t('recruitment.enums.' + evaluation.progressStatus) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.evaluation.field.result') }}</span>
           </dt>
           <dd>
-            <span>{{ evaluation.result }}</span>
+            <span>{{ $t('recruitment.enums.' + evaluation.result) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.evaluation.field.strengths') }}</span>

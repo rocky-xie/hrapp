@@ -10,7 +10,7 @@
             <span>{{ $t('entity.positionSkillRequirement.field.importance') }}</span>
           </dt>
           <dd>
-            <span>{{ positionSkillRequirement.importance }}</span>
+            <span>{{ $t('recruitment.enums.' + positionSkillRequirement.importance) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionMatch.field.remark') }}</span>

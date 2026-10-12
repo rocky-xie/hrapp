@@ -10,13 +10,13 @@
             <span>{{ $t('entity.personRisk.field.riskType') }}</span>
           </dt>
           <dd>
-            <span>{{ personRisk.riskType }}</span>
+            <span>{{ $t('recruitment.enums.' + personRisk.riskType) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRiskEvaluation.field.riskLevel') }}</span>
           </dt>
           <dd>
-            <span>{{ personRisk.riskLevel }}</span>
+            <span>{{ $t('recruitment.enums.' + personRisk.riskLevel) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.personRisk.field.riskDescription') }}</span>

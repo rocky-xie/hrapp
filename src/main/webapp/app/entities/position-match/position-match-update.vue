@@ -59,7 +59,7 @@
               required
             >
               <option v-for="readinessLevel in readinessLevelValues" :key="readinessLevel" :value="readinessLevel">
-                {{ readinessLevel }}
+                {{ $t('recruitment.enums.' + readinessLevel) }}
               </option>
             </select>
             <div v-if="v$.readiness.$anyDirty && v$.readiness.$invalid">
@@ -78,7 +78,7 @@
               required
             >
               <option v-for="recommendation in recommendationValues" :key="recommendation" :value="recommendation">
-                {{ recommendation }}
+                {{ $t('recruitment.enums.' + recommendation) }}
               </option>
             </select>
             <div v-if="v$.recommendation.$anyDirty && v$.recommendation.$invalid">

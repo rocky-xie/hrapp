@@ -7,6 +7,7 @@
       "dataQuality": "数据质量",
       "batch": "批量导入/导出",
       "entities": "实体",
+      "recruitment": "人员录用",
       "administration": "系统管理",
       "account": "账户",
       "settings": "设置",
@@ -171,7 +172,6 @@
       "prompt": "如果您想要",
       "signIn": "登录"
     },
-
     "section": {
       "people": {
         "title": "人员管理",
@@ -188,6 +188,210 @@
     }
   },
   "entity": {
+    "applicationEvent": {
+      "name": "招聘流程事件",
+      "home": {
+        "title": "招聘流程事件",
+        "createLabel": "新增招聘流程事件",
+        "createOrEditLabel": "创建或编辑招聘流程事件",
+        "empty": "没有招聘流程事件。"
+      },
+      "detail": {
+        "title": "招聘流程事件"
+      }
+    },
+    "applicationStage": {
+      "name": "招聘阶段",
+      "home": {
+        "title": "招聘阶段",
+        "createLabel": "新增招聘阶段",
+        "createOrEditLabel": "创建或编辑招聘阶段",
+        "empty": "没有招聘阶段。"
+      },
+      "detail": {
+        "title": "招聘阶段"
+      }
+    },
+    "candidateResume": {
+      "name": "候选人简历",
+      "home": {
+        "title": "候选人简历",
+        "createLabel": "新增候选人简历",
+        "createOrEditLabel": "创建或编辑候选人简历",
+        "empty": "没有候选人简历。"
+      },
+      "detail": {
+        "title": "候选人简历"
+      }
+    },
+    "dispatchAssignment": {
+      "name": "派遣安排",
+      "home": {
+        "title": "派遣安排",
+        "createLabel": "新增派遣安排",
+        "createOrEditLabel": "创建或编辑派遣安排",
+        "empty": "没有派遣安排。"
+      },
+      "detail": {
+        "title": "派遣安排"
+      }
+    },
+    "dispatchReview": {
+      "name": "派遣跟踪评价",
+      "home": {
+        "title": "派遣跟踪评价",
+        "createLabel": "新增派遣跟踪评价",
+        "createOrEditLabel": "创建或编辑派遣跟踪评价",
+        "empty": "没有派遣跟踪评价。"
+      },
+      "detail": {
+        "title": "派遣跟踪评价"
+      }
+    },
+    "externalCandidate": {
+      "name": "外部候选人",
+      "home": {
+        "title": "外部候选人",
+        "createLabel": "新增外部候选人",
+        "createOrEditLabel": "创建或编辑外部候选人",
+        "empty": "没有外部候选人。"
+      },
+      "detail": {
+        "title": "外部候选人"
+      }
+    },
+    "hiringDecision": {
+      "name": "录用决定",
+      "home": {
+        "title": "录用决定",
+        "createLabel": "新增录用决定",
+        "createOrEditLabel": "创建或编辑录用决定",
+        "empty": "没有录用决定。"
+      },
+      "detail": {
+        "title": "录用决定"
+      }
+    },
+    "notificationMessage": {
+      "name": "通知记录",
+      "home": {
+        "title": "通知记录",
+        "createLabel": "新增通知记录",
+        "createOrEditLabel": "创建或编辑通知记录",
+        "empty": "没有通知记录。"
+      },
+      "detail": {
+        "title": "通知记录"
+      }
+    },
+    "notificationTemplate": {
+      "name": "通知模板",
+      "home": {
+        "title": "通知模板",
+        "createLabel": "新增通知模板",
+        "createOrEditLabel": "创建或编辑通知模板",
+        "empty": "没有通知模板。"
+      },
+      "detail": {
+        "title": "通知模板"
+      }
+    },
+    "partnerOrganization": {
+      "name": "合作公司",
+      "home": {
+        "title": "合作公司",
+        "createLabel": "新增合作公司",
+        "createOrEditLabel": "创建或编辑合作公司",
+        "empty": "没有合作公司。"
+      },
+      "detail": {
+        "title": "合作公司"
+      }
+    },
+    "preboardingFollowUp": {
+      "name": "入社前跟踪",
+      "home": {
+        "title": "入社前跟踪",
+        "createLabel": "新增入社前跟踪",
+        "createOrEditLabel": "创建或编辑入社前跟踪",
+        "empty": "没有入社前跟踪。"
+      },
+      "detail": {
+        "title": "入社前跟踪"
+      }
+    },
+    "recruitmentApplication": {
+      "name": "应聘记录",
+      "home": {
+        "title": "应聘记录",
+        "createLabel": "新增应聘记录",
+        "createOrEditLabel": "创建或编辑应聘记录",
+        "empty": "没有应聘记录。"
+      },
+      "detail": {
+        "title": "应聘记录"
+      }
+    },
+    "recruitmentEvaluation": {
+      "name": "招聘评价",
+      "home": {
+        "title": "招聘评价",
+        "createLabel": "新增招聘评价",
+        "createOrEditLabel": "创建或编辑招聘评价",
+        "empty": "没有招聘评价。"
+      },
+      "detail": {
+        "title": "招聘评价"
+      }
+    },
+    "recruitmentRequisition": {
+      "name": "招聘需求",
+      "home": {
+        "title": "招聘需求",
+        "createLabel": "新增招聘需求",
+        "createOrEditLabel": "创建或编辑招聘需求",
+        "empty": "没有招聘需求。"
+      },
+      "detail": {
+        "title": "招聘需求"
+      }
+    },
+    "recruitmentRequisitionMember": {
+      "name": "需求协作成员",
+      "home": {
+        "title": "需求协作成员",
+        "createLabel": "新增需求协作成员",
+        "createOrEditLabel": "创建或编辑需求协作成员",
+        "empty": "没有需求协作成员。"
+      },
+      "detail": {
+        "title": "需求协作成员"
+      }
+    },
+    "recruitmentRequisitionVersion": {
+      "name": "需求定版记录",
+      "home": {
+        "title": "需求定版记录",
+        "createLabel": "新增需求定版记录",
+        "createOrEditLabel": "创建或编辑需求定版记录",
+        "empty": "没有需求定版记录。"
+      },
+      "detail": {
+        "title": "需求定版记录"
+      }
+    },
+    "selectionActivity": {
+      "name": "笔试/面试安排",
+      "home": {
+        "title": "笔试/面试安排",
+        "createLabel": "新增笔试/面试安排",
+        "createOrEditLabel": "创建或编辑笔试/面试安排",
+        "empty": "没有笔试/面试安排。"
+      },
+      "detail": {
+        "title": "笔试/面试安排"
+      }
+    },
     "position": {
       "name": "职位",
       "home": {
@@ -238,6 +442,7 @@
         "department": "部门",
         "currentRole": "当前角色",
         "employmentStatus": "在职状态",
+        "employmentType": "雇佣形态",
         "joinDate": "入职日期",
         "mentorFlag": "导师标志",
         "coreCandidateFlag": "核心候选人标志",
@@ -761,6 +966,371 @@
     "action": {
       "export": "导出",
       "import": "导入"
+    }
+  },
+  "recruitment": {
+    "workflow": {
+      "title": "招聘流程",
+      "description": "查看应聘、记录选考结果、登记录用决定并转换录用人员。",
+      "refresh": "刷新",
+      "application": "应聘记录",
+      "candidate": "候选人",
+      "requirement": "人员需求",
+      "stage": "当前阶段",
+      "status": "状态",
+      "actions": "操作",
+      "reject": "淘汰",
+      "recordHired": "记录录用",
+      "recordNotHired": "记录不录用",
+      "recordDispatch": "记录派遣录用",
+      "executiveReviewer": "经营层评定人用户名",
+      "convert": "建立入社前人员档案",
+      "checkIn": "记录报到",
+      "notes": "备注",
+      "empty": "没有应聘记录。",
+      "continue": "进入{stage}",
+      "loadError": "无法加载招聘记录。",
+      "saved": "招聘记录已更新。",
+      "actionError": "无法完成该招聘操作。",
+      "reviewerRequired": "请填写经营层评定人后再记录最终决定。",
+      "joinDateRequired": "请选择员工报到日期。"
+    },
+    "ui": {
+      "refresh": "刷新列表",
+      "cancel": "取消",
+      "save": "保存",
+      "back": "返回",
+      "edit": "编辑",
+      "view": "查看",
+      "delete": "删除",
+      "deleteTitle": "确认删除操作",
+      "deleteQuestion": "确定要删除{entity}（编号：{id}）吗？",
+      "empty": "未找到{entity}。",
+      "id": "编号"
+    },
+    "enums": {
+      "GRADUATE": "应届毕业生",
+      "MID_CAREER": "中途招聘",
+      "RESUME_SCREENING": "简历筛选",
+      "WRITTEN_TEST": "笔试",
+      "FIRST_INTERVIEW": "一次面试",
+      "SECOND_INTERVIEW": "二次面试",
+      "FINAL_INTERVIEW": "最终面试",
+      "IN_PROGRESS": "进行中",
+      "ON_HOLD": "暂缓",
+      "SELECTION_COMPLETED": "选考完成",
+      "DECIDED": "已决定",
+      "CLOSED": "已关闭",
+      "HIRED": "录用",
+      "NOT_HIRED": "不录用",
+      "RESERVE": "候补",
+      "WITHDRAWN": "撤回",
+      "ACCEPT_AS_DISPATCHED": "派遣录用",
+      "DRAFT": "草稿",
+      "OPEN": "开放",
+      "LOCKED": "已锁定",
+      "ARCHIVED": "已归档",
+      "EDITABLE": "可编辑",
+      "APPROVED": "已确认",
+      "ACTIVE": "有效",
+      "REMOVED": "已移除",
+      "PENDING": "待处理",
+      "COMPLETED": "已完成",
+      "PASSED": "通过",
+      "FAILED": "失败",
+      "SCHEDULED": "已安排",
+      "CANCELLED": "已取消",
+      "RESCHEDULED": "已改期",
+      "SUBMITTED": "已提交",
+      "PUBLISHED": "已共享",
+      "RECOMMENDED": "建议录用",
+      "NOT_RECOMMENDED": "不建议录用",
+      "NEUTRAL": "一般",
+      "SENT": "已发送",
+      "READY": "待确认发送",
+      "QUEUED": "排队中",
+      "FAILED_PERMANENTLY": "发送失败",
+      "EMAIL": "邮件",
+      "MANUAL": "人工",
+      "INTERNAL": "内部",
+      "AGENCY": "中介公司",
+      "WEBSITE": "招聘网站",
+      "REFERRAL": "内部推荐",
+      "SCHOOL": "学校招聘",
+      "HIGH": "高",
+      "MEDIUM": "中",
+      "LOW": "低",
+      "HIRE": "录用",
+      "REJECT": "不录用",
+      "EXTEND": "延长派遣",
+      "REGULAR_EMPLOYEE": "转为正式员工",
+      "CONTINUE_DISPATCH": "继续派遣",
+      "EMAIL_TEMPLATE": "邮件模板",
+      "CANDIDATE": "候选人",
+      "INTERVIEWER": "面试官",
+      "HR": "人事",
+      "PREPARING": "准备中",
+      "SUSPENDED": "已暂停",
+      "WAITING_CONFIRMATION": "待确认",
+      "SENDING": "发送中",
+      "FIT": "符合",
+      "TRAINABLE": "可培养",
+      "NOT_FIT": "不符合",
+      "OBSERVE": "观察",
+      "STAGE_COMPLETED": "阶段完成",
+      "DECISION_RECORDED": "已记录决定",
+      "INTERVIEW_INVITATION": "面试邀请",
+      "PREBOARDING_FOLLOW_UP": "入社前跟进",
+      "RECORDED": "已记录",
+      "CALL": "电话",
+      "IN_PERSON": "现场",
+      "POSITIVE": "积极",
+      "AT_RISK": "有风险",
+      "IMMEDIATE": "立即",
+      "THREE_MONTHS": "3个月内",
+      "SIX_TO_TWELVE_MONTHS": "6至12个月",
+      "NONE": "无",
+      "TECHNICAL": "技术",
+      "BUSINESS_SUPPORT": "业务支持",
+      "CUSTOMER_INTERFACE": "客户接口",
+      "MANAGEMENT_SUPPORT": "管理支持",
+      "MENTOR": "导师",
+      "OTHER": "其他",
+      "P0_CRITICAL": "P0 - 紧急",
+      "P1_HIGH": "P1 - 高",
+      "P2_MEDIUM": "P2 - 中",
+      "P3_LOW": "P3 - 低",
+      "REQUIRED": "必须",
+      "IMPORTANT": "重要",
+      "OPTIONAL": "可选",
+      "SINGLE_POINT": "单点风险",
+      "KNOWLEDGE_CONCENTRATION": "知识集中",
+      "CUSTOMER_RELATION_CONCENTRATION": "客户关系集中",
+      "PERMISSION_CONCENTRATION": "权限集中",
+      "SUCCESSOR_SHORTAGE": "继任者不足",
+      "HEALTH_CONTINUITY": "健康与持续性",
+      "UNCLEAR_RESPONSIBILITY": "职责不清",
+      "TURNOVER": "离职风险",
+      "AVAILABLE": "齐全",
+      "PARTIAL": "部分缺失",
+      "MISSING": "缺失",
+      "OUTDATED": "已过期",
+      "NOT_APPLICABLE": "不适用",
+      "PASS": "通过",
+      "WARNING": "注意",
+      "FAIL": "未通过",
+      "ONBOARDING": "入职培训",
+      "SHADOWING": "跟岗",
+      "CASE_REVIEW": "案例复盘",
+      "PRACTICE": "实操",
+      "MEETING": "会议",
+      "DOCUMENTATION": "文档",
+      "CERTIFICATE": "证书",
+      "PROJECT_EXPERIENCE": "项目经验",
+      "OBSERVATION": "观察记录",
+      "ASSESSMENT_RESULT": "评价结果",
+      "UNKNOWN": "未知",
+      "NEWCOMER": "新人",
+      "INDEPENDENT_STAFF": "独立担当",
+      "CORE_STAFF": "核心员工",
+      "MANAGEMENT_CANDIDATE": "管理层候选人",
+      "CORE_CANDIDATE": "核心候选人",
+      "NOT_SUITABLE": "不适合",
+      "ABSTRACT": "抽象能力",
+      "MENTORING": "指导培养",
+      "NORMAL": "正常",
+      "SLOW": "较慢",
+      "FAST": "较快",
+      "RISK": "有风险",
+      "L0": "0级",
+      "L1": "1级",
+      "L2": "2级",
+      "L3": "3级",
+      "L4": "4级",
+      "MALE": "男",
+      "FEMALE": "女",
+      "UNSPECIFIED": "未指定",
+      "NEW_SKILL": "新增技能",
+      "LEVEL_UP": "能力提升",
+      "LEVEL_DOWN": "能力下降",
+      "REASSESSMENT": "重新评估",
+      "CORRECTION": "更正",
+      "S0_UNOBSERVED": "未观察",
+      "S1_BASIC_TRUST": "基础信任",
+      "S2_TASK_TRUST": "任务信任",
+      "S3_RESPONSIBILITY_TRUST": "责任信任",
+      "S4_KEY_TRUST": "核心信任",
+      "MONTHLY": "每月",
+      "QUARTERLY": "每季度",
+      "SEMIANNUAL": "每半年",
+      "ANNUAL": "每年",
+      "ON_CHANGE": "变更时",
+      "SELF_ASSESSMENT": "自我评价",
+      "MANAGER_ASSESSMENT": "管理者评价",
+      "CERTIFICATION": "认证",
+      "PEER_REVIEW": "同事评价",
+      "SKILL_REVIEW": "技能评价",
+      "HIGH_RISK_POSITION": "高风险职位",
+      "SUBSTITUTION_GAP": "替岗缺口",
+      "TRAINING_GOAL_EXPIRY": "培养目标到期",
+      "SUCCESSION_REVIEW": "继任评审",
+      "SKILL_ASSESSMENT": "技能评估",
+      "DATA_QUALITY": "数据质量",
+      "BUSINESS": "业务"
+    },
+    "fields": {
+      "id": "编号",
+      "requisitionCode": "需求编号",
+      "title": "标题",
+      "department": "部门",
+      "positionId": "职位编号",
+      "recruitmentType": "招聘类型",
+      "lifecycle": "需求状态",
+      "editStatus": "编辑状态",
+      "plannedHeadcount": "计划人数",
+      "hiredCount": "录用人数",
+      "checkedInCount": "已报到人数",
+      "priority": "优先级",
+      "reason": "原因",
+      "targetJoinDate": "目标入社日期",
+      "desiredStartDate": "期望开始日期",
+      "desiredEndDate": "期望结束日期",
+      "currentVersion": "当前版本",
+      "lockedAt": "锁定时间",
+      "lockedBy": "锁定人",
+      "unlockedAt": "解锁时间",
+      "unlockReason": "解锁原因",
+      "requirementsJson": "需求详情（JSON）",
+      "username": "用户名",
+      "memberType": "成员类型",
+      "active": "有效",
+      "createdAt": "创建时间",
+      "removedAt": "移除时间",
+      "requisition": "招聘需求",
+      "versionNumber": "版本号",
+      "snapshotJson": "版本快照（JSON）",
+      "changeReason": "变更原因",
+      "fullName": "姓名",
+      "nameReading": "姓名读音",
+      "englishName": "英文姓名",
+      "birthDate": "出生日期",
+      "gender": "性别",
+      "phone": "电话",
+      "email": "邮箱",
+      "address": "地址",
+      "educationSummary": "教育经历摘要",
+      "workSummary": "工作经历摘要",
+      "convertedPersonId": "转入员工编号",
+      "updatedAt": "更新时间",
+      "receivedAt": "接收时间",
+      "originalFileName": "原始文件名",
+      "mediaType": "媒体类型",
+      "fileSize": "文件大小",
+      "sha256": "SHA-256",
+      "storageKey": "存储键",
+      "structuredSummary": "结构化摘要",
+      "activeVersion": "当前版本",
+      "uploadedBy": "上传人",
+      "candidate": "候选人",
+      "applicationCode": "应聘编号",
+      "currentStage": "当前阶段",
+      "status": "状态",
+      "decision": "决定",
+      "sourceType": "简历来源",
+      "sourceDetail": "来源详情",
+      "batchName": "批次名称",
+      "appliedAt": "应聘时间",
+      "closedAt": "关闭时间",
+      "retentionUntil": "保留期限",
+      "convertedAt": "转换时间",
+      "closeReason": "关闭原因",
+      "note": "备注",
+      "requisitionVersion": "需求版本",
+      "stageType": "阶段类型",
+      "sequenceNumber": "顺序号",
+      "stageStatus": "阶段状态",
+      "startedAt": "开始时间",
+      "completedAt": "完成时间",
+      "selected": "是否通过",
+      "decisionReason": "决定理由",
+      "application": "应聘记录",
+      "eventType": "事件类型",
+      "previousValue": "变更前",
+      "newValue": "变更后",
+      "actor": "操作人",
+      "occurredAt": "发生时间",
+      "metadataJson": "事件详情（JSON）",
+      "activityType": "安排类型",
+      "startAt": "开始时间",
+      "endAt": "结束时间",
+      "meetingRoomId": "会议室",
+      "location": "地点",
+      "scheduleVersion": "日程版本",
+      "externalCalendarProvider": "外部日历提供方",
+      "externalEventId": "外部日历事件编号",
+      "activityId": "安排编号",
+      "templateVersionId": "评价表版本编号",
+      "evaluatorUsername": "评价人用户名",
+      "recordedByUsername": "记录人用户名",
+      "overallRecommendation": "综合建议",
+      "totalScore": "总分",
+      "summary": "摘要",
+      "answersJson": "评价答案（JSON）",
+      "evaluatedAt": "评价时间",
+      "submittedAt": "提交时间",
+      "publishedAt": "共享时间",
+      "correctionOfId": "修订记录编号",
+      "decisionSource": "决定来源",
+      "decidedBy": "决定人",
+      "decidedAt": "决定时间",
+      "language": "语言",
+      "subjectTemplate": "邮件主题模板",
+      "bodyTemplate": "邮件正文模板",
+      "externalSafe": "可对外发送",
+      "published": "已发布",
+      "templateId": "模板编号",
+      "sendMode": "发送方式",
+      "finalSubject": "最终主题",
+      "finalBody": "最终正文",
+      "recipientsJson": "收件人（JSON）",
+      "retryCount": "重试次数",
+      "maxRetries": "最大重试次数",
+      "lastError": "最近错误",
+      "createdBy": "创建人",
+      "confirmedBy": "确认人",
+      "confirmedAt": "确认时间",
+      "sentAt": "发送时间",
+      "candidateId": "候选人编号",
+      "personId": "员工编号",
+      "plannedAt": "计划联系时间",
+      "contactedAt": "实际联系时间",
+      "ownerUsername": "负责人用户名",
+      "contactMethod": "联系方法",
+      "result": "跟踪结果",
+      "candidateIntent": "候选人意向",
+      "riskLevel": "风险等级",
+      "nextAction": "后续措施",
+      "nextContactAt": "下次联系时间",
+      "partnerOrganizationId": "合作公司",
+      "expectedEndDate": "预计结束日期",
+      "observationDays": "跟踪天数",
+      "finalDecision": "最终决定",
+      "reviewedAt": "评价时间",
+      "reviewerUsername": "评价人用户名",
+      "recommendation": "评价建议",
+      "extensionEndDate": "延长结束日期",
+      "defaultObservationDays": "默认观察天数",
+      "dispatchAssignment": "派遣安排",
+      "dispatchEnabled": "启用派遣",
+      "name": "名称",
+      "partnerCode": "合作公司代码",
+      "rolesJson": "合作角色",
+      "startDate": "开始日期",
+      "requisitions": "职位"
+    },
+    "application": {
+      "multiplePositionsHelp": "所选职位会分别建立应聘记录，各职位的筛选进度和评价独立保存。",
+      "createdPositionApplications": "已为所选职位分别创建应聘记录。"
     }
   },
   "error": {

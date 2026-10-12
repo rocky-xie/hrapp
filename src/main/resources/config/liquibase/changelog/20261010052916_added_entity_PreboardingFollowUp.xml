@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity PreboardingFollowUp.
+    -->
+    <changeSet id="20261010052916-1" author="jhipster">
+        <createTable tableName="preboarding_follow_up">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="candidate_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="planned_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="contacted_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="owner_username" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="contact_method" type="varchar(40)">
+                <constraints nullable="true" />
+            </column>
+            <column name="result" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="candidate_intent" type="varchar(40)">
+                <constraints nullable="true" />
+            </column>
+            <column name="risk_level" type="varchar(30)">
+                <constraints nullable="true" />
+            </column>
+            <column name="next_action" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="next_contact_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="application_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="preboarding_follow_up" columnName="planned_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="preboarding_follow_up" columnName="contacted_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="preboarding_follow_up" columnName="next_contact_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

@@ -86,7 +86,7 @@
               }}</router-link>
             </td>
             <td>{{ improvementPlan.planName }}</td>
-            <td>{{ improvementPlan.planStatus }}</td>
+            <td>{{ $t('recruitment.enums.' + improvementPlan.planStatus) }}</td>
             <td>{{ improvementPlan.problemSummary }}</td>
             <td>{{ improvementPlan.improvementAction }}</td>
             <td>{{ improvementPlan.ownerName }}</td>

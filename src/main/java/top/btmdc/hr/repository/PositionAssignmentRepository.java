@@ -16,6 +16,8 @@ import top.btmdc.hr.domain.PositionAssignment;
 public interface PositionAssignmentRepository
     extends JpaRepository<PositionAssignment, Long>, JpaSpecificationExecutor<PositionAssignment>
 {
+    List<PositionAssignment> findByPerson_IdAndActiveTrue(Long personId);
+
     default Optional<PositionAssignment> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

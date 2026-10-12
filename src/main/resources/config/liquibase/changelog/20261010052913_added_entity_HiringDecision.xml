@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity HiringDecision.
+    -->
+    <changeSet id="20261010052913-1" author="jhipster">
+        <createTable tableName="hiring_decision">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="decision" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="decision_source" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="decided_by" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="decided_at" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="reason" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="correction_of_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="application_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="hiring_decision" columnName="decided_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

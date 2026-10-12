@@ -22,13 +22,13 @@
             <span>{{ $t('entity.position.field.positionType') }}</span>
           </dt>
           <dd>
-            <span>{{ position.positionType }}</span>
+            <span>{{ $t('recruitment.enums.' + position.positionType) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.position.field.businessImportance') }}</span>
           </dt>
           <dd>
-            <span>{{ position.businessImportance }}</span>
+            <span>{{ $t('recruitment.enums.' + position.businessImportance) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.position.field.keyPosition') }}</span>
@@ -58,7 +58,7 @@
             <span>{{ $t('entity.position.field.reviewCycle') }}</span>
           </dt>
           <dd>
-            <span>{{ position.reviewCycle }}</span>
+            <span>{{ $t('recruitment.enums.' + position.reviewCycle) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionAssignment.field.active') }}</span>

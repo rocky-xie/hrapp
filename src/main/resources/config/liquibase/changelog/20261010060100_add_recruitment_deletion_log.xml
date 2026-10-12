@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+    <changeSet id="20261010060100-1" author="codex">
+        <createTable tableName="recruitment_data_deletion_log">
+            <column name="id" type="bigint"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="batch_id" type="varchar(36)"><constraints nullable="false" unique="true"/></column>
+            <column name="executed_at" type="timestamp"><constraints nullable="false"/></column>
+            <column name="executor" type="varchar(40)"><constraints nullable="false"/></column>
+            <column name="deleted_candidates" type="integer"><constraints nullable="false"/></column>
+            <column name="deleted_resumes" type="integer"><constraints nullable="false"/></column>
+            <column name="failure_count" type="integer"><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

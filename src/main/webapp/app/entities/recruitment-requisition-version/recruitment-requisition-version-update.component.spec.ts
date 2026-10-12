@@ -1,0 +1,161 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { type RouteLocation } from 'vue-router';
+
+import { type MountingOptions, shallowMount } from '@vue/test-utils';
+import dayjs from 'dayjs';
+
+import AlertService from '@/shared/alert/alert.service';
+import { DATE_TIME_LONG_FORMAT } from '@/shared/composables/date-format';
+
+import RecruitmentRequisitionVersionUpdate from './recruitment-requisition-version-update.vue';
+
+type RecruitmentRequisitionVersionUpdateComponentType = InstanceType<typeof RecruitmentRequisitionVersionUpdate>;
+
+let route: Partial<RouteLocation>;
+const routerGoMock = vi.fn();
+
+vi.mock('vue-router', () => ({
+  useRoute: () => route,
+  useRouter: () => ({ go: routerGoMock }),
+}));
+
+const recruitmentRequisitionVersionSample = { id: 123 };
+
+describe('Component Tests', () => {
+  let mountOptions: MountingOptions<RecruitmentRequisitionVersionUpdateComponentType>['global'];
+  let alertService: AlertService;
+
+  describe('RecruitmentRequisitionVersion Management Update Component', () => {
+    let comp: RecruitmentRequisitionVersionUpdateComponentType;
+    let recruitmentRequisitionVersionServiceStub: any;
+
+    beforeEach(() => {
+      route = {};
+      recruitmentRequisitionVersionServiceStub = {
+        retrieve: vi.fn(),
+        find: vi.fn(),
+        update: vi.fn(),
+        create: vi.fn(),
+      };
+      recruitmentRequisitionVersionServiceStub.retrieve.mockResolvedValueOnce([]);
+
+      alertService = new AlertService({
+        toast: {
+          show: vi.fn(),
+        } as any,
+      });
+
+      mountOptions = {
+        stubs: {
+          'font-awesome-icon': true,
+          'b-input-group': true,
+          'b-input-group-prepend': true,
+          'b-form-datepicker': true,
+          'b-form-input': true,
+        },
+        provide: {
+          alertService,
+          recruitmentRequisitionVersionService: () => recruitmentRequisitionVersionServiceStub,
+          recruitmentRequisitionService: () => ({
+            retrieve: vi.fn().mockResolvedValue({}),
+          }),
+        },
+      };
+    });
+
+    afterEach(() => {
+      vi.resetAllMocks();
+    });
+
+    describe('load', () => {
+      beforeEach(() => {
+        const wrapper = shallowMount(RecruitmentRequisitionVersionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+      });
+      it('Should convert date from string', () => {
+        // GIVEN
+        const date = new Date('2019-10-15T11:42:02Z');
+
+        // WHEN
+        const convertedDate = comp.convertDateTimeFromServer(date);
+
+        // THEN
+        expect(convertedDate).toEqual(dayjs(date).format(DATE_TIME_LONG_FORMAT));
+      });
+
+      it('Should not convert date if date is not present', () => {
+        expect(comp.convertDateTimeFromServer(null)).toBeNull();
+      });
+    });
+
+    describe('save', () => {
+      it('Should call update service on save for existing entity', async () => {
+        // GIVEN
+        const wrapper = shallowMount(RecruitmentRequisitionVersionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+        comp.recruitmentRequisitionVersion = recruitmentRequisitionVersionSample;
+        recruitmentRequisitionVersionServiceStub.update.mockResolvedValue(recruitmentRequisitionVersionSample);
+
+        // WHEN
+        comp.save();
+        await comp.$nextTick();
+
+        // THEN
+        expect(recruitmentRequisitionVersionServiceStub.update).toHaveBeenCalledWith(recruitmentRequisitionVersionSample);
+        expect(comp.isSaving).toEqual(false);
+      });
+
+      it('Should call create service on save for new entity', async () => {
+        // GIVEN
+        const entity = {};
+        recruitmentRequisitionVersionServiceStub.create.mockResolvedValue(entity);
+        const wrapper = shallowMount(RecruitmentRequisitionVersionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+        comp.recruitmentRequisitionVersion = entity;
+
+        // WHEN
+        comp.save();
+        await comp.$nextTick();
+
+        // THEN
+        expect(recruitmentRequisitionVersionServiceStub.create).toHaveBeenCalledWith(entity);
+        expect(comp.isSaving).toEqual(false);
+      });
+    });
+
+    describe('Before route enter', () => {
+      it('Should retrieve data', async () => {
+        // GIVEN
+        recruitmentRequisitionVersionServiceStub.find.mockResolvedValue(recruitmentRequisitionVersionSample);
+        recruitmentRequisitionVersionServiceStub.retrieve.mockResolvedValue([recruitmentRequisitionVersionSample]);
+
+        // WHEN
+        route = {
+          params: {
+            recruitmentRequisitionVersionId: `${recruitmentRequisitionVersionSample.id}`,
+          },
+        };
+        const wrapper = shallowMount(RecruitmentRequisitionVersionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+        await comp.$nextTick();
+
+        // THEN
+        expect(comp.recruitmentRequisitionVersion).toMatchObject(recruitmentRequisitionVersionSample);
+      });
+    });
+
+    describe('Previous state', () => {
+      it('Should go previous state', async () => {
+        recruitmentRequisitionVersionServiceStub.find.mockResolvedValue(recruitmentRequisitionVersionSample);
+        const wrapper = shallowMount(RecruitmentRequisitionVersionUpdate, { global: mountOptions });
+        comp = wrapper.vm;
+        await comp.$nextTick();
+
+        comp.previousState();
+        await comp.$nextTick();
+
+        expect(routerGoMock).toHaveBeenCalledWith(-1);
+      });
+    });
+  });
+});

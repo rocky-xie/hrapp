@@ -37,7 +37,9 @@
               data-cy="planStatus"
               required
             >
-              <option v-for="planStatus in planStatusValues" :key="planStatus" :value="planStatus">{{ planStatus }}</option>
+              <option v-for="planStatus in planStatusValues" :key="planStatus" :value="planStatus">
+                {{ $t('recruitment.enums.' + planStatus) }}
+              </option>
             </select>
             <div v-if="v$.planStatus.$anyDirty && v$.planStatus.$invalid">
               <small class="form-text text-danger" v-for="error of v$.planStatus.$errors" :key="error.$uid">{{ error.$message }}</small>

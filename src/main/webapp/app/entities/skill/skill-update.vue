@@ -53,7 +53,9 @@
               data-cy="skillType"
               required
             >
-              <option v-for="skillType in skillTypeValues" :key="skillType" :value="skillType">{{ skillType }}</option>
+              <option v-for="skillType in skillTypeValues" :key="skillType" :value="skillType">
+                {{ $t('recruitment.enums.' + skillType) }}
+              </option>
             </select>
             <div v-if="v$.skillType.$anyDirty && v$.skillType.$invalid">
               <small class="form-text text-danger" v-for="error of v$.skillType.$errors" :key="error.$uid">{{ error.$message }}</small>
@@ -90,7 +92,9 @@
               id="skill-evidenceType"
               data-cy="evidenceType"
             >
-              <option v-for="evidenceType in evidenceTypeValues" :key="evidenceType" :value="evidenceType">{{ evidenceType }}</option>
+              <option v-for="evidenceType in evidenceTypeValues" :key="evidenceType" :value="evidenceType">
+                {{ $t('recruitment.enums.' + evidenceType) }}
+              </option>
             </select>
           </div>
         </div>

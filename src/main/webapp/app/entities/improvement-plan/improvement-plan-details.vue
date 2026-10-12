@@ -16,7 +16,7 @@
             <span>{{ $t('entity.improvementPlan.field.planStatus') }}</span>
           </dt>
           <dd>
-            <span>{{ improvementPlan.planStatus }}</span>
+            <span>{{ $t('recruitment.enums.' + improvementPlan.planStatus) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.improvementPlan.field.problemSummary') }}</span>

@@ -40,6 +40,10 @@ public class PersonDTO implements Serializable {
     @NotNull
     private EmploymentStatus employmentStatus;
 
+    @NotNull
+    @Size(max = 30)
+    private String employmentType;
+
     private LocalDate joinDate;
 
     @NotNull
@@ -113,6 +117,14 @@ public class PersonDTO implements Serializable {
 
     public void setEmploymentStatus(EmploymentStatus employmentStatus) {
         this.employmentStatus = employmentStatus;
+    }
+
+    public String getEmploymentType() {
+        return employmentType;
+    }
+
+    public void setEmploymentType(String employmentType) {
+        this.employmentType = employmentType;
     }
 
     public LocalDate getJoinDate() {

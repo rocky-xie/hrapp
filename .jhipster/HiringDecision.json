@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052913"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "decision",
+      "fieldType": "ApplicationDecision",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "HIRED,NOT_HIRED,RESERVE,WITHDRAWN,ACCEPT_AS_DISPATCHED"
+    },
+    {
+      "fieldName": "decisionSource",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "decidedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "decidedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "correctionOfId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "HiringDecision",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "decisions",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -36,7 +36,9 @@
               data-cy="trainingType"
               required
             >
-              <option v-for="trainingType in trainingTypeValues" :key="trainingType" :value="trainingType">{{ trainingType }}</option>
+              <option v-for="trainingType in trainingTypeValues" :key="trainingType" :value="trainingType">
+                {{ $t('recruitment.enums.' + trainingType) }}
+              </option>
             </select>
             <div v-if="v$.trainingType.$anyDirty && v$.trainingType.$invalid">
               <small class="form-text text-danger" v-for="error of v$.trainingType.$errors" :key="error.$uid">{{ error.$message }}</small>

@@ -66,7 +66,7 @@
               id="person-gender"
               data-cy="gender"
             >
-              <option v-for="gender in genderValues" :key="gender" :value="gender">{{ gender }}</option>
+              <option v-for="gender in genderValues" :key="gender" :value="gender">{{ $t('recruitment.enums.' + gender) }}</option>
             </select>
           </div>
           <div class="mb-3">
@@ -111,7 +111,7 @@
               required
             >
               <option v-for="employmentStatus in employmentStatusValues" :key="employmentStatus" :value="employmentStatus">
-                {{ employmentStatus }}
+                {{ $t('recruitment.enums.' + employmentStatus) }}
               </option>
             </select>
             <div v-if="v$.employmentStatus.$anyDirty && v$.employmentStatus.$invalid">
@@ -119,6 +119,20 @@
                 error.$message
               }}</small>
             </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-control-label" for="person-employmentType">{{ $t('entity.person.field.employmentType') }}</label>
+            <select
+              id="person-employmentType"
+              v-model="person.employmentType"
+              class="form-control"
+              name="employmentType"
+              data-cy="employmentType"
+            >
+              <option v-for="employmentType in employmentTypeValues" :key="employmentType" :value="employmentType">
+                {{ $t('recruitment.enums.' + employmentType) }}
+              </option>
+            </select>
           </div>
           <div class="mb-3">
             <label class="form-control-label" for="person">{{ $t('entity.person.field.joinDate') }}</label>
@@ -252,7 +266,7 @@
                       <select class="form-control form-control-sm" v-model="personSkill.confidence" data-cy="personSkillConfidence">
                         <option :value="null"></option>
                         <option v-for="confidenceLevel in confidenceLevelValues" :key="confidenceLevel" :value="confidenceLevel">
-                          {{ confidenceLevel }}
+                          {{ $t('recruitment.enums.' + confidenceLevel) }}
                         </option>
                       </select>
                     </td>

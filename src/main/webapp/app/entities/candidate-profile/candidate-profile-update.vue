@@ -53,7 +53,7 @@
               data-cy="stability"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>
@@ -68,7 +68,7 @@
               data-cy="learningAbility"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>
@@ -83,7 +83,7 @@
               data-cy="communicationCoordination"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>
@@ -100,7 +100,7 @@
               data-cy="businessUnderstanding"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>
@@ -115,7 +115,7 @@
               data-cy="responsibility"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>
@@ -130,7 +130,7 @@
               data-cy="riskAwareness"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>
@@ -146,7 +146,7 @@
               required
             >
               <option v-for="candidateJudgement in candidateJudgementValues" :key="candidateJudgement" :value="candidateJudgement">
-                {{ candidateJudgement }}
+                {{ $t('recruitment.enums.' + candidateJudgement) }}
               </option>
             </select>
             <div v-if="v$.judgement.$anyDirty && v$.judgement.$invalid">

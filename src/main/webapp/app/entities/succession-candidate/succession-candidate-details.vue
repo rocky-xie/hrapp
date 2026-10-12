@@ -10,7 +10,7 @@
             <span>{{ $t('entity.successionCandidate.field.successionReadiness') }}</span>
           </dt>
           <dd>
-            <span>{{ successionCandidate.successionReadiness }}</span>
+            <span>{{ $t('recruitment.enums.' + successionCandidate.successionReadiness) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.successionCandidate.field.requiredTraining') }}</span>
@@ -28,7 +28,7 @@
             <span>{{ $t('entity.successionCandidate.field.riskAfterTraining') }}</span>
           </dt>
           <dd>
-            <span>{{ successionCandidate.riskAfterTraining }}</span>
+            <span>{{ $t('recruitment.enums.' + successionCandidate.riskAfterTraining) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.successionCandidate.field.reviewDate') }}</span>

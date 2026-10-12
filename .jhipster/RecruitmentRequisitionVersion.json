@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052904"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "versionNumber",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "snapshotJson",
+      "fieldType": "TextBlob",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lockedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lockedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "changeReason",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "RecruitmentRequisitionVersion",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "requisitionVersion",
+      "relationshipName": "applications",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recruitmentRequisition",
+      "otherEntityRelationshipName": "versions",
+      "relationshipName": "requisition",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

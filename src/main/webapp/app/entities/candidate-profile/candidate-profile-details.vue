@@ -22,43 +22,43 @@
             <span>{{ $t('entity.candidateProfile.field.stability') }}</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.stability }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.stability) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.learningAbility') }}</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.learningAbility }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.learningAbility) }}</span>
           </dd>
           <dt>
             <span>Communication Coordination</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.communicationCoordination }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.communicationCoordination) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.businessUnderstanding') }}</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.businessUnderstanding }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.businessUnderstanding) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.responsibility') }}</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.responsibility }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.responsibility) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.riskAwareness') }}</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.riskAwareness }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.riskAwareness) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.judgement') }}</span>
           </dt>
           <dd>
-            <span>{{ candidateProfile.judgement }}</span>
+            <span>{{ $t('recruitment.enums.' + candidateProfile.judgement) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.evidence') }}</span>

@@ -1,0 +1,57 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052909"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "stageType",
+      "fieldType": "ApplicationStageType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RESUME_SCREENING,WRITTEN_TEST,FIRST_INTERVIEW,SECOND_INTERVIEW,FINAL_INTERVIEW"
+    },
+    {
+      "fieldName": "sequenceNumber",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "stageStatus",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "startedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "completedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "selected",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "decisionReason",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ApplicationStage",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "stages",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -66,7 +66,7 @@
                 >{{ positionSkillRequirement.id }}</router-link
               >
             </td>
-            <td>{{ positionSkillRequirement.importance }}</td>
+            <td>{{ $t('recruitment.enums.' + positionSkillRequirement.importance) }}</td>
             <td>{{ positionSkillRequirement.remark }}</td>
             <td>
               <div v-if="positionSkillRequirement.position">

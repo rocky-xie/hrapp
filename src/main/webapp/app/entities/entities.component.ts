@@ -24,6 +24,23 @@ import PositionRiskEvaluationService from './position-risk-evaluation/position-r
 import TrainingGoalService from './training-goal/training-goal.service';
 import TrainingRecordService from './training-record/training-record.service';
 import TrustObservationService from './trust-observation/trust-observation.service';
+import ApplicationEventService from './application-event/application-event.service';
+import ApplicationStageService from './application-stage/application-stage.service';
+import CandidateResumeService from './candidate-resume/candidate-resume.service';
+import DispatchAssignmentService from './dispatch-assignment/dispatch-assignment.service';
+import DispatchReviewService from './dispatch-review/dispatch-review.service';
+import ExternalCandidateService from './external-candidate/external-candidate.service';
+import HiringDecisionService from './hiring-decision/hiring-decision.service';
+import NotificationMessageService from './notification-message/notification-message.service';
+import NotificationTemplateService from './notification-template/notification-template.service';
+import PartnerOrganizationService from './partner-organization/partner-organization.service';
+import PreboardingFollowUpService from './preboarding-follow-up/preboarding-follow-up.service';
+import RecruitmentApplicationService from './recruitment-application/recruitment-application.service';
+import RecruitmentEvaluationService from './recruitment-evaluation/recruitment-evaluation.service';
+import RecruitmentRequisitionService from './recruitment-requisition/recruitment-requisition.service';
+import RecruitmentRequisitionMemberService from './recruitment-requisition-member/recruitment-requisition-member.service';
+import RecruitmentRequisitionVersionService from './recruitment-requisition-version/recruitment-requisition-version.service';
+import SelectionActivityService from './selection-activity/selection-activity.service';
 // jhipster-needle-add-entity-service-to-entities-component-import - JHipster will import entities services here
 
 export default defineComponent({
@@ -52,6 +69,23 @@ export default defineComponent({
     provide('improvementPlanService', () => new ImprovementPlanService());
     provide('keyResponsibilityCategoryService', () => new KeyResponsibilityCategoryService());
     provide('candidateProfileService', () => new CandidateProfileService());
+    provide('applicationEventService', () => new ApplicationEventService());
+    provide('applicationStageService', () => new ApplicationStageService());
+    provide('candidateResumeService', () => new CandidateResumeService());
+    provide('dispatchAssignmentService', () => new DispatchAssignmentService());
+    provide('dispatchReviewService', () => new DispatchReviewService());
+    provide('externalCandidateService', () => new ExternalCandidateService());
+    provide('hiringDecisionService', () => new HiringDecisionService());
+    provide('notificationMessageService', () => new NotificationMessageService());
+    provide('notificationTemplateService', () => new NotificationTemplateService());
+    provide('partnerOrganizationService', () => new PartnerOrganizationService());
+    provide('preboardingFollowUpService', () => new PreboardingFollowUpService());
+    provide('recruitmentApplicationService', () => new RecruitmentApplicationService());
+    provide('recruitmentEvaluationService', () => new RecruitmentEvaluationService());
+    provide('recruitmentRequisitionService', () => new RecruitmentRequisitionService());
+    provide('recruitmentRequisitionMemberService', () => new RecruitmentRequisitionMemberService());
+    provide('recruitmentRequisitionVersionService', () => new RecruitmentRequisitionVersionService());
+    provide('selectionActivityService', () => new SelectionActivityService());
     // jhipster-needle-add-entity-service-to-entities-component - JHipster will import entities services here
   },
 });

@@ -21,7 +21,9 @@
               data-cy="riskType"
               required
             >
-              <option v-for="riskType in riskTypeValues" :key="riskType" :value="riskType">{{ riskType }}</option>
+              <option v-for="riskType in riskTypeValues" :key="riskType" :value="riskType">
+                {{ $t('recruitment.enums.' + riskType) }}
+              </option>
             </select>
             <div v-if="v$.riskType.$anyDirty && v$.riskType.$invalid">
               <small class="form-text text-danger" v-for="error of v$.riskType.$errors" :key="error.$uid">{{ error.$message }}</small>
@@ -38,7 +40,9 @@
               data-cy="riskLevel"
               required
             >
-              <option v-for="riskLevel in riskLevelValues" :key="riskLevel" :value="riskLevel">{{ riskLevel }}</option>
+              <option v-for="riskLevel in riskLevelValues" :key="riskLevel" :value="riskLevel">
+                {{ $t('recruitment.enums.' + riskLevel) }}
+              </option>
             </select>
             <div v-if="v$.riskLevel.$anyDirty && v$.riskLevel.$invalid">
               <small class="form-text text-danger" v-for="error of v$.riskLevel.$errors" :key="error.$uid">{{ error.$message }}</small>
@@ -55,7 +59,7 @@
               data-cy="documentStatus"
             >
               <option v-for="documentStatus in documentStatusValues" :key="documentStatus" :value="documentStatus">
-                {{ documentStatus }}
+                {{ $t('recruitment.enums.' + documentStatus) }}
               </option>
             </select>
           </div>
@@ -69,7 +73,9 @@
               id="position-risk-backupStatus"
               data-cy="backupStatus"
             >
-              <option v-for="backupStatus in backupStatusValues" :key="backupStatus" :value="backupStatus">{{ backupStatus }}</option>
+              <option v-for="backupStatus in backupStatusValues" :key="backupStatus" :value="backupStatus">
+                {{ $t('recruitment.enums.' + backupStatus) }}
+              </option>
             </select>
           </div>
           <div class="mb-3">
@@ -83,7 +89,7 @@
               data-cy="customerOrSystemDependency"
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
           </div>

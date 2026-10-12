@@ -172,7 +172,7 @@
                 data-cy="documentStatus"
               >
                 <option v-for="documentStatus in documentStatusValues" :key="documentStatus" :value="documentStatus">
-                  {{ documentStatus }}
+                  {{ $t('recruitment.enums.' + documentStatus) }}
                 </option>
               </select>
             </div>
@@ -190,7 +190,7 @@
                 data-cy="customerOrSystemDependency"
               >
                 <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                  {{ importanceLevel }}
+                  {{ $t('recruitment.enums.' + importanceLevel) }}
                 </option>
               </select>
             </div>
@@ -208,7 +208,7 @@
                 data-cy="successionReadiness"
               >
                 <option v-for="readinessLevel in readinessLevelValues" :key="readinessLevel" :value="readinessLevel">
-                  {{ readinessLevel }}
+                  {{ $t('recruitment.enums.' + readinessLevel) }}
                 </option>
               </select>
             </div>

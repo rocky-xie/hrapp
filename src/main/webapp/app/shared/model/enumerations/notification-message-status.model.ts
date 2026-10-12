@@ -1,0 +1,13 @@
+export enum NotificationMessageStatus {
+  WAITING_CONFIRMATION = 'WAITING_CONFIRMATION',
+
+  PENDING = 'PENDING',
+
+  SENDING = 'SENDING',
+
+  SENT = 'SENT',
+
+  FAILED = 'FAILED',
+
+  CANCELLED = 'CANCELLED',
+}

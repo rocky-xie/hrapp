@@ -7,6 +7,7 @@
       "dataQuality": "Data Quality",
       "batch": "Batch Import/Export",
       "entities": "Entities",
+      "recruitment": "Recruitment",
       "administration": "Administration",
       "account": "Account",
       "settings": "Settings",
@@ -172,7 +173,6 @@
       "prompt": "If you want to,",
       "signIn": "sign in"
     },
-
     "section": {
       "people": {
         "title": "People Management",
@@ -189,6 +189,210 @@
     }
   },
   "entity": {
+    "applicationEvent": {
+      "name": "Recruitment Event",
+      "home": {
+        "title": "Recruitment Events",
+        "createLabel": "Create a new Recruitment Event",
+        "createOrEditLabel": "Create or edit a Recruitment Event",
+        "empty": "No Recruitment Events found."
+      },
+      "detail": {
+        "title": "Recruitment Event"
+      }
+    },
+    "applicationStage": {
+      "name": "Recruitment Stage",
+      "home": {
+        "title": "Recruitment Stages",
+        "createLabel": "Create a new Recruitment Stage",
+        "createOrEditLabel": "Create or edit a Recruitment Stage",
+        "empty": "No Recruitment Stages found."
+      },
+      "detail": {
+        "title": "Recruitment Stage"
+      }
+    },
+    "candidateResume": {
+      "name": "Candidate Resume",
+      "home": {
+        "title": "Candidate Resumes",
+        "createLabel": "Create a new Candidate Resume",
+        "createOrEditLabel": "Create or edit a Candidate Resume",
+        "empty": "No Candidate Resumes found."
+      },
+      "detail": {
+        "title": "Candidate Resume"
+      }
+    },
+    "dispatchAssignment": {
+      "name": "Dispatch Assignment",
+      "home": {
+        "title": "Dispatch Assignments",
+        "createLabel": "Create a new Dispatch Assignment",
+        "createOrEditLabel": "Create or edit a Dispatch Assignment",
+        "empty": "No Dispatch Assignments found."
+      },
+      "detail": {
+        "title": "Dispatch Assignment"
+      }
+    },
+    "dispatchReview": {
+      "name": "Dispatch Review",
+      "home": {
+        "title": "Dispatch Reviews",
+        "createLabel": "Create a new Dispatch Review",
+        "createOrEditLabel": "Create or edit a Dispatch Review",
+        "empty": "No Dispatch Reviews found."
+      },
+      "detail": {
+        "title": "Dispatch Review"
+      }
+    },
+    "externalCandidate": {
+      "name": "External Candidate",
+      "home": {
+        "title": "External Candidates",
+        "createLabel": "Create a new External Candidate",
+        "createOrEditLabel": "Create or edit a External Candidate",
+        "empty": "No External Candidates found."
+      },
+      "detail": {
+        "title": "External Candidate"
+      }
+    },
+    "hiringDecision": {
+      "name": "Hiring Decision",
+      "home": {
+        "title": "Hiring Decisions",
+        "createLabel": "Create a new Hiring Decision",
+        "createOrEditLabel": "Create or edit a Hiring Decision",
+        "empty": "No Hiring Decisions found."
+      },
+      "detail": {
+        "title": "Hiring Decision"
+      }
+    },
+    "notificationMessage": {
+      "name": "Notification Message",
+      "home": {
+        "title": "Notification Messages",
+        "createLabel": "Create a new Notification Message",
+        "createOrEditLabel": "Create or edit a Notification Message",
+        "empty": "No Notification Messages found."
+      },
+      "detail": {
+        "title": "Notification Message"
+      }
+    },
+    "notificationTemplate": {
+      "name": "Notification Template",
+      "home": {
+        "title": "Notification Templates",
+        "createLabel": "Create a new Notification Template",
+        "createOrEditLabel": "Create or edit a Notification Template",
+        "empty": "No Notification Templates found."
+      },
+      "detail": {
+        "title": "Notification Template"
+      }
+    },
+    "partnerOrganization": {
+      "name": "Partner Organization",
+      "home": {
+        "title": "Partner Organizations",
+        "createLabel": "Create a new Partner Organization",
+        "createOrEditLabel": "Create or edit a Partner Organization",
+        "empty": "No Partner Organizations found."
+      },
+      "detail": {
+        "title": "Partner Organization"
+      }
+    },
+    "preboardingFollowUp": {
+      "name": "Preboarding Follow-up",
+      "home": {
+        "title": "Preboarding Follow-ups",
+        "createLabel": "Create a new Preboarding Follow-up",
+        "createOrEditLabel": "Create or edit a Preboarding Follow-up",
+        "empty": "No Preboarding Follow-ups found."
+      },
+      "detail": {
+        "title": "Preboarding Follow-up"
+      }
+    },
+    "recruitmentApplication": {
+      "name": "Recruitment Application",
+      "home": {
+        "title": "Recruitment Applications",
+        "createLabel": "Create a new Recruitment Application",
+        "createOrEditLabel": "Create or edit a Recruitment Application",
+        "empty": "No Recruitment Applications found."
+      },
+      "detail": {
+        "title": "Recruitment Application"
+      }
+    },
+    "recruitmentEvaluation": {
+      "name": "Recruitment Evaluation",
+      "home": {
+        "title": "Recruitment Evaluations",
+        "createLabel": "Create a new Recruitment Evaluation",
+        "createOrEditLabel": "Create or edit a Recruitment Evaluation",
+        "empty": "No Recruitment Evaluations found."
+      },
+      "detail": {
+        "title": "Recruitment Evaluation"
+      }
+    },
+    "recruitmentRequisition": {
+      "name": "Recruitment Requisition",
+      "home": {
+        "title": "Recruitment Requisitions",
+        "createLabel": "Create a new Recruitment Requisition",
+        "createOrEditLabel": "Create or edit a Recruitment Requisition",
+        "empty": "No Recruitment Requisitions found."
+      },
+      "detail": {
+        "title": "Recruitment Requisition"
+      }
+    },
+    "recruitmentRequisitionMember": {
+      "name": "Requisition Member",
+      "home": {
+        "title": "Requisition Members",
+        "createLabel": "Create a new Requisition Member",
+        "createOrEditLabel": "Create or edit a Requisition Member",
+        "empty": "No Requisition Members found."
+      },
+      "detail": {
+        "title": "Requisition Member"
+      }
+    },
+    "recruitmentRequisitionVersion": {
+      "name": "Requisition Version",
+      "home": {
+        "title": "Requisition Versions",
+        "createLabel": "Create a new Requisition Version",
+        "createOrEditLabel": "Create or edit a Requisition Version",
+        "empty": "No Requisition Versions found."
+      },
+      "detail": {
+        "title": "Requisition Version"
+      }
+    },
+    "selectionActivity": {
+      "name": "Selection Activity",
+      "home": {
+        "title": "Selection Activitys",
+        "createLabel": "Create a new Selection Activity",
+        "createOrEditLabel": "Create or edit a Selection Activity",
+        "empty": "No Selection Activitys found."
+      },
+      "detail": {
+        "title": "Selection Activity"
+      }
+    },
     "position": {
       "name": "Position",
       "home": {
@@ -239,6 +443,7 @@
         "department": "Department",
         "currentRole": "Current Role",
         "employmentStatus": "Employment Status",
+        "employmentType": "Employment Type",
         "joinDate": "Join Date",
         "mentorFlag": "Mentor Flag",
         "coreCandidateFlag": "Core Candidate Flag",
@@ -762,6 +967,371 @@
     "action": {
       "export": "Export",
       "import": "Import"
+    }
+  },
+  "recruitment": {
+    "workflow": {
+      "title": "Recruitment workflow",
+      "description": "Review applications, record selection outcomes, register hiring decisions, and convert hires.",
+      "refresh": "Refresh",
+      "application": "Application",
+      "candidate": "Candidate",
+      "requirement": "Requirement",
+      "stage": "Current stage",
+      "status": "Status",
+      "actions": "Actions",
+      "reject": "Reject",
+      "recordHired": "Record as hired",
+      "recordNotHired": "Record as not hired",
+      "recordDispatch": "Record as dispatched",
+      "executiveReviewer": "Executive reviewer username",
+      "convert": "Create preboarding employee record",
+      "checkIn": "Record check-in",
+      "notes": "Notes",
+      "empty": "No applications found.",
+      "continue": "Continue to {stage}",
+      "loadError": "Could not load recruitment applications.",
+      "saved": "Recruitment record updated.",
+      "actionError": "The requested recruitment action could not be completed.",
+      "reviewerRequired": "Enter the executive reviewer before recording the final decision.",
+      "joinDateRequired": "Select the employee check-in date."
+    },
+    "ui": {
+      "refresh": "Refresh list",
+      "cancel": "Cancel",
+      "save": "Save",
+      "back": "Back",
+      "edit": "Edit",
+      "view": "View",
+      "delete": "Delete",
+      "deleteTitle": "Confirm delete operation",
+      "deleteQuestion": "Are you sure you want to delete {entity} {id}?",
+      "empty": "No {entity} found.",
+      "id": "ID"
+    },
+    "enums": {
+      "GRADUATE": "Graduate",
+      "MID_CAREER": "Mid Career",
+      "RESUME_SCREENING": "Resume Screening",
+      "WRITTEN_TEST": "Written Test",
+      "FIRST_INTERVIEW": "First Interview",
+      "SECOND_INTERVIEW": "Second Interview",
+      "FINAL_INTERVIEW": "Final Interview",
+      "IN_PROGRESS": "In Progress",
+      "ON_HOLD": "On Hold",
+      "SELECTION_COMPLETED": "Selection Completed",
+      "DECIDED": "Decided",
+      "CLOSED": "Closed",
+      "HIRED": "Hired",
+      "NOT_HIRED": "Not Hired",
+      "RESERVE": "Reserve",
+      "WITHDRAWN": "Withdrawn",
+      "ACCEPT_AS_DISPATCHED": "Accept As Dispatched",
+      "DRAFT": "Draft",
+      "OPEN": "Open",
+      "LOCKED": "Locked",
+      "ARCHIVED": "Archived",
+      "EDITABLE": "Editable",
+      "APPROVED": "Approved",
+      "ACTIVE": "Active",
+      "REMOVED": "Removed",
+      "PENDING": "Pending",
+      "COMPLETED": "Completed",
+      "PASSED": "Passed",
+      "FAILED": "Failed",
+      "SCHEDULED": "Scheduled",
+      "CANCELLED": "Cancelled",
+      "RESCHEDULED": "Rescheduled",
+      "SUBMITTED": "Submitted",
+      "PUBLISHED": "Published",
+      "RECOMMENDED": "Recommended",
+      "NOT_RECOMMENDED": "Not Recommended",
+      "NEUTRAL": "Neutral",
+      "SENT": "Sent",
+      "READY": "Ready",
+      "QUEUED": "Queued",
+      "FAILED_PERMANENTLY": "Failed Permanently",
+      "EMAIL": "Email",
+      "MANUAL": "Manual",
+      "INTERNAL": "Internal",
+      "AGENCY": "Agency",
+      "WEBSITE": "Website",
+      "REFERRAL": "Referral",
+      "SCHOOL": "School",
+      "HIGH": "High",
+      "MEDIUM": "Medium",
+      "LOW": "Low",
+      "HIRE": "Hire",
+      "REJECT": "Reject",
+      "EXTEND": "Extend",
+      "REGULAR_EMPLOYEE": "Regular Employee",
+      "CONTINUE_DISPATCH": "Continue Dispatch",
+      "EMAIL_TEMPLATE": "Email Template",
+      "CANDIDATE": "Candidate",
+      "INTERVIEWER": "Interviewer",
+      "HR": "Hr",
+      "PREPARING": "Preparing",
+      "SUSPENDED": "Suspended",
+      "WAITING_CONFIRMATION": "Waiting Confirmation",
+      "SENDING": "Sending",
+      "FIT": "Fit",
+      "TRAINABLE": "Trainable",
+      "NOT_FIT": "Not Fit",
+      "OBSERVE": "Observe",
+      "STAGE_COMPLETED": "Stage Completed",
+      "DECISION_RECORDED": "Decision Recorded",
+      "INTERVIEW_INVITATION": "Interview Invitation",
+      "PREBOARDING_FOLLOW_UP": "Preboarding Follow Up",
+      "RECORDED": "Recorded",
+      "CALL": "Phone Call",
+      "IN_PERSON": "In Person",
+      "POSITIVE": "Positive",
+      "AT_RISK": "At Risk",
+      "IMMEDIATE": "Immediate",
+      "THREE_MONTHS": "Within 3 months",
+      "SIX_TO_TWELVE_MONTHS": "6 to 12 months",
+      "NONE": "None",
+      "TECHNICAL": "Technical",
+      "BUSINESS_SUPPORT": "Business Support",
+      "CUSTOMER_INTERFACE": "Customer Interface",
+      "MANAGEMENT_SUPPORT": "Management Support",
+      "MENTOR": "Mentor",
+      "OTHER": "Other",
+      "P0_CRITICAL": "P0 - Critical",
+      "P1_HIGH": "P1 - High",
+      "P2_MEDIUM": "P2 - Medium",
+      "P3_LOW": "P3 - Low",
+      "REQUIRED": "Required",
+      "IMPORTANT": "Important",
+      "OPTIONAL": "Optional",
+      "SINGLE_POINT": "Single Point of Failure",
+      "KNOWLEDGE_CONCENTRATION": "Knowledge Concentration",
+      "CUSTOMER_RELATION_CONCENTRATION": "Customer Relationship Concentration",
+      "PERMISSION_CONCENTRATION": "Permission Concentration",
+      "SUCCESSOR_SHORTAGE": "Successor Shortage",
+      "HEALTH_CONTINUITY": "Health Continuity",
+      "UNCLEAR_RESPONSIBILITY": "Unclear Responsibility",
+      "TURNOVER": "Turnover Risk",
+      "AVAILABLE": "Available",
+      "PARTIAL": "Partial",
+      "MISSING": "Missing",
+      "OUTDATED": "Outdated",
+      "NOT_APPLICABLE": "Not Applicable",
+      "PASS": "Pass",
+      "WARNING": "Warning",
+      "FAIL": "Fail",
+      "ONBOARDING": "Onboarding",
+      "SHADOWING": "Shadowing",
+      "CASE_REVIEW": "Case Review",
+      "PRACTICE": "Practice",
+      "MEETING": "Meeting",
+      "DOCUMENTATION": "Documentation",
+      "CERTIFICATE": "Certificate",
+      "PROJECT_EXPERIENCE": "Project Experience",
+      "OBSERVATION": "Observation",
+      "ASSESSMENT_RESULT": "Assessment Result",
+      "UNKNOWN": "Unknown",
+      "NEWCOMER": "Newcomer",
+      "INDEPENDENT_STAFF": "Independent Staff",
+      "CORE_STAFF": "Core Staff",
+      "MANAGEMENT_CANDIDATE": "Management Candidate",
+      "CORE_CANDIDATE": "Core Candidate",
+      "NOT_SUITABLE": "Not Suitable",
+      "ABSTRACT": "Abstract",
+      "MENTORING": "Mentoring",
+      "NORMAL": "Normal",
+      "SLOW": "Slow",
+      "FAST": "Fast",
+      "RISK": "At Risk",
+      "L0": "Level 0",
+      "L1": "Level 1",
+      "L2": "Level 2",
+      "L3": "Level 3",
+      "L4": "Level 4",
+      "MALE": "Male",
+      "FEMALE": "Female",
+      "UNSPECIFIED": "Unspecified",
+      "NEW_SKILL": "New Skill",
+      "LEVEL_UP": "Level Up",
+      "LEVEL_DOWN": "Level Down",
+      "REASSESSMENT": "Reassessment",
+      "CORRECTION": "Correction",
+      "S0_UNOBSERVED": "Unobserved",
+      "S1_BASIC_TRUST": "Basic Trust",
+      "S2_TASK_TRUST": "Task Trust",
+      "S3_RESPONSIBILITY_TRUST": "Responsibility Trust",
+      "S4_KEY_TRUST": "Key Trust",
+      "MONTHLY": "Monthly",
+      "QUARTERLY": "Quarterly",
+      "SEMIANNUAL": "Semiannual",
+      "ANNUAL": "Annual",
+      "ON_CHANGE": "On Change",
+      "SELF_ASSESSMENT": "Self Assessment",
+      "MANAGER_ASSESSMENT": "Manager Assessment",
+      "CERTIFICATION": "Certification",
+      "PEER_REVIEW": "Peer Review",
+      "SKILL_REVIEW": "Skill Review",
+      "HIGH_RISK_POSITION": "High Risk Position",
+      "SUBSTITUTION_GAP": "Substitution Gap",
+      "TRAINING_GOAL_EXPIRY": "Training Goal Expiry",
+      "SUCCESSION_REVIEW": "Succession Review",
+      "SKILL_ASSESSMENT": "Skill Assessment",
+      "DATA_QUALITY": "Data Quality",
+      "BUSINESS": "Business"
+    },
+    "fields": {
+      "id": "ID",
+      "requisitionCode": "Requisition Code",
+      "title": "Title",
+      "department": "Department",
+      "positionId": "Position Id",
+      "recruitmentType": "Recruitment Type",
+      "lifecycle": "Lifecycle",
+      "editStatus": "Edit Status",
+      "plannedHeadcount": "Planned Headcount",
+      "hiredCount": "Hired Count",
+      "checkedInCount": "Checked In Count",
+      "priority": "Priority",
+      "reason": "Reason",
+      "targetJoinDate": "Target Join Date",
+      "desiredStartDate": "Desired Start Date",
+      "desiredEndDate": "Desired End Date",
+      "currentVersion": "Current Version",
+      "lockedAt": "Locked At",
+      "lockedBy": "Locked By",
+      "unlockedAt": "Unlocked At",
+      "unlockReason": "Unlock Reason",
+      "requirementsJson": "Requirements Json",
+      "username": "Username",
+      "memberType": "Member Type",
+      "active": "Active",
+      "createdAt": "Created At",
+      "removedAt": "Removed At",
+      "requisition": "Requisition",
+      "versionNumber": "Version Number",
+      "snapshotJson": "Snapshot Json",
+      "changeReason": "Change Reason",
+      "fullName": "Full Name",
+      "nameReading": "Name Reading",
+      "englishName": "English Name",
+      "birthDate": "Birth Date",
+      "gender": "Gender",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "educationSummary": "Education Summary",
+      "workSummary": "Work Summary",
+      "convertedPersonId": "Converted Person Id",
+      "updatedAt": "Updated At",
+      "receivedAt": "Received At",
+      "originalFileName": "Original File Name",
+      "mediaType": "Media Type",
+      "fileSize": "File Size",
+      "sha256": "Sha 256",
+      "storageKey": "Storage Key",
+      "structuredSummary": "Structured Summary",
+      "activeVersion": "Active Version",
+      "uploadedBy": "Uploaded By",
+      "candidate": "Candidate",
+      "applicationCode": "Application Code",
+      "currentStage": "Current Stage",
+      "status": "Status",
+      "decision": "Decision",
+      "sourceType": "Source Type",
+      "sourceDetail": "Source Detail",
+      "batchName": "Batch Name",
+      "appliedAt": "Applied At",
+      "closedAt": "Closed At",
+      "retentionUntil": "Retention Until",
+      "convertedAt": "Converted At",
+      "closeReason": "Close Reason",
+      "note": "Note",
+      "requisitionVersion": "Requisition Version",
+      "stageType": "Stage Type",
+      "sequenceNumber": "Sequence Number",
+      "stageStatus": "Stage Status",
+      "startedAt": "Started At",
+      "completedAt": "Completed At",
+      "selected": "Selected",
+      "decisionReason": "Decision Reason",
+      "application": "Application",
+      "eventType": "Event Type",
+      "previousValue": "Previous Value",
+      "newValue": "New Value",
+      "actor": "Actor",
+      "occurredAt": "Occurred At",
+      "metadataJson": "Metadata Json",
+      "activityType": "Activity Type",
+      "startAt": "Start At",
+      "endAt": "End At",
+      "meetingRoomId": "Meeting Room Id",
+      "location": "Location",
+      "scheduleVersion": "Schedule Version",
+      "externalCalendarProvider": "External Calendar Provider",
+      "externalEventId": "External Event Id",
+      "activityId": "Activity Id",
+      "templateVersionId": "Template Version Id",
+      "evaluatorUsername": "Evaluator Username",
+      "recordedByUsername": "Recorded By Username",
+      "overallRecommendation": "Overall Recommendation",
+      "totalScore": "Total Score",
+      "summary": "Summary",
+      "answersJson": "Answers Json",
+      "evaluatedAt": "Evaluated At",
+      "submittedAt": "Submitted At",
+      "publishedAt": "Published At",
+      "correctionOfId": "Correction Of Id",
+      "decisionSource": "Decision Source",
+      "decidedBy": "Decided By",
+      "decidedAt": "Decided At",
+      "language": "Language",
+      "subjectTemplate": "Subject Template",
+      "bodyTemplate": "Body Template",
+      "externalSafe": "External Safe",
+      "published": "Published",
+      "templateId": "Template Id",
+      "sendMode": "Send Mode",
+      "finalSubject": "Final Subject",
+      "finalBody": "Final Body",
+      "recipientsJson": "Recipients Json",
+      "retryCount": "Retry Count",
+      "maxRetries": "Max Retries",
+      "lastError": "Last Error",
+      "createdBy": "Created By",
+      "confirmedBy": "Confirmed By",
+      "confirmedAt": "Confirmed At",
+      "sentAt": "Sent At",
+      "candidateId": "Candidate Id",
+      "personId": "Person Id",
+      "plannedAt": "Planned At",
+      "contactedAt": "Contacted At",
+      "ownerUsername": "Owner Username",
+      "contactMethod": "Contact Method",
+      "result": "Result",
+      "candidateIntent": "Candidate Intent",
+      "riskLevel": "Risk Level",
+      "nextAction": "Next Action",
+      "nextContactAt": "Next Contact At",
+      "partnerOrganizationId": "Partner Organization Id",
+      "expectedEndDate": "Expected End Date",
+      "observationDays": "Observation Days",
+      "finalDecision": "Final Decision",
+      "reviewedAt": "Reviewed At",
+      "reviewerUsername": "Reviewer Username",
+      "recommendation": "Recommendation",
+      "extensionEndDate": "Extension End Date",
+      "defaultObservationDays": "Default Observation Days",
+      "dispatchAssignment": "Dispatch Assignment",
+      "dispatchEnabled": "Dispatch Enabled",
+      "name": "Name",
+      "partnerCode": "Partner Code",
+      "rolesJson": "Roles",
+      "startDate": "Start Date",
+      "requisitions": "Positions"
+    },
+    "application": {
+      "multiplePositionsHelp": "Select each position as a separate application so screening and evaluations stay independent.",
+      "createdPositionApplications": "Applications created for the selected positions."
     }
   },
   "error": {

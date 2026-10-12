@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import type AccountService from '@/account/account.service';
 import { useLoginModal } from '@/account/login-modal';
 import EntitiesMenu from '@/entities/entities-menu.vue';
+import RecruitmentMenu from './recruitment-menu.vue';
 import { SUPPORTED_LANGUAGES } from '@/shared/config/languages';
 import { AUTHENTICATION_TOKEN_KEY } from '@/shared/jhipster/constants';
 import { useStore } from '@/store';
@@ -12,6 +13,7 @@ export default defineComponent({
   name: 'JhiNavbar',
   components: {
     'entities-menu': EntitiesMenu,
+    'recruitment-menu': RecruitmentMenu,
   },
   setup() {
     const { showLogin } = useLoginModal();

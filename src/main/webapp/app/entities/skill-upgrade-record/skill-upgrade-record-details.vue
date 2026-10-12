@@ -10,7 +10,7 @@
             <span>{{ $t('entity.skillUpgradeRecord.field.changeType') }}</span>
           </dt>
           <dd>
-            <span>{{ skillUpgradeRecord.changeType }}</span>
+            <span>{{ $t('recruitment.enums.' + skillUpgradeRecord.changeType) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.skillUpgradeRecord.field.changeDate') }}</span>

@@ -37,7 +37,7 @@
               required
             >
               <option v-for="assessmentResult in assessmentResultValues" :key="assessmentResult" :value="assessmentResult">
-                {{ assessmentResult }}
+                {{ $t('recruitment.enums.' + assessmentResult) }}
               </option>
             </select>
             <div v-if="v$.result.$anyDirty && v$.result.$invalid">

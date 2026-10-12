@@ -1,0 +1,11 @@
+export enum ApplicationDecision {
+  HIRED = 'HIRED',
+
+  NOT_HIRED = 'NOT_HIRED',
+
+  RESERVE = 'RESERVE',
+
+  WITHDRAWN = 'WITHDRAWN',
+
+  ACCEPT_AS_DISPATCHED = 'ACCEPT_AS_DISPATCHED',
+}

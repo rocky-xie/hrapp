@@ -22,7 +22,7 @@
             <span>{{ $t('entity.skill.field.skillType') }}</span>
           </dt>
           <dd>
-            <span>{{ skill.skillType }}</span>
+            <span>{{ $t('recruitment.enums.' + skill.skillType) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.skill.field.measurableFlag') }}</span>
@@ -40,7 +40,7 @@
             <span>{{ $t('entity.skill.field.evidenceType') }}</span>
           </dt>
           <dd>
-            <span>{{ skill.evidenceType }}</span>
+            <span>{{ $t('recruitment.enums.' + skill.evidenceType) }}</span>
           </dd>
         </dl>
         <button type="submit" @click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

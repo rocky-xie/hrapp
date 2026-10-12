@@ -16,7 +16,7 @@
             <span>{{ $t('entity.trainingRecord.field.trainingType') }}</span>
           </dt>
           <dd>
-            <span>{{ trainingRecord.trainingType }}</span>
+            <span>{{ $t('recruitment.enums.' + trainingRecord.trainingType) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.trainingRecord.field.topic') }}</span>

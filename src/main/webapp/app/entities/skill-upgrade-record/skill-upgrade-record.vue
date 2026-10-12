@@ -89,7 +89,7 @@
                 skillUpgradeRecord.id
               }}</router-link>
             </td>
-            <td>{{ skillUpgradeRecord.changeType }}</td>
+            <td>{{ $t('recruitment.enums.' + skillUpgradeRecord.changeType) }}</td>
             <td>{{ skillUpgradeRecord.changeDate }}</td>
             <td>{{ skillUpgradeRecord.reason }}</td>
             <td>{{ skillUpgradeRecord.beforeLevelLabel }}</td>

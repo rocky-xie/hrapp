@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity NotificationMessage.
+    -->
+    <changeSet id="20261010052915-1" author="jhipster">
+        <createTable tableName="notification_message">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_type" type="varchar(60)">
+                <constraints nullable="false" />
+            </column>
+            <column name="template_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="send_mode" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            <column name="final_subject" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="final_body" type="${clobType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="recipients_json" type="${clobType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="retry_count" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="max_retries" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_error" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="confirmed_by" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_at" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="confirmed_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="sent_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="application_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="notification_message" columnName="created_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="notification_message" columnName="confirmed_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="notification_message" columnName="sent_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

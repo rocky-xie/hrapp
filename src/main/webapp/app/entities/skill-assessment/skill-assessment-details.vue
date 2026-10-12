@@ -16,7 +16,7 @@
             <span>{{ $t('entity.evaluation.field.result') }}</span>
           </dt>
           <dd>
-            <span>{{ skillAssessment.result }}</span>
+            <span>{{ $t('recruitment.enums.' + skillAssessment.result) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.candidateProfile.field.evidence') }}</span>

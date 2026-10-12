@@ -1,0 +1,91 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052912"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "stageType",
+      "fieldType": "ApplicationStageType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RESUME_SCREENING,WRITTEN_TEST,FIRST_INTERVIEW,SECOND_INTERVIEW,FINAL_INTERVIEW"
+    },
+    {
+      "fieldName": "activityId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "templateVersionId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "evaluatorUsername",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "recordedByUsername",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "overallRecommendation",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "totalScore",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "answersJson",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "evaluatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "submittedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "publishedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "correctionOfId",
+      "fieldType": "Long"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "RecruitmentEvaluation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "evaluations",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

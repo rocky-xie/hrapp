@@ -7,6 +7,7 @@
       "dataQuality": "データ品質",
       "batch": "一括インポート/エクスポート",
       "entities": "エンティティ",
+      "recruitment": "採用",
       "administration": "管理",
       "account": "アカウント",
       "settings": "設定",
@@ -171,7 +172,6 @@
       "prompt": "ログインするには、",
       "signIn": "サインイン"
     },
-
     "section": {
       "people": {
         "title": "人材管理",
@@ -188,6 +188,210 @@
     }
   },
   "entity": {
+    "applicationEvent": {
+      "name": "採用イベント",
+      "home": {
+        "title": "採用イベント",
+        "createLabel": "採用イベントを新規作成",
+        "createOrEditLabel": "採用イベントの作成・編集",
+        "empty": "採用イベントがありません。"
+      },
+      "detail": {
+        "title": "採用イベント"
+      }
+    },
+    "applicationStage": {
+      "name": "選考段階",
+      "home": {
+        "title": "選考段階",
+        "createLabel": "選考段階を新規作成",
+        "createOrEditLabel": "選考段階の作成・編集",
+        "empty": "選考段階がありません。"
+      },
+      "detail": {
+        "title": "選考段階"
+      }
+    },
+    "candidateResume": {
+      "name": "候補者履歴書",
+      "home": {
+        "title": "候補者履歴書",
+        "createLabel": "候補者履歴書を新規作成",
+        "createOrEditLabel": "候補者履歴書の作成・編集",
+        "empty": "候補者履歴書がありません。"
+      },
+      "detail": {
+        "title": "候補者履歴書"
+      }
+    },
+    "dispatchAssignment": {
+      "name": "派遣配置",
+      "home": {
+        "title": "派遣配置",
+        "createLabel": "派遣配置を新規作成",
+        "createOrEditLabel": "派遣配置の作成・編集",
+        "empty": "派遣配置がありません。"
+      },
+      "detail": {
+        "title": "派遣配置"
+      }
+    },
+    "dispatchReview": {
+      "name": "派遣レビュー",
+      "home": {
+        "title": "派遣レビュー",
+        "createLabel": "派遣レビューを新規作成",
+        "createOrEditLabel": "派遣レビューの作成・編集",
+        "empty": "派遣レビューがありません。"
+      },
+      "detail": {
+        "title": "派遣レビュー"
+      }
+    },
+    "externalCandidate": {
+      "name": "外部候補者",
+      "home": {
+        "title": "外部候補者",
+        "createLabel": "外部候補者を新規作成",
+        "createOrEditLabel": "外部候補者の作成・編集",
+        "empty": "外部候補者がありません。"
+      },
+      "detail": {
+        "title": "外部候補者"
+      }
+    },
+    "hiringDecision": {
+      "name": "採用決定",
+      "home": {
+        "title": "採用決定",
+        "createLabel": "採用決定を新規作成",
+        "createOrEditLabel": "採用決定の作成・編集",
+        "empty": "採用決定がありません。"
+      },
+      "detail": {
+        "title": "採用決定"
+      }
+    },
+    "notificationMessage": {
+      "name": "通知メッセージ",
+      "home": {
+        "title": "通知メッセージ",
+        "createLabel": "通知メッセージを新規作成",
+        "createOrEditLabel": "通知メッセージの作成・編集",
+        "empty": "通知メッセージがありません。"
+      },
+      "detail": {
+        "title": "通知メッセージ"
+      }
+    },
+    "notificationTemplate": {
+      "name": "通知テンプレート",
+      "home": {
+        "title": "通知テンプレート",
+        "createLabel": "通知テンプレートを新規作成",
+        "createOrEditLabel": "通知テンプレートの作成・編集",
+        "empty": "通知テンプレートがありません。"
+      },
+      "detail": {
+        "title": "通知テンプレート"
+      }
+    },
+    "partnerOrganization": {
+      "name": "パートナー企業",
+      "home": {
+        "title": "パートナー企業",
+        "createLabel": "パートナー企業を新規作成",
+        "createOrEditLabel": "パートナー企業の作成・編集",
+        "empty": "パートナー企業がありません。"
+      },
+      "detail": {
+        "title": "パートナー企業"
+      }
+    },
+    "preboardingFollowUp": {
+      "name": "入社前フォロー",
+      "home": {
+        "title": "入社前フォロー",
+        "createLabel": "入社前フォローを新規作成",
+        "createOrEditLabel": "入社前フォローの作成・編集",
+        "empty": "入社前フォローがありません。"
+      },
+      "detail": {
+        "title": "入社前フォロー"
+      }
+    },
+    "recruitmentApplication": {
+      "name": "応募記録",
+      "home": {
+        "title": "応募記録",
+        "createLabel": "応募記録を新規作成",
+        "createOrEditLabel": "応募記録の作成・編集",
+        "empty": "応募記録がありません。"
+      },
+      "detail": {
+        "title": "応募記録"
+      }
+    },
+    "recruitmentEvaluation": {
+      "name": "採用評価",
+      "home": {
+        "title": "採用評価",
+        "createLabel": "採用評価を新規作成",
+        "createOrEditLabel": "採用評価の作成・編集",
+        "empty": "採用評価がありません。"
+      },
+      "detail": {
+        "title": "採用評価"
+      }
+    },
+    "recruitmentRequisition": {
+      "name": "採用要件",
+      "home": {
+        "title": "採用要件",
+        "createLabel": "採用要件を新規作成",
+        "createOrEditLabel": "採用要件の作成・編集",
+        "empty": "採用要件がありません。"
+      },
+      "detail": {
+        "title": "採用要件"
+      }
+    },
+    "recruitmentRequisitionMember": {
+      "name": "要件担当者",
+      "home": {
+        "title": "要件担当者",
+        "createLabel": "要件担当者を新規作成",
+        "createOrEditLabel": "要件担当者の作成・編集",
+        "empty": "要件担当者がありません。"
+      },
+      "detail": {
+        "title": "要件担当者"
+      }
+    },
+    "recruitmentRequisitionVersion": {
+      "name": "要件バージョン",
+      "home": {
+        "title": "要件バージョン",
+        "createLabel": "要件バージョンを新規作成",
+        "createOrEditLabel": "要件バージョンの作成・編集",
+        "empty": "要件バージョンがありません。"
+      },
+      "detail": {
+        "title": "要件バージョン"
+      }
+    },
+    "selectionActivity": {
+      "name": "選考日程",
+      "home": {
+        "title": "選考日程",
+        "createLabel": "選考日程を新規作成",
+        "createOrEditLabel": "選考日程の作成・編集",
+        "empty": "選考日程がありません。"
+      },
+      "detail": {
+        "title": "選考日程"
+      }
+    },
     "position": {
       "name": "ポジション",
       "home": {
@@ -238,6 +442,7 @@
         "department": "部門",
         "currentRole": "現在の役割",
         "employmentStatus": "雇用ステータス",
+        "employmentType": "雇用形態",
         "joinDate": "入社日",
         "mentorFlag": "メンターフラグ",
         "coreCandidateFlag": "コア候補フラグ",
@@ -761,6 +966,371 @@
     "action": {
       "export": "エクスポート",
       "import": "インポート"
+    }
+  },
+  "recruitment": {
+    "workflow": {
+      "title": "採用ワークフロー",
+      "description": "応募を確認し、選考結果と採用決定を記録して入社予定者を登録します。",
+      "refresh": "更新",
+      "application": "応募記録",
+      "candidate": "候補者",
+      "requirement": "採用要件",
+      "stage": "現在の選考段階",
+      "status": "状態",
+      "actions": "操作",
+      "reject": "不合格",
+      "recordHired": "採用を記録",
+      "recordNotHired": "不採用を記録",
+      "recordDispatch": "派遣採用を記録",
+      "executiveReviewer": "経営層評価者のユーザー名",
+      "convert": "入社前フォロー記録を作成",
+      "checkIn": "入社を記録",
+      "notes": "備考",
+      "empty": "応募記録がありません。",
+      "continue": "{stage}へ進む",
+      "loadError": "応募記録を読み込めませんでした。",
+      "saved": "採用記録を更新しました。",
+      "actionError": "採用処理を完了できませんでした。",
+      "reviewerRequired": "最終決定を記録する前に経営層の評価者を入力してください。",
+      "joinDateRequired": "入社日を選択してください。"
+    },
+    "ui": {
+      "refresh": "一覧を更新",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "back": "戻る",
+      "edit": "編集",
+      "view": "表示",
+      "delete": "削除",
+      "deleteTitle": "削除の確認",
+      "deleteQuestion": "{entity}（ID: {id}）を削除しますか？",
+      "empty": "{entity}がありません。",
+      "id": "ID"
+    },
+    "enums": {
+      "GRADUATE": "新卒",
+      "MID_CAREER": "中途採用",
+      "RESUME_SCREENING": "書類選考",
+      "WRITTEN_TEST": "筆記試験",
+      "FIRST_INTERVIEW": "一次面接",
+      "SECOND_INTERVIEW": "二次面接",
+      "FINAL_INTERVIEW": "最終面接",
+      "IN_PROGRESS": "進行中",
+      "ON_HOLD": "保留",
+      "SELECTION_COMPLETED": "選考完了",
+      "DECIDED": "決定済み",
+      "CLOSED": "終了",
+      "HIRED": "採用",
+      "NOT_HIRED": "不採用",
+      "RESERVE": "保留",
+      "WITHDRAWN": "辞退",
+      "ACCEPT_AS_DISPATCHED": "派遣採用",
+      "DRAFT": "下書き",
+      "OPEN": "未対応",
+      "LOCKED": "ロック済み",
+      "ARCHIVED": "アーカイブ",
+      "EDITABLE": "編集可能",
+      "APPROVED": "確認済み",
+      "ACTIVE": "有効",
+      "REMOVED": "削除済み",
+      "PENDING": "保留中",
+      "COMPLETED": "完了",
+      "PASSED": "合格",
+      "FAILED": "失敗",
+      "SCHEDULED": "予定済み",
+      "CANCELLED": "キャンセル",
+      "RESCHEDULED": "再調整済み",
+      "SUBMITTED": "提出済み",
+      "PUBLISHED": "共有済み",
+      "RECOMMENDED": "採用推奨",
+      "NOT_RECOMMENDED": "採用非推奨",
+      "NEUTRAL": "中立",
+      "SENT": "送信済み",
+      "READY": "送信確認待ち",
+      "QUEUED": "送信待ち",
+      "FAILED_PERMANENTLY": "送信失敗",
+      "EMAIL": "メール",
+      "MANUAL": "手動",
+      "INTERNAL": "社内",
+      "AGENCY": "人材紹介会社",
+      "WEBSITE": "求人サイト",
+      "REFERRAL": "社員紹介",
+      "SCHOOL": "学校採用",
+      "HIGH": "高",
+      "MEDIUM": "中",
+      "LOW": "低",
+      "HIRE": "採用",
+      "REJECT": "不採用",
+      "EXTEND": "派遣延長",
+      "REGULAR_EMPLOYEE": "正社員登用",
+      "CONTINUE_DISPATCH": "派遣継続",
+      "EMAIL_TEMPLATE": "メールテンプレート",
+      "CANDIDATE": "候補者",
+      "INTERVIEWER": "面接官",
+      "HR": "人事",
+      "PREPARING": "準備中",
+      "SUSPENDED": "停止中",
+      "WAITING_CONFIRMATION": "確認待ち",
+      "SENDING": "送信中",
+      "FIT": "適合",
+      "TRAINABLE": "育成可能",
+      "NOT_FIT": "不適合",
+      "OBSERVE": "要観察",
+      "STAGE_COMPLETED": "選考段階完了",
+      "DECISION_RECORDED": "決定記録済み",
+      "INTERVIEW_INVITATION": "面接案内",
+      "PREBOARDING_FOLLOW_UP": "入社前フォロー",
+      "RECORDED": "記録済み",
+      "CALL": "電話",
+      "IN_PERSON": "対面",
+      "POSITIVE": "前向き",
+      "AT_RISK": "要注意",
+      "IMMEDIATE": "即時",
+      "THREE_MONTHS": "3か月以内",
+      "SIX_TO_TWELVE_MONTHS": "6～12か月",
+      "NONE": "なし",
+      "TECHNICAL": "技術",
+      "BUSINESS_SUPPORT": "業務支援",
+      "CUSTOMER_INTERFACE": "顧客窓口",
+      "MANAGEMENT_SUPPORT": "マネジメント支援",
+      "MENTOR": "メンター",
+      "OTHER": "その他",
+      "P0_CRITICAL": "P0 - 緊急",
+      "P1_HIGH": "P1 - 高",
+      "P2_MEDIUM": "P2 - 中",
+      "P3_LOW": "P3 - 低",
+      "REQUIRED": "必須",
+      "IMPORTANT": "重要",
+      "OPTIONAL": "任意",
+      "SINGLE_POINT": "単一障害点",
+      "KNOWLEDGE_CONCENTRATION": "知識集中",
+      "CUSTOMER_RELATION_CONCENTRATION": "顧客関係の集中",
+      "PERMISSION_CONCENTRATION": "権限集中",
+      "SUCCESSOR_SHORTAGE": "後継者不足",
+      "HEALTH_CONTINUITY": "健康・継続性",
+      "UNCLEAR_RESPONSIBILITY": "責任不明確",
+      "TURNOVER": "離職リスク",
+      "AVAILABLE": "利用可能",
+      "PARTIAL": "一部あり",
+      "MISSING": "未登録",
+      "OUTDATED": "期限切れ",
+      "NOT_APPLICABLE": "該当なし",
+      "PASS": "合格",
+      "WARNING": "注意",
+      "FAIL": "不合格",
+      "ONBOARDING": "オンボーディング",
+      "SHADOWING": "シャドーイング",
+      "CASE_REVIEW": "事例レビュー",
+      "PRACTICE": "実践",
+      "MEETING": "会議",
+      "DOCUMENTATION": "文書化",
+      "CERTIFICATE": "資格証明",
+      "PROJECT_EXPERIENCE": "プロジェクト経験",
+      "OBSERVATION": "観察",
+      "ASSESSMENT_RESULT": "評価結果",
+      "UNKNOWN": "不明",
+      "NEWCOMER": "新人",
+      "INDEPENDENT_STAFF": "自立担当",
+      "CORE_STAFF": "中核人材",
+      "MANAGEMENT_CANDIDATE": "管理職候補",
+      "CORE_CANDIDATE": "中核候補",
+      "NOT_SUITABLE": "不適合",
+      "ABSTRACT": "抽象能力",
+      "MENTORING": "指導・育成",
+      "NORMAL": "正常",
+      "SLOW": "遅延",
+      "FAST": "順調",
+      "RISK": "要注意",
+      "L0": "レベル0",
+      "L1": "レベル1",
+      "L2": "レベル2",
+      "L3": "レベル3",
+      "L4": "レベル4",
+      "MALE": "男性",
+      "FEMALE": "女性",
+      "UNSPECIFIED": "未指定",
+      "NEW_SKILL": "新規スキル",
+      "LEVEL_UP": "レベルアップ",
+      "LEVEL_DOWN": "レベルダウン",
+      "REASSESSMENT": "再評価",
+      "CORRECTION": "修正",
+      "S0_UNOBSERVED": "未観察",
+      "S1_BASIC_TRUST": "基本的な信頼",
+      "S2_TASK_TRUST": "業務上の信頼",
+      "S3_RESPONSIBILITY_TRUST": "責任に対する信頼",
+      "S4_KEY_TRUST": "重要な信頼",
+      "MONTHLY": "毎月",
+      "QUARTERLY": "四半期ごと",
+      "SEMIANNUAL": "半年ごと",
+      "ANNUAL": "毎年",
+      "ON_CHANGE": "変更時",
+      "SELF_ASSESSMENT": "自己評価",
+      "MANAGER_ASSESSMENT": "上長評価",
+      "CERTIFICATION": "資格認定",
+      "PEER_REVIEW": "同僚評価",
+      "SKILL_REVIEW": "スキル評価",
+      "HIGH_RISK_POSITION": "高リスクポジション",
+      "SUBSTITUTION_GAP": "代替要員不足",
+      "TRAINING_GOAL_EXPIRY": "育成目標期限切れ",
+      "SUCCESSION_REVIEW": "後継者レビュー",
+      "SKILL_ASSESSMENT": "スキル評価",
+      "DATA_QUALITY": "データ品質",
+      "BUSINESS": "事業"
+    },
+    "fields": {
+      "id": "ID",
+      "requisitionCode": "要件コード",
+      "title": "タイトル",
+      "department": "部門",
+      "positionId": "ポジションID",
+      "recruitmentType": "採用区分",
+      "lifecycle": "ライフサイクル",
+      "editStatus": "編集状態",
+      "plannedHeadcount": "採用予定人数",
+      "hiredCount": "採用人数",
+      "checkedInCount": "入社済み人数",
+      "priority": "優先度",
+      "reason": "理由",
+      "targetJoinDate": "入社予定日",
+      "desiredStartDate": "希望開始日",
+      "desiredEndDate": "希望終了日",
+      "currentVersion": "現行バージョン",
+      "lockedAt": "ロック日時",
+      "lockedBy": "ロック担当者",
+      "unlockedAt": "ロック解除日時",
+      "unlockReason": "ロック解除理由",
+      "requirementsJson": "要件詳細（JSON）",
+      "username": "ユーザー名",
+      "memberType": "メンバー種別",
+      "active": "有効",
+      "createdAt": "作成日時",
+      "removedAt": "削除日時",
+      "requisition": "採用要件",
+      "versionNumber": "バージョン番号",
+      "snapshotJson": "スナップショット（JSON）",
+      "changeReason": "変更理由",
+      "fullName": "氏名",
+      "nameReading": "氏名（フリガナ）",
+      "englishName": "英語名",
+      "birthDate": "生年月日",
+      "gender": "性別",
+      "phone": "電話番号",
+      "email": "メールアドレス",
+      "address": "住所",
+      "educationSummary": "学歴概要",
+      "workSummary": "職務経歴概要",
+      "convertedPersonId": "社員変換ID",
+      "updatedAt": "更新日時",
+      "receivedAt": "受領日時",
+      "originalFileName": "元ファイル名",
+      "mediaType": "メディア種別",
+      "fileSize": "ファイルサイズ",
+      "sha256": "SHA-256",
+      "storageKey": "ストレージキー",
+      "structuredSummary": "構造化サマリー",
+      "activeVersion": "有効バージョン",
+      "uploadedBy": "アップロード担当",
+      "candidate": "候補者",
+      "applicationCode": "応募番号",
+      "currentStage": "現在の選考段階",
+      "status": "状態",
+      "decision": "決定",
+      "sourceType": "応募経路",
+      "sourceDetail": "応募経路詳細",
+      "batchName": "募集バッチ",
+      "appliedAt": "応募日時",
+      "closedAt": "終了日時",
+      "retentionUntil": "保管期限",
+      "convertedAt": "変換日時",
+      "closeReason": "終了理由",
+      "note": "備考",
+      "requisitionVersion": "要件バージョン",
+      "stageType": "選考段階",
+      "sequenceNumber": "順序番号",
+      "stageStatus": "段階状態",
+      "startedAt": "開始日時",
+      "completedAt": "完了日時",
+      "selected": "通過",
+      "decisionReason": "判定理由",
+      "application": "応募記録",
+      "eventType": "イベント種別",
+      "previousValue": "変更前",
+      "newValue": "変更後",
+      "actor": "実行者",
+      "occurredAt": "発生日時",
+      "metadataJson": "メタデータ（JSON）",
+      "activityType": "日程種別",
+      "startAt": "開始日時",
+      "endAt": "終了日時",
+      "meetingRoomId": "会議室",
+      "location": "場所",
+      "scheduleVersion": "日程バージョン",
+      "externalCalendarProvider": "外部カレンダー",
+      "externalEventId": "外部イベントID",
+      "activityId": "日程ID",
+      "templateVersionId": "評価表バージョンID",
+      "evaluatorUsername": "評価者ユーザー名",
+      "recordedByUsername": "記録者ユーザー名",
+      "overallRecommendation": "総合評価",
+      "totalScore": "合計点",
+      "summary": "概要",
+      "answersJson": "評価回答（JSON）",
+      "evaluatedAt": "評価日時",
+      "submittedAt": "提出日時",
+      "publishedAt": "共有日時",
+      "correctionOfId": "訂正元ID",
+      "decisionSource": "決定経路",
+      "decidedBy": "決定者",
+      "decidedAt": "決定日時",
+      "language": "言語",
+      "subjectTemplate": "件名テンプレート",
+      "bodyTemplate": "本文テンプレート",
+      "externalSafe": "外部送信可",
+      "published": "公開済み",
+      "templateId": "テンプレートID",
+      "sendMode": "送信方法",
+      "finalSubject": "確定件名",
+      "finalBody": "確定本文",
+      "recipientsJson": "宛先（JSON）",
+      "retryCount": "再試行回数",
+      "maxRetries": "最大再試行回数",
+      "lastError": "直近のエラー",
+      "createdBy": "作成者",
+      "confirmedBy": "確認者",
+      "confirmedAt": "確認日時",
+      "sentAt": "送信日時",
+      "candidateId": "候補者ID",
+      "personId": "社員ID",
+      "plannedAt": "連絡予定日時",
+      "contactedAt": "連絡日時",
+      "ownerUsername": "担当者ユーザー名",
+      "contactMethod": "連絡方法",
+      "result": "結果",
+      "candidateIntent": "候補者の意向",
+      "riskLevel": "リスクレベル",
+      "nextAction": "次のアクション",
+      "nextContactAt": "次回連絡日時",
+      "partnerOrganizationId": "派遣会社",
+      "expectedEndDate": "終了予定日",
+      "observationDays": "観察日数",
+      "finalDecision": "最終判断",
+      "reviewedAt": "評価日時",
+      "reviewerUsername": "評価者ユーザー名",
+      "recommendation": "推奨事項",
+      "extensionEndDate": "延長終了日",
+      "defaultObservationDays": "標準観察日数",
+      "dispatchAssignment": "派遣配置",
+      "dispatchEnabled": "派遣利用",
+      "name": "名称",
+      "partnerCode": "取引先コード",
+      "rolesJson": "役割",
+      "startDate": "開始日",
+      "requisitions": "職種"
+    },
+    "application": {
+      "multiplePositionsHelp": "選択した職種ごとに応募記録を作成し、選考状況と評価を個別に管理します。",
+      "createdPositionApplications": "選択した職種の応募記録を作成しました。"
     }
   },
   "error": {

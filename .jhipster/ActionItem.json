@@ -3,12 +3,13 @@
     "changelogDate": "20260605000000"
   },
   "applications": ["*"],
-  "documentation": "行动项。承接风险、缺口、技能复核和培训等系统判断产生的后续处理事项。",
+  "documentation": "行动项。承接风险、缺口、技能复核和培训等系统判断产生的后续处理事项。\\n注意：该实体为 JDL 生成后手工追加过的系统对象，本段用于让 JDL 重新成为完整模型说明。",
   "dto": "mapstruct",
   "fields": [
     {
       "fieldName": "sourceType",
-      "fieldType": "ActionSourceType"
+      "fieldType": "ActionSourceType",
+      "fieldValues": "SKILL_REVIEW,HIGH_RISK_POSITION,SUBSTITUTION_GAP,TRAINING_GOAL_EXPIRY,SUCCESSION_REVIEW,SKILL_ASSESSMENT,DATA_QUALITY,MANUAL"
     },
     {
       "fieldName": "sourceId",
@@ -18,19 +19,19 @@
       "fieldName": "sourceEntityType",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": 100
+      "fieldValidateRulesMaxlength": "100"
     },
     {
       "fieldName": "description",
       "fieldType": "String",
       "fieldValidateRules": ["required", "maxlength"],
-      "fieldValidateRulesMaxlength": 200
+      "fieldValidateRulesMaxlength": "200"
     },
     {
       "fieldName": "assignee",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": 100
+      "fieldValidateRulesMaxlength": "100"
     },
     {
       "fieldName": "dueDate",
@@ -39,11 +40,13 @@
     {
       "fieldName": "status",
       "fieldType": "ActionStatus",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OPEN,IN_PROGRESS,COMPLETED,CANCELLED"
     },
     {
       "fieldName": "priority",
-      "fieldType": "ActionPriority"
+      "fieldType": "ActionPriority",
+      "fieldValues": "P0_CRITICAL,P1_HIGH,P2_MEDIUM,P3_LOW"
     },
     {
       "fieldName": "createdAt",

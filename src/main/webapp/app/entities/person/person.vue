@@ -59,6 +59,9 @@
               <span>{{ $t('entity.person.field.employmentStatus') }}</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'employmentStatus'"></jhi-sort-indicator>
             </th>
+            <th scope="col">
+              <span>{{ $t('entity.person.field.employmentType') }}</span>
+            </th>
             <th scope="col" @click="changeOrder('joinDate')">
               <span>{{ $t('entity.person.field.joinDate') }}</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'joinDate'"></jhi-sort-indicator>
@@ -86,10 +89,11 @@
             <td>{{ person.employeeCode }}</td>
             <td>{{ person.personName }}</td>
             <td>{{ person.age }}</td>
-            <td>{{ person.gender }}</td>
+            <td>{{ $t('recruitment.enums.' + person.gender) }}</td>
             <td>{{ person.department }}</td>
             <td>{{ person.currentRole }}</td>
-            <td>{{ person.employmentStatus }}</td>
+            <td>{{ $t('recruitment.enums.' + person.employmentStatus) }}</td>
+            <td>{{ person.employmentType }}</td>
             <td>{{ person.joinDate }}</td>
             <td>{{ person.mentorFlag }}</td>
             <td>{{ person.coreCandidateFlag }}</td>

@@ -1,0 +1,83 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052911"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "stageType",
+      "fieldType": "ApplicationStageType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RESUME_SCREENING,WRITTEN_TEST,FIRST_INTERVIEW,SECOND_INTERVIEW,FINAL_INTERVIEW"
+    },
+    {
+      "fieldName": "activityType",
+      "fieldType": "SelectionActivityType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "WRITTEN_TEST,FIRST_INTERVIEW,SECOND_INTERVIEW,FINAL_INTERVIEW"
+    },
+    {
+      "fieldName": "startAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "meetingRoomId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "scheduleVersion",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "changeReason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "externalCalendarProvider",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "externalEventId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SelectionActivity",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "activities",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

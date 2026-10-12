@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052919"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reviewedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reviewerUsername",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "result",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "recommendation",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "extensionEndDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "finalDecision",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "DispatchReview",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "dispatchAssignment",
+      "otherEntityRelationshipName": "reviews",
+      "relationshipName": "dispatchAssignment",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

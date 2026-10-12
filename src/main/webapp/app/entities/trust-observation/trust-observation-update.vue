@@ -38,7 +38,9 @@
               data-cy="trustStage"
               required
             >
-              <option v-for="trustStage in trustStageValues" :key="trustStage" :value="trustStage">{{ trustStage }}</option>
+              <option v-for="trustStage in trustStageValues" :key="trustStage" :value="trustStage">
+                {{ $t('recruitment.enums.' + trustStage) }}
+              </option>
             </select>
             <div v-if="v$.trustStage.$anyDirty && v$.trustStage.$invalid">
               <small class="form-text text-danger" v-for="error of v$.trustStage.$errors" :key="error.$uid">{{ error.$message }}</small>

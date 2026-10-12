@@ -24,7 +24,7 @@
               required
             >
               <option v-for="readinessLevel in readinessLevelValues" :key="readinessLevel" :value="readinessLevel">
-                {{ readinessLevel }}
+                {{ $t('recruitment.enums.' + readinessLevel) }}
               </option>
             </select>
             <div v-if="v$.successionReadiness.$anyDirty && v$.successionReadiness.$invalid">
@@ -77,7 +77,9 @@
               id="succession-candidate-riskAfterTraining"
               data-cy="riskAfterTraining"
             >
-              <option v-for="riskLevel in riskLevelValues" :key="riskLevel" :value="riskLevel">{{ riskLevel }}</option>
+              <option v-for="riskLevel in riskLevelValues" :key="riskLevel" :value="riskLevel">
+                {{ $t('recruitment.enums.' + riskLevel) }}
+              </option>
             </select>
           </div>
           <div class="mb-3">

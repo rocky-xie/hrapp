@@ -21,7 +21,9 @@
               data-cy="code"
               required
             >
-              <option v-for="levelCode in levelCodeValues" :key="levelCode" :value="levelCode">{{ levelCode }}</option>
+              <option v-for="levelCode in levelCodeValues" :key="levelCode" :value="levelCode">
+                {{ $t('recruitment.enums.' + levelCode) }}
+              </option>
             </select>
             <div v-if="v$.code.$anyDirty && v$.code.$invalid">
               <small class="form-text text-danger" v-for="error of v$.code.$errors" :key="error.$uid">{{ error.$message }}</small>

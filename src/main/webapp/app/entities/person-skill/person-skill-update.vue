@@ -62,7 +62,7 @@
               data-cy="confidence"
             >
               <option v-for="confidenceLevel in confidenceLevelValues" :key="confidenceLevel" :value="confidenceLevel">
-                {{ confidenceLevel }}
+                {{ $t('recruitment.enums.' + confidenceLevel) }}
               </option>
             </select>
           </div>

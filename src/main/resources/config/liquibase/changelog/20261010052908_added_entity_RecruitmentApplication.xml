@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity RecruitmentApplication.
+    -->
+    <changeSet id="20261010052908-1" author="jhipster">
+        <createTable tableName="recruitment_application">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="application_code" type="varchar(40)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_recruitment_application__application_code" />
+            </column>
+            <column name="recruitment_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="current_stage" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="decision" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="source_type" type="varchar(40)">
+                <constraints nullable="false" />
+            </column>
+            <column name="source_detail" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="batch_name" type="varchar(150)">
+                <constraints nullable="true" />
+            </column>
+            <column name="applied_at" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="closed_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="retention_until" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="converted_person_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="converted_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="close_reason" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="note" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="candidate_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="requisition_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="requisition_version_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="recruitment_application" columnName="applied_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="recruitment_application" columnName="closed_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="recruitment_application" columnName="converted_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

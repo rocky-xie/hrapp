@@ -81,10 +81,10 @@
                 successionCandidate.id
               }}</router-link>
             </td>
-            <td>{{ successionCandidate.successionReadiness }}</td>
+            <td>{{ $t('recruitment.enums.' + successionCandidate.successionReadiness) }}</td>
             <td>{{ successionCandidate.requiredTraining }}</td>
             <td>{{ successionCandidate.estimatedTimeToReady }}</td>
-            <td>{{ successionCandidate.riskAfterTraining }}</td>
+            <td>{{ $t('recruitment.enums.' + successionCandidate.riskAfterTraining) }}</td>
             <td>{{ successionCandidate.reviewDate }}</td>
             <td>{{ successionCandidate.priority }}</td>
             <td>

@@ -366,3 +366,8 @@ hrapp:
           - 'hasSubstitute=true'
           - 'documentStatus=AVAILABLE'
         recommendedAction: '定期复查，防止数据过期。'
+hr:
+  recruitment:
+    retention:
+      enabled: true
+      cron: '0 0 2 * * *'

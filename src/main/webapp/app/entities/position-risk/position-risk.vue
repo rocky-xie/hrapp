@@ -93,11 +93,11 @@
                 positionRisk.id
               }}</router-link>
             </td>
-            <td>{{ positionRisk.riskType }}</td>
-            <td>{{ positionRisk.riskLevel }}</td>
-            <td>{{ positionRisk.documentStatus }}</td>
-            <td>{{ positionRisk.backupStatus }}</td>
-            <td>{{ positionRisk.customerOrSystemDependency }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRisk.riskType) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRisk.riskLevel) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRisk.documentStatus) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRisk.backupStatus) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRisk.customerOrSystemDependency) }}</td>
             <td>{{ positionRisk.riskDescription }}</td>
             <td>{{ positionRisk.improvementAction }}</td>
             <td>{{ positionRisk.identifiedDate }}</td>

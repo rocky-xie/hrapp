@@ -28,7 +28,7 @@
             <span>{{ $t('entity.personSkill.field.confidence') }}</span>
           </dt>
           <dd>
-            <span>{{ personSkill.confidence }}</span>
+            <span>{{ $t('recruitment.enums.' + personSkill.confidence) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.personSkill.field.growthDirection') }}</span>

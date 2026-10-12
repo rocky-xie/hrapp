@@ -1,0 +1,65 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052910"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "stageType",
+      "fieldType": "ApplicationStageType",
+      "fieldValues": "RESUME_SCREENING,WRITTEN_TEST,FIRST_INTERVIEW,SECOND_INTERVIEW,FINAL_INTERVIEW"
+    },
+    {
+      "fieldName": "eventType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "previousValue",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "newValue",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "actor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "occurredAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "metadataJson",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ApplicationEvent",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "events",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

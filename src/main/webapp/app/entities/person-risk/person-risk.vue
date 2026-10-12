@@ -75,8 +75,8 @@
             <td>
               <router-link :to="{ name: 'PersonRiskView', params: { personRiskId: personRisk.id } }">{{ personRisk.id }}</router-link>
             </td>
-            <td>{{ personRisk.riskType }}</td>
-            <td>{{ personRisk.riskLevel }}</td>
+            <td>{{ $t('recruitment.enums.' + personRisk.riskType) }}</td>
+            <td>{{ $t('recruitment.enums.' + personRisk.riskLevel) }}</td>
             <td>{{ personRisk.riskDescription }}</td>
             <td>{{ personRisk.improvementAction }}</td>
             <td>{{ personRisk.identifiedDate }}</td>

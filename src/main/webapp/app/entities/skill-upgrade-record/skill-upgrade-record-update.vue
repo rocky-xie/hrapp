@@ -22,7 +22,7 @@
               required
             >
               <option v-for="skillChangeType in skillChangeTypeValues" :key="skillChangeType" :value="skillChangeType">
-                {{ skillChangeType }}
+                {{ $t('recruitment.enums.' + skillChangeType) }}
               </option>
             </select>
             <div v-if="v$.changeType.$anyDirty && v$.changeType.$invalid">

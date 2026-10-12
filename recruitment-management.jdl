@@ -1,0 +1,313 @@
+enum RecruitmentType {
+  GRADUATE,
+  MID_CAREER
+}
+
+enum RequisitionLifecycle {
+  PREPARING,
+  ACTIVE,
+  SUSPENDED,
+  CLOSED,
+  CANCELLED
+}
+
+enum RequisitionEditStatus {
+  EDITABLE,
+  LOCKED
+}
+
+enum ApplicationStatus {
+  IN_PROGRESS,
+  ON_HOLD,
+  SELECTION_COMPLETED,
+  DECIDED,
+  CLOSED
+}
+
+enum ApplicationDecision {
+  HIRED,
+  NOT_HIRED,
+  RESERVE,
+  WITHDRAWN,
+  ACCEPT_AS_DISPATCHED
+}
+
+enum ApplicationStageType {
+  RESUME_SCREENING,
+  WRITTEN_TEST,
+  FIRST_INTERVIEW,
+  SECOND_INTERVIEW,
+  FINAL_INTERVIEW
+}
+
+enum SelectionActivityType {
+  WRITTEN_TEST,
+  FIRST_INTERVIEW,
+  SECOND_INTERVIEW,
+  FINAL_INTERVIEW
+}
+
+enum NotificationMessageStatus {
+  WAITING_CONFIRMATION,
+  PENDING,
+  SENDING,
+  SENT,
+  FAILED,
+  CANCELLED
+}
+
+entity RecruitmentRequisition {
+  requisitionCode String required unique maxlength(40)
+  title String required maxlength(150)
+  department String required maxlength(100)
+  positionId Long
+  recruitmentType RecruitmentType required
+  lifecycle RequisitionLifecycle required
+  editStatus RequisitionEditStatus required
+  plannedHeadcount Integer required min(1)
+  hiredCount Integer required min(0)
+  checkedInCount Integer required min(0)
+  priority String maxlength(30)
+  reason TextBlob
+  targetJoinDate LocalDate
+  desiredStartDate LocalDate
+  desiredEndDate LocalDate
+  currentVersion Integer required min(0)
+  lockedAt Instant
+  lockedBy String maxlength(100)
+  unlockedAt Instant
+  unlockReason TextBlob
+  requirementsJson TextBlob
+}
+
+entity RecruitmentRequisitionVersion {
+  versionNumber Integer required min(1)
+  snapshotJson TextBlob required
+  lockedAt Instant required
+  lockedBy String required maxlength(100)
+  changeReason TextBlob
+}
+
+entity RequisitionEditEvent {
+  eventType String required maxlength(20)
+  actor String required maxlength(100)
+  occurredAt Instant required
+  versionNumber Integer required
+  reason TextBlob
+}
+
+entity RecruitmentRequisitionMember {
+  username String required maxlength(100)
+  memberType String required maxlength(30)
+  active Boolean required
+  createdAt Instant required
+  removedAt Instant
+}
+
+entity ExternalCandidate {
+  fullName String required maxlength(150)
+  nameReading String maxlength(150)
+  englishName String maxlength(150)
+  birthDate LocalDate
+  gender String maxlength(30)
+  phone String maxlength(50)
+  email String maxlength(254)
+  address TextBlob
+  educationSummary TextBlob
+  workSummary TextBlob
+  convertedPersonId Long
+  createdAt Instant required
+  updatedAt Instant
+}
+
+entity CandidateResume {
+  versionNumber Integer required min(1)
+  receivedAt Instant required
+  originalFileName String required maxlength(255)
+  mediaType String maxlength(150)
+  fileSize Long required min(0)
+  sha256 String required maxlength(64)
+  storageKey String required unique maxlength(120)
+  structuredSummary TextBlob
+  activeVersion Boolean required
+  uploadedBy String required maxlength(100)
+}
+
+entity RecruitmentApplication {
+  applicationCode String required unique maxlength(40)
+  recruitmentType RecruitmentType required
+  currentStage ApplicationStageType
+  status ApplicationStatus required
+  decision ApplicationDecision
+  sourceType String required maxlength(40)
+  sourceDetail String maxlength(255)
+  batchName String maxlength(150)
+  appliedAt Instant required
+  closedAt Instant
+  retentionUntil LocalDate
+  convertedPersonId Long
+  convertedAt Instant
+  closeReason TextBlob
+  note TextBlob
+}
+
+entity ApplicationStage {
+  stageType ApplicationStageType required
+  sequenceNumber Integer required min(1)
+  stageStatus String required maxlength(30)
+  startedAt Instant
+  completedAt Instant
+  selected Boolean
+  decisionReason TextBlob
+}
+
+entity ApplicationEvent {
+  stageType ApplicationStageType
+  eventType String required maxlength(50)
+  previousValue String maxlength(100)
+  newValue String maxlength(100)
+  actor String required maxlength(100)
+  occurredAt Instant required
+  reason TextBlob
+  metadataJson TextBlob
+}
+
+entity SelectionActivity {
+  stageType ApplicationStageType required
+  activityType SelectionActivityType required
+  startAt Instant required
+  endAt Instant required
+  meetingRoomId Long
+  location String maxlength(255)
+  status String required maxlength(30)
+  scheduleVersion Integer required min(1)
+  changeReason TextBlob
+  externalCalendarProvider String maxlength(50)
+  externalEventId String maxlength(255)
+}
+
+entity RecruitmentEvaluation {
+  stageType ApplicationStageType required
+  activityId Long
+  templateVersionId Long
+  evaluatorUsername String required maxlength(100)
+  recordedByUsername String required maxlength(100)
+  status String required maxlength(30)
+  overallRecommendation String maxlength(50)
+  totalScore BigDecimal min(0)
+  summary TextBlob
+  answersJson TextBlob
+  evaluatedAt Instant
+  submittedAt Instant
+  publishedAt Instant
+  correctionOfId Long
+}
+
+entity HiringDecision {
+  decision ApplicationDecision required
+  decisionSource String required maxlength(50)
+  decidedBy String required maxlength(100)
+  decidedAt Instant required
+  reason TextBlob
+  correctionOfId Long
+  active Boolean required
+}
+
+entity NotificationTemplate {
+  eventType String required maxlength(60)
+  recruitmentType RecruitmentType
+  language String required maxlength(10)
+  versionNumber Integer required min(1)
+  subjectTemplate String required maxlength(255)
+  bodyTemplate TextBlob required
+  externalSafe Boolean required
+  published Boolean required
+}
+
+entity NotificationMessage {
+  eventType String required maxlength(60)
+  templateId Long
+  status NotificationMessageStatus required
+  sendMode String required maxlength(30)
+  finalSubject String required maxlength(255)
+  finalBody TextBlob required
+  recipientsJson TextBlob required
+  retryCount Integer required min(0)
+  maxRetries Integer required min(0)
+  lastError TextBlob
+  createdBy String required maxlength(100)
+  confirmedBy String maxlength(100)
+  createdAt Instant required
+  confirmedAt Instant
+  sentAt Instant
+}
+
+entity PreboardingFollowUp {
+  candidateId Long required
+  personId Long
+  plannedAt Instant
+  contactedAt Instant
+  ownerUsername String required maxlength(100)
+  contactMethod String maxlength(40)
+  result TextBlob
+  candidateIntent String maxlength(40)
+  riskLevel String maxlength(30)
+  nextAction TextBlob
+  nextContactAt Instant
+}
+
+entity PartnerOrganization {
+  partnerCode String required unique maxlength(40)
+  name String required maxlength(150)
+  rolesJson TextBlob required
+  dispatchEnabled Boolean required
+  defaultObservationDays Integer min(0)
+  active Boolean required
+}
+
+entity DispatchAssignment {
+  candidateId Long required
+  personId Long
+  partnerOrganizationId Long required
+  department String required maxlength(100)
+  positionId Long
+  startDate LocalDate
+  expectedEndDate LocalDate
+  observationDays Integer min(0)
+  status String required maxlength(30)
+  finalDecision String maxlength(40)
+  note TextBlob
+}
+
+entity DispatchReview {
+  reviewedAt Instant required
+  reviewerUsername String required maxlength(100)
+  result TextBlob
+  recommendation String maxlength(40)
+  extensionEndDate LocalDate
+  finalDecision String maxlength(40)
+}
+
+relationship OneToMany {
+  RecruitmentRequisition{versions} to RecruitmentRequisitionVersion{requisition},
+  RecruitmentRequisition{editEvents} to RequisitionEditEvent{requisition},
+  RecruitmentRequisition{members} to RecruitmentRequisitionMember{requisition},
+  ExternalCandidate{resumes} to CandidateResume{candidate},
+  ExternalCandidate{applications} to RecruitmentApplication{candidate},
+  RecruitmentRequisition{applications} to RecruitmentApplication{requisition},
+  RecruitmentRequisitionVersion{applications} to RecruitmentApplication{requisitionVersion},
+  RecruitmentApplication{stages} to ApplicationStage{application},
+  RecruitmentApplication{events} to ApplicationEvent{application},
+  RecruitmentApplication{activities} to SelectionActivity{application},
+  RecruitmentApplication{evaluations} to RecruitmentEvaluation{application},
+  RecruitmentApplication{decisions} to HiringDecision{application},
+  RecruitmentApplication{messages} to NotificationMessage{application},
+  RecruitmentApplication{followUps} to PreboardingFollowUp{application},
+  RecruitmentApplication{dispatchAssignments} to DispatchAssignment{application},
+  DispatchAssignment{reviews} to DispatchReview{dispatchAssignment}
+}
+
+dto * with mapstruct
+service all with serviceClass
+paginate all with pagination
+filter all

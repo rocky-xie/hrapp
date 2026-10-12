@@ -56,6 +56,11 @@ public class Person implements Serializable {
     @Column(name = "employment_status", nullable = false)
     private EmploymentStatus employmentStatus;
 
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "employment_type", length = 30, nullable = false)
+    private String employmentType = "REGULAR";
+
     @Column(name = "join_date")
     private LocalDate joinDate;
 
@@ -175,6 +180,19 @@ public class Person implements Serializable {
 
     public void setEmploymentStatus(EmploymentStatus employmentStatus) {
         this.employmentStatus = employmentStatus;
+    }
+
+    public String getEmploymentType() {
+        return employmentType;
+    }
+
+    public Person employmentType(String employmentType) {
+        this.setEmploymentType(employmentType);
+        return this;
+    }
+
+    public void setEmploymentType(String employmentType) {
+        this.employmentType = employmentType;
     }
 
     public LocalDate getJoinDate() {

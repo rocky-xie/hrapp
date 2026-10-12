@@ -74,7 +74,7 @@
               }}</router-link>
             </td>
             <td>{{ trustObservation.observationDate }}</td>
-            <td>{{ trustObservation.trustStage }}</td>
+            <td>{{ $t('recruitment.enums.' + trustObservation.trustStage) }}</td>
             <td>{{ trustObservation.observedBehavior }}</td>
             <td>{{ trustObservation.positiveSignal }}</td>
             <td>{{ trustObservation.riskSignal }}</td>

@@ -34,25 +34,25 @@
             <span>{{ $t('entity.positionRisk.field.documentStatus') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRiskEvaluation.documentStatus }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRiskEvaluation.documentStatus) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRisk.field.customerOrSystemDependency') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRiskEvaluation.customerOrSystemDependency }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRiskEvaluation.customerOrSystemDependency) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.successionCandidate.field.successionReadiness') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRiskEvaluation.successionReadiness }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRiskEvaluation.successionReadiness) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRiskEvaluation.field.riskLevel') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRiskEvaluation.riskLevel }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRiskEvaluation.riskLevel) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRiskEvaluation.field.riskReason') }}</span>

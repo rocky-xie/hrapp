@@ -28,7 +28,7 @@
             <span>{{ $t('entity.person.field.gender') }}</span>
           </dt>
           <dd>
-            <span>{{ person.gender }}</span>
+            <span>{{ $t('recruitment.enums.' + person.gender) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.person.field.department') }}</span>
@@ -46,7 +46,13 @@
             <span>{{ $t('entity.person.field.employmentStatus') }}</span>
           </dt>
           <dd>
-            <span>{{ person.employmentStatus }}</span>
+            <span>{{ $t('recruitment.enums.' + person.employmentStatus) }}</span>
+          </dd>
+          <dt>
+            <span>{{ $t('entity.person.field.employmentType') }}</span>
+          </dt>
+          <dd>
+            <span>{{ person.employmentType }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.person.field.joinDate') }}</span>

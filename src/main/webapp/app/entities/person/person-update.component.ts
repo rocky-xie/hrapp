@@ -36,6 +36,7 @@ export default defineComponent({
     const confidenceLevelValues: Ref<string[]> = ref(Object.keys(ConfidenceLevel));
     const genderValues: Ref<string[]> = ref(Object.keys(Gender));
     const employmentStatusValues: Ref<string[]> = ref(Object.keys(EmploymentStatus));
+    const employmentTypeValues: Ref<string[]> = ref(['REGULAR', 'DISPATCHED']);
     const isSaving = ref(false);
     const currentLanguage = inject('currentLanguage', () => computed(() => navigator.language ?? 'en'), true);
 
@@ -126,6 +127,7 @@ export default defineComponent({
       previousState,
       genderValues,
       employmentStatusValues,
+      employmentTypeValues,
       isSaving,
       currentLanguage,
       personSkillService,

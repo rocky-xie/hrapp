@@ -45,6 +45,25 @@
     <include file="config/liquibase/changelog/20260605000001_added_review_expiry_to_StaffSubstitution.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260605000002_added_governance_fields.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260605000003_added_source_entity_type_to_ActionItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052903_added_entity_RecruitmentRequisition.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052904_added_entity_RecruitmentRequisitionVersion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052905_added_entity_RecruitmentRequisitionMember.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052906_added_entity_ExternalCandidate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052907_added_entity_CandidateResume.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052908_added_entity_RecruitmentApplication.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052909_added_entity_ApplicationStage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052910_added_entity_ApplicationEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052911_added_entity_SelectionActivity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052912_added_entity_RecruitmentEvaluation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052913_added_entity_HiringDecision.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052914_added_entity_NotificationTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052915_added_entity_NotificationMessage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052916_added_entity_PreboardingFollowUp.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052917_added_entity_PartnerOrganization.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052918_added_entity_DispatchAssignment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052919_added_entity_DispatchReview.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052920_seed_hr_recruiter_authority.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052921_added_requisition_edit_event.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20260601122825_added_entity_constraints_PersonSkill.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260601122826_added_entity_constraints_PositionSkillRequirement.xml" relativeToChangelogFile="false"/>
@@ -63,7 +82,25 @@
     <include file="config/liquibase/changelog/20260601122839_added_entity_constraints_Evaluation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260601122840_added_entity_constraints_ImprovementPlan.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20260601122842_added_entity_constraints_CandidateProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052904_added_entity_constraints_RecruitmentRequisitionVersion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052905_added_entity_constraints_RecruitmentRequisitionMember.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052907_added_entity_constraints_CandidateResume.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052908_added_entity_constraints_RecruitmentApplication.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052909_added_entity_constraints_ApplicationStage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052910_added_entity_constraints_ApplicationEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052911_added_entity_constraints_SelectionActivity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052912_added_entity_constraints_RecruitmentEvaluation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052913_added_entity_constraints_HiringDecision.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052915_added_entity_constraints_NotificationMessage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052916_added_entity_constraints_PreboardingFollowUp.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052918_added_entity_constraints_DispatchAssignment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010052919_added_entity_constraints_DispatchReview.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="config/liquibase/changelog/20260602000000_sample_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010060000_add_person_employment_type.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010060100_add_recruitment_deletion_log.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010060200_recruitment_demo_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010060201_recruitment_hire_demo_data.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20261010060202_align_demo_followups.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

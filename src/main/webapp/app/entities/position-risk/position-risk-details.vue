@@ -10,31 +10,31 @@
             <span>{{ $t('entity.personRisk.field.riskType') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRisk.riskType }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRisk.riskType) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRiskEvaluation.field.riskLevel') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRisk.riskLevel }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRisk.riskLevel) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRisk.field.documentStatus') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRisk.documentStatus }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRisk.documentStatus) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRisk.field.backupStatus') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRisk.backupStatus }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRisk.backupStatus) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.positionRisk.field.customerOrSystemDependency') }}</span>
           </dt>
           <dd>
-            <span>{{ positionRisk.customerOrSystemDependency }}</span>
+            <span>{{ $t('recruitment.enums.' + positionRisk.customerOrSystemDependency) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.personRisk.field.riskDescription') }}</span>

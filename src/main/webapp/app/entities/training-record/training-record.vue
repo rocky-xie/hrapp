@@ -86,7 +86,7 @@
               }}</router-link>
             </td>
             <td>{{ trainingRecord.trainingDate }}</td>
-            <td>{{ trainingRecord.trainingType }}</td>
+            <td>{{ $t('recruitment.enums.' + trainingRecord.trainingType) }}</td>
             <td>{{ trainingRecord.topic }}</td>
             <td>{{ trainingRecord.taskDescription }}</td>
             <td>{{ trainingRecord.resultDescription }}</td>

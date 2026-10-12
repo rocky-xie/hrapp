@@ -40,7 +40,7 @@
             <span>{{ $t('entity.trainingGoal.field.status') }}</span>
           </dt>
           <dd>
-            <span>{{ trainingGoal.status }}</span>
+            <span>{{ $t('recruitment.enums.' + trainingGoal.status) }}</span>
           </dd>
           <dt>
             <span>{{ $t('entity.person.detail.title') }}</span>

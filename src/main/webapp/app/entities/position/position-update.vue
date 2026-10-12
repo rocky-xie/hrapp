@@ -80,7 +80,9 @@
               data-cy="positionType"
               required
             >
-              <option v-for="positionType in positionTypeValues" :key="positionType" :value="positionType">{{ positionType }}</option>
+              <option v-for="positionType in positionTypeValues" :key="positionType" :value="positionType">
+                {{ $t('recruitment.enums.' + positionType) }}
+              </option>
             </select>
             <div v-if="v$.positionType.$anyDirty && v$.positionType.$invalid">
               <small class="form-text text-danger" v-for="error of v$.positionType.$errors" :key="error.$uid">{{ error.$message }}</small>
@@ -98,7 +100,7 @@
               required
             >
               <option v-for="importanceLevel in importanceLevelValues" :key="importanceLevel" :value="importanceLevel">
-                {{ importanceLevel }}
+                {{ $t('recruitment.enums.' + importanceLevel) }}
               </option>
             </select>
             <div v-if="v$.businessImportance.$anyDirty && v$.businessImportance.$invalid">
@@ -176,7 +178,9 @@
               id="position-reviewCycle"
               data-cy="reviewCycle"
             >
-              <option v-for="reviewCycle in reviewCycleValues" :key="reviewCycle" :value="reviewCycle">{{ reviewCycle }}</option>
+              <option v-for="reviewCycle in reviewCycleValues" :key="reviewCycle" :value="reviewCycle">
+                {{ $t('recruitment.enums.' + reviewCycle) }}
+              </option>
             </select>
           </div>
           <div class="mb-3">
@@ -283,7 +287,7 @@
                           :key="requirementImportance"
                           :value="requirementImportance"
                         >
-                          {{ requirementImportance }}
+                          {{ $t('recruitment.enums.' + requirementImportance) }}
                         </option>
                       </select>
                     </td>
@@ -467,7 +471,9 @@
               }}</label>
               <select class="form-control" id="risk-documentStatus" v-model="documentStatusValue" @change="onRiskInputChange">
                 <option :value="null"></option>
-                <option v-for="docStatus in documentStatusValues" :key="docStatus" :value="docStatus">{{ docStatus }}</option>
+                <option v-for="docStatus in documentStatusValues" :key="docStatus" :value="docStatus">
+                  {{ $t('recruitment.enums.' + docStatus) }}
+                </option>
               </select>
             </div>
             <div class="mb-3">
@@ -481,7 +487,9 @@
                 @change="onRiskInputChange"
               >
                 <option :value="null"></option>
-                <option v-for="impLevel in importanceLevelValues" :key="impLevel" :value="impLevel">{{ impLevel }}</option>
+                <option v-for="impLevel in importanceLevelValues" :key="impLevel" :value="impLevel">
+                  {{ $t('recruitment.enums.' + impLevel) }}
+                </option>
               </select>
             </div>
             <div class="mb-3">
@@ -490,7 +498,9 @@
               }}</label>
               <select class="form-control" id="risk-successionReadiness" v-model="successionReadinessValue" @change="onRiskInputChange">
                 <option :value="null"></option>
-                <option v-for="rdnLevel in readinessLevelValues" :key="rdnLevel" :value="rdnLevel">{{ rdnLevel }}</option>
+                <option v-for="rdnLevel in readinessLevelValues" :key="rdnLevel" :value="rdnLevel">
+                  {{ $t('recruitment.enums.' + rdnLevel) }}
+                </option>
               </select>
             </div>
             <div class="mt-3">

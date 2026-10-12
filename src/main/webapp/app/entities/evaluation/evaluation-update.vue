@@ -67,7 +67,7 @@
               data-cy="progressStatus"
             >
               <option v-for="progressStatus in progressStatusValues" :key="progressStatus" :value="progressStatus">
-                {{ progressStatus }}
+                {{ $t('recruitment.enums.' + progressStatus) }}
               </option>
             </select>
           </div>
@@ -82,7 +82,7 @@
               data-cy="result"
             >
               <option v-for="assessmentResult in assessmentResultValues" :key="assessmentResult" :value="assessmentResult">
-                {{ assessmentResult }}
+                {{ $t('recruitment.enums.' + assessmentResult) }}
               </option>
             </select>
           </div>

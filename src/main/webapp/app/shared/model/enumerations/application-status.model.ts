@@ -1,0 +1,11 @@
+export enum ApplicationStatus {
+  IN_PROGRESS = 'IN_PROGRESS',
+
+  ON_HOLD = 'ON_HOLD',
+
+  SELECTION_COMPLETED = 'SELECTION_COMPLETED',
+
+  DECIDED = 'DECIDED',
+
+  CLOSED = 'CLOSED',
+}

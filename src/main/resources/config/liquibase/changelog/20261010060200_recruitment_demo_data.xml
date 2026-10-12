@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!-- Development and test fixtures only. No notification is queued or sent. -->
+    <changeSet id="20261010060200-recruitment-demo" author="hrapp" context="faker">
+        <sql dbms="h2,mariadb" splitStatements="true">
+            INSERT INTO recruitment_requisition (id,requisition_code,title,department,recruitment_type,lifecycle,edit_status,planned_headcount,hired_count,checked_in_count,priority,reason,target_join_date,current_version,locked_at,locked_by,requirements_json) VALUES
+            (9001,'REQ-GRAD-2027','2027届软件工程师','产品开发部','GRADUATE','ACTIVE','LOCKED',3,0,0,'HIGH','应届毕业生校招需求，面向软件工程和信息类专业。','2027-04-01',1,'2026-10-01 09:00:00','admin','{"major":"软件工程/计算机","skills":["Java","团队协作"]}'),
+            (9002,'REQ-MID-2026','后端开发工程师','平台研发部','MID_CAREER','ACTIVE','LOCKED',1,0,0,'MEDIUM','中途招聘：后端平台开发经验。','2026-12-01',1,'2026-10-02 09:00:00','admin','{"experienceYears":"3+","skills":["Java","Spring"]}');
+
+            INSERT INTO recruitment_requisition_version (id,version_number,snapshot_json,locked_at,locked_by,change_reason,requisition_id) VALUES
+            (9001,1,'{"title":"2027届软件工程师","headcount":3}', '2026-10-01 09:00:00','admin','人事定版',9001),
+            (9002,1,'{"title":"后端开发工程师","headcount":1}', '2026-10-02 09:00:00','admin','人事定版',9002);
+            INSERT INTO recruitment_requisition_member (id,username,member_type,active,created_at,requisition_id) VALUES
+            (9001,'admin','HR',true,'2026-10-01 09:00:00',9001),(9002,'admin','HR',true,'2026-10-02 09:00:00',9002);
+
+            INSERT INTO external_candidate (id,full_name,name_reading,english_name,birth_date,gender,phone,email,address,education_summary,work_summary,created_at,updated_at) VALUES
+            (9001,'林晓雨','リン ギョウウ','Xiaoyu Lin','2004-05-12','F','13800009001','xiaoyu.lin@example.test','上海市','东海大学 软件工程 本科 2027届','应届毕业生；校招取得简历','2026-09-10 10:00:00','2026-09-10 10:00:00'),
+            (9002,'陈浩','チン コウ','Hao Chen','1996-03-08','M','13800009002','hao.chen@example.test','上海市','华东理工大学 计算机科学 本科','5年Java后端开发经验；招聘网站取得简历','2026-09-12 11:00:00','2026-09-12 11:00:00'),
+            (9003,'王敏','オウ ビン','Min Wang','1995-11-21','F','13800009003','min.wang@example.test','苏州市','南京理工大学 信息管理 本科','4年开发经验；INFINIX合作公司推荐','2026-09-15 14:00:00','2026-09-15 14:00:00');
+            INSERT INTO candidate_resume (id,version_number,received_at,original_file_name,media_type,file_size,sha_256,storage_key,structured_summary,active_version,uploaded_by,candidate_id) VALUES
+            (9001,1,'2026-09-10 10:00:00','林晓雨_履历书.pdf','application/pdf',120000,'demo-resume-sha256-grad-9001','demo/9001/resume.pdf','校招简历：软件工程专业，Java基础良好。',true,'admin',9001),
+            (9002,1,'2026-09-12 11:00:00','陈浩_Resume.pdf','application/pdf',140000,'demo-resume-sha256-mid-9002','demo/9002/resume.pdf','后端开发5年，熟悉Spring和关系型数据库。',true,'admin',9002),
+            (9003,1,'2026-09-15 14:00:00','王敏_Resume.pdf','application/pdf',135000,'demo-resume-sha256-infinix-9003','demo/9003/resume.pdf','INFINIX推荐；可按派遣录用流程评估。',true,'admin',9003);
+
+            INSERT INTO recruitment_application (id,application_code,recruitment_type,current_stage,status,decision,source_type,source_detail,batch_name,applied_at,retention_until,note,candidate_id,requisition_id,requisition_version_id) VALUES
+            (9001,'APP-GRAD-2027-001','GRADUATE','SECOND_INTERVIEW','IN_PROGRESS',NULL,'SCHOOL','东海大学校招','东海大学 2027届 第一批','2026-09-10 10:00:00','2031-09-10','已完成笔试和一次面试，待二次面试。',9001,9001,9001),
+            (9002,'APP-MID-2026-001','MID_CAREER','FINAL_INTERVIEW','SELECTION_COMPLETED',NULL,'WEBSITE','招聘网站','2026年10月中途招聘','2026-09-12 11:00:00','2031-09-12','笔试及一次面试通过，待经营层最终评定。',9002,9002,9002),
+            (9003,'APP-MID-2026-002','MID_CAREER','FINAL_INTERVIEW','DECIDED','ACCEPT_AS_DISPATCHED','AGENCY','INFINIX合作公司','INFINIX 派遣评估','2026-09-15 14:00:00','2031-09-15','最终评定为派遣录用，进入观察期跟踪。',9003,9002,9002);
+
+            INSERT INTO application_stage (id,stage_type,sequence_number,stage_status,started_at,completed_at,selected,decision_reason,application_id) VALUES
+            (9001,'RESUME_SCREENING',1,'COMPLETED','2026-09-11 09:00:00','2026-09-12 09:00:00',true,'符合校招岗位基本条件。',9001),
+            (9002,'WRITTEN_TEST',2,'COMPLETED','2026-09-20 09:00:00','2026-09-20 10:00:00',true,'适应性测试通过。',9001),
+            (9003,'FIRST_INTERVIEW',3,'COMPLETED','2026-09-25 14:00:00','2026-09-25 15:00:00',true,'建议进入二次面试。',9001),
+            (9004,'SECOND_INTERVIEW',4,'PENDING','2026-10-20 14:00:00',NULL,NULL,NULL,9001),
+            (9005,'RESUME_SCREENING',1,'COMPLETED','2026-09-13 09:00:00','2026-09-14 09:00:00',true,'经验与岗位匹配。',9002),
+            (9006,'WRITTEN_TEST',2,'COMPLETED','2026-09-22 09:00:00','2026-09-22 10:00:00',true,'适应性测试达到要求。',9002),
+            (9007,'FIRST_INTERVIEW',3,'COMPLETED','2026-09-29 10:00:00','2026-09-29 11:00:00',true,'推荐经营层面试。',9002),
+            (9008,'FINAL_INTERVIEW',4,'PENDING','2026-10-22 15:00:00',NULL,NULL,NULL,9002);
+
+            INSERT INTO application_event (id,stage_type,event_type,previous_value,new_value,actor,occurred_at,reason,metadata_json,application_id) VALUES
+            (9001,'RESUME_SCREENING','STAGE_COMPLETED','PENDING','COMPLETED','admin','2026-09-12 09:00:00','简历预审通过。','{"shared":true}',9001),
+            (9002,'WRITTEN_TEST','STAGE_COMPLETED','PENDING','COMPLETED','admin','2026-09-20 10:00:00','笔试评分完成并周知面试官。','{"durationMinutes":60,"shared":true}',9001),
+            (9003,'FIRST_INTERVIEW','STAGE_COMPLETED','PENDING','COMPLETED','admin','2026-09-25 15:00:00','一次面试通过。','{"shared":true}',9001),
+            (9004,'FINAL_INTERVIEW','DECISION_RECORDED',NULL,'ACCEPT_AS_DISPATCHED','admin','2026-10-01 16:00:00','经营层最终评定由人事担当记录。','{"shared":true}',9003);
+
+            INSERT INTO selection_activity (id,stage_type,activity_type,start_at,end_at,meeting_room_id,location,status,schedule_version,application_id) VALUES
+            (9001,'SECOND_INTERVIEW','SECOND_INTERVIEW','2026-10-20 14:00:00','2026-10-20 15:00:00',1,'总部 3F','SCHEDULED',1,9001),
+            (9002,'FINAL_INTERVIEW','FINAL_INTERVIEW','2026-10-22 15:00:00','2026-10-22 16:00:00',2,'总部 5F','SCHEDULED',1,9002);
+
+            INSERT INTO recruitment_evaluation (id,stage_type,activity_id,evaluator_username,recorded_by_username,status,overall_recommendation,total_score,summary,answers_json,evaluated_at,submitted_at,published_at,application_id) VALUES
+            (9001,'RESUME_SCREENING',NULL,'admin','admin','PUBLISHED','RECOMMENDED',82,'专业背景符合岗位要求，建议进入笔试。','{"education":4,"skills":4,"motivation":4}', '2026-09-12 09:00:00','2026-09-12 09:00:00','2026-09-12 09:05:00',9001),
+            (9002,'WRITTEN_TEST',NULL,'admin','admin','PUBLISHED','RECOMMENDED',78,'适应性测试完成，达到面试要求。','{"reasoning":4,"attention":4,"communication":3}', '2026-09-20 10:30:00','2026-09-20 10:30:00','2026-09-20 10:35:00',9001),
+            (9003,'FIRST_INTERVIEW',9001,'admin','admin','PUBLISHED','RECOMMENDED',85,'基础扎实，表达清晰，建议二次面试。','{"professionalKnowledge":4,"communication":5,"teamwork":4}', '2026-09-25 15:10:00','2026-09-25 15:10:00','2026-09-25 15:15:00',9001),
+            (9004,'FINAL_INTERVIEW',NULL,'admin','admin','PUBLISHED','RECOMMENDED',80,'经营层评定结果：建议以派遣员工方式录用，观察后复核。','{"businessFit":4,"growthPotential":4,"decision":"ACCEPT_AS_DISPATCHED"}', '2026-10-01 16:00:00','2026-10-01 16:00:00','2026-10-01 16:05:00',9003);
+
+            INSERT INTO hiring_decision (id,decision,decision_source,decided_by,decided_at,reason,active,application_id) VALUES
+            (9001,'ACCEPT_AS_DISPATCHED','MANUAL','admin','2026-10-01 16:00:00','经营层最终面试评定；派遣期后复核是否转正。',true,9003);
+            INSERT INTO notification_template (id,event_type,recruitment_type,language,version_number,subject_template,body_template,external_safe,published) VALUES
+            (9001,'INTERVIEW_INVITATION','GRADUATE','zh-cn',1,'面试安排通知 - {{candidateName}}','{{candidateName}} 您好：\n您的面试安排为 {{startAt}}，地点：{{location}}。如需调整请联系招聘担当。',true,true),
+            (9002,'INTERVIEW_INVITATION','MID_CAREER','zh-cn',1,'面试安排通知 - {{candidateName}}','{{candidateName}} 您好：\n您的面试安排为 {{startAt}}，地点：{{location}}。如需调整请联系招聘担当。',true,true),
+            (9003,'PREBOARDING_FOLLOW_UP','GRADUATE','zh-cn',1,'入社前跟进 - {{candidateName}}','{{candidateName}} 您好：\n人事将与您确认入社准备情况。',true,true);
+
+            INSERT INTO preboarding_follow_up (id,candidate_id,planned_at,contacted_at,owner_username,contact_method,result,candidate_intent,risk_level,next_action,next_contact_at,application_id) VALUES
+            (9001,9001,'2027-02-01 10:00:00','2027-02-01 10:15:00','admin','EMAIL','已确认','积极','LOW','入社资料发送后再次确认','2027-03-01 10:00:00',9001);
+            INSERT INTO partner_organization (id,partner_code,name,roles_json,dispatch_enabled,default_observation_days,active) VALUES
+            (9001,'INFINIX','INFINIX','["DISPATCH","MID_CAREER"]',true,90,true);
+            INSERT INTO dispatch_assignment (id,candidate_id,partner_organization_id,department,start_date,expected_end_date,observation_days,status,final_decision,note,application_id) VALUES
+            (9001,9003,9001,'平台研发部','2026-10-05','2027-01-02',90,'ACTIVE','CONTINUE_DISPATCH','派遣观察期中，按月跟踪并于期满前开展转正评估。',9003);
+            INSERT INTO dispatch_review (id,reviewed_at,reviewer_username,result,recommendation,dispatch_assignment_id) VALUES
+            (9001,'2026-11-05 10:00:00','admin','PASSED','CONTINUE_DISPATCH',9001);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

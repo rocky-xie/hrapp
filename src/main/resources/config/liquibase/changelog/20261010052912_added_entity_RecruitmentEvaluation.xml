@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity RecruitmentEvaluation.
+    -->
+    <changeSet id="20261010052912-1" author="jhipster">
+        <createTable tableName="recruitment_evaluation">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="stage_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="activity_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="template_version_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="evaluator_username" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="recorded_by_username" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            <column name="overall_recommendation" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_score" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="summary" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="answers_json" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="evaluated_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="submitted_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="published_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="correction_of_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="application_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="recruitment_evaluation" columnName="evaluated_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="recruitment_evaluation" columnName="submitted_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="recruitment_evaluation" columnName="published_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+</databaseChangeLog>

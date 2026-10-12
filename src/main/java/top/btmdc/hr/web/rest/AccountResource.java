@@ -52,7 +52,7 @@ public class AccountResource {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void registerAccount() {
-        throw new AccountResourceException("Self-registration is disabled");
+        throw new BadRequestAlertException("Self-registration is disabled", "account", "registrationdisabled");
     }
 
     /**

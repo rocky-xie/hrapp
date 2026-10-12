@@ -1,0 +1,84 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052918"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "candidateId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "personId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "partnerOrganizationId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "positionId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "expectedEndDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "observationDays",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "finalDecision",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "DispatchAssignment",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "dispatchReview",
+      "otherEntityRelationshipName": "dispatchAssignment",
+      "relationshipName": "reviews",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "dispatchAssignments",
+      "relationshipName": "application",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

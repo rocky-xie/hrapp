@@ -65,10 +65,10 @@
             </td>
             <td>{{ skill.skillCode }}</td>
             <td>{{ skill.skillName }}</td>
-            <td>{{ skill.skillType }}</td>
+            <td>{{ $t('recruitment.enums.' + skill.skillType) }}</td>
             <td>{{ skill.measurableFlag }}</td>
             <td>{{ skill.description }}</td>
-            <td>{{ skill.evidenceType }}</td>
+            <td>{{ $t('recruitment.enums.' + skill.evidenceType) }}</td>
             <td class="text-end">
               <div class="btn-group">
                 <router-link :to="{ name: 'SkillView', params: { skillId: skill.id } }" custom v-slot="{ navigate }">

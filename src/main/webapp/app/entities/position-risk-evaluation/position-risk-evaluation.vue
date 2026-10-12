@@ -97,10 +97,10 @@
             <td>{{ positionRiskEvaluation.ownerCount }}</td>
             <td>{{ positionRiskEvaluation.substitutableOwnerCount }}</td>
             <td>{{ positionRiskEvaluation.hasSubstitute }}</td>
-            <td>{{ positionRiskEvaluation.documentStatus }}</td>
-            <td>{{ positionRiskEvaluation.customerOrSystemDependency }}</td>
-            <td>{{ positionRiskEvaluation.successionReadiness }}</td>
-            <td>{{ positionRiskEvaluation.riskLevel }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRiskEvaluation.documentStatus) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRiskEvaluation.customerOrSystemDependency) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRiskEvaluation.successionReadiness) }}</td>
+            <td>{{ $t('recruitment.enums.' + positionRiskEvaluation.riskLevel) }}</td>
             <td>{{ positionRiskEvaluation.riskReason }}</td>
             <td>{{ positionRiskEvaluation.recommendedAction }}</td>
             <td>

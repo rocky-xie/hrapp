@@ -1,0 +1,168 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052908"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "applicationCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "recruitmentType",
+      "fieldType": "RecruitmentType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "GRADUATE,MID_CAREER"
+    },
+    {
+      "fieldName": "currentStage",
+      "fieldType": "ApplicationStageType",
+      "fieldValues": "RESUME_SCREENING,WRITTEN_TEST,FIRST_INTERVIEW,SECOND_INTERVIEW,FINAL_INTERVIEW"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ApplicationStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "IN_PROGRESS,ON_HOLD,SELECTION_COMPLETED,DECIDED,CLOSED"
+    },
+    {
+      "fieldName": "decision",
+      "fieldType": "ApplicationDecision",
+      "fieldValues": "HIRED,NOT_HIRED,RESERVE,WITHDRAWN,ACCEPT_AS_DISPATCHED"
+    },
+    {
+      "fieldName": "sourceType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "sourceDetail",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "batchName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "appliedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "closedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "retentionUntil",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "convertedPersonId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "convertedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "closeReason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "RecruitmentApplication",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "applicationStage",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "stages",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "applicationEvent",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "events",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "selectionActivity",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "activities",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recruitmentEvaluation",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "evaluations",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "hiringDecision",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "decisions",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "notificationMessage",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "messages",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "preboardingFollowUp",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "followUps",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dispatchAssignment",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "dispatchAssignments",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "externalCandidate",
+      "otherEntityRelationshipName": "applications",
+      "relationshipName": "candidate",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "recruitmentRequisition",
+      "otherEntityRelationshipName": "applications",
+      "relationshipName": "requisition",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "recruitmentRequisitionVersion",
+      "otherEntityRelationshipName": "applications",
+      "relationshipName": "requisitionVersion",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

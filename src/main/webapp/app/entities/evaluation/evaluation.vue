@@ -102,8 +102,8 @@
             <td>{{ evaluation.evaluationName }}</td>
             <td>{{ evaluation.evaluationDate }}</td>
             <td>{{ evaluation.periodLabel }}</td>
-            <td>{{ evaluation.progressStatus }}</td>
-            <td>{{ evaluation.result }}</td>
+            <td>{{ $t('recruitment.enums.' + evaluation.progressStatus) }}</td>
+            <td>{{ $t('recruitment.enums.' + evaluation.result) }}</td>
             <td>{{ evaluation.strengths }}</td>
             <td>{{ evaluation.weaknesses }}</td>
             <td>{{ evaluation.supportNeeded }}</td>

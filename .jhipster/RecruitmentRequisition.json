@@ -1,0 +1,145 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052903"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "requisitionCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "positionId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "recruitmentType",
+      "fieldType": "RecruitmentType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "GRADUATE,MID_CAREER"
+    },
+    {
+      "fieldName": "lifecycle",
+      "fieldType": "RequisitionLifecycle",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PREPARING,ACTIVE,SUSPENDED,CLOSED,CANCELLED"
+    },
+    {
+      "fieldName": "editStatus",
+      "fieldType": "RequisitionEditStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "EDITABLE,LOCKED"
+    },
+    {
+      "fieldName": "plannedHeadcount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "hiredCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "checkedInCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "targetJoinDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "desiredStartDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "desiredEndDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "currentVersion",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "lockedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lockedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "unlockedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "unlockReason",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "requirementsJson",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "RecruitmentRequisition",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "recruitmentRequisitionVersion",
+      "otherEntityRelationshipName": "requisition",
+      "relationshipName": "versions",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recruitmentRequisitionMember",
+      "otherEntityRelationshipName": "requisition",
+      "relationshipName": "members",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "requisition",
+      "relationshipName": "applications",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

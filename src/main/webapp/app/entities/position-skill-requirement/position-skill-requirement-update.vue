@@ -28,7 +28,7 @@
                 :key="requirementImportance"
                 :value="requirementImportance"
               >
-                {{ requirementImportance }}
+                {{ $t('recruitment.enums.' + requirementImportance) }}
               </option>
             </select>
             <div v-if="v$.importance.$anyDirty && v$.importance.$invalid">

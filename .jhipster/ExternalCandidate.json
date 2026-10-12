@@ -1,0 +1,95 @@
+{
+  "annotations": {
+    "changelogDate": "20261010052906"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "fullName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "nameReading",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "englishName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "254"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "educationSummary",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "workSummary",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "convertedPersonId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ExternalCandidate",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "candidateResume",
+      "otherEntityRelationshipName": "candidate",
+      "relationshipName": "resumes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "recruitmentApplication",
+      "otherEntityRelationshipName": "candidate",
+      "relationshipName": "applications",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

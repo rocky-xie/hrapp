@@ -165,23 +165,25 @@ public class ActionItemService {
             sourceId,
             EnumSet.of(ActionStatus.OPEN, ActionStatus.IN_PROGRESS)
         );
-        if (existing.isPresent()) {
-            ActionItem item = existing.get();
-            item.setDescription(description);
-            if (assignee != null) item.setAssignee(assignee);
-            if (priority != null) item.setPriority(priority);
-            return actionItemMapper.toDto(actionItemRepository.save(item));
-        }
-        ActionItem entity = new ActionItem()
-            .sourceType(sourceType)
-            .sourceId(sourceId)
-            .sourceEntityType(sourceEntityType)
-            .description(description)
-            .assignee(assignee)
-            .priority(priority != null ? priority : ActionPriority.P2_MEDIUM)
-            .status(ActionStatus.OPEN)
-            .createdAt(LocalDate.now());
-        return actionItemMapper.toDto(actionItemRepository.save(entity));
+        return existing
+            .map(item -> {
+                item.setDescription(description);
+                if (assignee != null) item.setAssignee(assignee);
+                if (priority != null) item.setPriority(priority);
+                return actionItemMapper.toDto(actionItemRepository.save(item));
+            })
+            .orElseGet(() -> {
+                ActionItem entity = new ActionItem()
+                    .sourceType(sourceType)
+                    .sourceId(sourceId)
+                    .sourceEntityType(sourceEntityType)
+                    .description(description)
+                    .assignee(assignee)
+                    .priority(priority != null ? priority : ActionPriority.P2_MEDIUM)
+                    .status(ActionStatus.OPEN)
+                    .createdAt(LocalDate.now());
+                return actionItemMapper.toDto(actionItemRepository.save(entity));
+            });
     }
 
     public void delete(Long id) {

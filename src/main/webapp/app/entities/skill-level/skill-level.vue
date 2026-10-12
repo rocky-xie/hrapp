@@ -59,7 +59,7 @@
             <td>
               <router-link :to="{ name: 'SkillLevelView', params: { skillLevelId: skillLevel.id } }">{{ skillLevel.id }}</router-link>
             </td>
-            <td>{{ skillLevel.code }}</td>
+            <td>{{ $t('recruitment.enums.' + skillLevel.code) }}</td>
             <td>{{ skillLevel.levelName }}</td>
             <td>{{ skillLevel.definition }}</td>
             <td>{{ skillLevel.observableEvidence }}</td>

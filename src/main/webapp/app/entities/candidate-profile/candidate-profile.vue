@@ -99,13 +99,13 @@
             </td>
             <td>{{ candidateProfile.candidateDate }}</td>
             <td>{{ candidateProfile.cultivateDirection }}</td>
-            <td>{{ candidateProfile.stability }}</td>
-            <td>{{ candidateProfile.learningAbility }}</td>
-            <td>{{ candidateProfile.communicationCoordination }}</td>
-            <td>{{ candidateProfile.businessUnderstanding }}</td>
-            <td>{{ candidateProfile.responsibility }}</td>
-            <td>{{ candidateProfile.riskAwareness }}</td>
-            <td>{{ candidateProfile.judgement }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.stability) }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.learningAbility) }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.communicationCoordination) }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.businessUnderstanding) }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.responsibility) }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.riskAwareness) }}</td>
+            <td>{{ $t('recruitment.enums.' + candidateProfile.judgement) }}</td>
             <td>{{ candidateProfile.evidence }}</td>
             <td>
               <div v-if="candidateProfile.person">
